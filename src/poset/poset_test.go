@@ -3,21 +3,100 @@ package poset
 import (
 	"crypto/ecdsa"
 	"fmt"
+	"math"
 	"os"
+	"reflect"
 	"sort"
+	"strings"
 	"testing"
 
-	"github.com/andrecronje/lachesis/src/peers"
 	"github.com/sirupsen/logrus"
-
-	"strings"
-
-	"reflect"
-
-	"math"
 
 	"github.com/andrecronje/lachesis/src/common"
 	"github.com/andrecronje/lachesis/src/crypto"
+	"github.com/andrecronje/lachesis/src/peers"
+)
+
+const (
+	e0 = "e0"
+	e1 = "e1"
+	e2 = "e2"
+
+	e10  = "e10"
+	e21  = "e21"
+	e21b = "e21b"
+	e02  = "e02"
+	f1   = "f1"
+	f1b  = "f1b"
+	f0   = "f0"
+	f2   = "f2"
+	f10  = "f10"
+	f0x  = "f0x"
+	f21  = "f21"
+	f02  = "f02"
+	f02b = "f02b"
+	g1   = "g1"
+	g0   = "g0"
+	g2   = "g2"
+	g10  = "g10"
+	g21  = "g21"
+	g02  = "g02"
+	h1   = "h1"
+	h0   = "h0"
+	h2   = "h2"
+	h10  = "h10"
+	h21  = "h21"
+	h02  = "h02"
+	i1   = "i1"
+	i0   = "i0"
+	i2   = "i2"
+
+	e01 = "e01"
+	s20 = "s20"
+	s10 = "s10"
+	s00 = "s00"
+	e20 = "e20"
+	e12 = "e12"
+
+	a   = "a"
+	s11 = "s11"
+
+	w00 = "w00"
+	w01 = "w01"
+	w02 = "w02"
+	w03 = "w03"
+	a23 = "a23"
+	a00 = "a00"
+	a12 = "a12"
+	a10 = "a10"
+	a21 = "a21"
+	w13 = "w13"
+	w12 = "w12"
+	w11 = "w11"
+	w10 = "w10"
+	b21 = "b21"
+	w23 = "w23"
+	b00 = "b00"
+	w21 = "w21"
+	c10 = "c10"
+	w22 = "w22"
+	w20 = "w20"
+	w31 = "w31"
+	w32 = "w32"
+	w33 = "w33"
+	w30 = "w30"
+	d13 = "d13"
+	w40 = "w40"
+	w41 = "w41"
+	w42 = "w42"
+	w43 = "w43"
+	e23 = "e23"
+	w51 = "w51"
+
+	e32 = "e32"
+	g13 = "g13"
+	f01 = "f01"
+	i32 = "i32"
 )
 
 var (
@@ -73,6 +152,8 @@ type play struct {
 	name        string
 	txPayload   [][]byte
 	sigPayload  []BlockSignature
+	knownRoots  []string
+	//witnessProof []string
 }
 
 func testLogger(t testing.TB) *logrus.Entry {
@@ -104,13 +185,17 @@ func initPosetNodes(n int) ([]TestNode, map[string]string, *[]Event, *peers.Peer
 	return nodes, index, orderedEvents, participants
 }
 
-func playEvents(plays []play, nodes []TestNode, index map[string]string, orderedEvents *[]Event) {
+func playEvents(plays []play, nodes []TestNode,
+	index map[string]string, orderedEvents *[]Event) {
 	for _, p := range plays {
-		e := NewEvent(p.txPayload,
-			p.sigPayload,
+		ft := make(map[string]int)
+		for k := range p.knownRoots {
+			ft[index[p.knownRoots[k]]] = 1
+		}
+
+		e := NewEvent(p.txPayload, p.sigPayload,
 			[]string{index[p.selfParent], index[p.otherParent]},
-			nodes[p.to].Pub,
-			p.index, nil)
+			nodes[p.to].Pub, p.index, ft)
 
 		nodes[p.to].signAndAddEvent(e, p.name, index, orderedEvents)
 	}
@@ -144,7 +229,7 @@ func initPosetFull(plays []play, db bool, n int, logger *logrus.Entry) (*Poset, 
 
 	// Needed to have sorted nodes based on participants hash32
 	for i, peer := range participants.ToPeerSlice() {
-		event := NewEvent(nil, nil, []string{rootSelfParent(peer.ID), ""}, nodes[i].Pub, 0, nil)
+		event := NewEvent(nil, nil, []string{rootSelfParent(peer.ID), ""}, nodes[i].Pub, 0, map[string]int{rootSelfParent(peer.ID): 1})
 		nodes[i].signAndAddEvent(event, fmt.Sprintf("e%d", i), index, orderedEvents)
 	}
 
@@ -173,12 +258,12 @@ e0  e1  e2
 */
 func initPoset(t *testing.T) (*Poset, map[string]string) {
 	plays := []play{
-		{0, 1, "e0", "e1", "e01", nil, nil},
-		{2, 1, "e2", "", "s20", nil, nil},
-		{1, 1, "e1", "", "s10", nil, nil},
-		{0, 2, "e01", "", "s00", nil, nil},
-		{2, 2, "s20", "s00", "e20", nil, nil},
-		{1, 2, "s10", "e20", "e12", nil, nil},
+		{0, 1, e0, e1, e01, nil, nil, []string{e0, e1}},
+		{2, 1, e2, "", s20, nil, nil, []string{e2}},
+		{1, 1, e1, "", s10, nil, nil, []string{e1}},
+		{0, 2, e01, "", s00, nil, nil, []string{e0, e1}},
+		{2, 2, s20, s00, e20, nil, nil, []string{e0, e1, e2}},
+		{1, 2, s10, e20, e12, nil, nil, []string{e0, e1, e2}},
 	}
 
 	h, index, orderedEvents := initPosetFull(plays, false, n, testLogger(t))
@@ -205,35 +290,35 @@ func TestAncestor(t *testing.T) {
 
 	expected := []ancestryItem{
 		//first generation
-		{"e01", "e0", true, false},
-		{"e01", "e1", true, false},
-		{"s00", "e01", true, false},
-		{"s20", "e2", true, false},
-		{"e20", "s00", true, false},
-		{"e20", "s20", true, false},
-		{"e12", "e20", true, false},
-		{"e12", "s10", true, false},
+		{e01, e0, true, false},
+		{e01, e1, true, false},
+		{s00, e01, true, false},
+		{s20, e2, true, false},
+		{e20, s00, true, false},
+		{e20, s20, true, false},
+		{e12, e20, true, false},
+		{e12, s10, true, false},
 		//second generation
-		{"s00", "e0", true, false},
-		{"s00", "e1", true, false},
-		{"e20", "e01", true, false},
-		{"e20", "e2", true, false},
-		{"e12", "e1", true, false},
-		{"e12", "s20", true, false},
+		{s00, e0, true, false},
+		{s00, e1, true, false},
+		{e20, e01, true, false},
+		{e20, e2, true, false},
+		{e12, e1, true, false},
+		{e12, s20, true, false},
 		//third generation
-		{"e20", "e0", true, false},
-		{"e20", "e1", true, false},
-		{"e20", "e2", true, false},
-		{"e12", "e01", true, false},
-		{"e12", "e0", true, false},
-		{"e12", "e1", true, false},
-		{"e12", "e2", true, false},
+		{e20, e0, true, false},
+		{e20, e1, true, false},
+		{e20, e2, true, false},
+		{e12, e01, true, false},
+		{e12, e0, true, false},
+		{e12, e1, true, false},
+		{e12, e2, true, false},
 		//false positive
-		{"e01", "e2", false, false},
-		{"s00", "e2", false, false},
-		{"e0", "", false, true},
-		{"s00", "", false, true},
-		{"e12", "", false, true},
+		{e01, e2, false, false},
+		{s00, e2, false, false},
+		{e0, "", false, true},
+		{s00, "", false, true},
+		{e12, "", false, true},
 	}
 
 	for _, exp := range expected {
@@ -252,20 +337,20 @@ func TestSelfAncestor(t *testing.T) {
 
 	expected := []ancestryItem{
 		//1 generation
-		{"e01", "e0", true, false},
-		{"s00", "e01", true, false},
+		{e01, e0, true, false},
+		{s00, e01, true, false},
 		//1 generation false negative
-		{"e01", "e1", false, false},
-		{"e12", "e20", false, false},
-		{"s20", "e1", false, false},
-		{"s20", "", false, true},
+		{e01, e1, false, false},
+		{e12, e20, false, false},
+		{s20, e1, false, false},
+		{s20, "", false, true},
 		//2 generations
-		{"e20", "e2", true, false},
-		{"e12", "e1", true, false},
+		{e20, e2, true, false},
+		{e12, e1, true, false},
 		//2 generations false negatives
-		{"e20", "e0", false, false},
-		{"e12", "e2", false, false},
-		{"e20", "e01", false, false},
+		{e20, e0, false, false},
+		{e12, e2, false, false},
+		{e20, e01, false, false},
 	}
 
 	for _, exp := range expected {
@@ -283,14 +368,14 @@ func TestSee(t *testing.T) {
 	h, index := initPoset(t)
 
 	expected := []ancestryItem{
-		{"e01", "e0", true, false},
-		{"e01", "e1", true, false},
-		{"e20", "e0", true, false},
-		{"e20", "e01", true, false},
-		{"e12", "e01", true, false},
-		{"e12", "e0", true, false},
-		{"e12", "e1", true, false},
-		{"e12", "s20", true, false},
+		{e01, e0, true, false},
+		{e01, e1, true, false},
+		{e20, e0, true, false},
+		{e20, e01, true, false},
+		{e12, e01, true, false},
+		{e12, e0, true, false},
+		{e12, e1, true, false},
+		{e12, s20, true, false},
 	}
 
 	for _, exp := range expected {
@@ -308,15 +393,15 @@ func TestLamportTimestamp(t *testing.T) {
 	h, index := initPoset(t)
 
 	expectedTimestamps := map[string]int{
-		"e0":  0,
-		"e1":  0,
-		"e2":  0,
-		"e01": 1,
-		"s10": 1,
-		"s20": 1,
-		"s00": 2,
-		"e20": 3,
-		"e12": 4,
+		e0:  0,
+		e1:  0,
+		e2:  0,
+		e01: 1,
+		s10: 1,
+		s20: 1,
+		s00: 2,
+		e20: 3,
+		e12: 4,
 	}
 
 	for e, ets := range expectedTimestamps {
@@ -378,21 +463,21 @@ func TestFork(t *testing.T) {
 	}
 
 	event01 := NewEvent(nil, nil,
-		[]string{index["e0"], index["a"]}, //e0 and a
+		[]string{index[e0], index[a]}, //e0 and a
 		nodes[0].Pub, 1, nil)
 	event01.Sign(nodes[0].Key)
-	index["e01"] = event01.Hex()
+	index[e01] = event01.Hex()
 	if err := poset.InsertEvent(event01, true); err == nil {
-		t.Fatal("InsertEvent should return error for e01")
+		t.Fatalf("InsertEvent should return error for %s", e01)
 	}
 
 	event20 := NewEvent(nil, nil,
-		[]string{index["e2"], index["e01"]}, //e2 and e01
+		[]string{index[e2], index[e01]}, //e2 and e01
 		nodes[2].Pub, 1, nil)
 	event20.Sign(nodes[2].Key)
-	index["e20"] = event20.Hex()
+	index[e20] = event20.Hex()
 	if err := poset.InsertEvent(event20, true); err == nil {
-		t.Fatal("InsertEvent should return error for e20")
+		t.Fatalf("InsertEvent should return error for %s", e20)
 	}
 }
 
@@ -417,14 +502,14 @@ e0  e1  e2
 
 func initRoundPoset(t *testing.T) (*Poset, map[string]string) {
 	plays := []play{
-		{1, 1, "e1", "e0", "e10", nil, nil},
-		{2, 1, "e2", "", "s20", nil, nil},
-		{0, 1, "e0", "", "s00", nil, nil},
-		{2, 2, "s20", "e10", "e21", nil, nil},
-		{0, 2, "s00", "e21", "e02", nil, nil},
-		{1, 2, "e10", "", "s10", nil, nil},
-		{1, 3, "s10", "e02", "f1", nil, nil},
-		{1, 4, "f1", "", "s11", [][]byte{[]byte("abc")}, nil},
+		{1, 1, e1, e0, e10, nil, nil, []string{e0, e1}},
+		{2, 1, e2, "", s20, nil, nil, []string{e2}},
+		{0, 1, e0, "", s00, nil, nil, []string{e0}},
+		{2, 2, s20, e10, e21, nil, nil, []string{e0, e1, e2}},
+		{0, 2, s00, e21, e02, nil, nil, []string{e0, e21}},
+		{1, 2, e10, "", s10, nil, nil, []string{e0, e1}},
+		{1, 3, s10, e02, f1, nil, nil, []string{e21, e02, e1}},
+		{1, 4, f1, "", s11, [][]byte{[]byte("abc")}, nil, []string{e21, e02, f1}},
 	}
 
 	h, index, _ := initPosetFull(plays, false, n, testLogger(t))
@@ -440,121 +525,121 @@ func TestInsertEvent(t *testing.T) {
 		participants := h.Participants.ToPeerSlice()
 
 		//e0
-		e0, err := h.Store.GetEvent(index["e0"])
+		e0Event, err := h.Store.GetEvent(index[e0])
 		if err != nil {
 			t.Fatal(err)
 		}
 
-		if !(e0.Body.selfParentIndex == -1 &&
-			e0.Body.otherParentCreatorID == -1 &&
-			e0.Body.otherParentIndex == -1 &&
-			e0.Body.creatorID == h.Participants.ByPubKey[e0.Creator()].ID) {
-			t.Fatalf("Invalid wire info on e0")
+		if !(e0Event.Body.selfParentIndex == -1 &&
+			e0Event.Body.otherParentCreatorID == -1 &&
+			e0Event.Body.otherParentIndex == -1 &&
+			e0Event.Body.creatorID == h.Participants.ByPubKey[e0Event.Creator()].ID) {
+			t.Fatalf("Invalid wire info on %s", e0)
 		}
 
 		expectedFirstDescendants := OrderedEventCoordinates{
-			Index{participants[0].ID, EventCoordinates{index["e0"], 0}},
-			Index{participants[1].ID, EventCoordinates{index["e10"], 1}},
-			Index{participants[2].ID, EventCoordinates{index["e21"], 2}},
+			Index{participants[0].ID, EventCoordinates{index[e0], 0}},
+			Index{participants[1].ID, EventCoordinates{index[e10], 1}},
+			Index{participants[2].ID, EventCoordinates{index[e21], 2}},
 		}
 
 		expectedLastAncestors := OrderedEventCoordinates{
-			Index{participants[0].ID, EventCoordinates{index["e0"], 0}},
+			Index{participants[0].ID, EventCoordinates{index[e0], 0}},
 			Index{participants[1].ID, EventCoordinates{"", -1}},
 			Index{participants[2].ID, EventCoordinates{"", -1}},
 		}
 
-		if !reflect.DeepEqual(e0.firstDescendants, expectedFirstDescendants) {
-			t.Fatal("e0 firstDescendants not good")
+		if !reflect.DeepEqual(e0Event.firstDescendants, expectedFirstDescendants) {
+			t.Fatalf("%s firstDescendants not good", e0)
 		}
-		if !reflect.DeepEqual(e0.lastAncestors, expectedLastAncestors) {
-			t.Fatal("e0 lastAncestors not good")
+		if !reflect.DeepEqual(e0Event.lastAncestors, expectedLastAncestors) {
+			t.Fatalf("%s lastAncestors not good", e0)
 		}
 
 		//e21
-		e21, err := h.Store.GetEvent(index["e21"])
+		e21Event, err := h.Store.GetEvent(index[e21])
 		if err != nil {
 			t.Fatal(err)
 		}
 
-		e10, err := h.Store.GetEvent(index["e10"])
+		e10Event, err := h.Store.GetEvent(index[e10])
 		if err != nil {
 			t.Fatal(err)
 		}
 
-		if !(e21.Body.selfParentIndex == 1 &&
-			e21.Body.otherParentCreatorID == h.Participants.ByPubKey[e10.Creator()].ID &&
-			e21.Body.otherParentIndex == 1 &&
-			e21.Body.creatorID == h.Participants.ByPubKey[e21.Creator()].ID) {
-			t.Fatalf("Invalid wire info on e21")
+		if !(e21Event.Body.selfParentIndex == 1 &&
+			e21Event.Body.otherParentCreatorID == h.Participants.ByPubKey[e10Event.Creator()].ID &&
+			e21Event.Body.otherParentIndex == 1 &&
+			e21Event.Body.creatorID == h.Participants.ByPubKey[e21Event.Creator()].ID) {
+			t.Fatalf("Invalid wire info on %s", e21)
 		}
 
 		expectedFirstDescendants = OrderedEventCoordinates{
-			Index{participants[0].ID, EventCoordinates{index["e02"], 2}},
-			Index{participants[1].ID, EventCoordinates{index["f1"], 3}},
-			Index{participants[2].ID, EventCoordinates{index["e21"], 2}},
+			Index{participants[0].ID, EventCoordinates{index[e02], 2}},
+			Index{participants[1].ID, EventCoordinates{index[f1], 3}},
+			Index{participants[2].ID, EventCoordinates{index[e21], 2}},
 		}
 
 		expectedLastAncestors = OrderedEventCoordinates{
-			Index{participants[0].ID, EventCoordinates{index["e0"], 0}},
-			Index{participants[1].ID, EventCoordinates{index["e10"], 1}},
-			Index{participants[2].ID, EventCoordinates{index["e21"], 2}},
+			Index{participants[0].ID, EventCoordinates{index[e0], 0}},
+			Index{participants[1].ID, EventCoordinates{index[e10], 1}},
+			Index{participants[2].ID, EventCoordinates{index[e21], 2}},
 		}
 
-		if !reflect.DeepEqual(e21.firstDescendants, expectedFirstDescendants) {
-			t.Fatal("e21 firstDescendants not good")
+		if !reflect.DeepEqual(e21Event.firstDescendants, expectedFirstDescendants) {
+			t.Fatalf("%s firstDescendants not good", e21)
 		}
-		if !reflect.DeepEqual(e21.lastAncestors, expectedLastAncestors) {
-			t.Fatal("e21 lastAncestors not good")
+		if !reflect.DeepEqual(e21Event.lastAncestors, expectedLastAncestors) {
+			t.Fatalf("%s lastAncestors not good", e21)
 		}
 
 		//f1
-		f1, err := h.Store.GetEvent(index["f1"])
+		f1Event, err := h.Store.GetEvent(index[f1])
 		if err != nil {
 			t.Fatal(err)
 		}
 
-		if !(f1.Body.selfParentIndex == 2 &&
-			f1.Body.otherParentCreatorID == h.Participants.ByPubKey[e0.Creator()].ID &&
-			f1.Body.otherParentIndex == 2 &&
-			f1.Body.creatorID == h.Participants.ByPubKey[f1.Creator()].ID) {
-			t.Fatalf("Invalid wire info on f1")
+		if !(f1Event.Body.selfParentIndex == 2 &&
+			f1Event.Body.otherParentCreatorID == h.Participants.ByPubKey[e0Event.Creator()].ID &&
+			f1Event.Body.otherParentIndex == 2 &&
+			f1Event.Body.creatorID == h.Participants.ByPubKey[f1Event.Creator()].ID) {
+			t.Fatalf("Invalid wire info on %s", f1)
 		}
 
 		expectedFirstDescendants = OrderedEventCoordinates{
 			Index{participants[0].ID, EventCoordinates{"", math.MaxInt32}},
-			Index{participants[1].ID, EventCoordinates{index["f1"], 3}},
+			Index{participants[1].ID, EventCoordinates{index[f1], 3}},
 			Index{participants[2].ID, EventCoordinates{"", math.MaxInt32}},
 		}
 
 		expectedLastAncestors = OrderedEventCoordinates{
-			Index{participants[0].ID, EventCoordinates{index["e02"], 2}},
-			Index{participants[1].ID, EventCoordinates{index["f1"], 3}},
-			Index{participants[2].ID, EventCoordinates{index["e21"], 2}},
+			Index{participants[0].ID, EventCoordinates{index[e02], 2}},
+			Index{participants[1].ID, EventCoordinates{index[f1], 3}},
+			Index{participants[2].ID, EventCoordinates{index[e21], 2}},
 		}
 
-		if !reflect.DeepEqual(f1.firstDescendants, expectedFirstDescendants) {
-			t.Fatal("f1 firstDescendants not good")
+		if !reflect.DeepEqual(f1Event.firstDescendants, expectedFirstDescendants) {
+			t.Fatalf("%s firstDescendants not good", f1)
 		}
-		if !reflect.DeepEqual(f1.lastAncestors, expectedLastAncestors) {
-			t.Fatal("f1 lastAncestors not good")
+		if !reflect.DeepEqual(f1Event.lastAncestors, expectedLastAncestors) {
+			t.Fatalf("%s lastAncestors not good", f1)
 		}
 	})
 
 	t.Run("Check UndeterminedEvents", func(t *testing.T) {
 
 		expectedUndeterminedEvents := []string{
-			index["e0"],
-			index["e1"],
-			index["e2"],
-			index["e10"],
-			index["s20"],
-			index["s00"],
-			index["e21"],
-			index["e02"],
-			index["s10"],
-			index["f1"],
-			index["s11"]}
+			index[e0],
+			index[e1],
+			index[e2],
+			index[e10],
+			index[s20],
+			index[s00],
+			index[e21],
+			index[e02],
+			index[s10],
+			index[f1],
+			index[s11]}
 
 		for i, eue := range expectedUndeterminedEvents {
 			if ue := h.UndeterminedEvents[i]; ue != eue {
@@ -611,23 +696,23 @@ func TestStronglySee(t *testing.T) {
 	h, index := initRoundPoset(t)
 
 	expected := []ancestryItem{
-		{"e21", "e0", true, false},
-		{"e02", "e10", true, false},
-		{"e02", "e0", true, false},
-		{"e02", "e1", true, false},
-		{"f1", "e21", true, false},
-		{"f1", "e10", true, false},
-		{"f1", "e0", true, false},
-		{"f1", "e1", true, false},
-		{"f1", "e2", true, false},
-		{"s11", "e2", true, false},
+		{e21, e0, true, false},
+		{e02, e10, true, false},
+		{e02, e0, true, false},
+		{e02, e1, true, false},
+		{f1, e21, true, false},
+		{f1, e10, true, false},
+		{f1, e0, true, false},
+		{f1, e1, true, false},
+		{f1, e2, true, false},
+		{s11, e2, true, false},
 		//false negatives
-		{"e10", "e0", false, false},
-		{"e21", "e1", false, false},
-		{"e21", "e2", false, false},
-		{"e02", "e2", false, false},
-		{"s11", "e02", false, false},
-		{"s11", "", false, true},
+		{e10, e0, false, false},
+		{e21, e1, false, false},
+		{e21, e2, false, false},
+		{e02, e2, false, false},
+		{s11, e02, false, false},
+		{s11, "", false, true},
 	}
 
 	for _, exp := range expected {
@@ -645,23 +730,25 @@ func TestWitness(t *testing.T) {
 	h, index := initRoundPoset(t)
 
 	round0Witnesses := make(map[string]RoundEvent)
-	round0Witnesses[index["e0"]] = RoundEvent{Witness: true, Famous: Undefined}
-	round0Witnesses[index["e1"]] = RoundEvent{Witness: true, Famous: Undefined}
-	round0Witnesses[index["e2"]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e0]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e1]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e2]] = RoundEvent{Witness: true, Famous: Undefined}
 	h.Store.SetRound(0, RoundInfo{Events: round0Witnesses})
 
 	round1Witnesses := make(map[string]RoundEvent)
-	round1Witnesses[index["f1"]] = RoundEvent{Witness: true, Famous: Undefined}
+	round1Witnesses[index[e21]] = RoundEvent{Witness: true, Famous: Undefined}
+	round1Witnesses[index[e02]] = RoundEvent{Witness: true, Famous: Undefined}
+	round1Witnesses[index[f1]] = RoundEvent{Witness: true, Famous: Undefined}
 	h.Store.SetRound(1, RoundInfo{Events: round1Witnesses})
 
 	expected := []ancestryItem{
-		{"", "e0", true, false},
-		{"", "e1", true, false},
-		{"", "e2", true, false},
-		{"", "f1", true, false},
-		{"", "e10", false, false},
-		{"", "e21", false, false},
-		{"", "e02", false, false},
+		{"", e0, true, false},
+		{"", e1, true, false},
+		{"", e2, true, false},
+		{"", f1, true, false},
+		{"", e10, false, false},
+		{"", e21, true, false},
+		{"", e02, true, false},
 	}
 
 	for _, exp := range expected {
@@ -679,23 +766,29 @@ func TestRound(t *testing.T) {
 	h, index := initRoundPoset(t)
 
 	round0Witnesses := make(map[string]RoundEvent)
-	round0Witnesses[index["e0"]] = RoundEvent{Witness: true, Famous: Undefined}
-	round0Witnesses[index["e1"]] = RoundEvent{Witness: true, Famous: Undefined}
-	round0Witnesses[index["e2"]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e0]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e1]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e2]] = RoundEvent{Witness: true, Famous: Undefined}
 	h.Store.SetRound(0, RoundInfo{Events: round0Witnesses})
 
+	round1Witnesses := make(map[string]RoundEvent)
+	round1Witnesses[index[e21]] = RoundEvent{Witness: true, Famous: Undefined}
+	round1Witnesses[index[e02]] = RoundEvent{Witness: true, Famous: Undefined}
+	round1Witnesses[index[f1]] = RoundEvent{Witness: true, Famous: Undefined}
+	h.Store.SetRound(1, RoundInfo{Events: round1Witnesses})
+
 	expected := []roundItem{
-		{"e0", 0},
-		{"e1", 0},
-		{"e2", 0},
-		{"s00", 0},
-		{"e10", 0},
-		{"s20", 0},
-		{"e21", 0},
-		{"e02", 0},
-		{"s10", 0},
-		{"f1", 1},
-		{"s11", 1},
+		{e0, 0},
+		{e1, 0},
+		{e2, 0},
+		{s00, 0},
+		{e10, 0},
+		{s20, 0},
+		{e21, 1},
+		{e02, 1},
+		{s10, 0},
+		{f1, 1},
+		{s11, 2},
 	}
 
 	for _, exp := range expected {
@@ -713,41 +806,51 @@ func TestRoundDiff(t *testing.T) {
 	h, index := initRoundPoset(t)
 
 	round0Witnesses := make(map[string]RoundEvent)
-	round0Witnesses[index["e0"]] = RoundEvent{Witness: true, Famous: Undefined}
-	round0Witnesses[index["e1"]] = RoundEvent{Witness: true, Famous: Undefined}
-	round0Witnesses[index["e2"]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e0]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e1]] = RoundEvent{Witness: true, Famous: Undefined}
+	round0Witnesses[index[e2]] = RoundEvent{Witness: true, Famous: Undefined}
 	h.Store.SetRound(0, RoundInfo{Events: round0Witnesses})
 
-	if d, err := h.roundDiff(index["f1"], index["e02"]); d != 1 {
+	round1Witnesses := make(map[string]RoundEvent)
+	round1Witnesses[index[e21]] = RoundEvent{Witness: true, Famous: Undefined}
+	round1Witnesses[index[e02]] = RoundEvent{Witness: true, Famous: Undefined}
+	round1Witnesses[index[f1]] = RoundEvent{Witness: true, Famous: Undefined}
+	h.Store.SetRound(1, RoundInfo{Events: round1Witnesses})
+
+	if d, err := h.roundDiff(index[s11], index[e21]); d != 1 {
 		if err != nil {
-			t.Fatalf("RoundDiff(f1, e02) returned an error: %s", err)
+			t.Fatalf("RoundDiff(%s, %s) returned an error: %s", s11, e02, err)
 		}
-		t.Fatalf("RoundDiff(f1, e02) should be 1 not %d", d)
+		t.Fatalf("RoundDiff(%s, %s) should be 1 not %d", s11, e02, d)
 	}
 
-	if d, err := h.roundDiff(index["e02"], index["f1"]); d != -1 {
+	if d, err := h.roundDiff(index[f1], index[s11]); d != -1 {
 		if err != nil {
-			t.Fatalf("RoundDiff(e02, f1) returned an error: %s", err)
+			t.Fatalf("RoundDiff(%s, %s) returned an error: %s", s11, f1, err)
 		}
-		t.Fatalf("RoundDiff(e02, f1) should be -1 not %d", d)
+		t.Fatalf("RoundDiff(%s, %s) should be -1 not %d", s11, f1, d)
 	}
-	if d, err := h.roundDiff(index["e02"], index["e21"]); d != 0 {
+	if d, err := h.roundDiff(index[e02], index[e21]); d != 0 {
 		if err != nil {
-			t.Fatalf("RoundDiff(e20, e21) returned an error: %s", err)
+			t.Fatalf("RoundDiff(%s, %s) returned an error: %s", e20, e21, err)
 		}
-		t.Fatalf("RoundDiff(e20, e21) should be 0 not %d", d)
+		t.Fatalf("RoundDiff(%s, %s) should be 0 not %d", e20, e21, d)
 	}
 }
 
 func TestDivideRounds(t *testing.T) {
 	h, index := initRoundPoset(t)
 
+	for k, v := range index {
+		t.Logf("%s : %s\n", k, v)
+	}
+
 	if err := h.DivideRounds(); err != nil {
 		t.Fatal(err)
 	}
 
-	if l := h.Store.LastRound(); l != 1 {
-		t.Fatalf("last round should be 1 not %d", l)
+	if l := h.Store.LastRound(); l != 2 {
+		t.Fatalf("last round should be 2 not %d", l)
 	}
 
 	round0, err := h.Store.GetRound(0)
@@ -757,25 +860,34 @@ func TestDivideRounds(t *testing.T) {
 	if l := len(round0.Witnesses()); l != 3 {
 		t.Fatalf("round 0 should have 3 witnesses, not %d", l)
 	}
-	if !contains(round0.Witnesses(), index["e0"]) {
-		t.Fatalf("round 0 witnesses should contain e0")
+	if !contains(round0.Witnesses(), index[e0]) {
+		t.Fatalf("round 0 witnesses should contain %s", e0)
 	}
-	if !contains(round0.Witnesses(), index["e1"]) {
-		t.Fatalf("round 0 witnesses should contain e1")
+	if !contains(round0.Witnesses(), index[e1]) {
+		t.Fatalf("round 0 witnesses should contain %s", e1)
 	}
-	if !contains(round0.Witnesses(), index["e2"]) {
-		t.Fatalf("round 0 witnesses should contain e2")
+	if !contains(round0.Witnesses(), index[e2]) {
+		t.Fatalf("round 0 witnesses should contain %s", e2)
 	}
 
 	round1, err := h.Store.GetRound(1)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if l := len(round1.Witnesses()); l != 1 {
+	if l := len(round1.Witnesses()); l != 3 {
 		t.Fatalf("round 1 should have 1 witness, not %d", l)
 	}
-	if !contains(round1.Witnesses(), index["f1"]) {
-		t.Fatalf("round 1 witnesses should contain f1")
+	if !contains(round1.Witnesses(), index[f1]) {
+		t.Fatalf("round 1 witnesses should contain %s", f1)
+	}
+
+	round2, err := h.Store.GetRound(2)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if l := len(round2.Witnesses()); l != 1 {
+		t.Fatalf("round 1 should have 1 witness, not %d", l)
 	}
 
 	expectedPendingRounds := []pendingRound{
@@ -785,6 +897,9 @@ func TestDivideRounds(t *testing.T) {
 		},
 		{
 			Index:   1,
+			Decided: false,
+		}, {
+			Index:   2,
 			Decided: false,
 		},
 	}
@@ -799,17 +914,17 @@ func TestDivideRounds(t *testing.T) {
 		t, r int
 	}
 	expectedTimestamps := map[string]tr{
-		"e0":  {0, 0},
-		"e1":  {0, 0},
-		"e2":  {0, 0},
-		"s00": {1, 0},
-		"e10": {1, 0},
-		"s20": {1, 0},
-		"e21": {2, 0},
-		"e02": {3, 0},
-		"s10": {2, 0},
-		"f1":  {4, 1},
-		"s11": {5, 1},
+		e0:  {0, 0},
+		e1:  {0, 0},
+		e2:  {0, 0},
+		s00: {1, 0},
+		e10: {1, 0},
+		s20: {1, 0},
+		e21: {2, 1},
+		e02: {3, 1},
+		s10: {2, 0},
+		f1:  {4, 1},
+		s11: {5, 2},
 	}
 
 	for e, et := range expectedTimestamps {
@@ -822,53 +937,6 @@ func TestDivideRounds(t *testing.T) {
 		}
 		if ts := ev.lamportTimestamp; ts == nil || *ts != et.t {
 			t.Fatalf("%s lamportTimestamp should be %d, not %d", e, et.t, *ts)
-		}
-	}
-
-}
-
-func TestCreateRoot(t *testing.T) {
-	h, index := initRoundPoset(t)
-	h.DivideRounds()
-
-	participants := h.Participants.ToPeerSlice()
-
-	baseRoot := NewBaseRoot(participants[0].ID)
-
-	expected := map[string]Root{
-		"e0": baseRoot,
-		"e02": {
-			NextRound:  0,
-			SelfParent: RootEvent{index["s00"], participants[0].ID, 1, 1, 0},
-			Others: map[string]RootEvent{
-				index["e02"]: {index["e21"], participants[2].ID, 2, 2, 0},
-			},
-		},
-		"s10": {
-			NextRound:  0,
-			SelfParent: RootEvent{index["e10"], participants[1].ID, 1, 1, 0},
-			Others:     map[string]RootEvent{},
-		},
-		"f1": {
-			NextRound:  1,
-			SelfParent: RootEvent{index["s10"], participants[1].ID, 2, 2, 0},
-			Others: map[string]RootEvent{
-				index["f1"]: {index["e02"], participants[0].ID, 2, 3, 0},
-			},
-		},
-	}
-
-	for evh, expRoot := range expected {
-		ev, err := h.Store.GetEvent(index[evh])
-		if err != nil {
-			t.Fatal(err)
-		}
-		root, err := h.createRoot(ev)
-		if err != nil {
-			t.Fatalf("Error creating %s Root: %v", evh, err)
-		}
-		if !reflect.DeepEqual(expRoot, root) {
-			t.Fatalf("%s Root should be %v, not %v", evh, expRoot, root)
 		}
 	}
 
@@ -904,10 +972,10 @@ func initDentedPoset(t *testing.T) (*Poset, map[string]string) {
 	}
 
 	plays := []play{
-		{0, 0, rootSelfParent(orderedPeers[0].ID), "", "e0", nil, nil},
-		{2, 0, rootSelfParent(orderedPeers[2].ID), "", "e2", nil, nil},
-		{0, 1, "e0", "", "e01", nil, nil},
-		{1, 0, rootSelfParent(orderedPeers[1].ID), "e2", "e12", nil, nil},
+		{0, 0, rootSelfParent(orderedPeers[0].ID), "", e0, nil, nil, []string{}},
+		{2, 0, rootSelfParent(orderedPeers[2].ID), "", e2, nil, nil, []string{}},
+		{0, 1, "e0", "", e01, nil, nil, []string{}},
+		{1, 0, rootSelfParent(orderedPeers[1].ID), e2, e12, nil, nil, []string{}},
 	}
 
 	playEvents(plays, nodes, index, orderedEvents)
@@ -923,11 +991,11 @@ func TestCreateRootBis(t *testing.T) {
 	participants := h.Participants.ToPeerSlice()
 
 	expected := map[string]Root{
-		"e12": {
+		e12: {
 			NextRound:  0,
 			SelfParent: NewBaseRootEvent(participants[1].ID),
 			Others: map[string]RootEvent{
-				index["e12"]: {index["e2"], participants[2].ID, 0, 0, 0},
+				index[e12]: {index[e2], participants[2].ID, 0, 0, 0},
 			},
 		},
 	}
@@ -1005,9 +1073,9 @@ func TestInsertEventsWithBlockSignatures(t *testing.T) {
 			0   1    2
 		*/
 		plays := []play{
-			{1, 1, "e1", "e0", "e10", nil, []BlockSignature{blockSigs[1]}},
-			{2, 1, "e2", "", "s20", nil, []BlockSignature{blockSigs[2]}},
-			{0, 1, "e0", "", "s00", nil, []BlockSignature{blockSigs[0]}},
+			{1, 1, e1, e0, e10, nil, []BlockSignature{blockSigs[1]}, []string{}},
+			{2, 1, e2, "", s20, nil, []BlockSignature{blockSigs[2]}, []string{}},
+			{0, 1, e0, "", s00, nil, []BlockSignature{blockSigs[0]}, []string{}},
 		}
 
 		for _, p := range plays {
@@ -1056,7 +1124,7 @@ func TestInsertEventsWithBlockSignatures(t *testing.T) {
 			Index:     1,
 			Signature: sig.Signature,
 		}
-		p := play{2, 2, "s20", "e10", "e21", nil, []BlockSignature{unknownBlockSig}}
+		p := play{2, 2, s20, e10, e21, nil, []BlockSignature{unknownBlockSig}, []string{}}
 
 		e := NewEvent(nil,
 			p.sigPayload,
@@ -1070,9 +1138,9 @@ func TestInsertEventsWithBlockSignatures(t *testing.T) {
 		}
 
 		//check that the event was recorded
-		_, err := h.Store.GetEvent(index["e21"])
+		_, err := h.Store.GetEvent(index[e21])
 		if err != nil {
-			t.Fatalf("ERROR fetching Event e21: %s", err)
+			t.Fatalf("ERROR fetching Event %s: %s", e21, err)
 		}
 
 	})
@@ -1087,7 +1155,7 @@ func TestInsertEventsWithBlockSignatures(t *testing.T) {
 		badNode := NewTestNode(key, 666)
 		badNodeSig, _ := block.Sign(badNode.Key)
 
-		p := play{0, 2, "s00", "e21", "e02", nil, []BlockSignature{badNodeSig}}
+		p := play{0, 2, s00, e21, e02, nil, []BlockSignature{badNodeSig}, []string{}}
 
 		e := NewEvent(nil,
 			p.sigPayload,
@@ -1110,94 +1178,94 @@ func TestInsertEventsWithBlockSignatures(t *testing.T) {
 }
 
 /*
-                  Round 4
-		i0  |   i2
-		| \ | / |
-		|   i1  |
-------- |  /|   | --------------------------------
-		h02 |   | Round 3
+                   Round 8
+	  [i0]  |  [i2]-----------------------------
+		| \ | / |  Round 7
+		|  <i1> |
+		|  /|   |
+	  <h02> |   |
 		| \ |   |
 		|   \   |
 		|   | \ |
-		|   |  h21
-		|   | / |
-		|  h10  |
+		|   | <h21>-----------------------------
+		|   | / |  Round 6
+		| [h10] |
 		| / |   |
-		h0  |   h2
-		| \ | / |
-		|   h1  |
-------- |  /|   | --------------------------------
-		g02 |   | Round 2
+	  [h0]  |  [h2]-----------------------------
+		| \ | / |  Round 5
+		|  <h1> |
+		|  /|   |
+	  <g02> |   |
 		| \ |   |
 		|   \   |
 		|   | \ |
-	    |   |  g21
-		|   | / |
-		|  g10  |
+	    |   | <g21>-----------------------------
+		|   | / |  Round 4
+		|  [g10]|
 		| / |   |
-		g0  |   g2
-		| \ | / |
-		|   g1  |
-------- |  /|   | -------------------------------
-		f02b|   |  Round 1           +---------+
-		|   |   |                    | Block 1 |
-		f02 |   |                    | RR    2 |
-		| \ |   |                    | Evs   9 |
-		|   \   |                    +---------+
+	  [g0]  |  [g2]-----------------------------
+		| \ | / |  Round 3
+		|  <g1> |
+		|  /|   |
+		f02b|   |
+		|   |   |
+	  <f02> |   |
+		| \ |   |
+		|   \   |
 		|   | \ |
-	---f0x  |   f21 //f0x's other-parent is e21b. This situation can happen with concurrency
-	|	|   | / |
+	---f0x  | <f21>----------------------------- //f0x's other-parent is e21b. This situation can happen with concurrency
+	|	|   | / |  Round 2
 	|	|  f10  |
 	|	| / |   |
-	|	f0  |   f2
+	| [f0]  |  [f2]
 	|	| \ | / |
-	|	|  f1b  |
+	|	| [f1b] | ------------------------------
+	|	|   |   |  Round 1
+	|	| <f1>  |
+	|  	|  /|   |
+	| <e02> |   |
+	|	| \ |   |
+	|	|   \   |
+	|	|   | \ |
+	|   |   | e21b
 	|	|   |   |
-	|	|   f1  |
----	| -	|  /|   | ------------------------------
-	|	e02 |   |  Round 0          +---------+
-	|	| \ |   |                   | Block 0 |
-	|	|   \   |                   | RR    1 |
-	|	|   | \ |                   | Evs   7 |
-	|   |   | e21b                  +---------+
-	|	|   |   |
-	---------- e21
-		|   | / |
+	----------<e21>------------------------------
+		|   | / |  Round 0
 		|  e10  |
 	    | / |   |
-		e0  e1  e2
+	   [e0][e1][e2]
 		0   1    2
 */
 func initConsensusPoset(db bool, t testing.TB) (*Poset, map[string]string) {
 	plays := []play{
-		{1, 1, "e1", "e0", "e10", nil, nil},
-		{2, 1, "e2", "e10", "e21", [][]byte{[]byte("e21")}, nil},
-		{2, 2, "e21", "", "e21b", nil, nil},
-		{0, 1, "e0", "e21b", "e02", nil, nil},
-		{1, 2, "e10", "e02", "f1", nil, nil},
-		{1, 3, "f1", "", "f1b", [][]byte{[]byte("f1b")}, nil},
-		{0, 2, "e02", "f1b", "f0", nil, nil},
-		{2, 3, "e21b", "f1b", "f2", nil, nil},
-		{1, 4, "f1b", "f0", "f10", nil, nil},
-		{0, 3, "f0", "e21", "f0x", nil, nil},
-		{2, 4, "f2", "f10", "f21", nil, nil},
-		{0, 4, "f0x", "f21", "f02", nil, nil},
-		{0, 5, "f02", "", "f02b", [][]byte{[]byte("f02b")}, nil},
-		{1, 5, "f10", "f02b", "g1", nil, nil},
-		{0, 6, "f02b", "g1", "g0", nil, nil},
-		{2, 5, "f21", "g1", "g2", nil, nil},
-		{1, 6, "g1", "g0", "g10", [][]byte{[]byte("g10")}, nil},
-		{2, 6, "g2", "g10", "g21", nil, nil},
-		{0, 7, "g0", "g21", "g02", [][]byte{[]byte("g02")}, nil},
-		{1, 7, "g10", "g02", "h1", nil, nil},
-		{0, 8, "g02", "h1", "h0", nil, nil},
-		{2, 7, "g21", "h1", "h2", nil, nil},
-		{1, 8, "h1", "h0", "h10", nil, nil},
-		{2, 8, "h2", "h10", "h21", nil, nil},
-		{0, 9, "h0", "h21", "h02", nil, nil},
-		{1, 9, "h10", "h02", "i1", nil, nil},
-		{0, 10, "h02", "i1", "i0", nil, nil},
-		{2, 9, "h21", "i1", "i2", nil, nil},
+		{1, 1, e1, e0, e10, nil, nil, []string{e0, e1}},
+		{2, 1, e2, e10, e21, [][]byte{[]byte(e21)}, nil, []string{e0, e1, e2}},
+		{2, 2, e21, "", e21b, nil, nil, []string{e21}},
+		{0, 1, e0, e21b, e02, nil, nil, []string{e0, e21}},
+		{1, 2, e10, e02, f1, nil, nil, []string{e21, e02, e1}},
+		{1, 3, f1, "", f1b, [][]byte{[]byte(f1b)}, nil, []string{e21, e02, f1}},
+		{0, 2, e02, f1b, f0, nil, nil, []string{f1b, e02}},
+		{2, 3, e21b, f1b, f2, nil, nil, []string{f1b, e21}},
+		{1, 4, f1b, f0, f10, nil, nil, []string{f1b, e02}},
+		{0, 3, f0, e21, f0x, nil, nil, []string{f0, f1b, e21b}},
+		{2, 4, f2, f10, f21, nil, nil, []string{f1b, f0, f2}},
+		{0, 4, f0x, f21, f02, nil, nil, []string{f21, f0, f1b}},
+		{0, 5, f02, "", f02b, [][]byte{[]byte(f02b)}, nil, []string{f02, f21}},
+		{1, 5, f10, f02b, g1, nil, nil, []string{f02, f21, f1b}},
+		{0, 6, f02b, g1, g0, nil, nil, []string{g1, f02, f21}},
+		{2, 5, f21, g1, g2, nil, nil, []string{g1, f02, f21}},
+		{1, 6, g1, g0, g10, [][]byte{[]byte(g10)}, nil, []string{g0, g1, f02, f21}},
+		{2, 6, g2, g10, g21, nil, nil, []string{g10, g0, g2}},
+		{0, 7, g0, g21, g02, [][]byte{[]byte(g02)}, nil, []string{g0, g21}},
+		{1, 7, g10, g02, h1, nil, nil, []string{g10, g0, g02, g21}},
+		{0, 8, g02, h1, h0, nil, nil, []string{h1, g02, g21}},
+		{2, 7, g21, h1, h2, nil, nil, []string{h1, g02, g21}},
+		{1, 8, h1, h0, h10, nil, nil, []string{h1, g02, g21, h0}},
+		{2, 8, h2, h10, h21, nil, nil, []string{h0, h10, h2}},
+		{0, 9, h0, h21, h02, nil, nil, []string{h0, h21}},
+		{1, 9, h10, h02, i1, nil, nil, []string{h02, h21, h10, h0}},
+		{0, 10, h02, i1, i0, nil, nil, []string{i1, h02, h21}},
+		{2, 9, h21, i1, i2, nil, nil, []string{i1, h02, h21}},
 	}
 
 	poset, index, _ := initPosetFull(plays, db, n, testLogger(t))
@@ -1217,37 +1285,37 @@ func TestDivideRoundsBis(t *testing.T) {
 		t, r int
 	}
 	expectedTimestamps := map[string]tr{
-		"e0":   {0, 0},
-		"e1":   {0, 0},
-		"e2":   {0, 0},
-		"e10":  {1, 0},
-		"e21":  {2, 0},
-		"e21b": {3, 0},
-		"e02":  {4, 0},
-		"f1":   {5, 1},
-		"f1b":  {6, 1},
-		"f0":   {7, 1},
-		"f2":   {7, 1},
-		"f10":  {8, 1},
-		"f0x":  {8, 1},
-		"f21":  {9, 1},
-		"f02":  {10, 1},
-		"f02b": {11, 1},
-		"g1":   {12, 2},
-		"g0":   {13, 2},
-		"g2":   {13, 2},
-		"g10":  {14, 2},
-		"g21":  {15, 2},
-		"g02":  {16, 2},
-		"h1":   {17, 3},
-		"h0":   {18, 3},
-		"h2":   {18, 3},
-		"h10":  {19, 3},
-		"h21":  {20, 3},
-		"h02":  {21, 3},
-		"i1":   {22, 4},
-		"i0":   {23, 4},
-		"i2":   {23, 4},
+		e0:   {0, 0},
+		e1:   {0, 0},
+		e2:   {0, 0},
+		e10:  {1, 0},
+		e21:  {2, 1},
+		e21b: {3, 1},
+		e02:  {4, 1},
+		f1:   {5, 1},
+		f1b:  {6, 2},
+		f0:   {7, 2},
+		f2:   {7, 2},
+		f10:  {8, 2},
+		f0x:  {8, 2},
+		f21:  {9, 3},
+		f02:  {10, 3},
+		f02b: {11, 3},
+		g1:   {12, 3},
+		g0:   {13, 4},
+		g2:   {13, 4},
+		g10:  {14, 4},
+		g21:  {15, 5},
+		g02:  {16, 5},
+		h1:   {17, 5},
+		h0:   {18, 6},
+		h2:   {18, 6},
+		h10:  {19, 6},
+		h21:  {20, 7},
+		h02:  {21, 7},
+		i1:   {22, 7},
+		i0:   {23, 8},
+		i2:   {23, 8},
 	}
 
 	for e, et := range expectedTimestamps {
@@ -1277,45 +1345,73 @@ func TestDecideFame(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if f := round0.Events[index["e0"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("e0 should be famous; got %v", f)
+	if f := round0.Events[index[e0]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", e0, f)
 	}
-	if f := round0.Events[index["e1"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("e1 should be famous; got %v", f)
+	if f := round0.Events[index[e1]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", e1, f)
 	}
-	if f := round0.Events[index["e2"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("e2 should be famous; got %v", f)
+	if f := round0.Events[index[e2]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", e2, f)
 	}
 
 	round1, err := h.Store.GetRound(1)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if f := round1.Events[index["f0"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("f0 should be famous; got %v", f)
+	if f := round1.Events[index[e21]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", e21, f)
 	}
-	if f := round1.Events[index["f1"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("f1 should be famous; got %v", f)
+	if f := round1.Events[index[e02]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", e02, f)
 	}
-	if f := round1.Events[index["f2"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("f2 should be famous; got %v", f)
+	if f := round1.Events[index[f1]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", f1, f)
 	}
 
 	round2, err := h.Store.GetRound(2)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if f := round2.Events[index["g0"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("g0 should be famous; got %v", f)
+	if f := round2.Events[index[f1b]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", f1b, f)
 	}
-	if f := round2.Events[index["g1"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("g1 should be famous; got %v", f)
+	if f := round2.Events[index[f0]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", f0, f)
 	}
-	if f := round2.Events[index["g2"]]; !(f.Witness && f.Famous == True) {
-		t.Fatalf("g2 should be famous; got %v", f)
+	if f := round2.Events[index[f2]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", f2, f)
 	}
 
-	expectedpendingRounds := []pendingRound{
+	round3, err := h.Store.GetRound(3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if f := round3.Events[index[f21]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", f21, f)
+	}
+	if f := round3.Events[index[f02]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", f02, f)
+	}
+	if f := round3.Events[index[g1]]; !(f.Witness && f.Famous == True) {
+		t.Fatalf("%s should be famous; got %v", g1, f)
+	}
+
+	round4, err := h.Store.GetRound(4)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if f := round4.Events[index[g0]]; !(f.Witness && f.Famous == Undefined) {
+		t.Fatalf("%s should be famous; got %v", g0, f)
+	}
+	if f := round4.Events[index[g2]]; !(f.Witness && f.Famous == Undefined) {
+		t.Fatalf("%s should be famous; got %v", g2, f)
+	}
+	if f := round4.Events[index[g10]]; !(f.Witness && f.Famous == Undefined) {
+		t.Fatalf("%s should be famous; got %v", g10, f)
+	}
+
+	expectedPendingRounds := []pendingRound{
 		{
 			Index:   0,
 			Decided: true,
@@ -1330,16 +1426,32 @@ func TestDecideFame(t *testing.T) {
 		},
 		{
 			Index:   3,
-			Decided: false,
+			Decided: true,
 		},
 		{
 			Index:   4,
 			Decided: false,
 		},
+		{
+			Index:   5,
+			Decided: true,
+		},
+		{
+			Index:   6,
+			Decided: false,
+		},
+		{
+			Index:   7,
+			Decided: false,
+		},
+		{
+			Index:   8,
+			Decided: false,
+		},
 	}
 	for i, pd := range h.PendingRounds {
-		if !reflect.DeepEqual(*pd, expectedpendingRounds[i]) {
-			t.Fatalf("pendingRounds[%d] should be %v, not %v", i, expectedpendingRounds[i], *pd)
+		if !reflect.DeepEqual(*pd, expectedPendingRounds[i]) {
+			t.Fatalf("pendingRounds[%d] should be %v, not %v", i, expectedPendingRounds[i], *pd)
 		}
 	}
 }
@@ -1393,21 +1505,21 @@ func TestDecideRoundReceived(t *testing.T) {
 	}
 
 	expectedUndeterminedEvents := []string{
-		index["g1"],
-		index["g0"],
-		index["g2"],
-		index["g10"],
-		index["g21"],
-		index["g02"],
-		index["h1"],
-		index["h0"],
-		index["h2"],
-		index["h10"],
-		index["h21"],
-		index["h02"],
-		index["i1"],
-		index["i0"],
-		index["i2"],
+		index[g1],
+		index[g0],
+		index[g2],
+		index[g10],
+		index[g21],
+		index[g02],
+		index[h1],
+		index[h0],
+		index[h2],
+		index[h10],
+		index[h21],
+		index[h02],
+		index[i1],
+		index[i0],
+		index[i2],
 	}
 
 	for i, eue := range expectedUndeterminedEvents {
@@ -1459,8 +1571,8 @@ func TestProcessDecidedRounds(t *testing.T) {
 	if l := len(block0.Transactions()); l != 1 {
 		t.Fatalf("Block0 should contain 1 transaction, not %d", l)
 	}
-	if tx := block0.Transactions()[0]; !reflect.DeepEqual(tx, []byte("e21")) {
-		t.Fatalf("Block0.Transactions[0] should be 'e21', not %s", tx)
+	if tx := block0.Transactions()[0]; !reflect.DeepEqual(tx, []byte(e21)) {
+		t.Fatalf("Block0.Transactions[0] should be '%s', not %s", e21, tx)
 	}
 
 	frame1, err := h.GetFrame(block0.RoundReceived())
@@ -1486,8 +1598,8 @@ func TestProcessDecidedRounds(t *testing.T) {
 	if l := len(block1.Transactions()); l != 2 {
 		t.Fatalf("Block1 should contain 2 transactions, not %d", l)
 	}
-	if tx := block1.Transactions()[1]; !reflect.DeepEqual(tx, []byte("f02b")) {
-		t.Fatalf("Block1.Transactions[1] should be 'f02b', not %s", tx)
+	if tx := block1.Transactions()[1]; !reflect.DeepEqual(tx, []byte(f02b)) {
+		t.Fatalf("Block1.Transactions[1] should be '%s', not %s", e21, tx)
 	}
 
 	frame2, err := h.GetFrame(block1.RoundReceived())
@@ -1585,13 +1697,13 @@ func TestGetFrame(t *testing.T) {
 		}
 
 		expectedEventsHashes := []string{
-			index["e0"],
-			index["e1"],
-			index["e2"],
-			index["e10"],
-			index["e21"],
-			index["e21b"],
-			index["e02"]}
+			index[e0],
+			index[e1],
+			index[e2],
+			index[e10],
+			index[e21],
+			index[e21b],
+			index[e02]}
 		var expectedEvents []Event
 		for _, eh := range expectedEventsHashes {
 			e, err := h.Store.GetEvent(eh)
@@ -1622,17 +1734,17 @@ func TestGetFrame(t *testing.T) {
 		expectedRoots := make([]Root, n)
 		expectedRoots[0] = Root{
 			NextRound:  1,
-			SelfParent: RootEvent{index["e02"], participants[0].ID, 1, 4, 0},
+			SelfParent: RootEvent{index[e02], participants[0].ID, 1, 4, 0},
 			Others: map[string]RootEvent{
-				index["f0"]: {
-					Hash:             index["f1b"],
+				index[f0]: {
+					Hash:             index[f1b],
 					CreatorID:        participants[1].ID,
 					Index:            3,
 					LamportTimestamp: 6,
 					Round:            1,
 				},
-				index["f0x"]: {
-					Hash:             index["e21"],
+				index[f0x]: {
+					Hash:             index[e21],
 					CreatorID:        participants[2].ID,
 					Index:            1,
 					LamportTimestamp: 2,
@@ -1642,10 +1754,10 @@ func TestGetFrame(t *testing.T) {
 		}
 		expectedRoots[1] = Root{
 			NextRound:  1,
-			SelfParent: RootEvent{index["e10"], participants[1].ID, 1, 1, 0},
+			SelfParent: RootEvent{index[e10], participants[1].ID, 1, 1, 0},
 			Others: map[string]RootEvent{
-				index["f1"]: {
-					Hash:             index["e02"],
+				index[f1]: {
+					Hash:             index[e02],
 					CreatorID:        participants[0].ID,
 					Index:            1,
 					LamportTimestamp: 4,
@@ -1655,10 +1767,10 @@ func TestGetFrame(t *testing.T) {
 		}
 		expectedRoots[2] = Root{
 			NextRound:  1,
-			SelfParent: RootEvent{index["e21b"], participants[2].ID, 2, 3, 0},
+			SelfParent: RootEvent{index[e21b], participants[2].ID, 2, 3, 0},
 			Others: map[string]RootEvent{
-				index["f2"]: {
-					Hash:             index["f1b"],
+				index[f2]: {
+					Hash:             index[f1b],
 					CreatorID:        participants[1].ID,
 					Index:            3,
 					LamportTimestamp: 6,
@@ -1684,15 +1796,15 @@ func TestGetFrame(t *testing.T) {
 		}
 
 		expectedEventsHashes := []string{
-			index["f1"],
-			index["f1b"],
-			index["f0"],
-			index["f2"],
-			index["f10"],
-			index["f0x"],
-			index["f21"],
-			index["f02"],
-			index["f02b"]}
+			index[f1],
+			index[f1b],
+			index[f0],
+			index[f2],
+			index[f10],
+			index[f0x],
+			index[f21],
+			index[f02],
+			index[f02b]}
 		var expectedEvents []Event
 		for _, eh := range expectedEventsHashes {
 			e, err := h.Store.GetEvent(eh)
@@ -2038,36 +2150,36 @@ func initFunkyPoset(logger *logrus.Logger, full bool) (*Poset, map[string]string
 	}
 
 	plays := []play{
-		{2, 1, "w02", "w03", "a23", [][]byte{[]byte("a23")}, nil},
-		{1, 1, "w01", "a23", "a12", [][]byte{[]byte("a12")}, nil},
-		{0, 1, "w00", "", "a00", [][]byte{[]byte("a00")}, nil},
-		{1, 2, "a12", "a00", "a10", [][]byte{[]byte("a10")}, nil},
-		{2, 2, "a23", "a12", "a21", [][]byte{[]byte("a21")}, nil},
-		{3, 1, "w03", "a21", "w13", [][]byte{[]byte("w13")}, nil},
-		{2, 3, "a21", "w13", "w12", [][]byte{[]byte("w12")}, nil},
-		{1, 3, "a10", "w12", "w11", [][]byte{[]byte("w11")}, nil},
-		{0, 2, "a00", "w11", "w10", [][]byte{[]byte("w10")}, nil},
-		{2, 4, "w12", "w11", "b21", [][]byte{[]byte("b21")}, nil},
-		{3, 2, "w13", "b21", "w23", [][]byte{[]byte("w23")}, nil},
-		{1, 4, "w11", "w23", "w21", [][]byte{[]byte("w21")}, nil},
-		{0, 3, "w10", "", "b00", [][]byte{[]byte("b00")}, nil},
-		{1, 5, "w21", "b00", "c10", [][]byte{[]byte("c10")}, nil},
-		{2, 5, "b21", "c10", "w22", [][]byte{[]byte("w22")}, nil},
-		{0, 4, "b00", "w22", "w20", [][]byte{[]byte("w20")}, nil},
-		{1, 6, "c10", "w20", "w31", [][]byte{[]byte("w31")}, nil},
-		{2, 6, "w22", "w31", "w32", [][]byte{[]byte("w32")}, nil},
-		{0, 5, "w20", "w32", "w30", [][]byte{[]byte("w30")}, nil},
-		{3, 3, "w23", "w32", "w33", [][]byte{[]byte("w33")}, nil},
-		{1, 7, "w31", "w33", "d13", [][]byte{[]byte("d13")}, nil},
-		{0, 6, "w30", "d13", "w40", [][]byte{[]byte("w40")}, nil},
-		{1, 8, "d13", "w40", "w41", [][]byte{[]byte("w41")}, nil},
-		{2, 7, "w32", "w41", "w42", [][]byte{[]byte("w42")}, nil},
-		{3, 4, "w33", "w42", "w43", [][]byte{[]byte("w43")}, nil},
+		{2, 1, w02, w03, a23, [][]byte{[]byte(a23)}, nil, []string{}},
+		{1, 1, w01, a23, a12, [][]byte{[]byte(a12)}, nil, []string{}},
+		{0, 1, w00, "", a00, [][]byte{[]byte(a00)}, nil, []string{}},
+		{1, 2, a12, a00, a10, [][]byte{[]byte(a10)}, nil, []string{}},
+		{2, 2, a23, a12, a21, [][]byte{[]byte(a21)}, nil, []string{}},
+		{3, 1, w03, a21, w13, [][]byte{[]byte(w13)}, nil, []string{}},
+		{2, 3, a21, w13, w12, [][]byte{[]byte(w12)}, nil, []string{}},
+		{1, 3, a10, w12, w11, [][]byte{[]byte(w11)}, nil, []string{}},
+		{0, 2, a00, w11, w10, [][]byte{[]byte(w10)}, nil, []string{}},
+		{2, 4, w12, w11, b21, [][]byte{[]byte(b21)}, nil, []string{}},
+		{3, 2, w13, b21, w23, [][]byte{[]byte(w23)}, nil, []string{}},
+		{1, 4, w11, w23, w21, [][]byte{[]byte(w21)}, nil, []string{}},
+		{0, 3, w10, "", b00, [][]byte{[]byte(b00)}, nil, []string{}},
+		{1, 5, w21, b00, c10, [][]byte{[]byte(c10)}, nil, []string{}},
+		{2, 5, b21, c10, w22, [][]byte{[]byte(w22)}, nil, []string{}},
+		{0, 4, b00, w22, w20, [][]byte{[]byte(w20)}, nil, []string{}},
+		{1, 6, c10, w20, w31, [][]byte{[]byte(w31)}, nil, []string{}},
+		{2, 6, w22, w31, w32, [][]byte{[]byte(w32)}, nil, []string{}},
+		{0, 5, w20, w32, w30, [][]byte{[]byte(w30)}, nil, []string{}},
+		{3, 3, w23, w32, w33, [][]byte{[]byte(w33)}, nil, []string{}},
+		{1, 7, w31, w33, d13, [][]byte{[]byte(d13)}, nil, []string{}},
+		{0, 6, w30, d13, w40, [][]byte{[]byte(w40)}, nil, []string{}},
+		{1, 8, d13, w40, w41, [][]byte{[]byte(w41)}, nil, []string{}},
+		{2, 7, w32, w41, w42, [][]byte{[]byte(w42)}, nil, []string{}},
+		{3, 4, w33, w42, w43, [][]byte{[]byte(w43)}, nil, []string{}},
 	}
 	if full {
 		newPlays := []play{
-			{2, 8, "w42", "w43", "e23", [][]byte{[]byte("e23")}, nil},
-			{1, 9, "w41", "e23", "w51", [][]byte{[]byte("w51")}, nil},
+			{2, 8, w42, w43, e23, [][]byte{[]byte(e23)}, nil, []string{}},
+			{1, 9, w41, e23, w51, [][]byte{[]byte(w51)}, nil, []string{}},
 		}
 		plays = append(plays, newPlays...)
 	}
@@ -2271,53 +2383,53 @@ func TestFunkyPosetFrames(t *testing.T) {
 			NewBaseRoot(participants[0].ID),
 			{
 				NextRound:  0,
-				SelfParent: RootEvent{index["a12"], participants[1].ID, 1, 2, 0},
+				SelfParent: RootEvent{index[a12], participants[1].ID, 1, 2, 0},
 				Others: map[string]RootEvent{
-					index["a10"]: {index["a00"], participants[0].ID, 1, 1, 0},
+					index[a10]: {index[a00], participants[0].ID, 1, 1, 0},
 				},
 			},
 			{
 				NextRound:  1,
-				SelfParent: RootEvent{index["a21"], participants[2].ID, 2, 3, 0},
+				SelfParent: RootEvent{index[a21], participants[2].ID, 2, 3, 0},
 				Others: map[string]RootEvent{
-					index["w12"]: {index["w13"], participants[3].ID, 1, 4, 1},
+					index[w12]: {index[w13], participants[3].ID, 1, 4, 1},
 				},
 			},
 			{
 				NextRound:  1,
-				SelfParent: RootEvent{index["w03"], participants[3].ID, 0, 0, 0},
+				SelfParent: RootEvent{index[w03], participants[3].ID, 0, 0, 0},
 				Others: map[string]RootEvent{
-					index["w13"]: {index["a21"], participants[2].ID, 2, 3, 0},
+					index[w13]: {index[a21], participants[2].ID, 2, 3, 0},
 				},
 			},
 		},
 		3: {
 			{
 				NextRound:  1,
-				SelfParent: RootEvent{index["a00"], participants[0].ID, 1, 1, 0},
+				SelfParent: RootEvent{index[a00], participants[0].ID, 1, 1, 0},
 				Others: map[string]RootEvent{
-					index["w10"]: {index["w11"], participants[1].ID, 3, 6, 1},
+					index[w10]: {index[w11], participants[1].ID, 3, 6, 1},
 				},
 			},
 			{
 				NextRound:  2,
-				SelfParent: RootEvent{index["w11"], participants[1].ID, 3, 6, 1},
+				SelfParent: RootEvent{index[w11], participants[1].ID, 3, 6, 1},
 				Others: map[string]RootEvent{
-					index["w21"]: {index["w23"], participants[3].ID, 2, 8, 2},
+					index[w21]: {index[w23], participants[3].ID, 2, 8, 2},
 				},
 			},
 			{
 				NextRound:  2,
-				SelfParent: RootEvent{index["b21"], participants[2].ID, 4, 7, 1},
+				SelfParent: RootEvent{index[b21], participants[2].ID, 4, 7, 1},
 				Others: map[string]RootEvent{
-					index["w22"]: {index["c10"], participants[1].ID, 5, 10, 2},
+					index[w22]: {index[c10], participants[1].ID, 5, 10, 2},
 				},
 			},
 			{
 				NextRound:  2,
-				SelfParent: RootEvent{index["w13"], participants[3].ID, 1, 4, 1},
+				SelfParent: RootEvent{index[w13], participants[3].ID, 1, 4, 1},
 				Others: map[string]RootEvent{
-					index["w23"]: {index["b21"], participants[2].ID, 4, 7, 1},
+					index[w23]: {index[b21], participants[2].ID, 4, 7, 1},
 				},
 			},
 		},
@@ -2490,27 +2602,27 @@ func initSparsePoset(logger *logrus.Logger) (*Poset, map[string]string) {
 	}
 
 	plays := []play{
-		{1, 1, "w01", "w00", "e10", [][]byte{[]byte("e10")}, nil},
-		{2, 1, "w02", "e10", "e21", [][]byte{[]byte("e21")}, nil},
-		{3, 1, "w03", "e21", "e32", [][]byte{[]byte("e32")}, nil},
-		{0, 1, "w00", "e32", "w10", [][]byte{[]byte("w10")}, nil},
-		{1, 2, "e10", "w10", "w11", [][]byte{[]byte("w11")}, nil},
-		{0, 2, "w10", "w11", "f01", [][]byte{[]byte("f01")}, nil},
-		{2, 2, "e21", "f01", "w12", [][]byte{[]byte("w12")}, nil},
-		{3, 2, "e32", "w12", "w13", [][]byte{[]byte("w13")}, nil},
-		{1, 3, "w11", "w13", "w21", [][]byte{[]byte("w21")}, nil},
-		{2, 3, "w12", "w21", "w22", [][]byte{[]byte("w22")}, nil},
-		{3, 3, "w13", "w22", "w23", [][]byte{[]byte("w23")}, nil},
-		{1, 4, "w21", "w23", "g13", [][]byte{[]byte("g13")}, nil},
-		{2, 4, "w22", "g13", "w32", [][]byte{[]byte("w32")}, nil},
-		{3, 4, "w23", "w32", "w33", [][]byte{[]byte("w33")}, nil},
-		{1, 5, "g13", "w33", "w31", [][]byte{[]byte("w31")}, nil},
-		{2, 5, "w32", "w31", "h21", [][]byte{[]byte("h21")}, nil},
-		{3, 5, "w33", "h21", "w43", [][]byte{[]byte("w43")}, nil},
-		{1, 6, "w31", "w43", "w41", [][]byte{[]byte("w41")}, nil},
-		{2, 6, "h21", "w41", "w42", [][]byte{[]byte("w42")}, nil},
-		{3, 6, "w43", "w42", "i32", [][]byte{[]byte("i32")}, nil},
-		{1, 7, "w41", "i32", "w51", [][]byte{[]byte("w51")}, nil},
+		{1, 1, w01, w00, e10, [][]byte{[]byte(e10)}, nil, []string{}},
+		{2, 1, w02, e10, e21, [][]byte{[]byte(e21)}, nil, []string{}},
+		{3, 1, w03, e21, e32, [][]byte{[]byte(e32)}, nil, []string{}},
+		{0, 1, w00, e32, w10, [][]byte{[]byte(w10)}, nil, []string{}},
+		{1, 2, e10, w10, w11, [][]byte{[]byte(w11)}, nil, []string{}},
+		{0, 2, w10, w11, f01, [][]byte{[]byte(f01)}, nil, []string{}},
+		{2, 2, e21, f01, w12, [][]byte{[]byte(w12)}, nil, []string{}},
+		{3, 2, e32, w12, w13, [][]byte{[]byte(w13)}, nil, []string{}},
+		{1, 3, w11, w13, w21, [][]byte{[]byte(w21)}, nil, []string{}},
+		{2, 3, w12, w21, w22, [][]byte{[]byte(w22)}, nil, []string{}},
+		{3, 3, w13, w22, w23, [][]byte{[]byte(w23)}, nil, []string{}},
+		{1, 4, w21, w23, g13, [][]byte{[]byte(g13)}, nil, []string{}},
+		{2, 4, w22, g13, w32, [][]byte{[]byte(w32)}, nil, []string{}},
+		{3, 4, w23, w32, w33, [][]byte{[]byte(w33)}, nil, []string{}},
+		{1, 5, g13, w33, w31, [][]byte{[]byte(w31)}, nil, []string{}},
+		{2, 5, w32, w31, h21, [][]byte{[]byte(h21)}, nil, []string{}},
+		{3, 5, w33, h21, w43, [][]byte{[]byte(w43)}, nil, []string{}},
+		{1, 6, w31, w43, w41, [][]byte{[]byte(w41)}, nil, []string{}},
+		{2, 6, h21, w41, w42, [][]byte{[]byte(w42)}, nil, []string{}},
+		{3, 6, w43, w42, i32, [][]byte{[]byte(i32)}, nil, []string{}},
+		{1, 7, w41, i32, w51, [][]byte{[]byte(w51)}, nil, []string{}},
 	}
 
 	for _, p := range plays {
@@ -2576,60 +2688,60 @@ func TestSparsePosetFrames(t *testing.T) {
 		2: {
 			{
 				NextRound:  1,
-				SelfParent: RootEvent{index["w00"], participants[0].ID, 0, 0, 0},
+				SelfParent: RootEvent{index[w00], participants[0].ID, 0, 0, 0},
 				Others: map[string]RootEvent{
-					index["w10"]: {index["e32"], participants[3].ID, 1, 3, 0},
+					index["w10"]: {index[e32], participants[3].ID, 1, 3, 0},
 				},
 			},
 			{
 				NextRound:  1,
-				SelfParent: RootEvent{index["e10"], participants[1].ID, 1, 1, 0},
+				SelfParent: RootEvent{index[e10], participants[1].ID, 1, 1, 0},
 				Others: map[string]RootEvent{
-					index["w11"]: {index["w10"], participants[0].ID, 1, 4, 1},
+					index[w11]: {index[w10], participants[0].ID, 1, 4, 1},
 				},
 			},
 			{
 				NextRound:  1,
-				SelfParent: RootEvent{index["e21"], participants[2].ID, 1, 2, 0},
+				SelfParent: RootEvent{index[e21], participants[2].ID, 1, 2, 0},
 				Others: map[string]RootEvent{
-					index["w12"]: {index["f01"], participants[0].ID, 2, 6, 1},
+					index[w12]: {index[f01], participants[0].ID, 2, 6, 1},
 				},
 			},
 			{
 				NextRound:  1,
-				SelfParent: RootEvent{index["e32"], participants[3].ID, 1, 3, 0},
+				SelfParent: RootEvent{index[e32], participants[3].ID, 1, 3, 0},
 				Others: map[string]RootEvent{
-					index["w13"]: {index["w12"], participants[2].ID, 2, 7, 1},
+					index[w13]: {index[w12], participants[2].ID, 2, 7, 1},
 				},
 			},
 		},
 		3: {
 			{
 				NextRound:  1,
-				SelfParent: RootEvent{index["w10"], participants[0].ID, 1, 4, 1},
+				SelfParent: RootEvent{index[w10], participants[0].ID, 1, 4, 1},
 				Others: map[string]RootEvent{
-					index["f01"]: {index["w11"], participants[1].ID, 2, 5, 1},
+					index[f01]: {index[w11], participants[1].ID, 2, 5, 1},
 				},
 			},
 			{
 				NextRound:  2,
-				SelfParent: RootEvent{index["w11"], participants[1].ID, 2, 5, 1},
+				SelfParent: RootEvent{index[w11], participants[1].ID, 2, 5, 1},
 				Others: map[string]RootEvent{
-					index["w21"]: {index["w13"], participants[3].ID, 2, 8, 1},
+					index[w21]: {index[w13], participants[3].ID, 2, 8, 1},
 				},
 			},
 			{
 				NextRound:  2,
-				SelfParent: RootEvent{index["w12"], participants[2].ID, 2, 7, 1},
+				SelfParent: RootEvent{index[w12], participants[2].ID, 2, 7, 1},
 				Others: map[string]RootEvent{
-					index["w22"]: {index["w21"], participants[1].ID, 3, 9, 2},
+					index[w22]: {index[w21], participants[1].ID, 3, 9, 2},
 				},
 			},
 			{
 				NextRound:  2,
-				SelfParent: RootEvent{index["w13"], participants[3].ID, 2, 8, 1},
+				SelfParent: RootEvent{index[w13], participants[3].ID, 2, 8, 1},
 				Others: map[string]RootEvent{
-					index["w23"]: {index["w22"], participants[2].ID, 3, 10, 2},
+					index[w23]: {index[w22], participants[2].ID, 3, 10, 2},
 				},
 			},
 		},

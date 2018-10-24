@@ -258,28 +258,148 @@ func (p *Poset) round2(x string) (int, error) {
 		}
 
 		if opRound > parentRound {
+			if p.isWitnessToRound(&ex, opRound) {
+				return opRound, nil
+			}
+
 			parentRound = opRound
 		}
 	}
 
-	c := 0
-	for _, w := range p.Store.RoundWitnesses(parentRound) {
-		ss, err := p.stronglySee(x, w)
-		if err != nil {
-			return math.MinInt32, err
-		}
-		if ss {
-			c++
-		}
+	witness, err := p.isWitnessByFlagTables(x)
+	if err != nil {
+		return 0, err
 	}
-	if c >= p.superMajority {
-		parentRound++
+
+	if witness {
+		return parentRound + 1, nil
+	}
+
+	proofRound, found := p.roundFromWitnessProof(x)
+	if found && proofRound > parentRound {
+		parentRound = proofRound
 	}
 
 	return parentRound, nil
 }
 
-//true if x is a witness (first event of a round for the owner)
+// isWitnessToRound checks if the event is a witness of the round,
+// relying on the flag table.
+func (p *Poset) isWitnessToRound(ex *Event, round int) bool {
+	ws := p.Store.RoundWitnesses(round)
+
+	ft, err := ex.GetFlagTable()
+	if err != nil {
+		return false
+	}
+
+	for item := range ft {
+		for _, root := range ws {
+			if item == root {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// isWitnessByFlagTables checks event`s flag table. If event knows more 2/3
+// witnesses previous round, the event is witness.
+func (p *Poset) isWitnessByFlagTables(x string) (bool, error) {
+	ex, err := p.Store.GetEvent(x)
+	if err != nil {
+		return false, err
+	}
+
+	parentRound, err := p.round(ex.SelfParent())
+	if err != nil {
+		return false, err
+	}
+
+	ft, err := ex.GetFlagTable()
+	if err != nil {
+		return false, err
+	}
+
+	witnesses := p.Store.RoundWitnesses(parentRound)
+
+	var roots int
+	for root := range ft {
+		for _, w := range witnesses {
+			if root == w {
+				see, err := p.see(x, w)
+				if err != nil {
+					continue
+				}
+				if see {
+					roots++
+				}
+				break
+			}
+		}
+	}
+	if roots < p.superMajority {
+		return false, nil
+	}
+
+	return true, err
+}
+
+// roundFromWitnessProof checks event`s witness proof. If event knows more 2/3
+// witnesses previous round, the event is witness. Returns information about
+// round of witness and whether the event is a witness.
+func (p *Poset) roundFromWitnessProof(x string) (int, bool) {
+	logger := p.logger.WithFields(logrus.Fields{
+		"method": "roundFromWitnessProof",
+		"object": x})
+
+	ex, err := p.Store.GetEvent(x)
+	if err != nil {
+		logger.Error(err.Error())
+		return 0, false
+	}
+
+	if ex.WitnessProof == nil || len(ex.WitnessProof) < p.superMajority {
+		return 0, false
+	}
+
+	maxRound := 0
+	rootsRounds := make(map[int][]string)
+
+	for _, v := range ex.WitnessProof {
+		rootRound, err := p.round(v)
+		if err != nil {
+			logger.Error(err.Error())
+			continue
+		}
+
+		found := false
+		witnesses := p.Store.RoundWitnesses(rootRound)
+		for _, w := range witnesses {
+			if v == w {
+				found = true
+			}
+		}
+
+		if !found {
+			continue
+		}
+
+		rootsRounds[rootRound] = append(rootsRounds[rootRound], v)
+
+		if rootRound > maxRound {
+			maxRound = rootRound
+		}
+	}
+
+	if len(rootsRounds[maxRound]) < p.superMajority {
+		return 0, false
+	}
+
+	return maxRound + 1, true
+}
+
+// witness if is true then x is a witness (first event of a round for the owner)
 func (p *Poset) witness(x string) (bool, error) {
 	ex, err := p.Store.GetEvent(x)
 	if err != nil {
@@ -409,7 +529,6 @@ func (p *Poset) checkSelfParent(event Event) error {
 		"creatorLastKnown": creatorLastKnown,
 		"event":            event.Hex(),
 	}).Debugf("checkSelfParent")
-
 
 	if err != nil {
 		return err
@@ -787,6 +906,7 @@ func (p *Poset) DivideRounds() error {
 		}
 
 		updateEvent := false
+		updateWitness := false
 
 		/*
 		   Compute Event's round, update the corresponding Round object, and
@@ -831,6 +951,11 @@ func (p *Poset) DivideRounds() error {
 			if err != nil {
 				return err
 			}
+
+			if witness {
+				updateWitness = true
+			}
+
 			roundInfo.AddEvent(hash, witness)
 
 			err = p.Store.SetRound(roundNumber, roundInfo)
@@ -854,11 +979,69 @@ func (p *Poset) DivideRounds() error {
 		}
 
 		if updateEvent {
+			if updateWitness {
+				p.updateWitnessInfo(&ev)
+			}
+
 			p.Store.SetEvent(ev)
 		}
+
 	}
 
 	return nil
+}
+
+func (p *Poset) updateWitnessInfo(event *Event) {
+	logger := p.logger.WithField("event", event.Hex())
+
+	if *event.round == 0 {
+		return
+	}
+
+	currentFlagTable, err := event.GetFlagTable()
+	if err != nil {
+		return
+	}
+
+	w, err := p.isWitnessByFlagTables(event.Hex())
+	if err != nil {
+		logger.Error(err.Error())
+		return
+	}
+
+	if w {
+		var proof []string
+
+		prWitnesses := p.Store.RoundWitnesses(*event.round - 1)
+
+		for v := range currentFlagTable {
+			for _, w := range prWitnesses {
+				if v == w {
+					proof = append(proof, v)
+				}
+			}
+		}
+
+		event.WitnessProof = proof
+		logger.Info(fmt.Sprintf("witness proof: %s", proof))
+	}
+
+	witnesses := p.Store.RoundWitnesses(*event.round)
+
+	ft := map[string]int{event.Hex(): 1}
+
+	for v := range currentFlagTable {
+		for _, w := range witnesses {
+			if v == w {
+				ft[v] = 1
+			}
+		}
+	}
+
+	err = event.ReplaceFlagTable(ft)
+	if err != nil {
+		panic(err)
+	}
 }
 
 //DecideFame decides if witnesses are famous
