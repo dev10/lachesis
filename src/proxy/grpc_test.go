@@ -64,7 +64,7 @@ func TestGrpcCalls(t *testing.T) {
 
 		answ, err := s.CommitBlock(block)
 		if asserter.NoError(err) {
-			asserter.Equal(gold, answ)
+			asserter.Equal(gold, answ.StateHash)
 		}
 	})
 

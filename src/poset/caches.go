@@ -2,6 +2,8 @@ package poset
 
 import (
 	"fmt"
+	"sort"
+	"strconv"
 
 	cm "github.com/Fantom-foundation/go-lachesis/src/common"
 	"github.com/Fantom-foundation/go-lachesis/src/peers"
@@ -14,6 +16,14 @@ type Key struct {
 
 func (k Key) ToString() string {
 	return fmt.Sprintf("{%s, %s}", k.x, k.y)
+}
+
+type TreKey struct {
+	x, y, z string
+}
+
+func (k TreKey) ToString() string {
+	return fmt.Sprintf("{%s, %s, %s}", k.x, k.y, k.z)
 }
 
 type ParentRoundInfo struct {
@@ -32,15 +42,20 @@ func NewBaseParentRoundInfo() ParentRoundInfo {
 //------------------------------------------------------------------------------
 
 type ParticipantEventsCache struct {
-	participants *peers.Peers
+	participants *peers.PeerSet
 	rim          *cm.RollingIndexMap
 }
 
-func NewParticipantEventsCache(size int, participants *peers.Peers) *ParticipantEventsCache {
+func NewParticipantEventsCache(size int, participants *peers.PeerSet) *ParticipantEventsCache {
 	return &ParticipantEventsCache{
 		participants: participants,
-		rim:          cm.NewRollingIndexMap("ParticipantEvents", size, participants.ToIDSlice()),
+		rim:          cm.NewRollingIndexMap("ParticipantEvents", size, participants.IDs()),
 	}
+}
+
+func (pec *ParticipantEventsCache) AddPeer(peer *peers.Peer) error {
+	pec.participants = pec.participants.WithNewPeer(peer)
+	return pec.rim.AddKey(peer.ID)
 }
 
 func (pec *ParticipantEventsCache) participantID(participant string) (int64, error) {
@@ -135,16 +150,16 @@ func (pec *ParticipantEventsCache) Import(other *ParticipantEventsCache) {
 //------------------------------------------------------------------------------
 
 type ParticipantBlockSignaturesCache struct {
-	participants *peers.Peers
+	participants *peers.PeerSet
 	rim          *cm.RollingIndexMap
 }
 
-func NewParticipantBlockSignaturesCache(size int, participants *peers.Peers) *ParticipantBlockSignaturesCache {
-	return &ParticipantBlockSignaturesCache{
-		participants: participants,
-		rim:          cm.NewRollingIndexMap("ParticipantBlockSignatures", size, participants.ToIDSlice()),
-	}
-}
+//func NewParticipantBlockSignaturesCache(size int, participants *peers.PeerSet) *ParticipantBlockSignaturesCache {
+//	return &ParticipantBlockSignaturesCache{
+//		participants: participants,
+//		rim:          cm.NewRollingIndexMap("ParticipantBlockSignatures", size, participants.ToIDSlice()),
+//	}
+//}
 
 func (psc *ParticipantBlockSignaturesCache) participantID(participant string) (int64, error) {
 	peer, ok := psc.participants.ByPubKey[participant]
@@ -214,4 +229,71 @@ func (psc *ParticipantBlockSignaturesCache) Known() map[int64]int64 {
 
 func (psc *ParticipantBlockSignaturesCache) Reset() error {
 	return psc.rim.Reset()
+}
+
+//------------------------------------------------------------------------------
+
+type Int64Slice []int64
+
+func (a Int64Slice) Len() int           { return len(a) }
+func (a Int64Slice) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a Int64Slice) Less(i, j int) bool { return a[i] < a[j] }
+
+type PeerSetCache struct {
+	rounds   Int64Slice
+	peerSets map[int64]*peers.PeerSet
+}
+
+func NewPeerSetCache() *PeerSetCache {
+	return &PeerSetCache{
+		rounds:   Int64Slice{},
+		peerSets: make(map[int64]*peers.PeerSet),
+	}
+}
+
+func (c *PeerSetCache) Set(round int64, peerSet *peers.PeerSet) error {
+	if _, ok := c.peerSets[round]; ok {
+		return cm.NewStoreErr("PeerSetCache", cm.KeyAlreadyExists, strconv.FormatInt(round, 10))
+	}
+	c.peerSets[round] = peerSet
+	c.rounds = append(c.rounds, round)
+	sort.Sort(c.rounds)
+	return nil
+
+}
+
+func (c *PeerSetCache) Get(round int64) (*peers.PeerSet, error) {
+	//check if direclty in peerSets
+	ps, ok := c.peerSets[round]
+	if ok {
+		return ps, nil
+	}
+
+	//situate round in sorted rounds
+	if len(c.rounds) == 0 {
+		return nil, cm.NewStoreErr("PeerSetCache", cm.KeyNotFound, strconv.FormatInt(round, 10))
+	}
+
+	if len(c.rounds) == 1 {
+		if round < c.rounds[0] {
+			return nil, cm.NewStoreErr("PeerSetCache", cm.KeyNotFound, strconv.FormatInt(round, 10))
+		}
+		return c.peerSets[c.rounds[0]], nil
+	}
+
+	for i := 0; i < len(c.rounds)-1; i++ {
+		if round >= c.rounds[i] && round < c.rounds[i+1] {
+			return c.peerSets[c.rounds[i]], nil
+		}
+	}
+
+	//return last PeerSet
+	return c.peerSets[c.rounds[len(c.rounds)-1]], nil
+}
+
+func (c *PeerSetCache) GetLast() (*peers.PeerSet, error) {
+	if len(c.rounds) == 0 {
+		return nil, cm.NewStoreErr("PeerSetCache", cm.NoPeerSet, "")
+	}
+	return c.peerSets[c.rounds[len(c.rounds)-1]], nil
 }

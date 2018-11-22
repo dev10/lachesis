@@ -1,5 +1,7 @@
 syntax = "proto3";
 package poset;
+import "event.proto";
+import "github.com/andrecronje/lachesis/src/peers/peer_set.proto";
 
 message BlockBody {
   int64 Index = 1;
@@ -7,6 +9,8 @@ message BlockBody {
   bytes StateHash = 3;
   bytes FrameHash = 4;
   repeated bytes Transactions = 5;
+  bytes PeersHash = 6;
+  repeated InternalTransaction InternalTransactions = 7;
 }
 
 message WireBlockSignature {
@@ -19,4 +23,5 @@ message Block {
   map<string, string> Signatures = 2;
   bytes hash = 3;
   string hex = 4;
+  peers.PeerSet peerSet_ = 5;
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/Fantom-foundation/go-lachesis/src/crypto"
 	"github.com/Fantom-foundation/go-lachesis/src/peers"
 	"github.com/Fantom-foundation/go-lachesis/src/poset"
+	"github.com/Fantom-foundation/go-lachesis/src/proxy"
 )
 
 func initCores(n int, t *testing.T) ([]*Core,
@@ -21,22 +22,25 @@ func initCores(n int, t *testing.T) ([]*Core,
 	index := make(map[string]string)
 	participantKeys := map[int64]*ecdsa.PrivateKey{}
 
-	participants := peers.NewPeers()
+	var pirs []*peers.Peer
+
 	for i := 0; i < n; i++ {
 		key, _ := crypto.GenerateECDSAKey()
 		pubHex := fmt.Sprintf("0x%X",
 			crypto.FromECDSAPub(&key.PublicKey))
 		peer := peers.NewPeer(pubHex, "")
-		participants.AddPeer(peer)
+		pirs = append(pirs, peer)
 		participantKeys[peer.ID] = key
 	}
 
-	for i, peer := range participants.ToPeerSlice() {
-		core := NewCore(int64(i),
+	peerSet := peers.NewPeerSet(pirs)
+
+	for i, peer := range peerSet.Peers {
+		core := NewCore(peer.ID,
 			participantKeys[peer.ID],
-			participants,
-			poset.NewInmemStore(participants, cacheSize),
-			nil,
+			peerSet,
+			poset.NewInmemStore(peerSet, cacheSize),
+			proxy.DummyCommitCallback,
 			common.NewTestLogger(t))
 
 		selfParent := fmt.Sprintf("Root%d", peer.ID)
@@ -145,8 +149,8 @@ func initPoset(t *testing.T, cores []*Core, keys map[int64]*ecdsa.PrivateKey,
 	}
 }
 
-func insertEvent(cores []*Core, keys map[int64]*ecdsa.PrivateKey,
-	index map[string]string, event poset.Event, name string, participant int64,
+func insertEvent(cores []*Core, keys map[int64]*ecdsa.PrivateKey, 
+	index map[string]string, event *poset.Event, name string, participant int64,
 	creator int64) error {
 
 	if participant == creator {

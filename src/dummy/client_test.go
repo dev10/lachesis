@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/Fantom-foundation/go-lachesis/src/common"
+	"github.com/Fantom-foundation/go-lachesis/src/peers"
 	"github.com/Fantom-foundation/go-lachesis/src/poset"
 	"github.com/Fantom-foundation/go-lachesis/src/proxy"
 )
@@ -75,15 +76,23 @@ func TestDummySocketClient(t *testing.T) {
 
 	initialStateHash := state.stateHash
 	//create a few blocks
-	blocks := [5]poset.Block{}
+	blocks := [5]*poset.Block{}
 	for i := int64(0); i < 5; i++ {
-		blocks[i] = poset.NewBlock(i, i+1, []byte{}, [][]byte{[]byte(fmt.Sprintf("block %d transaction", i))})
+		blocks[i] = poset.NewBlock(i,
+			i+1,
+			[]byte{},
+			[]*peers.Peer{},
+			[][]byte{[]byte(fmt.Sprintf("block %d transaction", i))},
+			[]*poset.InternalTransaction{
+				poset.NewInternalTransaction(poset.TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris")),
+				poset.NewInternalTransaction(poset.TransactionType_PEER_ADD, *peers.NewPeer("peer2", "london")),
+			})
 	}
 
 	<-time.After(timeout / 4)
 
 	//commit first block and check that the client's statehash is correct
-	stateHash, err := appProxy.CommitBlock(blocks[0])
+	response, err := appProxy.CommitBlock(*blocks[0])
 	asserter.NoError(err)
 
 	expectedStateHash := initialStateHash
@@ -93,7 +102,7 @@ func TestDummySocketClient(t *testing.T) {
 		expectedStateHash = bcrypto.SimpleHashFromTwoHashes(expectedStateHash, tHash)
 	}
 
-	asserter.Equal(expectedStateHash, stateHash)
+	asserter.Equal(expectedStateHash, response.StateHash)
 
 	snapshot, err := appProxy.GetSnapshot(blocks[0].Index())
 	asserter.NoError(err)
@@ -102,7 +111,7 @@ func TestDummySocketClient(t *testing.T) {
 
 	//commit a few more blocks, then attempt to restore back to block 0 state
 	for i := 1; i < 5; i++ {
-		_, err := appProxy.CommitBlock(blocks[i])
+		_, err := appProxy.CommitBlock(*blocks[i])
 		asserter.NoError(err)
 	}
 

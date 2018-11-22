@@ -88,7 +88,7 @@ func runSingleLachesis(config *CLIConfig) error {
 	}
 
 	if config.Lachesis.Test {
-		p, err := engine.Store.Participants()
+		p, err := engine.Store.GetLastPeerSet()
 		if err != nil {
 			return cli.NewExitError(
 				fmt.Sprintf("Failed to acquire participants: %s", err),
@@ -106,7 +106,7 @@ func runSingleLachesis(config *CLIConfig) error {
 				}
 			}
 		}()
-		go tester.PingNodesN(p.Sorted, p.ByPubKey, config.Lachesis.TestN, config.Lachesis.TestDelay, config.Lachesis.Logger)
+		go tester.PingNodesN(p, config.Lachesis.TestN, config.Lachesis.TestDelay, config.Lachesis.Logger)
 	}
 
 	engine.Node.Register()

@@ -10,29 +10,32 @@ import (
 	"github.com/Fantom-foundation/go-lachesis/src/peers"
 )
 
-type pub struct {
+type participant struct {
 	id      int64
 	privKey *ecdsa.PrivateKey
 	pubKey  []byte
 	hex     string
 }
 
-func initInmemStore(cacheSize int) (*InmemStore, []pub) {
+func initInmemStore(cacheSize int) (*InmemStore, []participant) {
 	n := int64(3)
-	var participantPubs []pub
-	participants := peers.NewPeers()
+	participants := []participant{}
+
+	pirs := []*peers.Peer{}
 	for i := int64(0); i < n; i++ {
 		key, _ := crypto.GenerateECDSAKey()
 		pubKey := crypto.FromECDSAPub(&key.PublicKey)
 		peer := peers.NewPeer(fmt.Sprintf("0x%X", pubKey), "")
-		participantPubs = append(participantPubs,
-			pub{i, key, pubKey, peer.PubKeyHex})
-		participants.AddPeer(peer)
-		participantPubs[len(participantPubs)-1].id = peer.ID
+		participants = append(participants,
+			participant{peer.ID, key, pubKey, peer.PubKeyHex})
+		pirs = append(pirs, peer)
 	}
 
-	store := NewInmemStore(participants, cacheSize)
-	return store, participantPubs
+	peerSet := peers.NewPeerSet(pirs)
+
+	store := NewInmemStore(peerSet, cacheSize)
+
+	return store, participants
 }
 
 func TestInmemEvents(t *testing.T) {
@@ -40,11 +43,11 @@ func TestInmemEvents(t *testing.T) {
 	testSize := int64(15)
 	store, participants := initInmemStore(cacheSize)
 
-	events := make(map[string][]Event)
+	events := make(map[string][]*Event)
 
 	t.Run("Store Events", func(t *testing.T) {
 		for _, p := range participants {
-			var items []Event
+			var items []*Event
 			for k := int64(0); k < testSize; k++ {
 				event := NewEvent([][]byte{[]byte(fmt.Sprintf("%s_%d", p.hex[:5], k))},
 					nil,
@@ -123,8 +126,8 @@ func TestInmemEvents(t *testing.T) {
 func TestInmemRounds(t *testing.T) {
 	store, participants := initInmemStore(10)
 
-	round := NewRoundInfo()
-	events := make(map[string]Event)
+	round := NewRoundInfo(nil) //XXX
+	events := make(map[string]*Event)
 	for _, p := range participants {
 		event := NewEvent([][]byte{},
 			nil,
@@ -133,11 +136,11 @@ func TestInmemRounds(t *testing.T) {
 			p.pubKey,
 			0, nil)
 		events[p.hex] = event
-		round.AddEvent(event.Hex(), true)
+		round.AddCreatedEvent(event.Hex(), true)
 	}
 
 	t.Run("Store Round", func(t *testing.T) {
-		if err := store.SetRound(0, *round); err != nil {
+		if err := store.SetRound(0, round); err != nil {
 			t.Fatal(err)
 		}
 		storedRound, err := store.GetRound(0)
@@ -145,7 +148,7 @@ func TestInmemRounds(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if !reflect.DeepEqual(*round, storedRound) {
+		if !reflect.DeepEqual(round, storedRound) {
 			t.Fatalf("Round and StoredRound do not match")
 		}
 	})
@@ -182,8 +185,13 @@ func TestInmemBlocks(t *testing.T) {
 		[]byte("tx4"),
 		[]byte("tx5"),
 	}
+	internalTransactions := []*InternalTransaction{
+		NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris")),
+		NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london")),
+	}
 	frameHash := []byte("this is the frame hash")
-	block := NewBlock(index, roundReceived, frameHash, transactions)
+
+	block := NewBlock(index, roundReceived, frameHash, []*peers.Peer{}, transactions, internalTransactions)
 
 	sig1, err := block.Sign(participants[0].privKey)
 	if err != nil {
