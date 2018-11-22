@@ -1,5 +1,7 @@
 package mobile
 
+import "github.com/Fantom-foundation/go-lachesis/src/proxy"
+
 /*
 These types are exported and need to be implemented and used by the mobile
 application.
@@ -9,7 +11,7 @@ application.
 // that message to the mobile app. It returns the state hash resulting from applying 
 // the block's transactions to the state.
 type CommitHandler interface {
-	OnCommit([]byte) []byte
+	OnCommit([]byte) proxy.CommitResponse
 }
 
 // Handles mobile app mobile app exceptions.

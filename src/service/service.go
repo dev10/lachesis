@@ -120,7 +120,7 @@ func (s *Service) GetLastEventFrom(w http.ResponseWriter, r *http.Request) {
 func (s *Service) GetGraph(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
  	encoder := json.NewEncoder(w)
- 	res := s.graph.GetInfos()
+ 	res, _ := s.graph.GetInfos()
  	encoder.Encode(res)
 }
 

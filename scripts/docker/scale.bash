@@ -22,7 +22,7 @@ env GOOS=linux GOARCH=amd64 go build -tags="netgo" -ldflags "-linkmode external 
 
 # Run
 batch-ethkey -dir "$BUILD_DIR/nodes" -network "$ip_start" -n "$n" > "$PEERS_DIR/peers.json"
-docker build --compress --force-rm --tag "$PROJECT" "$BUILD_DIR"
+docker build --compress --squash --force-rm --tag "$PROJECT" "$BUILD_DIR" --build-arg ca_certificates=./scripts/docker/certs
 
 "$DIR/network.bash" "$ip_range"
 "$DIR/spin_multi.bash" "$n"

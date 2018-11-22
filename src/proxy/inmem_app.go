@@ -39,10 +39,10 @@ func (p *InmemAppProxy) SubmitCh() chan []byte {
 	return p.submitCh
 }
 func (p *InmemAppProxy) ProposePeerAdd(peer peers.Peer) {
-	p.submitInternalCh <- poset.NewInternalTransaction(poset.TransactionType_PEER_ADD, peer)
+	p.submitInternalCh <- *poset.NewInternalTransaction(poset.TransactionType_PEER_ADD, peer)
 }
 func (p *InmemAppProxy) ProposePeerRemove(peer peers.Peer) {
-	p.submitInternalCh <- poset.NewInternalTransaction(poset.TransactionType_PEER_REMOVE, peer)
+	p.submitInternalCh <- *poset.NewInternalTransaction(poset.TransactionType_PEER_REMOVE, peer)
 }
 
 //SubmitCh returns the channel of raw transactions
@@ -51,7 +51,7 @@ func (p *InmemAppProxy) SubmitInternalCh() chan poset.InternalTransaction {
 }
 
 // CommitBlock implements AppProxy interface method, calls handler
-func (p *InmemAppProxy) CommitBlock(block poset.Block) ([]byte, error) {
+func (p *InmemAppProxy) CommitBlock(block poset.Block) (CommitResponse, error) {
 	stateHash, err := p.handler.CommitHandler(block)
 	p.logger.WithFields(logrus.Fields{
 		"round_received": block.RoundReceived(),

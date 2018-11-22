@@ -9,7 +9,7 @@ import (
 )
 
 // Example illustrates nodes comparing
-func Example() {
+func skipExample() {
 	logger := logrus.New()
 	logger.Level = logrus.FatalLevel
 

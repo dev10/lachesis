@@ -90,9 +90,9 @@ func (this *RootEvent) Equals(that *RootEvent) bool {
 //Round; it is only used if the child's OtherParent is empty or NOT in the
 //Root's Others.
 //NewBaseRoot initializes a Root object for a fresh Poset.
-func NewBaseRoot(creatorID int64) Root {
+func NewBaseRoot(creatorID int64) *Root {
 	rootEvent := NewBaseRootEvent(creatorID)
-	res := Root{
+	res := &Root{
 		NextRound:  0,
 		SelfParent: &rootEvent,
 		Others:     map[string]*RootEvent{},

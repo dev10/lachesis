@@ -13,9 +13,9 @@ import (
 	scrypto "github.com/Fantom-foundation/go-lachesis/src/crypto"
 )
 
-func TestJSONPeers(t *testing.T) {
+func TestJSONPeerSet(t *testing.T) {
 	// Create a test dir
-	dir, err := ioutil.TempDir("", "lachesis")
+	dir, err := ioutil.TempDir("", "babble")
 	if err != nil {
 		t.Fatalf("err: %v ", err)
 	}
@@ -25,58 +25,59 @@ func TestJSONPeers(t *testing.T) {
 	store := NewJSONPeerSet(dir)
 
 	// Try a read, should get nothing
-	peers, err := store.PeerSet()
+	peerSet, err := store.PeerSet()
 	if err == nil {
 		t.Fatalf("store.PeerSet() should generate an error")
 	}
-	if peers != nil {
-		t.Fatalf("peers: %v", peers)
+	if peerSet != nil {
+		t.Fatalf("peerSet: %v", peerSet)
 	}
 
 	keys := map[string]*ecdsa.PrivateKey{}
-	newPeers := NewEmptyPeerSet()
+	var peers []*Peer
 	for i := 0; i < 3; i++ {
 		key, _ := scrypto.GenerateECDSAKey()
-		peer := Peer{
+		peer := &Peer{
 			NetAddr:   fmt.Sprintf("addr%d", i),
 			PubKeyHex: fmt.Sprintf("0x%X", scrypto.FromECDSAPub(&key.PublicKey)),
 		}
-		newPeers = newPeers.WithNewPeer(&peer)
+		peers = append(peers, peer)
 		keys[peer.NetAddr] = key
 	}
 
-	newPeersSlice := newPeers.Peers
+	newPeerSet := NewPeerSet(peers)
+	newPeerSlice := newPeerSet.Peers
 
-	if err := store.Write(newPeersSlice); err != nil {
+	if err := store.Write(newPeerSlice); err != nil {
 		t.Fatalf("err: %v", err)
 	}
 
 	// Try a read, should find 3 peers
-	peers, err = store.PeerSet()
+	peerSet, err = store.PeerSet()
 	if err != nil {
 		t.Fatalf("err: %v", err)
 	}
-	if peers.Len() != 3 {
+	if peerSet.Len() != 3 {
 		t.Fatalf("peers: %v", peers)
 	}
 
-	peersSlice := peers.Peers
+	peerSlice := peerSet.Peers
 
 	for i := 0; i < 3; i++ {
-		if peersSlice[i].NetAddr != newPeersSlice[i].NetAddr {
+		if peerSlice[i].NetAddr != newPeerSlice[i].NetAddr {
 			t.Fatalf("peers[%d] NetAddr should be %s, not %s", i,
-				newPeersSlice[i].NetAddr, peersSlice[i].NetAddr)
+				newPeerSlice[i].NetAddr, peerSlice[i].NetAddr)
 		}
-		if peersSlice[i].PubKeyHex != newPeersSlice[i].PubKeyHex {
+		if peerSlice[i].PubKeyHex != newPeerSlice[i].PubKeyHex {
 			t.Fatalf("peers[%d] PubKeyHex should be %s, not %s", i,
-				newPeersSlice[i].PubKeyHex, peersSlice[i].PubKeyHex)
+				newPeerSlice[i].PubKeyHex, peerSlice[i].PubKeyHex)
 		}
-		pubKeyBytes, err := peersSlice[i].PubKeyBytes()
+		pubKeyBytes, err := peerSlice[i].PubKeyBytes()
 		if err != nil {
 			t.Fatal(err)
 		}
 		pubKey := scrypto.ToECDSAPub(pubKeyBytes)
-		if !reflect.DeepEqual(*pubKey, keys[peersSlice[i].NetAddr].PublicKey) {
+		if !reflect.DeepEqual(*pubKey, keys[peerSlice[i].NetAddr].PublicKey) {
 			t.Fatalf("peers[%d] PublicKey not parsed correctly", i)
 		}
 	}

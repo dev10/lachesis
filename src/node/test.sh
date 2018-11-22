@@ -7,6 +7,8 @@ do
     then
         echo 'CHECK LOGS'
         exit
+    else
+        echo $i "OK"
     fi
 done
 echo 'NO ERRORS'

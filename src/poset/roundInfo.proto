@@ -1,5 +1,6 @@
 syntax = "proto3";
 package poset;
+import "github.com/andrecronje/lachesis/src/peers/peer_set.proto";
 
 enum Trilean {
   UNDEFINED = 0;
@@ -14,5 +15,7 @@ message RoundEvent {
 }
 
 message RoundInfoMessage {
-  map<string, RoundEvent> Events = 1;
+  map<string, RoundEvent> CreatedEvents = 1;
+  repeated string         ReceivedEvents = 2;
+  peers.PeerSet           PeerSet = 3;
 }

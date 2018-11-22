@@ -121,11 +121,11 @@ func TestInmemTransport(t *testing.T) {
 		}
 
 		frame := poset.Frame{}
-		block, err := poset.NewBlockFromFrame(1, frame)
+		block, err := poset.NewBlockFromFrame(1, &frame)
 		assert.NoError(err)
 		expectedResp := &FastForwardResponse{
 			FromID:   1,
-			Block:    block,
+			Block:    *block,
 			Frame:    frame,
 			Snapshot: []byte("snapshot"),
 		}

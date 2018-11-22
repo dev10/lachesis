@@ -1,6 +1,7 @@
 package poset
 
 import (
+	"github.com/Fantom-foundation/go-lachesis/src/peers"
 	"github.com/golang/protobuf/proto"
 )
 
@@ -14,34 +15,31 @@ type RoundInfo struct {
 	queued bool
 }
 
-func NewRoundInfo() *RoundInfo {
+func NewRoundInfo(peers *peers.PeerSet) *RoundInfo {
 	return &RoundInfo{
 		Message: RoundInfoMessage{
-			Events: make(map[string]*RoundEvent),
+			CreatedEvents: make(map[string]*RoundEvent),
+			ReceivedEvents: []string{},
+			PeerSet: peers,
 		},
 	}
 }
 
-func (r *RoundInfo) AddEvent(x string, witness bool) {
-	_, ok := r.Message.Events[x]
+func (r *RoundInfo) AddCreatedEvent(x string, witness bool) {
+	_, ok := r.Message.CreatedEvents[x]
 	if !ok {
-		r.Message.Events[x] = &RoundEvent{
+		r.Message.CreatedEvents[x] = &RoundEvent{
 			Witness: witness,
 		}
 	}
 }
 
-func (r *RoundInfo) SetConsensusEvent(x string) {
-	e, ok := r.Message.Events[x]
-	if !ok {
-		e = &RoundEvent{}
-	}
-	e.Consensus = true
-	r.Message.Events[x] = e
+func (r *RoundInfo) AddReceivedEvent(x string) {
+	r.Message.ReceivedEvents = append(r.Message.ReceivedEvents, x)
 }
 
 func (r *RoundInfo) SetFame(x string, f bool) {
-	e, ok := r.Message.Events[x]
+	e, ok := r.Message.CreatedEvents[x]
 	if !ok {
 		e = &RoundEvent{
 			Witness: true,
@@ -52,23 +50,24 @@ func (r *RoundInfo) SetFame(x string, f bool) {
 	} else {
 		e.Famous = Trilean_FALSE
 	}
-	r.Message.Events[x] = e
+	r.Message.CreatedEvents[x] = e
 }
 
 //return true if no witnesses' fame is left undefined
 func (r *RoundInfo) WitnessesDecided() bool {
-	for _, e := range r.Message.Events {
-		if e.Witness && e.Famous == Trilean_UNDEFINED {
-			return false
+	c := int64(0)
+	for _, e := range r.Message.CreatedEvents {
+		if e.Witness && e.Famous != Trilean_UNDEFINED {
+			c++
 		}
 	}
-	return true
+	return c >= r.Message.PeerSet.SuperMajority()
 }
 
 //return witnesses
 func (r *RoundInfo) Witnesses() []string {
 	var res []string
-	for x, e := range r.Message.Events {
+	for x, e := range r.Message.CreatedEvents {
 		if e.Witness {
 			res = append(res, x)
 		}
@@ -78,7 +77,7 @@ func (r *RoundInfo) Witnesses() []string {
 
 func (r *RoundInfo) RoundEvents() []string {
 	var res []string
-	for x, e := range r.Message.Events {
+	for x, e := range r.Message.CreatedEvents {
 		if !e.Consensus {
 			res = append(res, x)
 		}
@@ -89,7 +88,7 @@ func (r *RoundInfo) RoundEvents() []string {
 //return consensus events
 func (r *RoundInfo) ConsensusEvents() []string {
 	var res []string
-	for x, e := range r.Message.Events {
+	for x, e := range r.Message.CreatedEvents {
 		if e.Consensus {
 			res = append(res, x)
 		}
@@ -100,7 +99,7 @@ func (r *RoundInfo) ConsensusEvents() []string {
 //return famous witnesses
 func (r *RoundInfo) FamousWitnesses() []string {
 	var res []string
-	for x, e := range r.Message.Events {
+	for x, e := range r.Message.CreatedEvents {
 		if e.Witness && e.Famous == Trilean_TRUE {
 			res = append(res, x)
 		}
@@ -109,7 +108,7 @@ func (r *RoundInfo) FamousWitnesses() []string {
 }
 
 func (r *RoundInfo) IsDecided(witness string) bool {
-	w, ok := r.Message.Events[witness]
+	w, ok := r.Message.CreatedEvents[witness]
 	return ok && w.Witness && w.Famous != Trilean_UNDEFINED
 }
 
@@ -151,5 +150,5 @@ func EqualsMapStringRoundEvent(this map[string]*RoundEvent, that map[string]*Rou
 
 func (this *RoundInfo) Equals(that *RoundInfo) bool {
 	return this.queued == that.queued &&
-		EqualsMapStringRoundEvent(this.Message.Events, that.Message.Events)
+		EqualsMapStringRoundEvent(this.Message.CreatedEvents, that.Message.CreatedEvents)
 }
