@@ -20,7 +20,6 @@ const (
 )
 
 type BadgerStore struct {
-	participants *peers.Peers
 	inmemStore   *InmemStore
 	db           *badger.DB
 	path         string
@@ -28,7 +27,7 @@ type BadgerStore struct {
 }
 
 //NewBadgerStore creates a brand new Store with a new database
-func NewBadgerStore(participants *peers.Peers, cacheSize int, path string) (*BadgerStore, error) {
+func NewBadgerStore(participants *peers.PeerSet, cacheSize int, path string) (*BadgerStore, error) {
 	inmemStore := NewInmemStore(participants, cacheSize)
 	opts := badger.DefaultOptions
 	opts.Dir = path
@@ -39,12 +38,11 @@ func NewBadgerStore(participants *peers.Peers, cacheSize int, path string) (*Bad
 		return nil, err
 	}
 	store := &BadgerStore{
-		participants: participants,
 		inmemStore:   inmemStore,
 		db:           handle,
 		path:         path,
 	}
-	if err := store.dbSetParticipants(participants); err != nil {
+	if err := store.dbSetPeerSet(participants); err != nil {
 		return nil, err
 	}
 	if err := store.dbSetRoots(inmemStore.rootsByParticipant); err != nil {
@@ -74,16 +72,16 @@ func LoadBadgerStore(cacheSize int, path string) (*BadgerStore, error) {
 		needBoostrap: true,
 	}
 
-	participants, err := store.dbGetParticipants()
+	peerSet, err := store.dbGetPeerSet()
 	if err != nil {
 		return nil, err
 	}
 
-	inmemStore := NewInmemStore(participants, cacheSize)
+	inmemStore := NewInmemStore(peerSet, cacheSize)
 
 	//read roots from db and put them in InmemStore
-	roots := make(map[string]Root)
-	for p := range participants.ByPubKey {
+	roots := make(map[string]*Root)
+	for p := range peerSet.ByPubKey {
 		root, err := store.dbGetRoot(p)
 		if err != nil {
 			return nil, err
@@ -91,17 +89,26 @@ func LoadBadgerStore(cacheSize int, path string) (*BadgerStore, error) {
 		roots[p] = root
 	}
 
-	if err := inmemStore.Reset(roots); err != nil {
+	//XXX temp
+	//Get last frame
+	//Should there be an initila frame?
+
+	frame := &Frame{
+		Round: 0,
+		Peers: peerSet.Peers,
+		Roots: roots,
+	}
+
+	if err := inmemStore.Reset(frame); err != nil {
 		return nil, err
 	}
 
-	store.participants = participants
 	store.inmemStore = inmemStore
 
 	return store, nil
 }
 
-func LoadOrCreateBadgerStore(participants *peers.Peers, cacheSize int, path string) (*BadgerStore, error) {
+func LoadOrCreateBadgerStore(participants *peers.PeerSet, cacheSize int, path string) (*BadgerStore, error) {
 	store, err := LoadBadgerStore(cacheSize, path)
 
 	if err != nil {
@@ -154,15 +161,31 @@ func (s *BadgerStore) CacheSize() int {
 	return s.inmemStore.CacheSize()
 }
 
-func (s *BadgerStore) Participants() (*peers.Peers, error) {
-	return s.participants, nil
+func (s *BadgerStore) GetPeerSet(round int64) (*peers.PeerSet, error) {
+	return s.inmemStore.GetPeerSet(round)
 }
 
-func (s *BadgerStore) RootsBySelfParent() (map[string]Root, error) {
+func (s *BadgerStore) GetLastPeerSet() (*peers.PeerSet, error) {
+	return s.inmemStore.GetLastPeerSet()
+}
+
+func (s *BadgerStore) SetPeerSet(round int64, peerSet *peers.PeerSet) error {
+	return s.inmemStore.SetPeerSet(round, peerSet)
+}
+
+func (s *BadgerStore) RepertoireByPubKey() map[string]*peers.Peer {
+	return s.inmemStore.RepertoireByPubKey()
+}
+
+func (s *BadgerStore) RepertoireByID() map[int64]*peers.Peer {
+	return s.inmemStore.RepertoireByID()
+}
+
+func (s *BadgerStore) RootsBySelfParent() map[string]*Root {
 	return s.inmemStore.RootsBySelfParent()
 }
 
-func (s *BadgerStore) GetEvent(key string) (event Event, err error) {
+func (s *BadgerStore) GetEvent(key string) (event *Event, err error) {
 	//try to get it from cache
 	event, err = s.inmemStore.GetEvent(key)
 	//if not in cache, try to get it from db
@@ -172,13 +195,13 @@ func (s *BadgerStore) GetEvent(key string) (event Event, err error) {
 	return event, mapError(err, "Event", key)
 }
 
-func (s *BadgerStore) SetEvent(event Event) error {
+func (s *BadgerStore) SetEvent(event *Event) error {
 	//try to add it to the cache
 	if err := s.inmemStore.SetEvent(event); err != nil {
 		return err
 	}
 	//try to add it to the db
-	return s.dbSetEvents([]Event{event})
+	return s.dbSetEvents([]*Event{event})
 }
 
 func (s *BadgerStore) ParticipantEvents(participant string, skip int64) ([]string, error) {
@@ -207,7 +230,8 @@ func (s *BadgerStore) LastConsensusEventFrom(participant string) (last string, i
 
 func (s *BadgerStore) KnownEvents() map[int64]int64 {
 	known := make(map[int64]int64)
-	for p, pid := range s.participants.ByPubKey {
+	peers, _ := s.GetLastPeerSet()
+	for p, pid := range peers.ByPubKey {
 		index := int64(-1)
 		last, isRoot, err := s.LastEventFrom(p)
 		if err == nil {
@@ -238,11 +262,11 @@ func (s *BadgerStore) ConsensusEventsCount() int64 {
 	return s.inmemStore.ConsensusEventsCount()
 }
 
-func (s *BadgerStore) AddConsensusEvent(event Event) error {
+func (s *BadgerStore) AddConsensusEvent(event *Event) error {
 	return s.inmemStore.AddConsensusEvent(event)
 }
 
-func (s *BadgerStore) GetRound(r int64) (RoundInfo, error) {
+func (s *BadgerStore) GetRound(r int64) (*RoundInfo, error) {
 	res, err := s.inmemStore.GetRound(r)
 	if err != nil {
 		res, err = s.dbGetRound(r)
@@ -250,7 +274,7 @@ func (s *BadgerStore) GetRound(r int64) (RoundInfo, error) {
 	return res, mapError(err, "Round", string(roundKey(r)))
 }
 
-func (s *BadgerStore) SetRound(r int64, round RoundInfo) error {
+func (s *BadgerStore) SetRound(r int64, round *RoundInfo) error {
 	if err := s.inmemStore.SetRound(r, round); err != nil {
 		return err
 	}
@@ -274,10 +298,10 @@ func (s *BadgerStore) RoundEvents(r int64) int {
 	if err != nil {
 		return 0
 	}
-	return len(round.Message.Events)
+	return len(round.Message.CreatedEvents)
 }
 
-func (s *BadgerStore) GetRoot(participant string) (Root, error) {
+func (s *BadgerStore) GetRoot(participant string) (*Root, error) {
 	root, err := s.inmemStore.GetRoot(participant)
 	if err != nil {
 		root, err = s.dbGetRoot(participant)
@@ -285,7 +309,7 @@ func (s *BadgerStore) GetRoot(participant string) (Root, error) {
 	return root, mapError(err, "Root", string(participantRootKey(participant)))
 }
 
-func (s *BadgerStore) GetBlock(rr int64) (Block, error) {
+func (s *BadgerStore) GetBlock(rr int64) (*Block, error) {
 	res, err := s.inmemStore.GetBlock(rr)
 	if err != nil {
 		res, err = s.dbGetBlock(rr)
@@ -293,7 +317,7 @@ func (s *BadgerStore) GetBlock(rr int64) (Block, error) {
 	return res, mapError(err, "Block", string(blockKey(rr)))
 }
 
-func (s *BadgerStore) SetBlock(block Block) error {
+func (s *BadgerStore) SetBlock(block *Block) error {
 	if err := s.inmemStore.SetBlock(block); err != nil {
 		return err
 	}
@@ -304,7 +328,7 @@ func (s *BadgerStore) LastBlockIndex() int64 {
 	return s.inmemStore.LastBlockIndex()
 }
 
-func (s *BadgerStore) GetFrame(rr int64) (Frame, error) {
+func (s *BadgerStore) GetFrame(rr int64) (*Frame, error) {
 	res, err := s.inmemStore.GetFrame(rr)
 	if err != nil {
 		res, err = s.dbGetFrame(rr)
@@ -312,15 +336,15 @@ func (s *BadgerStore) GetFrame(rr int64) (Frame, error) {
 	return res, mapError(err, "Frame", string(frameKey(rr)))
 }
 
-func (s *BadgerStore) SetFrame(frame Frame) error {
+func (s *BadgerStore) SetFrame(frame *Frame) error {
 	if err := s.inmemStore.SetFrame(frame); err != nil {
 		return err
 	}
 	return s.dbSetFrame(frame)
 }
 
-func (s *BadgerStore) Reset(roots map[string]Root) error {
-	return s.inmemStore.Reset(roots)
+func (s *BadgerStore) Reset(frame *Frame) error {
+	return s.inmemStore.Reset(frame)
 }
 
 func (s *BadgerStore) Close() error {
@@ -341,7 +365,7 @@ func (s *BadgerStore) StorePath() string {
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //DB Methods
 
-func (s *BadgerStore) dbGetEvent(key string) (Event, error) {
+func (s *BadgerStore) dbGetEvent(key string) (*Event, error) {
 	var eventBytes []byte
 	err := s.db.View(func(txn *badger.Txn) error {
 		item, err := txn.Get([]byte(key))
@@ -353,18 +377,18 @@ func (s *BadgerStore) dbGetEvent(key string) (Event, error) {
 	})
 
 	if err != nil {
-		return Event{}, err
+		return nil, err
 	}
 
 	event := new(Event)
 	if err := event.ProtoUnmarshal(eventBytes); err != nil {
-		return Event{}, err
+		return nil, err
 	}
 
-	return *event, nil
+	return event, nil
 }
 
-func (s *BadgerStore) dbSetEvents(events []Event) error {
+func (s *BadgerStore) dbSetEvents(events []*Event) error {
 	tx := s.db.NewTransaction(true)
 	defer tx.Discard()
 
@@ -375,17 +399,17 @@ func (s *BadgerStore) dbSetEvents(events []Event) error {
 			return err
 		}
 		//check if it already exists
-		existent := false
+		new := false
 		_, err = tx.Get([]byte(eventHex))
 		if err != nil && isDBKeyNotFound(err) {
-			existent = true
+			new = true
 		}
 		//insert [event hash] => [event bytes]
 		if err := tx.Set([]byte(eventHex), val); err != nil {
 			return err
 		}
 
-		if existent {
+		if new {
 			//insert [topo_index] => [event hash]
 			topoKey := topologicalEventKey(event.topologicalIndex)
 			if err := tx.Set(topoKey, []byte(eventHex)); err != nil {
@@ -401,8 +425,8 @@ func (s *BadgerStore) dbSetEvents(events []Event) error {
 	return tx.Commit(nil)
 }
 
-func (s *BadgerStore) dbTopologicalEvents() ([]Event, error) {
-	var res []Event
+func (s *BadgerStore) dbTopologicalEvents() ([]*Event, error) {
+	var res []*Event
 	t := int64(0)
 	err := s.db.View(func(txn *badger.Txn) error {
 		key := topologicalEventKey(t)
@@ -427,7 +451,7 @@ func (s *BadgerStore) dbTopologicalEvents() ([]Event, error) {
 			if err := event.ProtoUnmarshal(eventBytes); err != nil {
 				return err
 			}
-			res = append(res, *event)
+			res = append(res, event)
 
 			t++
 			key = topologicalEventKey(t)
@@ -488,7 +512,7 @@ func (s *BadgerStore) dbParticipantEvent(participant string, index int64) (strin
 	return string(data), nil
 }
 
-func (s *BadgerStore) dbSetRoots(roots map[string]Root) error {
+func (s *BadgerStore) dbSetRoots(roots map[string]*Root) error {
 	tx := s.db.NewTransaction(true)
 	defer tx.Discard()
 	for participant, root := range roots {
@@ -506,7 +530,7 @@ func (s *BadgerStore) dbSetRoots(roots map[string]Root) error {
 	return tx.Commit(nil)
 }
 
-func (s *BadgerStore) dbGetRoot(participant string) (Root, error) {
+func (s *BadgerStore) dbGetRoot(participant string) (*Root, error) {
 	var rootBytes []byte
 	key := participantRootKey(participant)
 	err := s.db.View(func(txn *badger.Txn) error {
@@ -519,18 +543,18 @@ func (s *BadgerStore) dbGetRoot(participant string) (Root, error) {
 	})
 
 	if err != nil {
-		return Root{}, err
+		return nil, err
 	}
 
 	root := new(Root)
 	if err := root.ProtoUnmarshal(rootBytes); err != nil {
-		return Root{}, err
+		return nil, err
 	}
 
-	return *root, nil
+	return root, nil
 }
 
-func (s *BadgerStore) dbGetRound(index int64) (RoundInfo, error) {
+func (s *BadgerStore) dbGetRound(index int64) (*RoundInfo, error) {
 	var roundBytes []byte
 	key := roundKey(index)
 	err := s.db.View(func(txn *badger.Txn) error {
@@ -543,18 +567,18 @@ func (s *BadgerStore) dbGetRound(index int64) (RoundInfo, error) {
 	})
 
 	if err != nil {
-		return *NewRoundInfo(), err
+		return nil, err
 	}
 
 	roundInfo := new(RoundInfo)
 	if err := roundInfo.ProtoUnmarshal(roundBytes); err != nil {
-		return *NewRoundInfo(), err
+		return nil, err
 	}
 
-	return *roundInfo, nil
+	return roundInfo, nil
 }
 
-func (s *BadgerStore) dbSetRound(index int64, round RoundInfo) error {
+func (s *BadgerStore) dbSetRound(index int64, round *RoundInfo) error {
 	tx := s.db.NewTransaction(true)
 	defer tx.Discard()
 
@@ -572,9 +596,9 @@ func (s *BadgerStore) dbSetRound(index int64, round RoundInfo) error {
 	return tx.Commit(nil)
 }
 
-func (s *BadgerStore) dbGetParticipants() (*peers.Peers, error) {
-	res := peers.NewPeers()
+func (s *BadgerStore) dbGetPeerSet() (*peers.PeerSet, error) {
 
+	pirs := []*peers.Peer{}
 	err := s.db.View(func(txn *badger.Txn) error {
 		it := txn.NewIterator(badger.DefaultIteratorOptions)
 		defer it.Close()
@@ -583,23 +607,23 @@ func (s *BadgerStore) dbGetParticipants() (*peers.Peers, error) {
 		for it.Seek(prefix); it.ValidForPrefix(prefix); it.Next() {
 			item := it.Item()
 			k := string(item.Key())
-
 			pubKey := k[len(participantPrefix)+1:]
-
-			res.AddPeer(peers.NewPeer(pubKey, ""))
+			pirs = append(pirs, peers.NewPeer(pubKey, ""))
 		}
 
 		return nil
 	})
 
+	res := peers.NewPeerSet(pirs)
+
 	return res, err
 }
 
-func (s *BadgerStore) dbSetParticipants(participants *peers.Peers) error {
+func (s *BadgerStore) dbSetPeerSet(peerSet *peers.PeerSet) error {
 	tx := s.db.NewTransaction(true)
 	defer tx.Discard()
 
-	for participant, id := range participants.ByPubKey {
+	for participant, id := range peerSet.ByPubKey {
 		key := participantKey(participant)
 		val := []byte(strconv.FormatInt(id.ID, 10))
 		//insert [participant_participant] => [id]
@@ -610,7 +634,7 @@ func (s *BadgerStore) dbSetParticipants(participants *peers.Peers) error {
 	return tx.Commit(nil)
 }
 
-func (s *BadgerStore) dbGetBlock(index int64) (Block, error) {
+func (s *BadgerStore) dbGetBlock(index int64) (*Block, error) {
 	var blockBytes []byte
 	key := blockKey(index)
 	err := s.db.View(func(txn *badger.Txn) error {
@@ -623,18 +647,18 @@ func (s *BadgerStore) dbGetBlock(index int64) (Block, error) {
 	})
 
 	if err != nil {
-		return Block{}, err
+		return nil, err
 	}
 
 	block := new(Block)
 	if err := block.ProtoUnmarshal(blockBytes); err != nil {
-		return Block{}, err
+		return nil, err
 	}
 
-	return *block, nil
+	return block, nil
 }
 
-func (s *BadgerStore) dbSetBlock(block Block) error {
+func (s *BadgerStore) dbSetBlock(block *Block) error {
 	tx := s.db.NewTransaction(true)
 	defer tx.Discard()
 
@@ -652,7 +676,7 @@ func (s *BadgerStore) dbSetBlock(block Block) error {
 	return tx.Commit(nil)
 }
 
-func (s *BadgerStore) dbGetFrame(index int64) (Frame, error) {
+func (s *BadgerStore) dbGetFrame(index int64) (*Frame, error) {
 	var frameBytes []byte
 	key := frameKey(index)
 	err := s.db.View(func(txn *badger.Txn) error {
@@ -665,18 +689,18 @@ func (s *BadgerStore) dbGetFrame(index int64) (Frame, error) {
 	})
 
 	if err != nil {
-		return Frame{}, err
+		return nil, err
 	}
 
 	frame := new(Frame)
 	if err := frame.ProtoUnmarshal(frameBytes); err != nil {
-		return Frame{}, err
+		return nil, err
 	}
 
-	return *frame, nil
+	return frame, nil
 }
 
-func (s *BadgerStore) dbSetFrame(frame Frame) error {
+func (s *BadgerStore) dbSetFrame(frame *Frame) error {
 	tx := s.db.NewTransaction(true)
 	defer tx.Discard()
 

@@ -8,10 +8,14 @@ import "github.com/andrecronje/lachesis/src/peers"
 // to store key lachesis consensus information on a node.
 type Store interface {
 	CacheSize() int
-	Participants() (*peers.Peers, error)
-	RootsBySelfParent() (map[string]Root, error)
-	GetEvent(string) (Event, error)
-	SetEvent(Event) error
+	GetPeerSet(int64) (*peers.PeerSet, error)
+	GetLastPeerSet() (*peers.PeerSet, error)
+	SetPeerSet(int64, *peers.PeerSet) error
+	RepertoireByPubKey() map[string]*peers.Peer
+	RepertoireByID() map[int64]*peers.Peer
+	RootsBySelfParent() map[string]*Root
+	GetEvent(string) (*Event, error)
+	SetEvent(*Event) error
 	ParticipantEvents(string, int64) ([]string, error)
 	ParticipantEvent(string, int64) (string, error)
 	LastEventFrom(string) (string, bool, error)
@@ -19,19 +23,19 @@ type Store interface {
 	KnownEvents() map[int64]int64
 	ConsensusEvents() []string
 	ConsensusEventsCount() int64
-	AddConsensusEvent(Event) error
-	GetRound(int64) (RoundInfo, error)
-	SetRound(int64, RoundInfo) error
+	AddConsensusEvent(*Event) error
+	GetRound(int64) (*RoundInfo, error)
+	SetRound(int64, *RoundInfo) error
 	LastRound() int64
 	RoundWitnesses(int64) []string
 	RoundEvents(int64) int
-	GetRoot(string) (Root, error)
-	GetBlock(int64) (Block, error)
-	SetBlock(Block) error
+	GetRoot(string) (*Root, error)
+	GetBlock(int64) (*Block, error)
+	SetBlock(*Block) error
 	LastBlockIndex() int64
-	GetFrame(int64) (Frame, error)
-	SetFrame(Frame) error
-	Reset(map[string]Root) error
+	GetFrame(int64) (*Frame, error)
+	SetFrame(*Frame) error
+	Reset(*Frame) error
 	Close() error
 	NeedBoostrap() bool // Was the store loaded from existing db
 	StorePath() string

@@ -13,11 +13,20 @@ import (
 /*******************************************************************************
 InternalTransactions
 *******************************************************************************/
+
 func NewInternalTransaction(tType TransactionType, peer peers.Peer) InternalTransaction {
 	return InternalTransaction{
 		Type: tType,
 		Peer: &peer,
 	}
+}
+
+func NewInternalTransactionJoin(peer peers.Peer) InternalTransaction {
+	return NewInternalTransaction(TransactionType_PEER_ADD, peer)
+}
+
+func NewInternalTransactionLeave(peer peers.Peer) InternalTransaction {
+	return NewInternalTransaction(TransactionType_PEER_REMOVE, peer)
 }
 
 func (t *InternalTransaction) ProtoMarshal() ([]byte, error) {
@@ -152,7 +161,7 @@ func NewEvent(transactions [][]byte,
 	internalTransactions []InternalTransaction,
 	blockSignatures []BlockSignature,
 	parents []string, creator []byte, index int64,
-	flagTable map[string]int64) Event {
+	flagTable map[string]int64) *Event {
 
 	internalTransactionPointers := make([]*InternalTransaction, len(internalTransactions))
 	for i, v := range internalTransactions {
@@ -175,7 +184,7 @@ func NewEvent(transactions [][]byte,
 
 	ft, _ := proto.Marshal(&FlagTableWrapper { Body: flagTable })
 
-	return Event{
+	return &Event{
 		Message: EventMessage {
 			Body:      &body,
 			FlagTable: ft,
@@ -210,6 +219,9 @@ func (e *Event) Transactions() [][]byte {
 	return e.Message.Body.Transactions
 }
 
+func (e *Event) InternalTransactions() []*InternalTransaction {
+	return e.Message.Body.InternalTransactions
+}
 func (e *Event) Index() int64 {
 	return e.Message.Body.Index
 }
@@ -397,10 +409,10 @@ func rootSelfParent(participantID int64) string {
 sorting
 *******************************************************************************/
 
-// ByTopologicalOrder implements sort.Interface for []Event based on
+// ByTopologicalOrder implements sort.Interface for []*Event based on
 // the topologicalIndex field.
 // THIS IS A PARTIAL ORDER
-type ByTopologicalOrder []Event
+type ByTopologicalOrder []*Event
 
 func (a ByTopologicalOrder) Len() int      { return len(a) }
 func (a ByTopologicalOrder) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
@@ -411,7 +423,7 @@ func (a ByTopologicalOrder) Less(i, j int) bool {
 // ByLamportTimestamp implements sort.Interface for []Event based on
 // the lamportTimestamp field.
 // THIS IS A TOTAL ORDER
-type ByLamportTimestamp []Event
+type ByLamportTimestamp []*Event
 
 func (a ByLamportTimestamp) Len() int      { return len(a) }
 func (a ByLamportTimestamp) Swap(i, j int) { a[i], a[j] = a[j], a[i] }

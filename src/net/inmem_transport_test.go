@@ -125,7 +125,7 @@ func TestInmemTransport(t *testing.T) {
 		assert.NoError(err)
 		expectedResp := &FastForwardResponse{
 			FromID:   1,
-			Block:    block,
+			Block:    *block,
 			Frame:    frame,
 			Snapshot: []byte("snapshot"),
 		}

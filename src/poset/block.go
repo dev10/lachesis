@@ -4,10 +4,15 @@ import (
 	"crypto/ecdsa"
 	"encoding/hex"
 	"fmt"
+	"github.com/andrecronje/lachesis/src/peers"
 
 	"github.com/andrecronje/lachesis/src/crypto"
 	"github.com/golang/protobuf/proto"
 )
+
+/*******************************************************************************
+BlockBody
+*******************************************************************************/
 
 //StateHash is the hash of the current state of transactions, if you have one
 //node talking to an app, and another set of nodes talking to inmem, the
@@ -64,28 +69,45 @@ func (bs *BlockSignature) ToWire() WireBlockSignature {
 
 //------------------------------------------------------------------------------
 
-func NewBlockFromFrame(blockIndex int64, frame Frame) (Block, error) {
+func NewBlockFromFrame(blockIndex int64, frame *Frame) (*Block, error) {
 	frameHash, err := frame.Hash()
 	if err != nil {
-		return Block{}, err
+		return &Block{}, err
 	}
 	var transactions [][]byte
+	var internalTransactions []*InternalTransaction
 	for _, e := range frame.Events {
-		transactions = append(transactions, e.Body.Transactions...)
+		transactions = append(transactions, e.ToEvent().Transactions()...)
+		internalTransactions = append(internalTransactions, e.ToEvent().InternalTransactions()...)
 	}
-	return NewBlock(blockIndex, frame.Round, frameHash, transactions), nil
+	return NewBlock(blockIndex, frame.Round, frameHash, frame.Peers, transactions, internalTransactions), nil
 }
 
-func NewBlock(blockIndex, roundReceived int64, frameHash []byte, txs [][]byte) Block {
+func NewBlock(blockIndex, 
+	roundReceived int64, 
+	frameHash []byte, 
+	peerSlice []*peers.Peer, 
+	txs [][]byte,
+	itxs []*InternalTransaction) *Block {
+	peerSet := peers.NewPeerSet(peerSlice)
+
+	peersHash, err := peerSet.Hash()
+	if err != nil {
+		return nil
+	}
+
 	body := BlockBody{
 		Index:         blockIndex,
 		RoundReceived: roundReceived,
 		FrameHash:     frameHash,
+		PeersHash:     peersHash,
 		Transactions:  txs,
+		InternalTransactions: itxs,
 	}
-	return Block{
+	return &Block{
 		Body:       &body,
 		Signatures: make(map[string]string),
+		PeerSet_: peerSet,
 	}
 }
 
@@ -95,6 +117,10 @@ func (b *Block) Index() int64 {
 
 func (b *Block) Transactions() [][]byte {
 	return b.Body.Transactions
+}
+
+func (b *Block) InternalTransactions() []*InternalTransaction {
+	return b.Body.InternalTransactions
 }
 
 func (b *Block) RoundReceived() int64 {
@@ -107,6 +133,10 @@ func (b *Block) StateHash() []byte {
 
 func (b *Block) FrameHash() []byte {
 	return b.Body.FrameHash
+}
+
+func (b *Block) PeersHash() []byte {
+	return b.Body.PeersHash
 }
 
 func (b *Block) GetBlockSignatures() []BlockSignature {

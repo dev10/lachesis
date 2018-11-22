@@ -51,7 +51,7 @@ func (p *InmemAppProxy) SubmitInternalCh() chan poset.InternalTransaction {
 }
 
 // CommitBlock implements AppProxy interface method, calls handler
-func (p *InmemAppProxy) CommitBlock(block poset.Block) ([]byte, error) {
+func (p *InmemAppProxy) CommitBlock(block poset.Block) (CommitResponse, error) {
 	stateHash, err := p.handler.CommitHandler(block)
 	p.logger.WithFields(logrus.Fields{
 		"round_received": block.RoundReceived(),

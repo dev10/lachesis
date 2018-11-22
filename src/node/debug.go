@@ -40,7 +40,7 @@ func (g *Graph) GetParticipantEventsLite() map[string]map[string]EventLite {
 	res := make(map[string]map[string]EventLite)
 
 	store := g.Node.core.poset.Store
-	peers := g.Node.core.poset.Participants
+	peers := g.Node.core.poset.Peers
 
 
 	//		evs, err := store.ParticipantEvents(p.PubKeyHex, root.SelfParent.Index)

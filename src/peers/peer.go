@@ -16,7 +16,7 @@ func NewPeer(pubKeyHex, netAddr string) *Peer {
 		NetAddr:   netAddr,
 	}
 
-	peer.computeID()
+	peer.ComputeID()
 
 	return peer
 }
@@ -31,7 +31,7 @@ func (p *Peer) PubKeyBytes() ([]byte, error) {
 	return hex.DecodeString(p.PubKeyHex[2:])
 }
 
-func (p *Peer) computeID() error {
+func (p *Peer) ComputeID() error {
 	// TODO: Use the decoded bytes from hex
 	pubKey, err := p.PubKeyBytes()
 
@@ -48,7 +48,7 @@ func (p *Peer) computeID() error {
 // retrieval of peers.
 type PeerStore interface {
 	// Peers returns the list of known peers.
-	Peers() (*Peers, error)
+	Peers() (*PeerSet, error)
 
 	// SetPeers sets the list of known peers. This is invoked when a peer is
 	// added or removed.
@@ -56,14 +56,14 @@ type PeerStore interface {
 }
 
 // ExcludePeer is used to exclude a single peer from a list of peers.
-func ExcludePeer(peers []*Peer, peer string) (int, []*Peer) {
-	index := -1
+func ExcludePeer(peers []*Peer, peer int64) (int64, []*Peer) {
+	index := int64(-1)
 	otherPeers := make([]*Peer, 0, len(peers))
 	for i, p := range peers {
-		if p.NetAddr != peer && p.PubKeyHex != peer {
+		if p.ID != peer {
 			otherPeers = append(otherPeers, p)
 		} else {
-			index = i
+			index = int64(i)
 		}
 	}
 	return index, otherPeers

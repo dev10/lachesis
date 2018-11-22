@@ -11,31 +11,34 @@ import (
 	"github.com/andrecronje/lachesis/src/crypto"
 	"github.com/andrecronje/lachesis/src/peers"
 	"github.com/andrecronje/lachesis/src/poset"
+	"github.com/andrecronje/lachesis/src/proxy"
 )
 
-func initCores(n int, t *testing.T) ([]Core, map[int64]*ecdsa.PrivateKey, map[string]string) {
+func initCores(n int, t *testing.T) ([]*Core, map[int64]*ecdsa.PrivateKey, map[string]string) {
 	cacheSize := 1000
 
-	var cores []Core
+	var cores []*Core
 	index := make(map[string]string)
 	participantKeys := map[int64]*ecdsa.PrivateKey{}
 
-	// participantKeys := []*ecdsa.PrivateKey{}
-	participants := peers.NewPeers()
+	var pirs []*peers.Peer
+
 	for i := 0; i < n; i++ {
 		key, _ := crypto.GenerateECDSAKey()
 		pubHex := fmt.Sprintf("0x%X", crypto.FromECDSAPub(&key.PublicKey))
 		peer := peers.NewPeer(pubHex, "")
-		participants.AddPeer(peer)
+		pirs = append(pirs, peer)
 		participantKeys[peer.ID] = key
 	}
 
-	for i, peer := range participants.ToPeerSlice() {
-		core := NewCore(int64(i),
+	peerSet := peers.NewPeerSet(pirs)
+
+	for i, peer := range peerSet.Peers {
+		core := NewCore(peer.ID,
 			participantKeys[peer.ID],
-			participants,
-			poset.NewInmemStore(participants, cacheSize),
-			nil,
+			peerSet,
+			poset.NewInmemStore(peerSet, cacheSize),
+			proxy.DummyCommitCallback,
 			common.NewTestLogger(t))
 
 		selfParent := fmt.Sprintf("Root%d", peer.ID)

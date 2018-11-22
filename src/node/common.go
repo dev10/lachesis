@@ -24,7 +24,7 @@ type NodeList map[*ecdsa.PrivateKey]*Node
 // NewNodeList makes, fills and runs NodeList instance
 func NewNodeList(count int, logger *logrus.Logger) NodeList {
 	nodes := make(NodeList, count)
-	participants := peers.NewPeers()
+	peerSet := peers.NewEmptyPeerSet()
 
 	for i := 0; i < count; i++ {
 		config := DefaultConfig()
@@ -37,12 +37,12 @@ func NewNodeList(count int, logger *logrus.Logger) NodeList {
 			config,
 			peer.ID,
 			key,
-			participants,
-			poset.NewInmemStore(participants, config.CacheSize),
+			peerSet,
+			poset.NewInmemStore(peerSet, config.CacheSize),
 			transp,
 			dummy.NewInmemDummyApp(logger))
 
-		participants.AddPeer(peer)
+		peerSet = peerSet.WithNewPeer(peer)
 		nodes[key] = n
 	}
 

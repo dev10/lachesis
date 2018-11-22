@@ -5,17 +5,25 @@ import (
 	"testing"
 
 	"github.com/andrecronje/lachesis/src/crypto"
+	"github.com/andrecronje/lachesis/src/peers"
 )
 
 func TestSignBlock(t *testing.T) {
 	privateKey, _ := crypto.GenerateECDSAKey()
 
+	addPeer := NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris"))
+	removePeer := NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london"))
 	block := NewBlock(0, 1,
 		[]byte("framehash"),
+		[]*peers.Peer{},
 		[][]byte{
 			[]byte("abc"),
 			[]byte("def"),
 			[]byte("ghi"),
+		},
+		[]*InternalTransaction{
+			&addPeer,
+			&removePeer,
 		})
 
 	sig, err := block.Sign(privateKey)
@@ -36,12 +44,19 @@ func TestAppendSignature(t *testing.T) {
 	privateKey, _ := crypto.GenerateECDSAKey()
 	pubKeyBytes := crypto.FromECDSAPub(&privateKey.PublicKey)
 
+	addPeer := NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris"))
+	removePeer := NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer2", "london"))
 	block := NewBlock(0, 1,
 		[]byte("framehash"),
+		[]*peers.Peer{},
 		[][]byte{
 			[]byte("abc"),
 			[]byte("def"),
 			[]byte("ghi"),
+		},
+		[]*InternalTransaction{
+			&addPeer,
+			&removePeer,
 		})
 
 	sig, err := block.Sign(privateKey)

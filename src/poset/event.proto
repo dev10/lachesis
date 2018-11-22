@@ -25,6 +25,13 @@ message EventBody {
   bytes Creator = 4;
   int64 Index = 5;
   repeated BlockSignature BlockSignatures = 6;
+
+  //wire
+  //It is cheaper to send ints than hashes over the wire
+  int64 selfParentIndex = 7;
+  int64 otherParentCreatorID = 8;
+  int64 otherParentIndex = 9;
+  int64 creatorID = 10;
 }
 
 message EventMessage {

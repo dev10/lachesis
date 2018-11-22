@@ -6,12 +6,13 @@ import (
 	"github.com/andrecronje/lachesis/src/peers"
 )
 
+//XXX PeerSelector needs major refactoring
 // PeerSelector provides an interface for the lachesis node to 
 // update the last peer it gossiped with and select the next peer
 // to gossip with 
 type PeerSelector interface {
-	Peers() *peers.Peers
-	UpdateLast(peer string)
+	Peers() *peers.PeerSet
+	UpdateLast(peer int64)
 	Next() *peers.Peer
 }
 
@@ -19,31 +20,31 @@ type PeerSelector interface {
 //RANDOM
 
 type RandomPeerSelector struct {
-	peers     *peers.Peers
-	localAddr string
-	last      string
+	peers  *peers.PeerSet
+	selfID int64
+	last   int64
 }
 
-func NewRandomPeerSelector(participants *peers.Peers, localAddr string) *RandomPeerSelector {
+func NewRandomPeerSelector(peerSet *peers.PeerSet, selfID int64) *RandomPeerSelector {
 	return &RandomPeerSelector{
-		localAddr: localAddr,
-		peers:     participants,
+		selfID: selfID,
+		peers:  peerSet,
 	}
 }
 
-func (ps *RandomPeerSelector) Peers() *peers.Peers {
+func (ps *RandomPeerSelector) Peers() *peers.PeerSet {
 	return ps.peers
 }
 
-func (ps *RandomPeerSelector) UpdateLast(peer string) {
+func (ps *RandomPeerSelector) UpdateLast(peer int64) {
 	ps.last = peer
 }
 
 func (ps *RandomPeerSelector) Next() *peers.Peer {
-	selectablePeers := ps.peers.ToPeerSlice()
+	selectablePeers := ps.peers.Peers
 
 	if len(selectablePeers) > 1 {
-		_, selectablePeers = peers.ExcludePeer(selectablePeers, ps.localAddr)
+		_, selectablePeers = peers.ExcludePeer(selectablePeers, ps.selfID)
 
 		if len(selectablePeers) > 1 {
 			_, selectablePeers = peers.ExcludePeer(selectablePeers, ps.last)
