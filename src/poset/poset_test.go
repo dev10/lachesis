@@ -1108,9 +1108,9 @@ func initBlockPoset(t *testing.T) (*Poset, []TestNode, map[string]string) {
 		[]byte("framehash"),
 		peerSet.Peers,
 		[][]byte{[]byte("block tx")},
-		[]InternalTransaction{
-			NewInternalTransaction(PEER_ADD, *peers.NewPeer("peer1", "paris")),
-			NewInternalTransaction(PEER_REMOVE, *peers.NewPeer("peer2", "london")),
+		[]*InternalTransaction{
+			NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris")),
+			NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london")),
 		})
 	err := poset.Store.SetBlock(block)
 	if err != nil {
@@ -1199,7 +1199,7 @@ func TestInsertEventsWithBlockSignatures(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		block1 := NewBlock(1, 2, []byte("framehash"), peerSet.Peers, [][]byte{}, []InternalTransaction{})
+		block1 := NewBlock(1, 2, []byte("framehash"), peerSet.Peers, [][]byte{}, []*InternalTransaction{})
 		sig, _ := block1.Sign(nodes[2].Key)
 
 		//unknown block

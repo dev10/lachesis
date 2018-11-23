@@ -7,6 +7,7 @@ import (
 
 	"github.com/andrecronje/lachesis/src/crypto"
 	"github.com/andrecronje/lachesis/src/poset"
+	"github.com/andrecronje/lachesis/src/proxy"
 )
 
 /*
@@ -42,15 +43,15 @@ func NewState(logger *logrus.Logger) *State {
  * inmem interface: ProxyHandler implementation
  */
 
-func (s *State) CommitHandler(block poset.Block) ([]byte, error) {
+func (s *State) CommitHandler(block poset.Block) (proxy.CommitResponse, error) {
 	s.logger.WithField("block", block).Debug("CommitBlock")
 
-	err := s.commit(block)
+	response, err := s.commit(block)
 	if err != nil {
-		return nil, err
+		return response, err
 	}
 	s.logger.WithField("stateHash", s.stateHash).Debug("CommitBlock Answer")
-	return s.stateHash, nil
+	return response, nil
 }
 
 func (s *State) SnapshotHandler(blockIndex int64) ([]byte, error) {
@@ -78,7 +79,7 @@ func (s *State) GetCommittedTransactions() [][]byte {
 	return s.committedTxs
 }
 
-func (s *State) commit(block poset.Block) error {
+func (s *State) commit(block poset.Block) (proxy.CommitResponse, error) {
 	s.committedTxs = append(s.committedTxs, block.Transactions()...)
 	// log tx and update state hash
 	hash := s.stateHash
@@ -88,5 +89,8 @@ func (s *State) commit(block poset.Block) error {
 	}
 	s.snapshots[block.Index()] = hash
 	s.stateHash = hash
-	return nil
+	return proxy.CommitResponse{
+		StateHash: hash,
+		//AcceptedInternalTransactions: ???
+	}, nil
 }

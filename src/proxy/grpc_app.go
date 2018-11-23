@@ -159,20 +159,20 @@ func (p *GrpcAppProxy) SubmitInternalCh() chan poset.InternalTransaction {
 }
 
 // CommitBlock implements AppProxy interface method
-func (p *GrpcAppProxy) CommitBlock(block poset.Block) ([]byte, error) {
+func (p *GrpcAppProxy) CommitBlock(block poset.Block) (CommitResponse, error) {
 	data, err := block.ProtoMarshal()
 	if err != nil {
-		return nil, err
+		return CommitResponse{}, err
 	}
 	answer, ok := <-p.push_block(data)
 	if !ok {
-		return nil, ErrNoAnswers
+		return CommitResponse{}, ErrNoAnswers
 	}
 	err_msg := answer.GetError()
 	if err_msg != "" {
-		return nil, errors.New(err_msg)
+		return CommitResponse{}, errors.New(err_msg)
 	}
-	return answer.GetData(), nil
+	return CommitResponse{StateHash: answer.GetData()}, nil
 }
 
 // GetSnapshot implements AppProxy interface method

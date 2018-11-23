@@ -86,7 +86,8 @@ func NewCore(
 		maxTransactionsInEvent: 16384,
 	}
 
-	core.poset = poset.NewPoset(peers, store, core, core.Commit, logEntry)
+	core.poset = poset.NewPoset(peers, store, core.Commit, logEntry)
+	core.poset.SetCore(core)
 
 	return core
 }

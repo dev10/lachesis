@@ -149,7 +149,7 @@ func (n *Node) doBackgroundWork() {
 			n.resetTimer()
 		case t := <-n.submitInternalCh:
 			n.logger.Debug("Adding Internal Transaction")
-			n.addInternalTransaction(t)
+			n.addInternalTransaction(&t)
 			n.resetTimer()
 		case <-n.shutdownCh:
 			return
@@ -567,10 +567,10 @@ func (n *Node) addTransaction(tx []byte) {
 	n.core.AddTransactions([][]byte{tx})
 }
 
-func (n *Node) addInternalTransaction(tx poset.InternalTransaction) {
+func (n *Node) addInternalTransaction(tx *poset.InternalTransaction) {
 	n.coreLock.Lock()
 	defer n.coreLock.Unlock()
-	n.core.AddInternalTransactions([]poset.InternalTransaction{tx})
+	n.core.AddInternalTransactions([]poset.InternalTransaction{*tx})
 }
 
 func (n *Node) Shutdown() {
@@ -670,11 +670,11 @@ func (n *Node) SyncRate() float64 {
 	return 1 - syncErrorRate
 }
 
-func (n *Node) GetParticipants() (*peers.Peers, error) {
-	return n.core.poset.Store.Participants()
+func (n *Node) GetParticipants() (*peers.PeerSet, error) {
+	return n.core.poset.Store.GetLastPeerSet()
 }
 
-func (n *Node) GetEvent(event string) (poset.Event, error) {
+func (n *Node) GetEvent(event string) (*poset.Event, error) {
 	return n.core.poset.Store.GetEvent(event)
 }
 
@@ -699,7 +699,7 @@ func (n *Node) GetConsensusTransactionsCount() uint64 {
 	return n.core.GetConsensusTransactionsCount()
 }
 
-func (n *Node) GetRound(roundIndex int64) (poset.RoundInfo, error) {
+func (n *Node) GetRound(roundIndex int64) (*poset.RoundInfo, error) {
 	return n.core.poset.Store.GetRound(roundIndex)
 }
 
@@ -715,11 +715,11 @@ func (n *Node) GetRoundEvents(roundIndex int64) int {
 	return n.core.poset.Store.RoundEvents(roundIndex)
 }
 
-func (n *Node) GetRoot(rootIndex string) (poset.Root, error) {
+func (n *Node) GetRoot(rootIndex string) (*poset.Root, error) {
 	return n.core.poset.Store.GetRoot(rootIndex)
 }
 
-func (n *Node) GetBlock(blockIndex int64) (poset.Block, error) {
+func (n *Node) GetBlock(blockIndex int64) (*poset.Block, error) {
 	return n.core.poset.Store.GetBlock(blockIndex)
 }
 

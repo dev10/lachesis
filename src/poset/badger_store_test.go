@@ -413,7 +413,7 @@ func TestDBFrameMethods(t *testing.T) {
 	store, participants := initBadgerStore(cacheSize, t)
 	defer removeBadgerStore(store, t)
 
-	events := []*EventMessage{}
+	events := make([]*EventMessage, len(participants))
 	roots := make(map[string]*Root)
 	for id, p := range participants {
 		event := NewEvent(
@@ -424,7 +424,7 @@ func TestDBFrameMethods(t *testing.T) {
 			p.pubKey,
 			0, nil)
 		event.Sign(p.privKey)
-		events = append(events, event)
+		events[id] = &event.Message
 
 		newRoot := NewBaseRoot(int64(id))
 		roots[p.hex] = &newRoot
@@ -683,7 +683,7 @@ func TestBadgerFrames(t *testing.T) {
 	store, participants := initBadgerStore(cacheSize, t)
 	defer removeBadgerStore(store, t)
 
-	var events []*Event
+	events := make([]*EventMessage, len(participants))
 	roots := make(map[string]*Root)
 	for id, p := range participants {
 		event := NewEvent(
@@ -694,7 +694,7 @@ func TestBadgerFrames(t *testing.T) {
 			p.pubKey,
 			0, nil)
 		event.Sign(p.privKey)
-		events = append(events, event)
+		events[id] = &event.Message
 
 		newRoot := NewBaseRoot(int64(id))
 		roots[p.hex] = &newRoot

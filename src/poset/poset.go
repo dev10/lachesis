@@ -51,7 +51,7 @@ type Poset struct {
 
 //NewPoset instantiates a Poset from a list of participants, underlying
 //data store and commit channel
-func NewPoset(peers *peers.PeerSet, store Store, core Core, commitCallback InternalCommitCallback, logger *logrus.Entry) *Poset {
+func NewPoset(peers *peers.PeerSet, store Store, commitCallback InternalCommitCallback, logger *logrus.Entry) *Poset {
 	if logger == nil {
 		log := logrus.New()
 		log.Level = logrus.DebugLevel
@@ -63,7 +63,6 @@ func NewPoset(peers *peers.PeerSet, store Store, core Core, commitCallback Inter
 	poset := Poset{
 		Peers:             peers,
 		Store:             store,
-		core: 			   core,
 		commitCallback:    commitCallback,
 		ancestorCache:     common.NewLRU(cacheSize, nil),
 		selfAncestorCache: common.NewLRU(cacheSize, nil),
@@ -74,6 +73,11 @@ func NewPoset(peers *peers.PeerSet, store Store, core Core, commitCallback Inter
 	}
 
 	return &poset
+}
+
+// SetCore sets a core for poset.
+func (p *Poset) SetCore(core Core) {
+	p.core = core
 }
 
 /*******************************************************************************

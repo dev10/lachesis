@@ -47,7 +47,7 @@ func TestInmemEvents(t *testing.T) {
 
 	t.Run("Store Events", func(t *testing.T) {
 		for _, p := range participants {
-			var items []Event
+			var items []*Event
 			for k := int64(0); k < testSize; k++ {
 				event := NewEvent([][]byte{[]byte(fmt.Sprintf("%s_%d", p.hex[:5], k))},
 					nil,
@@ -56,7 +56,7 @@ func TestInmemEvents(t *testing.T) {
 					p.pubKey,
 					k, nil)
 				_ = event.Hex() //just to set private variables
-				items = append(items, *event)
+				items = append(items, event)
 				err := store.SetEvent(event)
 				if err != nil {
 					t.Fatal(err)
@@ -114,7 +114,7 @@ func TestInmemEvents(t *testing.T) {
 		for _, p := range participants {
 			evs := events[p.hex]
 			for _, ev := range evs {
-				if err := store.AddConsensusEvent(&ev); err != nil {
+				if err := store.AddConsensusEvent(ev); err != nil {
 					t.Fatal(err)
 				}
 			}

@@ -21,7 +21,7 @@ type Node struct {
 // New initializes Node struct
 func New(privKey string,
 	nodeAddr string,
-	participants *peers.Peers,
+	participants *peers.PeerSet,
 	commitHandler CommitHandler,
 	exceptionHandler ExceptionHandler,
 	config *MobileConfig) *Node {

@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/andrecronje/lachesis/src/common"
+	"github.com/andrecronje/lachesis/src/peers"
 	"github.com/andrecronje/lachesis/src/poset"
 )
 
@@ -24,7 +25,11 @@ func TestInmemAppCalls(t *testing.T) {
 		[]byte("tx 2"),
 		[]byte("tx 3"),
 	}
-	block := poset.NewBlock(0, 1, []byte{}, transactions)
+	internalTransactions := []*poset.InternalTransaction{
+		poset.NewInternalTransaction(poset.TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris")),
+		poset.NewInternalTransaction(poset.TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london")),
+	}
+	block := poset.NewBlock(0, 1, []byte{}, []*peers.Peer{}, transactions, internalTransactions)
 
 	t.Run("#1 Send tx", func(t *testing.T) {
 		asserter := assert.New(t)
@@ -46,9 +51,9 @@ func TestInmemAppCalls(t *testing.T) {
 	t.Run("#2 Commit block", func(t *testing.T) {
 		asserter := assert.New(t)
 
-		stateHash, err := proxy.CommitBlock(block)
+		response, err := proxy.CommitBlock(*block)
 		if asserter.NoError(err) {
-			asserter.EqualValues(goldStateHash(), stateHash)
+			asserter.EqualValues(goldStateHash(), response.StateHash)
 			asserter.EqualValues(transactions, proxy.transactions)
 		}
 	})
@@ -91,10 +96,10 @@ func NewTestProxy(t *testing.T) *TestProxy {
 	return proxy
 }
 
-func (p *TestProxy) CommitHandler(block poset.Block) ([]byte, error) {
+func (p *TestProxy) CommitHandler(block poset.Block) (CommitResponse, error) {
 	p.logger.Debug("CommitBlock")
 	p.transactions = append(p.transactions, block.Transactions()...)
-	return goldStateHash(), nil
+	return CommitResponse{StateHash: goldStateHash()}, nil
 }
 
 func (p *TestProxy) SnapshotHandler(blockIndex int64) ([]byte, error) {

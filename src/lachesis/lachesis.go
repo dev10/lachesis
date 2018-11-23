@@ -19,7 +19,7 @@ type Lachesis struct {
 	Node      *node.Node
 	Transport net.Transport
 	Store     poset.Store
-	Peers     *peers.Peers
+	Peers     *peers.PeerSet
 	Service   *service.Service
 }
 
@@ -58,9 +58,9 @@ func (l *Lachesis) initPeers() error {
 		return nil
 	}
 
-	peerStore := peers.NewJSONPeers(l.Config.DataDir)
+	peerStore := peers.NewJSONPeerSet(l.Config.DataDir)
 
-	participants, err := peerStore.Peers()
+	participants, err := peerStore.PeerSet()
 
 	if err != nil {
 		return err

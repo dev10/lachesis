@@ -56,7 +56,7 @@ func initCores(n int, t *testing.T) ([]*Core, map[int64]*ecdsa.PrivateKey, map[s
 			t.Fatal(err)
 		}
 
-		cores = append(cores, *core)
+		cores = append(cores, core)
 		index[fmt.Sprintf("e%d", i)] = core.head
 	}
 
@@ -75,7 +75,7 @@ e01 |   |
 e0  e1  e2
 0   1   2
 */
-func initPoset(t *testing.T, cores []Core, keys map[int64]*ecdsa.PrivateKey,
+func initPoset(t *testing.T, cores []*Core, keys map[int64]*ecdsa.PrivateKey,
 	index map[string]string, participant int64) {
 	for i := int64(0); i < int64(len(cores)); i++ {
 		if i != participant {
@@ -145,8 +145,8 @@ func initPoset(t *testing.T, cores []Core, keys map[int64]*ecdsa.PrivateKey,
 	}
 }
 
-func insertEvent(cores []Core, keys map[int64]*ecdsa.PrivateKey, index map[string]string,
-	event poset.Event, name string, participant int64, creator int64) error {
+func insertEvent(cores []*Core, keys map[int64]*ecdsa.PrivateKey, index map[string]string,
+	event *poset.Event, name string, participant int64, creator int64) error {
 
 	if participant == creator {
 		if err := cores[participant].SignAndInsertSelfEvent(event); err != nil {
@@ -164,7 +164,7 @@ func insertEvent(cores []Core, keys map[int64]*ecdsa.PrivateKey, index map[strin
 	return nil
 }
 
-func checkHeights(cores []Core, expectedHeights []map[string]uint64, t *testing.T) {
+func checkHeights(cores []*Core, expectedHeights []map[string]uint64, t *testing.T) {
 	for i, core := range cores {
 		heights := core.Heights()
 		if !reflect.DeepEqual(heights, expectedHeights[i]) {
@@ -406,7 +406,7 @@ func TestSync(t *testing.T) {
 
 }
 
-func checkInDegree(cores []Core, expectedInDegree []map[string]uint64, t *testing.T) {
+func checkInDegree(cores []*Core, expectedInDegree []map[string]uint64, t *testing.T) {
 	for i, core := range cores {
 		inDegrees := core.InDegrees()
 		if !reflect.DeepEqual(inDegrees, expectedInDegree[i]) {
@@ -679,7 +679,7 @@ type play struct {
 	payload [][]byte
 }
 
-func initConsensusPoset(t *testing.T) []Core {
+func initConsensusPoset(t *testing.T) []*Core {
 	cores, _, _ := initCores(3, t)
 	playbook := []play{
 		{from: 0, to: 1, payload: [][]byte{[]byte("e10")}},
@@ -809,7 +809,7 @@ func TestOverSyncLimit(t *testing.T) {
     |   e1  e2  e3
     0	1	2	3
 */
-func initFFPoset(cores []Core, t *testing.T) {
+func initFFPoset(cores []*Core, t *testing.T) {
 	playbook := []play{
 		{from: 1, to: 2, payload: [][]byte{[]byte("e21")}},
 		{from: 2, to: 3, payload: [][]byte{[]byte("e32")}},
@@ -994,7 +994,7 @@ func TestCoreFastForward(t *testing.T) {
 
 }
 
-func synchronizeCores(cores []Core, from int, to int, payload [][]byte) error {
+func synchronizeCores(cores []*Core, from int, to int, payload [][]byte) error {
 	knownByTo := cores[to].KnownEvents()
 	unknownByTo, err := cores[from].EventDiff(knownByTo)
 	if err != nil {
@@ -1011,7 +1011,7 @@ func synchronizeCores(cores []Core, from int, to int, payload [][]byte) error {
 	return cores[to].Sync(unknownWire)
 }
 
-func syncAndRunConsensus(cores []Core, from int, to int, payload [][]byte) error {
+func syncAndRunConsensus(cores []*Core, from int, to int, payload [][]byte) error {
 	if err := synchronizeCores(cores, from, to, payload); err != nil {
 		return err
 	}

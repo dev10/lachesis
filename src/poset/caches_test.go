@@ -12,7 +12,7 @@ import (
 func TestParticipantEventsCache(t *testing.T) {
 	size := 10
 	testSize := int64(25)
-	participants := peers.NewPeersFromSlice([]*peers.Peer{
+	participants := peers.NewPeerSet([]*peers.Peer{
 		peers.NewPeer("0xaa", ""),
 		peers.NewPeer("0xbb", ""),
 		peers.NewPeer("0xcc", ""),
@@ -116,7 +116,7 @@ func TestParticipantEventsCache(t *testing.T) {
 func TestParticipantEventsCacheEdge(t *testing.T) {
 	size := 10
 	testSize := int64(11)
-	participants := peers.NewPeersFromSlice([]*peers.Peer{
+	participants := peers.NewPeerSet([]*peers.Peer{
 		peers.NewPeer("0xaa", ""),
 		peers.NewPeer("0xbb", ""),
 		peers.NewPeer("0xcc", ""),

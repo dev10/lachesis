@@ -15,12 +15,12 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func PingNodesN(participants []*peers.Peer, p peers.PeerSet, n uint64, delay uint64, logger *logrus.Logger) {
+func PingNodesN(p *peers.PeerSet, n uint64, delay uint64, logger *logrus.Logger) {
 	// pause before shooting test transactions
 	time.Sleep(time.Duration(delay) * time.Second)
 
 	proxies := make(map[int64]*proxy.GrpcLachesisProxy)
-	for _, participant := range participants {
+	for _, participant := range p.Peers {
 		node := p.ByPubKey[participant.PubKeyHex]
 		host_port := strings.Split(node.NetAddr, ":")
 		port, err := strconv.Atoi(host_port[1])
@@ -33,7 +33,7 @@ func PingNodesN(participants []*peers.Peer, p peers.PeerSet, n uint64, delay uin
 		proxies[node.ID] = lachesisProxy
 	}
 	for iteration := uint64(0); iteration < n; iteration++ {
-		participant := participants[rand.Intn(len(participants))]
+		participant := p.Peers[rand.Intn(len(p.Peers))]
 		node := p.ByPubKey[participant.PubKeyHex]
 
 		_, err := transact(proxies[node.ID])
