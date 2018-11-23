@@ -34,7 +34,7 @@ func PingNodesN(participants []*peers.Peer, p peers.PeerSet, n uint64, delay uin
 	}
 	for iteration := uint64(0); iteration < n; iteration++ {
 		participant := participants[rand.Intn(len(participants))]
-		node := p[participant.PubKeyHex]
+		node := p.ByPubKey[participant.PubKeyHex]
 
 		_, err := transact(proxies[node.ID])
 

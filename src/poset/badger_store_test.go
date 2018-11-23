@@ -12,17 +12,18 @@ import (
 	"github.com/andrecronje/lachesis/src/peers"
 )
 
-func initBadgerStore(cacheSize int, t *testing.T) (*BadgerStore, []pub) {
+func initBadgerStore(cacheSize int, t *testing.T) (*BadgerStore, []participant) {
 	n := 3
-	var participantPubs []pub
+	participants := []participant{}
+
 	pirs := []*peers.Peer{}
 	for i := 0; i < n; i++ {
 		key, _ := crypto.GenerateECDSAKey()
 		pubKey := crypto.FromECDSAPub(&key.PublicKey)
 		peer := peers.NewPeer(fmt.Sprintf("0x%X", pubKey), "")
 		pirs = append(pirs, peer)
-		participantPubs = append(participantPubs,
-			pub{peer.ID, key, pubKey, peer.PubKeyHex})
+		participants = append(participants,
+			participant{peer.ID, key, pubKey, peer.PubKeyHex})
 	}
 
 	peerSet := peers.NewPeerSet(pirs)
@@ -39,7 +40,7 @@ func initBadgerStore(cacheSize int, t *testing.T) (*BadgerStore, []pub) {
 		t.Fatal(err)
 	}
 
-	return store, participantPubs
+	return store, participants
 }
 
 func removeBadgerStore(store *BadgerStore, t *testing.T) {
@@ -343,11 +344,9 @@ func TestDBBlockMethods(t *testing.T) {
 		[]byte("tx4"),
 		[]byte("tx5"),
 	}
-	peerAdd := NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris"))
-	peerRemove := NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london"))
 	internalTransactions := []*InternalTransaction{
-		&peerAdd,
-		&peerRemove,
+		NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris")),
+		NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london")),
 	}
 	frameHash := []byte("this is the frame hash")
 
@@ -616,11 +615,9 @@ func TestBadgerBlocks(t *testing.T) {
 		[]byte("tx5"),
 	}
 
-	peerAdd := NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris"))
-	peerRemove := NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london"))
 	internalTransactions := []*InternalTransaction{
-		&peerAdd,
-		&peerRemove,
+		NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris")),
+		NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london")),
 	}
 	frameHash := []byte("this is the frame hash")
 	block := NewBlock(index, roundReceived, frameHash, []*peers.Peer{}, transactions, internalTransactions)
@@ -686,7 +683,7 @@ func TestBadgerFrames(t *testing.T) {
 	store, participants := initBadgerStore(cacheSize, t)
 	defer removeBadgerStore(store, t)
 
-	events := make([]*EventMessage, len(participants))
+	var events []*Event
 	roots := make(map[string]*Root)
 	for id, p := range participants {
 		event := NewEvent(

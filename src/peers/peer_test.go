@@ -47,7 +47,7 @@ func TestJSONPeers(t *testing.T) {
 
 	newPeersSlice := newPeers.Peers
 
-	if err := store.SetPeers(newPeersSlice); err != nil {
+	if err := store.Write(newPeersSlice); err != nil {
 		t.Fatalf("err: %v", err)
 	}
 

@@ -11,8 +11,6 @@ import (
 func TestSignBlock(t *testing.T) {
 	privateKey, _ := crypto.GenerateECDSAKey()
 
-	addPeer := NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris"))
-	removePeer := NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london"))
 	block := NewBlock(0, 1,
 		[]byte("framehash"),
 		[]*peers.Peer{},
@@ -22,8 +20,8 @@ func TestSignBlock(t *testing.T) {
 			[]byte("ghi"),
 		},
 		[]*InternalTransaction{
-			&addPeer,
-			&removePeer,
+			NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris")),
+			NewInternalTransaction(TransactionType_PEER_REMOVE, *peers.NewPeer("peer2", "london")),
 		})
 
 	sig, err := block.Sign(privateKey)
@@ -44,8 +42,6 @@ func TestAppendSignature(t *testing.T) {
 	privateKey, _ := crypto.GenerateECDSAKey()
 	pubKeyBytes := crypto.FromECDSAPub(&privateKey.PublicKey)
 
-	addPeer := NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris"))
-	removePeer := NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer2", "london"))
 	block := NewBlock(0, 1,
 		[]byte("framehash"),
 		[]*peers.Peer{},
@@ -55,8 +51,8 @@ func TestAppendSignature(t *testing.T) {
 			[]byte("ghi"),
 		},
 		[]*InternalTransaction{
-			&addPeer,
-			&removePeer,
+			NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer1", "paris")),
+			NewInternalTransaction(TransactionType_PEER_ADD, *peers.NewPeer("peer2", "london")),
 		})
 
 	sig, err := block.Sign(privateKey)

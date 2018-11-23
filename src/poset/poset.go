@@ -1205,7 +1205,7 @@ func (p *Poset) ProcessDecidedRounds() error {
 					return err
 				}
 				p.ConsensusTransactions += uint64(len(ev.Transactions()))
-				peerTxs = append(peerTxs, e.ToEvent().InternalTransactions()...)
+				peerTxs = append(peerTxs, ev.InternalTransactions()...)
 				if ev.IsLoaded() {
 					p.PendingLoadedEvents--
 				}

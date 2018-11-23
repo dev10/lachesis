@@ -14,18 +14,18 @@ import (
 InternalTransactions
 *******************************************************************************/
 
-func NewInternalTransaction(tType TransactionType, peer peers.Peer) InternalTransaction {
-	return InternalTransaction{
+func NewInternalTransaction(tType TransactionType, peer peers.Peer) *InternalTransaction {
+	return &InternalTransaction{
 		Type: tType,
 		Peer: &peer,
 	}
 }
 
-func NewInternalTransactionJoin(peer peers.Peer) InternalTransaction {
+func NewInternalTransactionJoin(peer peers.Peer) *InternalTransaction {
 	return NewInternalTransaction(TransactionType_PEER_ADD, peer)
 }
 
-func NewInternalTransactionLeave(peer peers.Peer) InternalTransaction {
+func NewInternalTransactionLeave(peer peers.Peer) *InternalTransaction {
 	return NewInternalTransaction(TransactionType_PEER_REMOVE, peer)
 }
 
