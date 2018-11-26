@@ -32,6 +32,7 @@ func NewNodeList(count int, logger *logrus.Logger) NodeList {
 		key, _ := crypto.GenerateECDSAKey()
 		pubKey := fmt.Sprintf("0x%X", crypto.FromECDSAPub(&key.PublicKey))
 		peer := peers.NewPeer(pubKey, addr)
+		peerSet = peerSet.WithNewPeer(peer)
 
 		n := NewNode(
 			config,
@@ -42,7 +43,6 @@ func NewNodeList(count int, logger *logrus.Logger) NodeList {
 			transp,
 			dummy.NewInmemDummyApp(logger))
 
-		peerSet = peerSet.WithNewPeer(peer)
 		nodes[key] = n
 	}
 

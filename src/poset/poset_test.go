@@ -548,7 +548,6 @@ func initRoundPoset(t *testing.T) (*Poset, map[string]string, []TestNode) {
 		Message: RoundInfoMessage{
 			CreatedEvents:  round0Witnesses,
 			PeerSet: lastPeerSet,
-			ReceivedEvents: []string{},
 		},
 	})
 
@@ -558,7 +557,6 @@ func initRoundPoset(t *testing.T) (*Poset, map[string]string, []TestNode) {
 		Message: RoundInfoMessage{
 			CreatedEvents: round1Witnesses,
 			PeerSet: lastPeerSet,
-			ReceivedEvents: []string{},
 		},
 	})
 

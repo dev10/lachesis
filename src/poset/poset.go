@@ -865,8 +865,15 @@ func (p *Poset) DivideRounds() error {
 			updateEvent = true
 
 			roundInfo, err := p.Store.GetRound(roundNumber)
-			if err != nil && !common.Is(err, common.KeyNotFound) {
-				return err
+			if err != nil {
+				if !common.Is(err, common.KeyNotFound) {
+					return err
+				}
+				peerSet, err := p.Store.GetPeerSet(roundNumber)
+				if err != nil {
+					return err
+				}
+				roundInfo = NewRoundInfo(peerSet)
 			}
 
 			/*
