@@ -1062,11 +1062,11 @@ func TestCreateRootBis(t *testing.T) {
 
 	peerSet, _ := p.Store.GetLastPeerSet()
 
-	root := NewBaseRootEvent(peerSet.Peers[1].ID)
+	rootTmp := NewBaseRootEvent(peerSet.Peers[1].ID)
 	expected := map[string]*Root{
 		e12: {
 			NextRound:  0,
-			SelfParent: &root,
+			SelfParent: &rootTmp,
 			Others: map[string]*RootEvent{
 				index[e12]: &RootEvent{Hash: index[e2], CreatorID: peerSet.Peers[2].ID, Index: 0, LamportTimestamp: 0, Round: 0},
 			},

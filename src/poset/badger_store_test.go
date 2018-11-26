@@ -96,7 +96,7 @@ func TestNewBadgerStore(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error retrieving DB root for peer %s: %s", peer, err)
 		}
-		if !reflect.DeepEqual(dbRoot, root) {
+		if !dbRoot.Equals(root) {
 			t.Fatalf("%s DB root should be %#v, not %#v", peer, root, dbRoot)
 		}
 	}
@@ -191,7 +191,7 @@ func TestDBEventMethods(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if !reflect.DeepEqual(ev.Message.Body, rev.Message.Body) {
+			if !ev.Message.Body.Equals(rev.Message.Body) {
 				t.Fatalf("events[%s][%d].Body should be %#v, not %#v", p, k, ev.Message.Body, rev.Message.Body)
 			}
 			if !reflect.DeepEqual(ev.Message.Signature, rev.Message.Signature) {
@@ -220,7 +220,7 @@ func TestDBEventMethods(t *testing.T) {
 				te.Hex(),
 				dte.Hex())
 		}
-		if !reflect.DeepEqual(te.Message.Body, dte.Message.Body) {
+		if !te.Message.Body.Equals(dte.Message.Body) {
 			t.Fatalf("dbTopologicalEvents[%d].Body should be %#v, not %#v", i,
 				te.Message.Body,
 				dte.Message.Body)
@@ -284,7 +284,7 @@ func TestDBRoundMethods(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if !reflect.DeepEqual(round, storedRound) {
+	if !round.Equals(storedRound) {
 		t.Fatalf("Round and StoredRound do not match")
 	}
 
@@ -375,7 +375,7 @@ func TestDBBlockMethods(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if !reflect.DeepEqual(storedBlock.Body, block.Body) {
+		if !storedBlock.Body.Equals(block.Body) {
 			t.Fatalf("Block and StoredBlock bodies do not match")
 		}
 
@@ -446,7 +446,7 @@ func TestDBFrameMethods(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if !reflect.DeepEqual(storedFrame, frame) {
+		if !storedFrame.Equals(frame) {
 			t.Fatalf("Frame and StoredFrame do not match")
 		}
 	})
@@ -490,7 +490,7 @@ func TestBadgerEvents(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if !reflect.DeepEqual(ev.Message.Body, rev.Message.Body) {
+			if !ev.Message.Body.Equals(rev.Message.Body) {
 				t.Fatalf("events[%s][%d].Body should be %#v, not %#v", p, k, ev, rev)
 			}
 			if !reflect.DeepEqual(ev.Message.Signature, rev.Message.Signature) {
@@ -584,7 +584,7 @@ func TestBadgerRounds(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if !reflect.DeepEqual(round, storedRound) {
+	if !round.Equals(storedRound) {
 		t.Fatalf("Round and StoredRound do not match")
 	}
 
@@ -645,7 +645,7 @@ func TestBadgerBlocks(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if !reflect.DeepEqual(storedBlock.Body, block.Body) {
+		if !storedBlock.Body.Equals(block.Body) {
 			t.Fatalf("Block and StoredBlock bodies do not match")
 		}
 
@@ -716,7 +716,7 @@ func TestBadgerFrames(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if !reflect.DeepEqual(storedFrame, frame) {
+		if !storedFrame.Equals(frame) {
 			t.Fatalf("Frame and StoredFrame do not match")
 		}
 	})

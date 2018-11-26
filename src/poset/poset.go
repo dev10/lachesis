@@ -659,11 +659,11 @@ func (p *Poset) createOtherParentRootEvent(ev *Event) (RootEvent, error) {
 
 }
 
-func (p *Poset) createRoot(ev *Event) (Root, error) {
+func (p *Poset) createRoot(ev *Event) (*Root, error) {
 
 	evRound, err := p.round(ev.Hex())
 	if err != nil {
-		return Root{}, err
+		return nil, err
 	}
 
 	/*
@@ -671,7 +671,7 @@ func (p *Poset) createRoot(ev *Event) (Root, error) {
 	*/
 	selfParentRootEvent, err := p.createSelfParentRootEvent(ev)
 	if err != nil {
-		return Root{}, err
+		return nil, err
 	}
 
 	/*
@@ -681,12 +681,12 @@ func (p *Poset) createRoot(ev *Event) (Root, error) {
 	if ev.OtherParent() != "" {
 		opre, err := p.createOtherParentRootEvent(ev)
 		if err != nil {
-			return Root{}, err
+			return nil, err
 		}
 		otherParentRootEvent = &opre
 	}
 
-	root := Root{
+	root := &Root{
 		NextRound:  evRound,
 		SelfParent: &selfParentRootEvent,
 		Others:     map[string]*RootEvent{},
@@ -1310,7 +1310,7 @@ func (p *Poset) GetFrame(roundReceived int64) (*Frame, error) {
 			if err != nil {
 				return nil, err
 			}
-			roots[ev.Creator()] = &root
+			roots[ev.Creator()] = root
 		}
 	}
 
@@ -1331,7 +1331,7 @@ func (p *Poset) GetFrame(roundReceived int64) (*Frame, error) {
 				if err != nil {
 					return nil, err
 				}
-				*root, err = p.createRoot(lastConsensusEvent)
+				root, err = p.createRoot(lastConsensusEvent)
 				if err != nil {
 					return nil, err
 				}
