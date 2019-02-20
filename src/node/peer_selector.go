@@ -23,29 +23,22 @@ type RandomPeerSelector struct {
 }
 
 // SelectorCreationFnArgs specifies the union of possible arguments that can be extracted to create a variant of PeerSelector
-type SelectorCreationFnArgs struct {
-	GetFlagTable GetFlagTableFn
-	LocalAddr    string
-	Peers        *peers.Peers
-	PubKey       string
-}
+type  SelectorCreationFnArgs interface {}
 
 // SelectorCreationFn declares the function signature to create variants of PeerSelector
-type SelectorCreationFn func(SelectorCreationFnArgs) PeerSelector
+type SelectorCreationFn func(*peers.Peers, interface{}) PeerSelector
 
-// NewRandomPeerSelector creates a new random peer selector
-func NewRandomPeerSelector(participants *peers.Peers, localAddr string) *RandomPeerSelector {
-	return &RandomPeerSelector{
-		localAddr: localAddr,
-		peers:     participants,
-	}
+// arguments for RandomPeerSelector
+type RandomPeerSelectorCreationFnArgs struct {
+	LocalAddr    string
 }
 
-// NewSmartPeerSelectorFromArgs creates RandomPeerSelector from SelectorCreationFnArgs
-func NewRandomPeerSelectorFromArgs(args SelectorCreationFnArgs) PeerSelector {
-	return NewRandomPeerSelector(
-		args.Peers,
-		args.LocalAddr)
+// NewRandomPeerSelector creates a new random peer selector
+func NewRandomPeerSelector(participants *peers.Peers, args RandomPeerSelectorCreationFnArgs) *RandomPeerSelector {
+	return &RandomPeerSelector{
+		localAddr: args.LocalAddr,
+		peers:     participants,
+	}
 }
 
 // Peers returns all known peers

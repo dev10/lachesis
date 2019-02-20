@@ -18,24 +18,21 @@ type SmartPeerSelector struct {
 	GetFlagTable GetFlagTableFn
 }
 
-// NewSmartPeerSelector creates a new smart peer selection struct
-func NewSmartPeerSelector(participants *peers.Peers,
-	localAddr string,
-	GetFlagTable GetFlagTableFn) *SmartPeerSelector {
-
-	return &SmartPeerSelector{
-		localAddr:    localAddr,
-		peers:        participants,
-		GetFlagTable: GetFlagTable,
-	}
+// arguments for NewSmartPeerSelector function
+type SmartPeerSelectorCreationFnArgs struct {
+	GetFlagTable GetFlagTableFn
+	LocalAddr    string
 }
 
-// NewSmartPeerSelectorFromArgs creates SmartPeerSelector from SelectorCreationFnArgs
-func NewSmartPeerSelectorFromArgs(args SelectorCreationFnArgs) PeerSelector {
-	return NewSmartPeerSelector(
-		args.Peers,
-		args.PubKey,
-		args.GetFlagTable)
+// NewSmartPeerSelector creates a new smart peer selection struct
+func NewSmartPeerSelector(participants *peers.Peers, args SmartPeerSelectorCreationFnArgs) *PeerSelector {
+
+	selector := SmartPeerSelector{
+		localAddr:    args.LocalAddr,
+		peers:        participants,
+		GetFlagTable: args.GetFlagTable,
+	}
+	return &(selector.(PeerSelector))
 }
 
 // Peers returns all known peers

@@ -59,6 +59,7 @@ type Node struct {
 func NewNode(conf *Config,
 	id uint64,
 	key *ecdsa.PrivateKey,
+	participants *peers.Peers,
 	store poset.Store,
 	trans net.Transport,
 	proxy proxy.AppProxy,
@@ -67,16 +68,15 @@ func NewNode(conf *Config,
 
 	localAddr := trans.LocalAddr()
 
-	pmap, _ := store.Participants()
-
 	commitCh := make(chan poset.Block, 400)
-	core := NewCore(id, key, pmap, store, commitCh, conf.Logger)
+	core := NewCore(id, key, participants, store, commitCh, conf.Logger)
 
 	pubKey := core.HexID()
 
-	selectorInitArgs.PubKey = pubKey
-	selectorInitArgs.GetFlagTable = core.poset.GetPeerFlagTableOfRandomUndeterminedEvent
-	peerSelector := selectorInitFunc(selectorInitArgs)
+	if _, ok := selectorInitArgs.(SmartPeerSelectorCreationFnArgs); ok {
+		selectorInitArgs.GetFlagTable = core.poset.GetPeerFlagTableOfRandomUndeterminedEvent
+	}
+	peerSelector := selectorInitFunc(participants, selectorInitArgs)
 
 	node := Node{
 		id:               id,
@@ -102,7 +102,7 @@ func NewNode(conf *Config,
 
 	signal.Notify(node.signalTERMch, syscall.SIGTERM, os.Kill)
 
-	node.logger.WithField("peers", pmap).Debug("pmap")
+	node.logger.WithField("peers", participants).Debug("participants")
 	node.logger.WithField("pubKey", pubKey).Debug("pubKey")
 
 	node.needBoostrap = store.NeedBootstrap()
