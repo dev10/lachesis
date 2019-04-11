@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>From Poset to Blockchain &mdash; Lachesis 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FastSync" href="fastsync.html" />
+    <link rel="prev" title="Lachesis Consensus" href="consensus.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Lachesis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="consensus.html">Lachesis Consensus</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">From Poset to Blockchain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#block-structure">Block Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enhancements">Enhancements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-validator-set">Dynamic Validator Set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inter-blockchain-communication">Inter-Blockchain Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fastsync.html">FastSync</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Lachesis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>From Poset to Blockchain</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/blockchain.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="from-poset-to-blockchain">
+<span id="blockchain"></span><h1>From Poset to Blockchain<a class="headerlink" href="#from-poset-to-blockchain" title="Permalink to this headline">¶</a></h1>
+<p>This document describes a technique for projecting a poset onto a
+blockchain, which is better suited for representing an immutable ordered list of
+transactions. In this system, the order is governed by the Poset consensus
+algorithm but the transactions are mapped onto a linear data structure composed
+of blocks; each block containing an ordered list of transactions, a hash of the
+previous block, a hash of the resulting application state, and a collection of
+signatures from the set of validators. This method enables poset-based
+systems to implement any Inter-Blockchain Communication protocol and integrate
+with an Internet of Blockchains.</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>The consumable output of any consensus system is an ordered list of
+transactions. Developers have been using blockchains to model such lists because
+they are efficient to work with. A linear data structure composed of batches of
+transactions, hashed and signed together, easily allowing to verify any
+transaction, is the right tool for the job. Although the word blockchain is now
+used in a much broader sense, it originally designated a data structure.
+Consensus algorithms, public/private networks, cryptocurrencies, etc., are
+independent concepts.</p>
+<p>Poset is a beautiful consensus algorithm based on a homonymous data
+structure. The poset data structure, however, is not easy to work with when
+it comes to representing a linear sequence of transactions. It is a Directed
+Acyclic Graph (DAG) from which the order must be extracted via some complex
+consensus functions. To verify the consensus index of a given transaction, one
+has to re-compute the consensus methods on a subset of the poset. On the
+other hand, blockchains do not need any further processing to extract the
+ordered list of transactions and simple cryptographic primitives are sufficient
+to validate blocks.</p>
+<p>The “poset vs blockchain” debate is a red herring. Blockchain is just a data
+structure; the engine is the underlying consensus algorithm. The projection
+method exposes an easy-to-work-with blockchain powered by the efficient
+Poset consensus algorithm.</p>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>  <span class="n">w53</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>
+ <span class="o">|</span>   <span class="o">|</span>  <span class="n">w52</span>  <span class="o">|</span>
+ <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">^</span>
+ <span class="o">|</span>  <span class="n">w51</span>  <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+ <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+<span class="n">w50</span>  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|-----------------------</span>  <span class="o">---------------------------</span>
+ <span class="o">|</span>   \   <span class="o">|</span>   <span class="o">|</span>                         <span class="o">-</span> <span class="n">Block</span> <span class="mi">5</span> <span class="o">|</span> <span class="p">(</span><span class="n">Block</span> <span class="mi">4</span> <span class="n">Hash</span><span class="p">)</span><span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   \   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>  <span class="n">w43</span>                        <span class="o">-</span> <span class="n">E</span><span class="p">:</span> <span class="p">[</span><span class="n">w40</span><span class="p">,</span> <span class="n">w41</span><span class="p">,</span> <span class="n">w42</span><span class="p">,</span> <span class="n">w43</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>  <span class="n">w42</span>  <span class="o">|</span>                         <span class="o">-</span> <span class="n">S</span><span class="p">:</span> <span class="p">[</span><span class="n">S50</span><span class="p">,</span> <span class="n">S51</span><span class="p">,</span> <span class="n">S52</span><span class="p">,</span> <span class="n">S53</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>  <span class="n">w41</span>  <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+ <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+<span class="n">w40</span>  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|-----------------------</span>  <span class="o">---------------------------</span>
+ <span class="o">|</span>   \   <span class="o">|</span>   <span class="o">|</span>                         <span class="o">-</span> <span class="n">Block</span> <span class="mi">4</span> <span class="o">|</span> <span class="p">(</span><span class="n">Block</span> <span class="mi">3</span> <span class="n">Hash</span><span class="p">)</span><span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   \   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>  <span class="n">w33</span>                        <span class="o">-</span> <span class="n">E</span><span class="p">:</span> <span class="p">[</span><span class="n">w30</span><span class="p">,</span> <span class="n">w31</span><span class="p">,</span> <span class="n">w32</span><span class="p">,</span> <span class="n">w33</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>  <span class="n">w32</span>  <span class="o">|</span>                         <span class="o">-</span> <span class="n">S</span><span class="p">:</span> <span class="p">[</span><span class="n">S40</span><span class="p">,</span> <span class="n">S41</span><span class="p">,</span> <span class="n">S42</span><span class="p">,</span> <span class="n">S43</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>  <span class="n">w31</span>  <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+ <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+<span class="n">w30</span>  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|-----------------------</span>  <span class="o">---------------------------</span>
+ <span class="o">|</span>   \   <span class="o">|</span>   <span class="o">|</span>                         <span class="o">-</span> <span class="n">Block</span> <span class="mi">3</span> <span class="o">|</span> <span class="p">(</span><span class="n">Block</span> <span class="mi">2</span> <span class="n">Hash</span><span class="p">)</span><span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   \   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>  <span class="n">w23</span>                        <span class="o">-</span> <span class="n">E</span><span class="p">:</span> <span class="p">[</span><span class="n">w20</span><span class="p">,</span> <span class="n">w21</span><span class="p">,</span> <span class="n">w22</span><span class="p">,</span> <span class="n">w23</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>  <span class="n">w22</span>  <span class="o">|</span>                         <span class="o">-</span> <span class="n">S</span><span class="p">:</span> <span class="p">[</span><span class="n">S30</span><span class="p">,</span> <span class="n">S31</span><span class="p">,</span> <span class="n">S32</span><span class="p">,</span> <span class="n">S33</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>  <span class="n">w21</span>  <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+ <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+<span class="n">w20</span>  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|-----------------------</span>  <span class="o">---------------------------</span>
+ <span class="o">|</span>   \   <span class="o">|</span>   <span class="o">|</span>                         <span class="o">-</span> <span class="n">Block</span> <span class="mi">2</span> <span class="o">|</span> <span class="p">(</span><span class="n">Block</span> <span class="mi">1</span> <span class="n">Hash</span><span class="p">)</span><span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   \   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>  <span class="n">w13</span>                        <span class="o">-</span> <span class="n">E</span><span class="p">:</span> <span class="p">[</span><span class="n">w10</span><span class="p">,</span> <span class="n">w11</span><span class="p">,</span> <span class="n">w12</span><span class="p">,</span> <span class="n">w13</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>  <span class="n">w12</span>  <span class="o">|</span>                         <span class="o">-</span> <span class="n">S</span><span class="p">:</span> <span class="p">[</span><span class="n">S20</span><span class="p">,</span> <span class="n">S21</span><span class="p">,</span> <span class="n">S22</span><span class="p">,</span> <span class="n">S23</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>  <span class="n">w11</span>  <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+ <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>                                     <span class="o">|</span>
+<span class="n">w10</span>  <span class="o">|</span>   <span class="o">|</span>   <span class="o">|-----------------------</span>  <span class="o">---------------------------</span>
+ <span class="o">|</span>   \   <span class="o">|</span>   <span class="o">|</span>                         <span class="o">-</span> <span class="n">Block</span> <span class="mi">1</span>                 <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   \   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>  <span class="n">e32</span>                        <span class="o">-</span> <span class="n">E</span><span class="p">:</span> <span class="p">[</span><span class="n">w00</span><span class="p">,</span> <span class="n">w01</span><span class="p">,</span> <span class="n">w02</span><span class="p">,</span> <span class="n">w03</span><span class="p">,</span> <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>                         <span class="o">-</span>     <span class="n">e10</span><span class="p">,</span> <span class="n">e21</span><span class="p">,</span> <span class="n">e32</span><span class="p">]</span>      <span class="o">-</span>
+ <span class="o">|</span>   <span class="o">|</span>  <span class="n">e21</span>  <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span>   <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>                         <span class="o">-</span> <span class="n">S</span><span class="p">:</span> <span class="p">[</span><span class="n">S10</span><span class="p">,</span> <span class="n">S11</span><span class="p">,</span> <span class="n">S12</span><span class="p">,</span> <span class="n">S13</span><span class="p">]</span> <span class="o">-</span>
+ <span class="o">|</span>  <span class="n">e10</span>  <span class="o">|</span>   <span class="o">|</span>                         <span class="o">---------------------------</span>
+ <span class="o">|</span> <span class="o">/</span> <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+<span class="n">w00</span> <span class="n">w01</span> <span class="n">w02</span> <span class="n">w03</span>
+ <span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>
+
+ <span class="n">Caption</span><span class="p">:</span>
+ <span class="o">--------</span>
+
+ <span class="n">E</span><span class="p">:</span> <span class="n">List</span> <span class="n">of</span> <span class="n">Events</span> <span class="n">contained</span> <span class="ow">in</span> <span class="n">Block</span><span class="o">.</span> <span class="n">Here</span><span class="p">,</span> <span class="n">we</span> <span class="n">mention</span> <span class="n">Events</span> <span class="n">because</span> <span class="n">it</span> <span class="ow">is</span>
+ <span class="n">easier</span> <span class="n">to</span> <span class="n">represent</span> <span class="n">than</span> <span class="n">transactions</span><span class="o">.</span> <span class="n">Blocks</span> <span class="n">would</span> <span class="n">actually</span> <span class="n">contain</span> <span class="n">only</span>
+ <span class="n">the</span> <span class="n">transactions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Events</span><span class="p">,</span> <span class="n">but</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">complicated</span> <span class="n">to</span> <span class="n">represent</span> <span class="ow">in</span> <span class="n">this</span>
+ <span class="n">diagram</span><span class="o">.</span>
+
+ <span class="n">Sij</span><span class="p">:</span> <span class="n">Signature</span> <span class="n">of</span> <span class="n">Block</span> <span class="n">i</span> <span class="n">by</span> <span class="n">validator</span> <span class="n">j</span>
+</pre></div>
+</div>
+<p>The Poset algorithm always commits Events in batches. Indeed, when the fame
+of a super-majority of clothos from a given round is decided, all the Events
+that are seen by all these atropos (but not from an earlier round) get
+assigned the same <em>Round Received</em> and sorted according to a deterministic
+function. At that point, the consensus order of these Events is decided and will
+not change.</p>
+<p>We gather the transactions of all the Events from the same <em>Round Received</em> into
+blocks. When Events get assigned a <em>Round Received</em> and sorted, we package their
+transactions (in canonical order) into a block and commit that block to the
+application. The application returns a hash of the state obtained by applying
+the block’s transactions sequentially and we append this hash to the block’s
+body before signing it. Block signatures will be exchanged as part of the
+regular gossip routine and appended to their corresponding blocks as they are
+received from other peers if they match the local block. Once a block has
+collected signatures from at least 1/3 of validators, it is deemed accepted
+because, by hypothesis, at least one of those signatures originates from an
+honest peer.</p>
+<p>We extend the Event data structure to contain a set of block-signatures by the
+Event’s creator. Having assigned a <em>RoundReceived</em> to a set of Events and
+produced a corresponding block, a member will append the block’s signature in
+the next Event it defines. Hence, block-signatures piggy-back on the regular
+gossip messages and propagate at the same speed. Upon receiving Events from an
+other peer, a member will verify their block-signatures against its own version
+of the blocks; if the signatures match, they are recorded with the block. With
+this extended gossip routine, nodes simultaneously build up the poset and
+the corresponding blockchain. It preserves the simplicity of the poset
+system, which is one of its most valuable features, by not adding new types of
+messages; it only extends the existing Event data-structure.</p>
+<p>By construction, the fame of a round R clotho can only be decided by a clotho
+in round R+2 or above. Hence, when a block is created for a <em>Round Received</em> R
+(block R), the poset already contains Events at round R+2 or more; the
+signatures for block R, will be gossiped at the same time as Events of round R+2
+or more. It follows that the signatures of block R will arrive with a lag of 2
+or more consensus rounds.</p>
+</div>
+<div class="section" id="block-structure">
+<h2>Block Structure<a class="headerlink" href="#block-structure" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Block</span><span class="p">:</span> <span class="p">{</span>
+    <span class="n">Header</span><span class="p">:{</span>
+        <span class="n">Index</span><span class="p">:</span>         <span class="nb">int</span><span class="p">,</span>
+        <span class="n">RoundReceived</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">PrevBlockHash</span><span class="p">:</span> <span class="p">[]</span><span class="n">byte</span><span class="p">,</span>
+        <span class="n">BodyHash</span><span class="p">:</span>      <span class="p">[]</span><span class="n">byte</span><span class="p">,</span>
+        <span class="n">StateHash</span><span class="p">:</span>     <span class="p">[]</span><span class="n">byte</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">Body</span><span class="p">:{</span>
+        <span class="n">Transactions</span><span class="p">:</span> <span class="p">[][]</span><span class="n">byte</span>
+    <span class="p">}</span>
+    <span class="n">Signatures</span><span class="p">:</span> <span class="nb">map</span><span class="p">[</span><span class="n">string</span><span class="p">][]</span><span class="n">byte</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Blocks contain a Header and a Body. Signatures are based on the Header only;
+which is enough to verify the entire block because it contains a digital
+fingerprint of the Body. Since Headers also contain a hash of the previous
+block, each block signature adds further validation to previous blocks. The
+Header’s <em>RoundReceived</em> corresponds to the <em>RoundReceived</em> of the poset
+Events who’s transactions are included in the block; it serves the purpose tying
+back to the underlying poset. We do not produce a block when all the Events
+of a <em>Round Received</em> are empty. Hence, two consecutive blocks may have
+non-consecutive RoundReceived values and we use an additional property to index
+the blocks. The block Body also contains a hash of the application’s state
+resulting from applying the block’s transactions sequentially. Counting
+signatures from one third of validators provides a proof that all honest nodes
+have not only applied the same transactions in the same order, but also computed
+the same state.</p>
+</div>
+<div class="section" id="enhancements">
+<h2>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dynamic-validator-set">
+<h3>Dynamic Validator Set<a class="headerlink" href="#dynamic-validator-set" title="Permalink to this headline">¶</a></h3>
+<p>The system described above assumes that the set of validators is fixed; block
+signatures are always checked against the same list of public keys. In
+Poset, it is possible to make the set of validators change dynamically.
+The projection would have to be extended such that block Headers would also
+contain a Merkle root of the current validator set, thereby providing a simple
+method of verifying that a signer belongs to the set of validators corresponding
+to the block it signed.</p>
+</div>
+<div class="section" id="inter-blockchain-communication">
+<h3>Inter-Blockchain Communication<a class="headerlink" href="#inter-blockchain-communication" title="Permalink to this headline">¶</a></h3>
+<p>Inter-Blockchain Communication (IBC) is about verifying on one chain that a
+transaction happened on another chain; one blockchain acts as a light-client to
+another blockchain. It is much simpler to build a light-client for a blockchain
+than for a poset. In an effort to enable interoperability between
+blockchains, several initiatives have been proposed to build protocols for IBC
+like Cosmos, Polkadot and EOS. The projection method allows poset-based
+systems to integrate with these network architectures.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fastsync.html" class="btn btn-neutral float-right" title="FastSync" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="consensus.html" class="btn btn-neutral float-left" title="Lachesis Consensus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Mosaic Networks
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

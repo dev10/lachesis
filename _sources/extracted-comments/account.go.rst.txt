@@ -1,0 +1,16 @@
+*********************************************************************************************************************************************
+`src/state/account.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/account.go>`_
+*********************************************************************************************************************************************
+
+
+.. function:: func (a *Account) Root() (h hash.Hash) [line: 13]
+
+	| Root converts bytes to hash.
+
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/account.go#L13>`_
+
+.. function:: func (a *Account) SetRoot(h hash.Hash) [line: 19]
+
+	| SetRoot converts hash to bytes.
+
+`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/account.go#L19>`_

@@ -1,0 +1,16 @@
+*****************************************************************************************************************************************
+`src/crypto/keys.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/keys.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: func GenerateKey() common.PrivateKey [line: 12]
+
+	| GenerateKey creates new private key.
+
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/keys.go#L12>`_
+
+.. function:: func GenerateECDSAKey() (*ecdsa.PrivateKey, error) [line: 23]
+
+	| GenerateECDSAKey generate ECDSA Key
+
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/keys.go#L23>`_

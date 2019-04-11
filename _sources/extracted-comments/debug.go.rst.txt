@@ -1,0 +1,10 @@
+*****************************************************************************************************************************************
+`src/poset/debug.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/debug.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: func (p *Poset) PrintStat(logger *logrus.Entry) [line: 11]
+
+	| PrintStat prints the stats for logger
+
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/debug.go#L11>`_

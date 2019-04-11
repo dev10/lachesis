@@ -1,0 +1,11 @@
+*********************************************************************************************************************************************************
+`src/posposet/poset_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/poset_test.go>`_
+*********************************************************************************************************************************************************
+
+
+.. function:: func (p *Poset) PushEventSync(e hash.Event) [line: 91]
+
+	| PushEventSync takes event into processing. It's a sync version of Poset.PushEvent().
+	| Event order doesn't matter.
+
+`View source at line: 91 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/poset_test.go#L91>`_

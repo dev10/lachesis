@@ -1,0 +1,23 @@
+*********************************************************************************************************************************************
+`src/crypto/crypto.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/crypto.go>`_
+*********************************************************************************************************************************************
+
+
+.. function:: func Keccak256(data ...[]byte) []byte [line: 9]
+
+	| Keccak256 calculates and returns the Keccak256 hash of the input data.
+
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/crypto.go#L9>`_
+
+.. function:: func Keccak256Hash(data ...[]byte) (h common.Hash) [line: 22]
+
+	| Keccak256Hash calculates and returns the Keccak256 hash of the input data,
+	| converting it to an internal Hash data structure.
+
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/crypto.go#L22>`_
+
+.. function:: func Keccak512(data ...[]byte) []byte [line: 35]
+
+	| Keccak512 calculates and returns the Keccak512 hash of the input data.
+
+`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/crypto.go#L35>`_

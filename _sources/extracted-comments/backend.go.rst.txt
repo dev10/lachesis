@@ -1,0 +1,10 @@
+*******************************************************************************************************************************************
+`src/peer/backend.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/backend.go>`_
+*******************************************************************************************************************************************
+
+
+.. function:: func (srv *Backend) Close() error [line: 201]
+
+	| Close stops sync server.
+
+`View source at line: 201 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/backend.go#L201>`_

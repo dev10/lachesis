@@ -1,0 +1,10 @@
+***************************************************************************************************************************************************
+`src/kvdb/table_batch.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/kvdb/table_batch.go>`_
+***************************************************************************************************************************************************
+
+
+.. function:: func NewTableBatch(db Database, prefix string) Batch [line: 9]
+
+	| NewTableBatch returns a Batch object which prefixes all keys with a given string.
+
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/kvdb/table_batch.go#L9>`_

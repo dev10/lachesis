@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src/common/hexutil/json.go &mdash; Lachesis 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Lachesis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../consensus.html">Lachesis Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchain.html">From Poset to Blockchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fastsync.html">FastSync</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Lachesis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>src/common/hexutil/json.go</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/extracted-comments/json.go.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go">src/common/hexutil/json.go</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<code class="descname">func (b Big) MarshalText() ([]byte, error) [line: 120]</code></dt>
+<dd><div class="line-block">
+<div class="line">MarshalText implements encoding.TextMarshaller</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L120">View source at line: 120</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Big) UnmarshalJSON(input []byte) error [line: 125]</code></dt>
+<dd><div class="line-block">
+<div class="line">UnmarshalJSON implements json.Unmarshaller.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L125">View source at line: 125</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Big) UnmarshalText(input []byte) error [line: 133]</code></dt>
+<dd><div class="line-block">
+<div class="line">UnmarshalText implements encoding.TextUnmarshaller</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L133">View source at line: 133</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Big) ToInt() *big.Int [line: 165]</code></dt>
+<dd><div class="line-block">
+<div class="line">ToInt converts b to a big.Int.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L165">View source at line: 165</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Big) String() string [line: 170]</code></dt>
+<dd><div class="line-block">
+<div class="line">String returns the hex encoding of b.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L170">View source at line: 170</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b Uint64) MarshalText() ([]byte, error) [line: 179]</code></dt>
+<dd><div class="line-block">
+<div class="line">MarshalText implements encoding.TextMarshaller.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L179">View source at line: 179</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Uint64) UnmarshalJSON(input []byte) error [line: 187]</code></dt>
+<dd><div class="line-block">
+<div class="line">UnmarshalJSON implements json.Unmarshaller.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L187">View source at line: 187</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Uint64) UnmarshalText(input []byte) error [line: 195]</code></dt>
+<dd><div class="line-block">
+<div class="line">UnmarshalText implements encoding.TextUnmarshaller</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L195">View source at line: 195</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b Uint64) String() string [line: 217]</code></dt>
+<dd><div class="line-block">
+<div class="line">String returns the hex encoding of b.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L217">View source at line: 217</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b Uint) MarshalText() ([]byte, error) [line: 226]</code></dt>
+<dd><div class="line-block">
+<div class="line">MarshalText implements encoding.TextMarshaller.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L226">View source at line: 226</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Uint) UnmarshalJSON(input []byte) error [line: 231]</code></dt>
+<dd><div class="line-block">
+<div class="line">UnmarshalJSON implements json.Unmarshaller.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L231">View source at line: 231</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Uint) UnmarshalText(input []byte) error [line: 239]</code></dt>
+<dd><div class="line-block">
+<div class="line">UnmarshalText implements encoding.TextUnmarshaller.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L239">View source at line: 239</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b Uint) String() string [line: 252]</code></dt>
+<dd><div class="line-block">
+<div class="line">String returns the hex encoding of b.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hexutil/json.go#L252">View source at line: 252</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Mosaic Networks
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

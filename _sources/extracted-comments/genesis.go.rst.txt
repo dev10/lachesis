@@ -1,0 +1,10 @@
+*****************************************************************************************************************************************
+`src/pos/genesis.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/pos/genesis.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: func FakeGenesis(participants *peers.Peers, conf *Config, db state.Database) (hash.Hash, error) [line: 10]
+
+	| FakeGenesis is a stub
+
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/pos/genesis.go#L10>`_

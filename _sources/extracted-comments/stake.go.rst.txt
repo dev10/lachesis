@@ -1,0 +1,10 @@
+***********************************************************************************************************************************************
+`src/posposet/stake.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/stake.go>`_
+***********************************************************************************************************************************************
+
+
+.. function:: type stakeCounter struct [line: 9]
+
+	| stakeCounter is for PoS balances accumulator.
+
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/stake.go#L9>`_

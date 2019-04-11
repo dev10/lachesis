@@ -1,0 +1,16 @@
+***********************************************************************************************************************************************************
+`src/mobile/mobile_config.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/mobile/mobile_config.go>`_
+***********************************************************************************************************************************************************
+
+
+.. function:: type MobileConfig struct [line: 4]
+
+	| MobileConfig stores all the configuration information for a mobile node
+
+`View source at line: 4 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/mobile/mobile_config.go#L4>`_
+
+.. function:: func DefaultMobileConfig() *MobileConfig [line: 35]
+
+	| DefaultMobileConfig sets the default config
+
+`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/mobile/mobile_config.go#L35>`_

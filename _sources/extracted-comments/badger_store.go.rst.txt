@@ -1,0 +1,226 @@
+*******************************************************************************************************************************************************
+`src/poset/badger_store.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go>`_
+*******************************************************************************************************************************************************
+
+
+.. function:: type BadgerStore struct [line: 29]
+
+	| BadgerStore struct for badger config data
+
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L29>`_
+
+.. function:: func NewBadgerStore(participants *peers.Peers, cacheSize int, path string, posConf *pos.Config) (*BadgerStore, error) [line: 41]
+
+	| NewBadgerStore creates a brand new Store with a new database
+
+`View source at line: 41 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L41>`_
+
+.. function:: func LoadBadgerStore(cacheSize int, path string) (*BadgerStore, error) [line: 78]
+
+	| LoadBadgerStore creates a Store from an existing database
+
+`View source at line: 78 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L78>`_
+
+.. function:: func LoadOrCreateBadgerStore(participants *peers.Peers, cacheSize int, path string, posConf *pos.Config) (*BadgerStore, error) [line: 130]
+
+	| LoadOrCreateBadgerStore load or create a new badger store
+
+`View source at line: 130 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L130>`_
+
+.. function:: func (s *BadgerStore) TopologicalEvents() ([]Event, error) [line: 184]
+
+	| TopologicalEvents returns event in topological order.
+
+`View source at line: 184 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L184>`_
+
+.. function:: func (s *BadgerStore) CacheSize() int [line: 237]
+
+	| CacheSize returns the cache size for the store
+
+`View source at line: 237 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L237>`_
+
+.. function:: func (s *BadgerStore) Participants() (*peers.Peers, error) [line: 242]
+
+	| Participants returns all participants in the store
+
+`View source at line: 242 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L242>`_
+
+.. function:: func (s *BadgerStore) RootsBySelfParent() map[EventHash]Root [line: 247]
+
+	| RootsBySelfParent returns Self Parent's EventHash map of the roots
+
+`View source at line: 247 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L247>`_
+
+.. function:: func (s *BadgerStore) RootsByParticipant() map[string]Root [line: 252]
+
+	| RootsByParticipant returns PubKeyHex map of the roots
+
+`View source at line: 252 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L252>`_
+
+.. function:: func (s *BadgerStore) GetEventBlock(hash EventHash) (event Event, err error) [line: 257]
+
+	| GetEventBlock get specific event block by hash
+
+`View source at line: 257 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L257>`_
+
+.. function:: func (s *BadgerStore) SetEvent(event Event) error [line: 268]
+
+	| SetEvent set a specific event
+
+`View source at line: 268 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L268>`_
+
+.. function:: func (s *BadgerStore) ParticipantEvents(participant string, skip int64) (EventHashes, error) [line: 278]
+
+	| ParticipantEvents return all participant events
+
+`View source at line: 278 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L278>`_
+
+.. function:: func (s *BadgerStore) ParticipantEvent(participant string, index int64) (EventHash, error) [line: 287]
+
+	| ParticipantEvent get specific participant event
+
+`View source at line: 287 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L287>`_
+
+.. function:: func (s *BadgerStore) LastEventFrom(participant string) (last EventHash, isRoot bool, err error) [line: 296]
+
+	| LastEventFrom returns the last event for a participant
+
+`View source at line: 296 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L296>`_
+
+.. function:: func (s *BadgerStore) LastConsensusEventFrom(participant string) (last EventHash, isRoot bool, err error) [line: 301]
+
+	| LastConsensusEventFrom returns the last consensus events for a participant
+
+`View source at line: 301 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L301>`_
+
+.. function:: func (s *BadgerStore) ConsensusEvents() EventHashes [line: 306]
+
+	| ConsensusEvents returns all consensus events
+
+`View source at line: 306 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L306>`_
+
+.. function:: func (s *BadgerStore) ConsensusEventsCount() int64 [line: 311]
+
+	| ConsensusEventsCount returns the count for all known consensus events
+
+`View source at line: 311 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L311>`_
+
+.. function:: func (s *BadgerStore) AddConsensusEvent(event Event) error [line: 316]
+
+	| AddConsensusEvent adds a consensus event to the store
+
+`View source at line: 316 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L316>`_
+
+.. function:: func (s *BadgerStore) GetRoundCreated(r int64) (RoundCreated, error) [line: 321]
+
+	| GetRoundCreated gets the created round info for a given index
+
+`View source at line: 321 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L321>`_
+
+.. function:: func (s *BadgerStore) SetRoundCreated(r int64, round RoundCreated) error [line: 330]
+
+	| SetRoundCreated sets the created round info for a given index
+
+`View source at line: 330 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L330>`_
+
+.. function:: func (s *BadgerStore) GetRoundReceived(r int64) (RoundReceived, error) [line: 338]
+
+	| GetRoundReceived gets the received round for a given index
+
+`View source at line: 338 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L338>`_
+
+.. function:: func (s *BadgerStore) SetRoundReceived(r int64, round RoundReceived) error [line: 347]
+
+	| SetRoundReceived sets the received round info for a given index
+
+`View source at line: 347 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L347>`_
+
+.. function:: func (s *BadgerStore) LastRound() int64 [line: 355]
+
+	| LastRound returns the last round for the store
+
+`View source at line: 355 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L355>`_
+
+.. function:: func (s *BadgerStore) RoundClothos(r int64) EventHashes [line: 360]
+
+	| RoundClothos returns all clothos for a round
+
+`View source at line: 360 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L360>`_
+
+.. function:: func (s *BadgerStore) RoundEvents(r int64) int [line: 369]
+
+	| RoundEvents returns all events for a round
+
+`View source at line: 369 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L369>`_
+
+.. function:: func (s *BadgerStore) GetRoot(participant string) (Root, error) [line: 378]
+
+	| GetRoot returns the root for a participant
+
+`View source at line: 378 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L378>`_
+
+.. function:: func (s *BadgerStore) GetBlock(rr int64) (Block, error) [line: 387]
+
+	| GetBlock returns the block for a given index
+
+`View source at line: 387 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L387>`_
+
+.. function:: func (s *BadgerStore) SetBlock(block Block) error [line: 396]
+
+	| SetBlock add a block
+
+`View source at line: 396 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L396>`_
+
+.. function:: func (s *BadgerStore) LastBlockIndex() int64 [line: 404]
+
+	| LastBlockIndex returns the last block index (height)
+
+`View source at line: 404 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L404>`_
+
+.. function:: func (s *BadgerStore) GetFrame(rr int64) (Frame, error) [line: 409]
+
+	| GetFrame returns a specific frame for the index
+
+`View source at line: 409 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L409>`_
+
+.. function:: func (s *BadgerStore) SetFrame(frame Frame) error [line: 418]
+
+	| SetFrame add a frame
+
+`View source at line: 418 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L418>`_
+
+.. function:: func (s *BadgerStore) Reset(roots map[string]Root) error [line: 426]
+
+	| Reset all roots
+
+`View source at line: 426 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L426>`_
+
+.. function:: func (s *BadgerStore) Close() error [line: 431]
+
+	| Close badger
+
+`View source at line: 431 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L431>`_
+
+.. function:: func (s *BadgerStore) NeedBootstrap() bool [line: 439]
+
+	| NeedBootstrap checks if bootstrapping is required
+
+`View source at line: 439 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L439>`_
+
+.. function:: func (s *BadgerStore) StorePath() string [line: 444]
+
+	| StorePath returns the path to the file on disk
+
+`View source at line: 444 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L444>`_
+
+.. function:: func (s *BadgerStore) StateDB() state.Database [line: 449]
+
+	| StateDB returns state database
+
+`View source at line: 449 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L449>`_
+
+.. function:: func (s *BadgerStore) StateRoot() hash.Hash [line: 454]
+
+	| StateRoot returns genesis state hash.
+
+`View source at line: 454 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/badger_store.go#L454>`_

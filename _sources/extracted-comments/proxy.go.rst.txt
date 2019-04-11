@@ -1,0 +1,18 @@
+*****************************************************************************************************************************************
+`src/proxy/proxy.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/proxy/proxy.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: type AppProxy interface [line: 10]
+
+	| AppProxy provides an interface for lachesis to communicate
+	| with the application.
+
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/proxy/proxy.go#L10>`_
+
+.. function:: type LachesisProxy interface [line: 20]
+
+	| LachesisProxy provides an interface for the application to
+	| submit transactions to the lachesis node.
+
+`View source at line: 20 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/proxy/proxy.go#L20>`_

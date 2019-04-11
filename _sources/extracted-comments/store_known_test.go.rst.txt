@@ -1,0 +1,10 @@
+***************************************************************************************************************************************************************
+`src/poset/store_known_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/store_known_test.go>`_
+***************************************************************************************************************************************************************
+
+
+.. function:: func KnownEvents(s Store) map[uint64]int64 [line: 4]
+
+	| KnownEvents returns all known events
+
+`View source at line: 4 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/store_known_test.go#L4>`_

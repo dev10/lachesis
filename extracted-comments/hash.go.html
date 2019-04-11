@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src/common/hash.go &mdash; Lachesis 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Lachesis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../consensus.html">Lachesis Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchain.html">From Poset to Blockchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fastsync.html">FastSync</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Lachesis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>src/common/hash.go</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/extracted-comments/hash.go.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go">src/common/hash.go</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<code class="descname">func BytesToHash(b []byte) Hash [line: 28]</code></dt>
+<dd><div class="line-block">
+<div class="line">BytesToHash sets b to hash.</div>
+<div class="line">If b is larger than len(h), b will be cropped from the left.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L28">View source at line: 28</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func BigToHash(b *big.Int) Hash [line: 36]</code></dt>
+<dd><div class="line-block">
+<div class="line">BigToHash sets byte representation of b to hash.</div>
+<div class="line">If b is larger than len(h), b will be cropped from the left.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L36">View source at line: 36</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func HexToHash(s string) Hash [line: 40]</code></dt>
+<dd><div class="line-block">
+<div class="line">HexToHash sets byte representation of s to hash.</div>
+<div class="line">If b is larger than len(h), b will be cropped from the left.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L40">View source at line: 40</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) Bytes() []byte [line: 43]</code></dt>
+<dd><div class="line-block">
+<div class="line">Bytes gets the byte representation of the underlying hash.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L43">View source at line: 43</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) Big() *big.Int [line: 46]</code></dt>
+<dd><div class="line-block">
+<div class="line">Big converts a hash to a big integer.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L46">View source at line: 46</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) Hex() string [line: 49]</code></dt>
+<dd><div class="line-block">
+<div class="line">Hex converts a hash to a hex string.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L49">View source at line: 49</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) TerminalString() string [line: 53]</code></dt>
+<dd><div class="line-block">
+<div class="line">TerminalString implements log.TerminalStringer, formatting a string for console</div>
+<div class="line">output during logging.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L53">View source at line: 53</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) String() string [line: 59]</code></dt>
+<dd><div class="line-block">
+<div class="line">String implements the stringer interface and is used also by the logger when</div>
+<div class="line">doing full logging into a file.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L59">View source at line: 59</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) ShortString() string [line: 64]</code></dt>
+<dd><div class="line-block">
+<div class="line">ShortString returns short string representation.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L64">View source at line: 64</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) Format(s fmt.State, c rune) [line: 70]</code></dt>
+<dd><div class="line-block">
+<div class="line">Format implements fmt.Formatter, forcing the byte slice to be formatted as is,</div>
+<div class="line">without going through the stringer interface used for logging.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L70">View source at line: 70</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h *Hash) UnmarshalText(input []byte) error [line: 77]</code></dt>
+<dd><div class="line-block">
+<div class="line">UnmarshalText parses a hash in hex syntax.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L77">View source at line: 77</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h *Hash) UnmarshalJSON(input []byte) error [line: 82]</code></dt>
+<dd><div class="line-block">
+<div class="line">UnmarshalJSON parses a hash in hex syntax.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L82">View source at line: 82</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) MarshalText() ([]byte, error) [line: 87]</code></dt>
+<dd><div class="line-block">
+<div class="line">MarshalText returns the hex representation of h.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L87">View source at line: 87</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h *Hash) SetBytes(raw []byte) [line: 92]</code></dt>
+<dd><div class="line-block">
+<div class="line">SetBytes sets the hash to the value of b.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L92">View source at line: 92</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) Generate(rand *rand.Rand, size int) reflect.Value [line: 100]</code></dt>
+<dd><div class="line-block">
+<div class="line">Generate implements testing/quick.Generator.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L100">View source at line: 100</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h *Hash) Scan(src interface [line: 109]</code></dt>
+<dd><div class="line-block">
+<div class="line">Scan implements Scanner for database/sql.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L109">View source at line: 109</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (h Hash) Value() (driver.Value, error) [line: 122]</code></dt>
+<dd><div class="line-block">
+<div class="line">Value implements valuer for database/sql.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L122">View source at line: 122</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func FakeHash() (h Hash) [line: 131]</code></dt>
+<dd><div class="line-block">
+<div class="line">FakeHash generates random fake hash for testing purpose.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L131">View source at line: 131</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Mosaic Networks
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

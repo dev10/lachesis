@@ -1,0 +1,10 @@
+*************************************************************************************************************************************************************
+`src/difftool/example_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/difftool/example_test.go>`_
+*************************************************************************************************************************************************************
+
+
+.. function:: func Example() [line: 13]
+
+	| Example illustrates nodes comparing.
+
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/difftool/example_test.go#L13>`_

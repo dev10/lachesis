@@ -1,0 +1,10 @@
+*************************************************************************************************************************************************************
+`src/trie/secure_trie_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie_test.go>`_
+*************************************************************************************************************************************************************
+
+
+.. function:: func makeTestSecureTrie(t *testing.T) (*Database, *SecureTrie, map[string][]byte) [line: 21]
+
+	| makeTestSecureTrie creates a large enough secure trie for testing.
+
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie_test.go#L21>`_

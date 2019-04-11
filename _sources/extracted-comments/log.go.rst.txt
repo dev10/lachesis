@@ -1,0 +1,10 @@
+*******************************************************************************************************************************************
+`src/posposet/log.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/log.go>`_
+*******************************************************************************************************************************************
+
+
+.. function:: func SetLogger(custom *logrus.Logger) [line: 17]
+
+	| SetLogger sets logger for whole package.
+
+`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/log.go#L17>`_

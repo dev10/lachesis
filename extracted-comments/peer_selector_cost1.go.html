@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src/node/peer_selector_cost1.go &mdash; Lachesis 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Lachesis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../consensus.html">Lachesis Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchain.html">From Poset to Blockchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fastsync.html">FastSync</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Lachesis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>src/node/peer_selector_cost1.go</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/extracted-comments/peer_selector_cost1.go.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go">src/node/peer_selector_cost1.go</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<code class="descname">type FairPeerSelector struct [line: 11]</code></dt>
+<dd><div class="line-block">
+<div class="line">FairPeerSelector provides selection to prevent lazy node creation</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L11">View source at line: 11</a></p>
+<dl class="function">
+<dt>
+<code class="descname">type FairPeerSelectorCreationFnArgs struct [line: 20]</code></dt>
+<dd><div class="line-block">
+<div class="line">FairPeerSelectorCreationFnArgs specifies which additional arguments are require to create a FairPeerSelector</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L20">View source at line: 20</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func NewFairPeerSelector(participants *peers.Peers, args FairPeerSelectorCreationFnArgs) *FairPeerSelector [line: 26]</code></dt>
+<dd><div class="line-block">
+<div class="line">NewFairPeerSelector creates a new fair peer selection struct</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L26">View source at line: 26</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func NewFairPeerSelectorWrapper(participants *peers.Peers, args interface [line: 36]</code></dt>
+<dd><div class="line-block">
+<div class="line">NewFairPeerSelectorWrapper implements SelectorCreationFn to allow dynamic creation of FairPeerSelector ie NewNode</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L36">View source at line: 36</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (ps *FairPeerSelector) Peers() *peers.Peers [line: 41]</code></dt>
+<dd><div class="line-block">
+<div class="line">Peers returns all known peers</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L41">View source at line: 41</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (ps *FairPeerSelector) UpdateLast(peer string) [line: 46]</code></dt>
+<dd><div class="line-block">
+<div class="line">UpdateLast sets the last peer communicated with (avoid double talk)</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L46">View source at line: 46</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (ps *FairPeerSelector) Next() *peers.Peer [line: 64]</code></dt>
+<dd><div class="line-block">
+<div class="line">Next returns the next peer based on the work cost function selection</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L64">View source at line: 64</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (ps *FairPeerSelector)Engage(peer string) [line: 121]</code></dt>
+<dd><div class="line-block">
+<div class="line">Indicate we are in communication with a peer</div>
+<div class="line">so it would be excluded from next peer selection</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L121">View source at line: 121</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (ps *FairPeerSelector)Dismiss(peer string) [line: 129]</code></dt>
+<dd><div class="line-block">
+<div class="line">Indicate we are not in communication with a peer</div>
+<div class="line">so it could be selected as a next peer</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/peer_selector_cost1.go#L129">View source at line: 129</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Mosaic Networks
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

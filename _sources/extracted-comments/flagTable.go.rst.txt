@@ -1,0 +1,22 @@
+*************************************************************************************************************************************************
+`src/poset/flagTable.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/flagTable.go>`_
+*************************************************************************************************************************************************
+
+
+.. function:: func NewFlagTable() FlagTable [line: 11]
+
+	| NewFlagTable creates new empty FlagTable
+
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/flagTable.go#L11>`_
+
+.. function:: func (ft FlagTable) Marshal() []byte [line: 16]
+
+	| Marshal converts FlagTable to protobuf.
+
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/flagTable.go#L16>`_
+
+.. function:: func (ft FlagTable) Unmarshal(buf []byte) error [line: 32]
+
+	| Unmarshal reads protobuff into FlagTable.
+
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/poset/flagTable.go#L32>`_

@@ -1,0 +1,118 @@
+*****************************************************************************************************************************************
+`src/common/hash.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: func BytesToHash(b []byte) Hash [line: 28]
+
+	| BytesToHash sets b to hash.
+	| If b is larger than len(h), b will be cropped from the left.
+
+`View source at line: 28 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L28>`_
+
+.. function:: func BigToHash(b *big.Int) Hash [line: 36]
+
+	| BigToHash sets byte representation of b to hash.
+	| If b is larger than len(h), b will be cropped from the left.
+
+`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L36>`_
+
+.. function:: func HexToHash(s string) Hash [line: 40]
+
+	| HexToHash sets byte representation of s to hash.
+	| If b is larger than len(h), b will be cropped from the left.
+
+`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L40>`_
+
+.. function:: func (h Hash) Bytes() []byte [line: 43]
+
+	| Bytes gets the byte representation of the underlying hash.
+
+`View source at line: 43 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L43>`_
+
+.. function:: func (h Hash) Big() *big.Int [line: 46]
+
+	| Big converts a hash to a big integer.
+
+`View source at line: 46 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L46>`_
+
+.. function:: func (h Hash) Hex() string [line: 49]
+
+	| Hex converts a hash to a hex string.
+
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L49>`_
+
+.. function:: func (h Hash) TerminalString() string [line: 53]
+
+	| TerminalString implements log.TerminalStringer, formatting a string for console
+	| output during logging.
+
+`View source at line: 53 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L53>`_
+
+.. function:: func (h Hash) String() string [line: 59]
+
+	| String implements the stringer interface and is used also by the logger when
+	| doing full logging into a file.
+
+`View source at line: 59 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L59>`_
+
+.. function:: func (h Hash) ShortString() string [line: 64]
+
+	| ShortString returns short string representation.
+
+`View source at line: 64 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L64>`_
+
+.. function:: func (h Hash) Format(s fmt.State, c rune) [line: 70]
+
+	| Format implements fmt.Formatter, forcing the byte slice to be formatted as is,
+	| without going through the stringer interface used for logging.
+
+`View source at line: 70 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L70>`_
+
+.. function:: func (h *Hash) UnmarshalText(input []byte) error [line: 77]
+
+	| UnmarshalText parses a hash in hex syntax.
+
+`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L77>`_
+
+.. function:: func (h *Hash) UnmarshalJSON(input []byte) error [line: 82]
+
+	| UnmarshalJSON parses a hash in hex syntax.
+
+`View source at line: 82 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L82>`_
+
+.. function:: func (h Hash) MarshalText() ([]byte, error) [line: 87]
+
+	| MarshalText returns the hex representation of h.
+
+`View source at line: 87 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L87>`_
+
+.. function:: func (h *Hash) SetBytes(raw []byte) [line: 92]
+
+	| SetBytes sets the hash to the value of b.
+
+`View source at line: 92 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L92>`_
+
+.. function:: func (h Hash) Generate(rand *rand.Rand, size int) reflect.Value [line: 100]
+
+	| Generate implements testing/quick.Generator.
+
+`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L100>`_
+
+.. function:: func (h *Hash) Scan(src interface [line: 109]
+
+	| Scan implements Scanner for database/sql.
+
+`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L109>`_
+
+.. function:: func (h Hash) Value() (driver.Value, error) [line: 122]
+
+	| Value implements valuer for database/sql.
+
+`View source at line: 122 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L122>`_
+
+.. function:: func FakeHash() (h Hash) [line: 131]
+
+	| FakeHash generates random fake hash for testing purpose.
+
+`View source at line: 131 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/hash.go#L131>`_

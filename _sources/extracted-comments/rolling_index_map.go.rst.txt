@@ -1,0 +1,64 @@
+*******************************************************************************************************************************************************************
+`src/common/rolling_index_map.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go>`_
+*******************************************************************************************************************************************************************
+
+
+.. function:: type RollingIndexMap struct [line: 8]
+
+	| RollingIndexMap struct
+
+`View source at line: 8 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L8>`_
+
+.. function:: func NewRollingIndexMap(name string, size int, keys []uint64) *RollingIndexMap [line: 16]
+
+	| NewRollingIndexMap constructor
+
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L16>`_
+
+.. function:: func (rim *RollingIndexMap) AddKey(key uint64) error [line: 30]
+
+	| AddKey adds a key to map if it doesn't already exist, returns an error if it already exists
+
+`View source at line: 30 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L30>`_
+
+.. function:: func (rim *RollingIndexMap) Get(key uint64, skipIndex int64) ([]interface [line: 40]
+
+	| Get return key items with index > skip
+
+`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L40>`_
+
+.. function:: func (rim *RollingIndexMap) GetItem(key uint64, index int64) (interface [line: 55]
+
+	| GetItem returns the item in rolling index for given key
+
+`View source at line: 55 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L55>`_
+
+.. function:: func (rim *RollingIndexMap) GetLast(key uint64) (interface [line: 60]
+
+	| GetLast get last item for given key
+
+`View source at line: 60 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L60>`_
+
+.. function:: func (rim *RollingIndexMap) Set(key uint64, item interface [line: 73]
+
+	| Set sets a given key for the index
+
+`View source at line: 73 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L73>`_
+
+.. function:: func (rim *RollingIndexMap) Known() map[uint64]int64 [line: 83]
+
+	| Known returns [key] => lastKnownIndex
+
+`View source at line: 83 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L83>`_
+
+.. function:: func (rim *RollingIndexMap) Reset() error [line: 93]
+
+	| Reset resets the map
+
+`View source at line: 93 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L93>`_
+
+.. function:: func (rim *RollingIndexMap) Import(other *RollingIndexMap) [line: 103]
+
+	| Import from another index
+
+`View source at line: 103 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/rolling_index_map.go#L103>`_

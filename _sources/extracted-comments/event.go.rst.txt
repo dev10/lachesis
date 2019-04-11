@@ -1,0 +1,23 @@
+***********************************************************************************************************************************************
+`src/posposet/event.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/event.go>`_
+***********************************************************************************************************************************************
+
+
+.. function:: type Event struct [line: 16]
+
+	| Event is a poset event for internal purpose.
+
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/event.go#L16>`_
+
+.. function:: func (ee Events) String() string [line: 31]
+
+	| String returns string representation.
+
+`View source at line: 31 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/event.go#L31>`_
+
+.. function:: func (ee Events) ByParents() (res Events) [line: 51]
+
+	| ByParents returns events topologically ordered by parent dependency.
+	| TODO: use Topological sort algorithm
+
+`View source at line: 51 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/event.go#L51>`_
