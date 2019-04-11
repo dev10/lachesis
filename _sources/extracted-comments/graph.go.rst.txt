@@ -1,5 +1,5 @@
 ***************************************************************************************************************************************
-`src/node/graph.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/graph.go>`_
+`src/node/graph.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/graph.go>`_
 ***************************************************************************************************************************************
 
 
@@ -7,40 +7,40 @@
 
 	| Infos struct for graph data (visualizer)
 
-`View source at line: 8 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/graph.go#L8>`_
+`View source at line: 8 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/graph.go#L8>`_
 
 .. function:: type Graph struct [line: 15]
 
 	| Graph struct to represent the DAG
 
-`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/graph.go#L15>`_
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/graph.go#L15>`_
 
 .. function:: func (g *Graph) GetBlocks() []poset.Block [line: 20]
 
 	| GetBlocks returns all blocks in the DAG
 
-`View source at line: 20 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/graph.go#L20>`_
+`View source at line: 20 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/graph.go#L20>`_
 
 .. function:: func (g *Graph) GetParticipantEvents() map[string]map[poset.EventHash]poset.Event [line: 41]
 
 	| GetParticipantEvents returns all known events per participant
 
-`View source at line: 41 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/graph.go#L41>`_
+`View source at line: 41 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/graph.go#L41>`_
 
 .. function:: func (g *Graph) GetRounds() []poset.RoundCreated [line: 100]
 
 	| GetRounds returns the created rounds for the DAG
 
-`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/graph.go#L100>`_
+`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/graph.go#L100>`_
 
 .. function:: func (g *Graph) GetInfos() Infos [line: 127]
 
 	| GetInfos returns the info subset for the DAG
 
-`View source at line: 127 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/graph.go#L127>`_
+`View source at line: 127 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/graph.go#L127>`_
 
 .. function:: func NewGraph(n *Node) *Graph [line: 136]
 
 	| NewGraph creates a new DAG
 
-`View source at line: 136 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/graph.go#L136>`_
+`View source at line: 136 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/graph.go#L136>`_

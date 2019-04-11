@@ -1,5 +1,5 @@
 ***************************************************************************************************************************************
-`src/peers/peer.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/peer.go>`_
+`src/peers/peer.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/peer.go>`_
 ***************************************************************************************************************************************
 
 
@@ -7,42 +7,42 @@
 
 	| NewPeer creates a new peer based on public key and network address
 
-`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/peer.go#L17>`_
+`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/peer.go#L17>`_
 
 .. function:: func (p *Peer) Equals(cmp *Peer) bool [line: 34]
 
 	| Equals checks peers for equality
 
-`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/peer.go#L34>`_
+`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/peer.go#L34>`_
 
 .. function:: func (p *Peer) PubKeyBytes() ([]byte, error) [line: 41]
 
 	| PubKeyBytes returns the public key bytes for a peer
 
-`View source at line: 41 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/peer.go#L41>`_
+`View source at line: 41 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/peer.go#L41>`_
 
 .. function:: func (p *Peer) Address() (a common.Address) [line: 60]
 
 	| Address returns the address for a peer
 	| TODO: hash of publickey
 
-`View source at line: 60 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/peer.go#L60>`_
+`View source at line: 60 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/peer.go#L60>`_
 
 .. function:: type PeerStore interface [line: 71]
 
 	| PeerStore provides an interface for persistent storage and
 	| retrieval of peers.
 
-`View source at line: 71 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/peer.go#L71>`_
+`View source at line: 71 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/peer.go#L71>`_
 
 .. function:: func ExcludePeer(peers []*Peer, peer string) (int, []*Peer) [line: 81]
 
 	| ExcludePeer is used to exclude a single peer from a list of peers.
 
-`View source at line: 81 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/peer.go#L81>`_
+`View source at line: 81 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/peer.go#L81>`_
 
 .. function:: func ExcludePeers(peers []*Peer, local string, last string) []*Peer [line: 95]
 
 	| ExcludePeers is used to exclude multiple peers from a list of peers.
 
-`View source at line: 95 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/peer.go#L95>`_
+`View source at line: 95 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/peer.go#L95>`_

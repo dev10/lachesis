@@ -1,5 +1,5 @@
 *************************************************************************************************************************************
-`src/trie/trie.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go>`_
+`src/trie/trie.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go>`_
 *************************************************************************************************************************************
 
 
@@ -10,20 +10,20 @@
 	| Use New to create a trie that sits on top of a database.
 	| Trie is not safe for concurrent use.
 
-`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L32>`_
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L32>`_
 
 .. function:: func (t *Trie) SetCacheLimit(l uint16) [line: 45]
 
 	| SetCacheLimit sets the number of 'cache generations' to keep.
 	| A cache generation is created by a call to Commit.
 
-`View source at line: 45 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L45>`_
+`View source at line: 45 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L45>`_
 
 .. function:: func (t *Trie) newFlag() nodeFlag [line: 50]
 
 	| newFlag returns the cache flag value for a newly created node.
 
-`View source at line: 50 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L50>`_
+`View source at line: 50 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L50>`_
 
 .. function:: func New(root hash.Hash, db *Database) (*Trie, error) [line: 60]
 
@@ -33,21 +33,21 @@
 	| New will panic if db is nil and returns a MissingNodeError if root does
 	| not exist in the database. Accessing the trie loads nodes from db on demand.
 
-`View source at line: 60 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L60>`_
+`View source at line: 60 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L60>`_
 
 .. function:: func (t *Trie) NodeIterator(start []byte) NodeIterator [line: 79]
 
 	| NodeIterator returns an iterator that returns nodes of the trie. Iteration starts at
 	| the key after the given start key.
 
-`View source at line: 79 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L79>`_
+`View source at line: 79 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L79>`_
 
 .. function:: func (t *Trie) Get(key []byte) []byte [line: 85]
 
 	| Get returns the value for key stored in the trie.
 	| The value bytes must not be modified by the caller.
 
-`View source at line: 85 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L85>`_
+`View source at line: 85 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L85>`_
 
 .. function:: func (t *Trie) TryGet(key []byte) ([]byte, error) [line: 96]
 
@@ -55,7 +55,7 @@
 	| The value bytes must not be modified by the caller.
 	| If a node was not found in the database, a MissingNodeError is returned.
 
-`View source at line: 96 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L96>`_
+`View source at line: 96 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L96>`_
 
 .. function:: func (t *Trie) Update(key, value []byte) [line: 149]
 
@@ -65,7 +65,7 @@
 	| The value bytes must not be modified by the caller while they are
 	| stored in the trie.
 
-`View source at line: 149 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L149>`_
+`View source at line: 149 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L149>`_
 
 .. function:: func (t *Trie) TryUpdate(key, value []byte) error [line: 163]
 
@@ -76,20 +76,20 @@
 	| stored in the trie.
 	| If a node was not found in the database, a MissingNodeError is returned.
 
-`View source at line: 163 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L163>`_
+`View source at line: 163 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L163>`_
 
 .. function:: func (t *Trie) Delete(key []byte) [line: 251]
 
 	| Delete removes any existing value for key from the trie.
 
-`View source at line: 251 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L251>`_
+`View source at line: 251 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L251>`_
 
 .. function:: func (t *Trie) TryDelete(key []byte) error [line: 259]
 
 	| TryDelete removes any existing value for key from the trie.
 	| If a node was not found in the database, a MissingNodeError is returned.
 
-`View source at line: 259 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L259>`_
+`View source at line: 259 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L259>`_
 
 .. function:: func (t *Trie) delete(n node, prefix, key []byte) (bool, node, error) [line: 272]
 
@@ -97,25 +97,25 @@
 	| It reduces the trie to minimal form by simplifying
 	| nodes on the way up after deleting recursively.
 
-`View source at line: 272 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L272>`_
+`View source at line: 272 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L272>`_
 
 .. function:: func (t *Trie) Root() []byte [line: 405]
 
 	| Root returns the root hash of the trie.
 	| Deprecated: use Hash instead.
 
-`View source at line: 405 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L405>`_
+`View source at line: 405 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L405>`_
 
 .. function:: func (t *Trie) Hash() hash.Hash [line: 409]
 
 	| Hash returns the root hash of the trie. It does not write to the
 	| database and can be used even if the trie doesn't have one.
 
-`View source at line: 409 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L409>`_
+`View source at line: 409 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L409>`_
 
 .. function:: func (t *Trie) Commit(onleaf LeafCallback) (root hash.Hash, err error) [line: 417]
 
 	| Commit writes all nodes to the trie's memory database, tracking the internal
 	| and external (for account tries) references.
 
-`View source at line: 417 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie.go#L417>`_
+`View source at line: 417 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie.go#L417>`_

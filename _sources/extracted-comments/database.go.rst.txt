@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/state/database.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go>`_
+`src/state/database.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -7,13 +7,13 @@
 
 	| Database wraps access to tries.
 
-`View source at line: 27 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L27>`_
+`View source at line: 27 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L27>`_
 
 .. function:: type Trie interface [line: 42]
 
 	| Trie is a Merkle Trie.
 
-`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L42>`_
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L42>`_
 
 .. function:: func NewDatabase(db kvdb.Database) Database [line: 56]
 
@@ -21,7 +21,7 @@
 	| concurrent use and retains a few recent expanded trie nodes in memory. To keep
 	| more historical state in memory, use the NewDatabaseWithCache constructor.
 
-`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L56>`_
+`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L56>`_
 
 .. function:: func NewDatabaseWithCache(db kvdb.Database, cache int) Database [line: 63]
 
@@ -29,34 +29,34 @@
 	| concurrent use and retains both a few recent expanded trie nodes in memory, as
 	| well as a lot of collapsed RLP trie nodes in a large memory cache.
 
-`View source at line: 63 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L63>`_
+`View source at line: 63 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L63>`_
 
 .. function:: func (db *cachingDB) OpenTrie(root hash.Hash) (Trie, error) [line: 79]
 
 	| OpenTrie opens the main account trie.
 
-`View source at line: 79 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L79>`_
+`View source at line: 79 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L79>`_
 
 .. function:: func (db *cachingDB) OpenStorageTrie(addrHash, root hash.Hash) (Trie, error) [line: 108]
 
 	| OpenStorageTrie opens the storage trie of an account.
 
-`View source at line: 108 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L108>`_
+`View source at line: 108 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L108>`_
 
 .. function:: func (db *cachingDB) CopyTrie(t Trie) Trie [line: 113]
 
 	| CopyTrie returns an independent copy of the given trie.
 
-`View source at line: 113 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L113>`_
+`View source at line: 113 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L113>`_
 
 .. function:: func (db *cachingDB) TrieDB() *trie.Database [line: 125]
 
 	| TrieDB retrieves any intermediate trie-node caching layer.
 
-`View source at line: 125 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L125>`_
+`View source at line: 125 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L125>`_
 
 .. function:: type cachedTrie struct [line: 130]
 
 	| cachedTrie inserts its trie into a cachingDB on commit.
 
-`View source at line: 130 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/state/database.go#L130>`_
+`View source at line: 130 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/state/database.go#L130>`_

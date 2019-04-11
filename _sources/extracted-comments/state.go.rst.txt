@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/posposet/state.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/state.go>`_
+`src/posposet/state.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/state.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -7,28 +7,28 @@
 
 	| State is a current poset state.
 
-`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/state.go#L11>`_
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/state.go#L11>`_
 
 .. function:: func (s *State) ToWire() *wire.State [line: 19]
 
 	| ToWire converts to proto.Message.
 
-`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/state.go#L19>`_
+`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/state.go#L19>`_
 
 .. function:: func WireToState(w *wire.State) *State [line: 29]
 
 	| WireToState converts from wire.
 
-`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/state.go#L29>`_
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/state.go#L29>`_
 
 .. function:: func (p *Poset) saveState() [line: 46]
 
 	| State saves current state.
 
-`View source at line: 46 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/state.go#L46>`_
+`View source at line: 46 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/state.go#L46>`_
 
 .. function:: func (p *Poset) bootstrap() [line: 51]
 
 	| bootstrap restores current state from store.
 
-`View source at line: 51 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/state.go#L51>`_
+`View source at line: 51 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/state.go#L51>`_

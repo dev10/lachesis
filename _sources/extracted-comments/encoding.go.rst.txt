@@ -1,5 +1,5 @@
 *********************************************************************************************************************************************
-`src/trie/encoding.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/encoding.go>`_
+`src/trie/encoding.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/encoding.go>`_
 *********************************************************************************************************************************************
 
 
@@ -8,16 +8,16 @@
 	| hexToKeybytes turns hex nibbles into key bytes.
 	| This can only be used for keys of even length.
 
-`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/encoding.go#L62>`_
+`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/encoding.go#L62>`_
 
 .. function:: func prefixLen(a, b []byte) int [line: 81]
 
 	| prefixLen returns the length of the common prefix of a and b.
 
-`View source at line: 81 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/encoding.go#L81>`_
+`View source at line: 81 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/encoding.go#L81>`_
 
 .. function:: func hasTerm(s []byte) bool [line: 95]
 
 	| hasTerm returns whether a hex key has the terminator flag.
 
-`View source at line: 95 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/encoding.go#L95>`_
+`View source at line: 95 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/encoding.go#L95>`_

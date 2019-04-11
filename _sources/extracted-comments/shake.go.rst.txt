@@ -1,5 +1,5 @@
 *****************************************************************************************************************************************************
-`src/crypto/sha3/shake.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/shake.go>`_
+`src/crypto/sha3/shake.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/shake.go>`_
 *****************************************************************************************************************************************************
 
 
@@ -8,7 +8,7 @@
 	| ShakeHash defines the interface to hash functions that
 	| support arbitrary-length output.
 
-`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/shake.go#L17>`_
+`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/shake.go#L17>`_
 
 .. function:: func NewShake128() ShakeHash [line: 41]
 
@@ -16,7 +16,7 @@
 	| Its generic security strength is 128 bits against all attacks if at
 	| least 32 bytes of its output are used.
 
-`View source at line: 41 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/shake.go#L41>`_
+`View source at line: 41 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/shake.go#L41>`_
 
 .. function:: func NewShake256() ShakeHash [line: 46]
 
@@ -24,16 +24,16 @@
 	| Its generic security strength is 256 bits against all attacks if
 	| at least 64 bytes of its output are used.
 
-`View source at line: 46 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/shake.go#L46>`_
+`View source at line: 46 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/shake.go#L46>`_
 
 .. function:: func ShakeSum128(hash, data []byte) [line: 49]
 
 	| ShakeSum128 writes an arbitrary-length digest of data into hash.
 
-`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/shake.go#L49>`_
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/shake.go#L49>`_
 
 .. function:: func ShakeSum256(hash, data []byte) [line: 56]
 
 	| ShakeSum256 writes an arbitrary-length digest of data into hash.
 
-`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/shake.go#L56>`_
+`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/shake.go#L56>`_

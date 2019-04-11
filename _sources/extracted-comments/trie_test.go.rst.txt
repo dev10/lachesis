@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/trie/trie_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie_test.go>`_
+`src/trie/trie_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie_test.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -7,14 +7,14 @@
 
 	| Used for testing
 
-`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie_test.go#L26>`_
+`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie_test.go#L26>`_
 
 .. function:: func TestCacheUnload(t *testing.T) [line: 323]
 
 	| TestCacheUnload checks that decoded nodes are unloaded after a
 	| certain number of commit operations.
 
-`View source at line: 323 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie_test.go#L323>`_
+`View source at line: 323 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie_test.go#L323>`_
 
 .. function:: func BenchmarkHash(b *testing.B) [line: 550]
 
@@ -23,4 +23,4 @@
 	| the first one will be NOOP. As such, we'll use b.N as the number of account to
 	| insert into the trie before measuring the hashing.
 
-`View source at line: 550 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/trie_test.go#L550>`_
+`View source at line: 550 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/trie_test.go#L550>`_

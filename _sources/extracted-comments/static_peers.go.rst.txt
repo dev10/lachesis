@@ -1,5 +1,5 @@
 *******************************************************************************************************************************************************
-`src/peers/static_peers.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/static_peers.go>`_
+`src/peers/static_peers.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/static_peers.go>`_
 *******************************************************************************************************************************************************
 
 
@@ -7,16 +7,16 @@
 
 	| StaticPeers is used to provide a static list of peers.
 
-`View source at line: 6 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/static_peers.go#L6>`_
+`View source at line: 6 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/static_peers.go#L6>`_
 
 .. function:: func (s *StaticPeers) Peers() ([]Peer, error) [line: 12]
 
 	| Peers implements the PeerStore interface.
 
-`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/static_peers.go#L12>`_
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/static_peers.go#L12>`_
 
 .. function:: func (s *StaticPeers) SetPeers(p []Peer) error [line: 20]
 
 	| SetPeers implements the PeerStore interface.
 
-`View source at line: 20 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peers/static_peers.go#L20>`_
+`View source at line: 20 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peers/static_peers.go#L20>`_

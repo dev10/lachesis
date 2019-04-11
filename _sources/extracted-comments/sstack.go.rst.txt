@@ -1,5 +1,5 @@
 *********************************************************************************************************************************************************
-`src/common/prque/sstack.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go>`_
+`src/common/prque/sstack.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go>`_
 *********************************************************************************************************************************************************
 
 
@@ -9,7 +9,7 @@
 	| Note: priorities can "wrap around" the int64 range, a comes before b if (a.priority - b.priority) > 0.
 	| The difference between the lowest and highest priorities in the queue at any point should be less than 2^63.
 
-`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L12>`_
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L12>`_
 
 .. function:: type setIndexCallback func(a interface [line: 20]
 
@@ -17,7 +17,7 @@
 	| Providing setIndexCallback is optional, it is needed only if the application needs
 	| to delete elements other than the top one.
 
-`View source at line: 20 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L20>`_
+`View source at line: 20 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L20>`_
 
 .. function:: type sstack struct [line: 25]
 
@@ -25,49 +25,49 @@
 	| the stack (heap) functionality and the Len, Less and Swap methods for the
 	| sortability requirements of the heaps.
 
-`View source at line: 25 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L25>`_
+`View source at line: 25 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L25>`_
 
 .. function:: func newSstack(setIndex setIndexCallback) *sstack [line: 36]
 
 	| Creates a new, empty stack.
 
-`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L36>`_
+`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L36>`_
 
 .. function:: func (s *sstack) Push(data interface [line: 47]
 
 	| Pushes a value onto the stack, expanding it if necessary. Required by
 	| heap.Interface.
 
-`View source at line: 47 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L47>`_
+`View source at line: 47 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L47>`_
 
 .. function:: func (s *sstack) Pop() (res interface [line: 67]
 
 	| Pops a value off the stack and returns it. Currently no shrinking is done.
 	| Required by heap.Interface.
 
-`View source at line: 67 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L67>`_
+`View source at line: 67 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L67>`_
 
 .. function:: func (s *sstack) Len() int [line: 82]
 
 	| Returns the length of the stack. Required by sort.Interface.
 
-`View source at line: 82 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L82>`_
+`View source at line: 82 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L82>`_
 
 .. function:: func (s *sstack) Less(i, j int) bool [line: 88]
 
 	| Compares the priority of two elements of the stack (higher is first).
 	| Required by sort.Interface.
 
-`View source at line: 88 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L88>`_
+`View source at line: 88 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L88>`_
 
 .. function:: func (s *sstack) Swap(i, j int) [line: 93]
 
 	| Swaps two elements in the stack. Required by sort.Interface.
 
-`View source at line: 93 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L93>`_
+`View source at line: 93 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L93>`_
 
 .. function:: func (s *sstack) Reset() [line: 104]
 
 	| Resets the stack, effectively clearing its contents.
 
-`View source at line: 104 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/prque/sstack.go#L104>`_
+`View source at line: 104 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/prque/sstack.go#L104>`_

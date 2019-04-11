@@ -1,5 +1,5 @@
 ***************************************************************************************************************************************
-`src/peer/model.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go>`_
+`src/peer/model.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go>`_
 ***************************************************************************************************************************************
 
 
@@ -7,47 +7,47 @@
 
 	| SyncRequest initiates a synchronization request.
 
-`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go#L10>`_
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go#L10>`_
 
 .. function:: type SyncResponse struct [line: 16]
 
 	| SyncResponse is a response to a SyncRequest request.
 
-`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go#L16>`_
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go#L16>`_
 
 .. function:: type ForceSyncRequest struct [line: 24]
 
 	| ForceSyncRequest after an initial sync to quickly catch up.
 
-`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go#L24>`_
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go#L24>`_
 
 .. function:: type ForceSyncResponse struct [line: 30]
 
 	| ForceSyncResponse response to an ForceSyncRequest.
 
-`View source at line: 30 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go#L30>`_
+`View source at line: 30 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go#L30>`_
 
 .. function:: type FastForwardRequest struct [line: 36]
 
 	| FastForwardRequest request to start a fast forward catch up.
 
-`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go#L36>`_
+`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go#L36>`_
 
 .. function:: type FastForwardResponse struct [line: 42]
 
 	| FastForwardResponse response with the snapshot data for fast forward
 	| request.
 
-`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go#L42>`_
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go#L42>`_
 
 .. function:: type RPCResponse struct [line: 50]
 
 	| RPCResponse captures both a response and a potential error.
 
-`View source at line: 50 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go#L50>`_
+`View source at line: 50 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go#L50>`_
 
 .. function:: type RPC struct [line: 56]
 
 	| RPC has a command, and provides a response mechanism.
 
-`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/peer/model.go#L56>`_
+`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/peer/model.go#L56>`_

@@ -1,5 +1,5 @@
 *****************************************************************************************************************************************************************
-`src/crypto/sha3/xor_generic.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/xor_generic.go>`_
+`src/crypto/sha3/xor_generic.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/xor_generic.go>`_
 *****************************************************************************************************************************************************************
 
 
@@ -9,10 +9,10 @@
 	| makes no non-portable assumptions about memory layout
 	| or alignment.
 
-`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/xor_generic.go#L12>`_
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/xor_generic.go#L12>`_
 
 .. function:: func copyOutGeneric(d *state, b []byte) [line: 23]
 
 	| copyOutGeneric copies ulint64s to a byte buffer.
 
-`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/crypto/sha3/xor_generic.go#L23>`_
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/crypto/sha3/xor_generic.go#L23>`_

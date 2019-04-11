@@ -1,5 +1,5 @@
 *******************************************************************************************************************************************************
-`src/node/control_timer.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/control_timer.go>`_
+`src/node/control_timer.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/control_timer.go>`_
 *******************************************************************************************************************************************************
 
 
@@ -7,40 +7,40 @@
 
 	| ControlTimer struct that controls timing events in the node
 
-`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/control_timer.go#L12>`_
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/control_timer.go#L12>`_
 
 .. function:: func NewControlTimer(timerFactory timerFactory) *ControlTimer [line: 23]
 
 	| NewControlTimer creates a new control timer struct
 
-`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/control_timer.go#L23>`_
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/control_timer.go#L23>`_
 
 .. function:: func NewRandomControlTimer() *ControlTimer [line: 34]
 
 	| NewRandomControlTimer creates a random time controller with no defaults set
 
-`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/control_timer.go#L34>`_
+`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/control_timer.go#L34>`_
 
 .. function:: func (c *ControlTimer) Run(init time.Duration) [line: 47]
 
 	| Run handles all the time based events in the background
 
-`View source at line: 47 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/control_timer.go#L47>`_
+`View source at line: 47 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/control_timer.go#L47>`_
 
 .. function:: func (c *ControlTimer) Shutdown() [line: 73]
 
 	| Shutdown the control timer
 
-`View source at line: 73 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/control_timer.go#L73>`_
+`View source at line: 73 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/control_timer.go#L73>`_
 
 .. function:: func (c *ControlTimer) SetSet(v bool) [line: 78]
 
 	| SetSet sets the set value for the set
 
-`View source at line: 78 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/control_timer.go#L78>`_
+`View source at line: 78 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/control_timer.go#L78>`_
 
 .. function:: func (c *ControlTimer) GetSet() bool [line: 85]
 
 	| GetSet retrieves the set
 
-`View source at line: 85 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/node/control_timer.go#L85>`_
+`View source at line: 85 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/node/control_timer.go#L85>`_

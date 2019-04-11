@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************
-`src/log/hook.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/log/hook.go>`_
+`src/log/hook.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/log/hook.go>`_
 ***********************************************************************************************************************************
 
 
@@ -7,22 +7,22 @@
 
 	| Hook struct for linking to logrus and counting log outputs
 
-`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/log/hook.go#L15>`_
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/log/hook.go#L15>`_
 
 .. function:: func NewLocal(logger *logrus.Logger, logLevel string) [line: 24]
 
 	| NewLocal installs a test hook for a given local logger.
 
-`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/log/hook.go#L24>`_
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/log/hook.go#L24>`_
 
 .. function:: func (t *Hook) Fire(e *logrus.Entry) error [line: 47]
 
 	| Fire triggers on every log event and counts the events
 
-`View source at line: 47 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/log/hook.go#L47>`_
+`View source at line: 47 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/log/hook.go#L47>`_
 
 .. function:: func (t *Hook) Levels() []logrus.Level [line: 109]
 
 	| Levels returns all log levels
 
-`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/log/hook.go#L109>`_
+`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/log/hook.go#L109>`_

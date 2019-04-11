@@ -1,5 +1,5 @@
 *********************************************************************************************************************************************
-`src/posposet/time.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/time.go>`_
+`src/posposet/time.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/time.go>`_
 *********************************************************************************************************************************************
 
 
@@ -7,10 +7,10 @@
 
 	| ToWire converts to simple slice.
 
-`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/time.go#L16>`_
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/time.go#L16>`_
 
 .. function:: func WireToTimestampsByEvent(arr map[string]uint64) TimestampsByEvent [line: 27]
 
 	| WireToTimestampsByEvent converts from wire.
 
-`View source at line: 27 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/time.go#L27>`_
+`View source at line: 27 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/time.go#L27>`_

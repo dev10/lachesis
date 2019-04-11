@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/posposet/store.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go>`_
+`src/posposet/store.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -8,82 +8,82 @@
 	| Store is a poset persistent storage working over physical key-value database.
 	| TODO: cache tables with LRU.
 
-`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L17>`_
+`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L17>`_
 
 .. function:: func NewMemStore() *Store [line: 33]
 
 	| NewMemStore creates store over memory map.
 
-`View source at line: 33 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L33>`_
+`View source at line: 33 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L33>`_
 
 .. function:: func NewBadgerStore(db *badger.DB) *Store [line: 42]
 
 	| NewBadgerStore creates store over badger database.
 
-`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L42>`_
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L42>`_
 
 .. function:: func (s *Store) Close() [line: 62]
 
 	| Close leaves underlying database.
 
-`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L62>`_
+`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L62>`_
 
 .. function:: func (s *Store) ApplyGenesis(balances map[hash.Peer]uint64) error [line: 71]
 
 	| ApplyGenesis stores initial state.
 
-`View source at line: 71 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L71>`_
+`View source at line: 71 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L71>`_
 
 .. function:: func (s *Store) SetEventFrame(e hash.Event, frame uint64) [line: 107]
 
 	| SetState stores frame num of event.
 
-`View source at line: 107 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L107>`_
+`View source at line: 107 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L107>`_
 
 .. function:: func (s *Store) GetEventFrame(e hash.Event) *uint64 [line: 116]
 
 	| GetEventFrame returns frame num of event.
 
-`View source at line: 116 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L116>`_
+`View source at line: 116 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L116>`_
 
 .. function:: func (s *Store) SetState(st *State) [line: 131]
 
 	| SetState stores state.
 
-`View source at line: 131 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L131>`_
+`View source at line: 131 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L131>`_
 
 .. function:: func (s *Store) GetState() *State [line: 137]
 
 	| GetState returns stored state.
 
-`View source at line: 137 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L137>`_
+`View source at line: 137 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L137>`_
 
 .. function:: func (s *Store) SetFrame(f *Frame) [line: 144]
 
 	| SetFrame stores event.
 
-`View source at line: 144 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L144>`_
+`View source at line: 144 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L144>`_
 
 .. function:: func (s *Store) GetFrame(n uint64) *Frame [line: 149]
 
 	| GetFrame returns stored frame.
 
-`View source at line: 149 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L149>`_
+`View source at line: 149 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L149>`_
 
 .. function:: func (s *Store) SetBlock(b *Block) [line: 155]
 
 	| SetBlock stores chain block.
 
-`View source at line: 155 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L155>`_
+`View source at line: 155 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L155>`_
 
 .. function:: func (s *Store) GetBlock(n uint64) *Block [line: 160]
 
 	| GetBlock returns stored block.
 
-`View source at line: 160 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L160>`_
+`View source at line: 160 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L160>`_
 
 .. function:: func (s *Store) StateDB(from hash.Hash) *state.DB [line: 166]
 
 	| StateDB returns state database.
 
-`View source at line: 166 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/posposet/store.go#L166>`_
+`View source at line: 166 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/posposet/store.go#L166>`_

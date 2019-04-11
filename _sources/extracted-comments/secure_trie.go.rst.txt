@@ -1,5 +1,5 @@
 ***************************************************************************************************************************************************
-`src/trie/secure_trie.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go>`_
+`src/trie/secure_trie.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go>`_
 ***************************************************************************************************************************************************
 
 
@@ -14,7 +14,7 @@
 	| the preimage of each key.
 	| SecureTrie is not safe for concurrent use.
 
-`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L22>`_
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L22>`_
 
 .. function:: func NewSecure(root hash.Hash, db *Database, cachelimit uint16) (*SecureTrie, error) [line: 40]
 
@@ -28,14 +28,14 @@
 	| A new cache generation is created by each call to Commit.
 	| cachelimit sets the number of past cache generations to keep.
 
-`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L40>`_
+`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L40>`_
 
 .. function:: func (t *SecureTrie) Get(key []byte) []byte [line: 54]
 
 	| Get returns the value for key stored in the trie.
 	| The value bytes must not be modified by the caller.
 
-`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L54>`_
+`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L54>`_
 
 .. function:: func (t *SecureTrie) TryGet(key []byte) ([]byte, error) [line: 65]
 
@@ -43,7 +43,7 @@
 	| The value bytes must not be modified by the caller.
 	| If a node was not found in the database, a MissingNodeError is returned.
 
-`View source at line: 65 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L65>`_
+`View source at line: 65 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L65>`_
 
 .. function:: func (t *SecureTrie) Update(key, value []byte) [line: 75]
 
@@ -53,7 +53,7 @@
 	| The value bytes must not be modified by the caller while they are
 	| stored in the trie.
 
-`View source at line: 75 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L75>`_
+`View source at line: 75 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L75>`_
 
 .. function:: func (t *SecureTrie) TryUpdate(key, value []byte) error [line: 89]
 
@@ -64,27 +64,27 @@
 	| stored in the trie.
 	| If a node was not found in the database, a MissingNodeError is returned.
 
-`View source at line: 89 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L89>`_
+`View source at line: 89 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L89>`_
 
 .. function:: func (t *SecureTrie) Delete(key []byte) [line: 100]
 
 	| Delete removes any existing value for key from the trie.
 
-`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L100>`_
+`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L100>`_
 
 .. function:: func (t *SecureTrie) TryDelete(key []byte) error [line: 108]
 
 	| TryDelete removes any existing value for key from the trie.
 	| If a node was not found in the database, a MissingNodeError is returned.
 
-`View source at line: 108 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L108>`_
+`View source at line: 108 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L108>`_
 
 .. function:: func (t *SecureTrie) GetKey(shaKey []byte) []byte [line: 116]
 
 	| GetKey returns the sha3 preimage of a hashed key that was
 	| previously used to store a value.
 
-`View source at line: 116 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L116>`_
+`View source at line: 116 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L116>`_
 
 .. function:: func (t *SecureTrie) Commit(onleaf LeafCallback) (root hash.Hash, err error) [line: 129]
 
@@ -93,34 +93,34 @@
 	| Committing flushes nodes from memory. Subsequent Get calls will load nodes
 	| from the database.
 
-`View source at line: 129 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L129>`_
+`View source at line: 129 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L129>`_
 
 .. function:: func (t *SecureTrie) Hash() hash.Hash [line: 146]
 
 	| Hash returns the root hash of SecureTrie. It does not write to the
 	| database and can be used even if the trie doesn't have one.
 
-`View source at line: 146 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L146>`_
+`View source at line: 146 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L146>`_
 
 .. function:: func (t *SecureTrie) Root() []byte [line: 152]
 
 	| Root returns the root hash of SecureTrie.
 	| Deprecated: use Hash instead.
 
-`View source at line: 152 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L152>`_
+`View source at line: 152 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L152>`_
 
 .. function:: func (t *SecureTrie) Copy() *SecureTrie [line: 157]
 
 	| Copy returns a copy of SecureTrie.
 
-`View source at line: 157 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L157>`_
+`View source at line: 157 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L157>`_
 
 .. function:: func (t *SecureTrie) NodeIterator(start []byte) NodeIterator [line: 164]
 
 	| NodeIterator returns an iterator that returns nodes of the underlying trie. Iteration
 	| starts at the key after the given start key.
 
-`View source at line: 164 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L164>`_
+`View source at line: 164 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L164>`_
 
 .. function:: func (t *SecureTrie) hashKey(key []byte) []byte [line: 171]
 
@@ -128,7 +128,7 @@
 	| The caller must not hold onto the return value because it will become
 	| invalid on the next call to hashKey or secKey.
 
-`View source at line: 171 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L171>`_
+`View source at line: 171 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L171>`_
 
 .. function:: func (t *SecureTrie) getSecKeyCache() map[string][]byte [line: 183]
 
@@ -136,4 +136,4 @@
 	| ownership changed (i.e. the current secure trie is a copy of another owning
 	| the actual cache).
 
-`View source at line: 183 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/trie/secure_trie.go#L183>`_
+`View source at line: 183 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/trie/secure_trie.go#L183>`_

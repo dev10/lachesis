@@ -1,5 +1,5 @@
 *****************************************************************************************************************************************
-`src/common/size.go <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/size.go>`_
+`src/common/size.go <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/size.go>`_
 *****************************************************************************************************************************************
 
 
@@ -7,11 +7,11 @@
 
 	| String implements the stringer interface.
 
-`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/size.go#L12>`_
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/size.go#L12>`_
 
 .. function:: func (s StorageSize) TerminalString() string [line: 24]
 
 	| TerminalString implements log.TerminalStringer, formatting a string for console
 	| output during logging.
 
-`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/18d4a6c33a706aa99ed73349c24d20933ae255efsrc/common/size.go#L24>`_
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/36a3a7dcc77d105ac6ba0c5eabb6487d66d32c00src/common/size.go#L24>`_
