@@ -1,0 +1,129 @@
+***************************************************************************************************************************************************
+`src/poset/poset_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/poset_test.go>`_
+***************************************************************************************************************************************************
+
+
+.. function:: func initPoset(t *testing.T) (*Poset, map[string]EventHash) [line: 293]
+
+	::
+
+		|  e12  |
+		|   | \ |
+		|  s10 e20
+		|   | / |
+		|   /   |
+		| / |   |
+		s00 |  s20
+		|   |   |
+		e01 |   |
+		| \ |   |
+		e0  e1  e2
+		|   |   |
+		r0  r1  r2
+		0   1   2
+
+`View source at line: 293 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/poset_test.go#L293>`_
+
+.. function:: func TestFork(t *testing.T) [line: 479]
+
+	::
+
+		|    |    e20
+		|    |   / |
+		|    | /   |
+		|    /     |
+		|  / |     |
+		e01  |     |
+		| \  |     |
+		|   \|     |
+		|    |\    |
+		|    |  \  |
+		e0   e1 (a)e2
+		0    1     2
+		Node 2 Forks; events a and e2 are both created by node2, they are not
+		self-parent sand yet they are both dominators of event e20
+
+`View source at line: 479 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/poset_test.go#L479>`_
+
+.. function:: func initDentedPoset(t *testing.T) (*Poset, map[string]EventHash) [line: 1159]
+
+	::
+
+		e01  e12
+		|   |  \
+		e0  R1  e2
+		|       |
+		R0      R2
+
+`View source at line: 1159 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/poset_test.go#L1159>`_
+
+.. function:: func initBlockPoset(t *testing.T) (*Poset, []TestNode, map[string]EventHash) [line: 1225]
+
+	| e0  e1  e2    Block (0, 1)
+	| 0   1    2
+
+`View source at line: 1225 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/poset_test.go#L1225>`_
+
+.. function:: func initConsensusPoset(db bool, t testing.TB) (*Poset, map[string]EventHash) [line: 1468]
+
+	::
+
+		Round 8
+		[m0]  | [m2]-----------------------------
+		| \ | / |  Round 7
+		|  <l1> |
+		|  /|   |
+		<l0>  |   |
+		| \ |   |
+		|   \   |
+		|   | \ |
+		|   | <l2>-----------------------------
+		|   | / |  Round 6
+		| [k10] |
+		| / |   |
+		[k0]  | [k2]-----------------------------
+		| \ | / |  Round 5
+		| <j1>  |
+		|  /|   |
+		<j0>  |   |
+		| \ |   |
+		|   \   |
+		|   | \ |
+		|   | <j2>-----------------------------
+		|   | / |  Round 4
+		| [i1]  |
+		| / |   |
+		[i0]  | [i2]-----------------------------
+		| \ | / |  Round 3
+		| <h10> |
+		|  /|   |
+		h0b  |   |
+		|   |   |
+		<h0>  |   |
+		| \ |   |
+		|   \   |
+		|   | \ |
+		---g0x  | <h2>----------------------------- //g0x's other-parent is f2. This situation can happen with concurrency.
+		|	|   | / |  Round 2
+		|	|  g10  |
+		|	| / |   |
+		|  [g0] | [g2]
+		|	| \ | / |
+		|	| [g1]  | ------------------------------
+		|	|   |   |  Round 1
+		|	| <f1>  |
+		|  	|  /|   |
+		| <f0>  |   |
+		|	| \ |   |
+		|	|   \   |
+		|	|   | \ |
+		|   |   |  f2b
+		|	|   |   |
+		----------<f2>------------------------------
+		|   | / |  Round 0
+		|  e10  |
+		| / |   |
+		[e0][e1][e2]
+		0   1    2
+
+`View source at line: 1468 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/poset_test.go#L1468>`_

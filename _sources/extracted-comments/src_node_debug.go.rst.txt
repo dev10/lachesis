@@ -1,0 +1,58 @@
+***************************************************************************************************************************************
+`src/node/debug.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go>`_
+***************************************************************************************************************************************
+
+
+.. function:: type InfosLite struct [line: 21]
+
+	| InfosLite small subset of debug info for node
+
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L21>`_
+
+.. function:: type EventBodyLite struct [line: 28]
+
+	| EventBodyLite small subset of event body for debugging
+
+`View source at line: 28 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L28>`_
+
+.. function:: type EventMessageLite struct [line: 36]
+
+	| EventMessageLite small subset of event body for debugging
+
+`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L36>`_
+
+.. function:: type EventLite struct [line: 49]
+
+	| EventLite small subset of event for debugging
+
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L49>`_
+
+.. function:: func (g *Graph) GetParticipantEventsLite() map[string]map[string]EventLite [line: 57]
+
+	| GetParticipantEventsLite returns all participants
+
+`View source at line: 57 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L57>`_
+
+.. function:: func (g *Graph) GetInfosLite() InfosLite [line: 114]
+
+	| GetInfosLite returns debug stats
+
+`View source at line: 114 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L114>`_
+
+.. function:: func (c *Core) PrintStat(logger *logrus.Entry) [line: 123]
+
+	| PrintStat prints debug stats
+
+`View source at line: 123 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L123>`_
+
+.. function:: func (n *Node) PrintStat() [line: 137]
+
+	| PrintStat prints debug stats
+
+`View source at line: 137 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L137>`_
+
+.. function:: func (n *Node) Register() [line: 234]
+
+	| Register a print listener
+
+`View source at line: 234 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/debug.go#L234>`_

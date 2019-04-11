@@ -1,0 +1,46 @@
+*****************************************************************************************************************************************
+`src/poset/frame.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/frame.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: func (f *Frame) ProtoMarshal() ([]byte, error) [line: 9]
+
+	| ProtoMarshal json encoding of Frame
+
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/frame.go#L9>`_
+
+.. function:: func (f *Frame) ProtoUnmarshal(data []byte) error [line: 19]
+
+	| ProtoUnmarshal converts protobuf to frame
+
+`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/frame.go#L19>`_
+
+.. function:: func (f *Frame) GetEventBlocks() []*EventMessage [line: 24]
+
+	| GetEventBlocks provides alternative for non-existent Protobuf generated function
+
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/frame.go#L24>`_
+
+.. function:: func (f *Frame) Hash() ([]byte, error) [line: 29]
+
+	| Hash returns the Hash of a frame
+
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/frame.go#L29>`_
+
+.. function:: func RootListEquals(this []*Root, that []*Root) bool [line: 38]
+
+	| RootListEquals compares the equality of two root lists
+
+`View source at line: 38 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/frame.go#L38>`_
+
+.. function:: func EventListEquals(this []*EventMessage, that []*EventMessage) bool [line: 51]
+
+	| EventListEquals compares the equality of two event lists
+
+`View source at line: 51 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/frame.go#L51>`_
+
+.. function:: func (f *Frame) Equals(that *Frame) bool [line: 64]
+
+	| Equals compares the equality of two frames
+
+`View source at line: 64 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/frame.go#L64>`_

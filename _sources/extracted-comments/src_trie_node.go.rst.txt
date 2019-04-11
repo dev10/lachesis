@@ -1,0 +1,22 @@
+*************************************************************************************************************************************
+`src/trie/node.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/node.go>`_
+*************************************************************************************************************************************
+
+
+.. function:: type nodeFlag struct [line: 41]
+
+	| nodeFlag contains caching-related metadata about a node.
+
+`View source at line: 41 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/node.go#L41>`_
+
+.. function:: func (n *nodeFlag) canUnload(cachegen, cachelimit uint16) bool [line: 48]
+
+	| canUnload tells whether a node can be unloaded.
+
+`View source at line: 48 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/node.go#L48>`_
+
+.. function:: func (n *fullNode) String() string [line: 63]
+
+	| Pretty printing.
+
+`View source at line: 63 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/node.go#L63>`_

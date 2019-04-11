@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src/common/address.go &mdash; Lachesis 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="src/common/address_test.go" href="src_common_address_test.go.html" />
+    <link rel="prev" title="Extracted Comments" href="../extracted-comments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Lachesis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../consensus.html">Lachesis Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchain.html">From Poset to Blockchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fastsync.html">FastSync</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../extracted-comments.html">Extracted Comments</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src/common/address.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_address_test.go.html">src/common/address_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_bytes.go.html">src/common/bytes.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_bytes_test.go.html">src/common/bytes_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_errors.go.html">src/common/errors.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_hash.go.html">src/common/hash.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_hash64.go.html">src/common/hash64.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_hash_test.go.html">src/common/hash_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_hexutil_hexutil.go.html">src/common/hexutil/hexutil.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_hexutil_hexutil_test.go.html">src/common/hexutil/hexutil_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_hexutil_json.go.html">src/common/hexutil/json.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_hexutil_json_example_test.go.html">src/common/hexutil/json_example_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_hexutil_json_test.go.html">src/common/hexutil/json_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_keys.go.html">src/common/keys.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_prque_prque.go.html">src/common/prque/prque.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_prque_sstack.go.html">src/common/prque/sstack.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_rolling_index.go.html">src/common/rolling_index.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_rolling_index_map.go.html">src/common/rolling_index_map.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_rolling_index_test.go.html">src/common/rolling_index_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_size.go.html">src/common/size.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_size_test.go.html">src/common/size_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_sort.go.html">src/common/sort.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_common_test_logger.go.html">src/common/test_logger.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_address.go.html">src/crypto/address.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_crypto.go.html">src/crypto/crypto.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_crypto_test.go.html">src/crypto/crypto_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_keys.go.html">src/crypto/keys.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_pem_key.go.html">src/crypto/pem_key.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_doc.go.html">src/crypto/sha3/doc.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_hashes.go.html">src/crypto/sha3/hashes.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_keccakf.go.html">src/crypto/sha3/keccakf.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_keccakf_amd64.go.html">src/crypto/sha3/keccakf_amd64.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_register.go.html">src/crypto/sha3/register.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_sha3.go.html">src/crypto/sha3/sha3.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_sha3_test.go.html">src/crypto/sha3/sha3_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_shake.go.html">src/crypto/sha3/shake.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_xor.go.html">src/crypto/sha3/xor.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_xor_generic.go.html">src/crypto/sha3/xor_generic.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_sha3_xor_unaligned.go.html">src/crypto/sha3/xor_unaligned.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_crypto_utils.go.html">src/crypto/utils.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_difftool_compare.go.html">src/difftool/compare.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_difftool_example_test.go.html">src/difftool/example_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_difftool_result.go.html">src/difftool/result.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_dummy_client.go.html">src/dummy/client.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_dummy_client_test.go.html">src/dummy/client_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_dummy_state.go.html">src/dummy/state.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_dummy_state_test.go.html">src/dummy/state_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_hash_event_hash.go.html">src/hash/event_hash.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_hash_hash.go.html">src/hash/hash.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_hash_hash_test.go.html">src/hash/hash_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_hash_log.go.html">src/hash/log.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_hash_peer_id.go.html">src/hash/peer_id.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_inter_event.go.html">src/inter/event.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_inter_event_test.go.html">src/inter/event_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_inter_time.go.html">src/inter/time.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_inter_transaction.go.html">src/inter/transaction.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_inter_wire_event.pb.go.html">src/inter/wire/event.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_inter_wire_wire.go.html">src/inter/wire/wire.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_kvdb_badger_database.go.html">src/kvdb/badger_database.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_kvdb_interface.go.html">src/kvdb/interface.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_kvdb_memory_database.go.html">src/kvdb/memory_database.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_kvdb_table.go.html">src/kvdb/table.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_kvdb_table_batch.go.html">src/kvdb/table_batch.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_lachesis_lachesis.go.html">src/lachesis/lachesis.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_lachesis_lachesis_config.go.html">src/lachesis/lachesis_config.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_lachesis_lahcesis_test.go.html">src/lachesis/lahcesis_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_log_hook.go.html">src/log/hook.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_log_syslog_nacl.go.html">src/log/syslog_nacl.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_log_syslog_plan9.go.html">src/log/syslog_plan9.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_log_syslog_unixes.go.html">src/log/syslog_unixes.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_log_syslog_windows.go.html">src/log/syslog_windows.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_mobile_handlers.go.html">src/mobile/handlers.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_mobile_mobile_app_proxy.go.html">src/mobile/mobile_app_proxy.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_mobile_mobile_config.go.html">src/mobile/mobile_config.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_mobile_node.go.html">src/mobile/node.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_common.go.html">src/node/common.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_config.go.html">src/node/config.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_control_timer.go.html">src/node/control_timer.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_core.go.html">src/node/core.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_core_test.go.html">src/node/core_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_counter.go.html">src/node/counter.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_debug.go.html">src/node/debug.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_graph.go.html">src/node/graph.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_node.go.html">src/node/node.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_node_difftool.go.html">src/node/node_difftool.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_node_test.go.html">src/node/node_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_node_test_ally.go.html">src/node/node_test_ally.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_nodebug.go.html">src/node/nodebug.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_peer_selector.go.html">src/node/peer_selector.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_peer_selector2.go.html">src/node/peer_selector2.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_peer_selector2_test.go.html">src/node/peer_selector2_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_peer_selector_cost1.go.html">src/node/peer_selector_cost1.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_peer_selector_cost1_test.go.html">src/node/peer_selector_cost1_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_peer_selector_test.go.html">src/node/peer_selector_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_state.go.html">src/node/state.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_node_state_test.go.html">src/node/state_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_backend.go.html">src/peer/backend.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_backend_test.go.html">src/peer/backend_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_client.go.html">src/peer/client.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_client_test.go.html">src/peer/client_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_errors.go.html">src/peer/errors.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_fakenet_addr.go.html">src/peer/fakenet/addr.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_fakenet_conn.go.html">src/peer/fakenet/conn.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_fakenet_errors.go.html">src/peer/fakenet/errors.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_fakenet_listener.go.html">src/peer/fakenet/listener.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_fakenet_network.go.html">src/peer/fakenet/network.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_fakenet_network_test.go.html">src/peer/fakenet/network_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_model.go.html">src/peer/model.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_peer.go.html">src/peer/peer.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_peer_test.go.html">src/peer/peer_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_producer.go.html">src/peer/producer.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_producer_test.go.html">src/peer/producer_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_rpc.go.html">src/peer/rpc.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peer_rpc_test.go.html">src/peer/rpc_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peers_json_peers.go.html">src/peers/json_peers.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peers_peer.go.html">src/peers/peer.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peers_peer.pb.go.html">src/peers/peer.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peers_peer_test.go.html">src/peers/peer_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peers_peers.go.html">src/peers/peers.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_peers_static_peers.go.html">src/peers/static_peers.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_pos_config.go.html">src/pos/config.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_pos_genesis.go.html">src/pos/genesis.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_badger_store.go.html">src/poset/badger_store.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_badger_store_test.go.html">src/poset/badger_store_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_block.go.html">src/poset/block.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_block.pb.go.html">src/poset/block.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_block_test.go.html">src/poset/block_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_caches.go.html">src/poset/caches.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_caches_test.go.html">src/poset/caches_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_debug.go.html">src/poset/debug.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_event.go.html">src/poset/event.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_event.pb.go.html">src/poset/event.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_event_hash.go.html">src/poset/event_hash.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_event_hash_test.go.html">src/poset/event_hash_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_event_test.go.html">src/poset/event_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_flagTable.go.html">src/poset/flagTable.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_flagTableWrapper.pb.go.html">src/poset/flagTableWrapper.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_frame.go.html">src/poset/frame.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_frame.pb.go.html">src/poset/frame.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_inmem_store.go.html">src/poset/inmem_store.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_inmem_store_test.go.html">src/poset/inmem_store_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_poset.go.html">src/poset/poset.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_poset_test.go.html">src/poset/poset_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_root.go.html">src/poset/root.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_root.pb.go.html">src/poset/root.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_roundInfo.go.html">src/poset/roundInfo.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_roundInfo.pb.go.html">src/poset/roundInfo.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_store.go.html">src/poset/store.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_store_debug.go.html">src/poset/store_debug.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_poset_store_known_test.go.html">src/poset/store_known_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_blockchain.go.html">src/posposet/blockchain.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_common_test.go.html">src/posposet/common_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_creators.go.html">src/posposet/creators.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_event.go.html">src/posposet/event.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_event_test.go.html">src/posposet/event_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_flag_table.go.html">src/posposet/flag_table.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_frame.go.html">src/posposet/frame.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_frame_test.go.html">src/posposet/frame_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_frames.go.html">src/posposet/frames.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_input.go.html">src/posposet/input.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_input_test.go.html">src/posposet/input_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_log.go.html">src/posposet/log.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_poset.go.html">src/posposet/poset.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_poset_atropos_test.go.html">src/posposet/poset_atropos_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_poset_clotho_test.go.html">src/posposet/poset_clotho_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_poset_root_test.go.html">src/posposet/poset_root_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_poset_test.go.html">src/posposet/poset_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_stake.go.html">src/posposet/stake.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_state.go.html">src/posposet/state.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_store.go.html">src/posposet/store.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_store_test.go.html">src/posposet/store_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_time.go.html">src/posposet/time.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_time_test.go.html">src/posposet/time_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_transaction.go.html">src/posposet/transaction.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_wire_block.pb.go.html">src/posposet/wire/block.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_wire_frame.pb.go.html">src/posposet/wire/frame.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_wire_state.pb.go.html">src/posposet/wire/state.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_posposet_wire_wire.go.html">src/posposet/wire/wire.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_grpc_app.go.html">src/proxy/grpc_app.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_grpc_lachesis.go.html">src/proxy/grpc_lachesis.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_grpc_test.go.html">src/proxy/grpc_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_handlers.go.html">src/proxy/handlers.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_inmem_app.go.html">src/proxy/inmem_app.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_inmem_test.go.html">src/proxy/inmem_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_internal_grpc.pb.go.html">src/proxy/internal/grpc.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_proto_proto.go.html">src/proxy/proto/proto.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_proxy_proxy.go.html">src/proxy/proxy.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_service_service.go.html">src/service/service.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_state_account.go.html">src/state/account.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_state_account.pb.go.html">src/state/account.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_state_database.go.html">src/state/database.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_state_journal.go.html">src/state/journal.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_state_state_object.go.html">src/state/state_object.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_state_statedb.go.html">src/state/statedb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_state_statedb_test.go.html">src/state/statedb_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_database.go.html">src/trie/database.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_encoding.go.html">src/trie/encoding.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_encoding_test.go.html">src/trie/encoding_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_errors.go.html">src/trie/errors.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_hasher.go.html">src/trie/hasher.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_internal_internal.go.html">src/trie/internal/internal.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_internal_node.pb.go.html">src/trie/internal/node.pb.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_iterator.go.html">src/trie/iterator.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_iterator_test.go.html">src/trie/iterator_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_node.go.html">src/trie/node.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_node_test.go.html">src/trie/node_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_proof.go.html">src/trie/proof.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_proof_test.go.html">src/trie/proof_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_secure_trie.go.html">src/trie/secure_trie.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_secure_trie_test.go.html">src/trie/secure_trie_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_sync.go.html">src/trie/sync.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_sync_test.go.html">src/trie/sync_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_trie.go.html">src/trie/trie.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_trie_test.go.html">src/trie/trie_test.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_trie_wire.go.html">src/trie/wire.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_utils_checkpid.go.html">src/utils/checkpid.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_utils_util.go.html">src/utils/util.go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src_version_version.go.html">src/version/version.go</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Lachesis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../extracted-comments.html">Extracted Comments</a> &raquo;</li>
+        
+      <li>src/common/address.go</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/extracted-comments/src_common_address.go.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go">src/common/address.go</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<code class="descname">func (a *Address) Bytes() []byte [line: 13]</code></dt>
+<dd><div class="line-block">
+<div class="line">Bytes returns value as byte slice.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go#L13">View source at line: 13</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func BytesToAddress(b []byte) Address [line: 19]</code></dt>
+<dd><div class="line-block">
+<div class="line">BytesToAddress sets b to address.</div>
+<div class="line">If b is larger than len(h), b will be cropped from the left.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go#L19">View source at line: 19</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (a *Address) String() string [line: 24]</code></dt>
+<dd><div class="line-block">
+<div class="line">String returns human readable string representation.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go#L24">View source at line: 24</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func FakeAddress() Address [line: 36]</code></dt>
+<dd><div class="line-block">
+<div class="line">FakeAddress generates random fake address for testing purpose.</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go#L36">View source at line: 36</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="src_common_address_test.go.html" class="btn btn-neutral float-right" title="src/common/address_test.go" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../extracted-comments.html" class="btn btn-neutral float-left" title="Extracted Comments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Mosaic Networks
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

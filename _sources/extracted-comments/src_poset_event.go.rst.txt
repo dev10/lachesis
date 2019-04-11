@@ -1,0 +1,262 @@
+*****************************************************************************************************************************************
+`src/poset/event.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: func NewInternalTransaction(tType TransactionType, peer peers.Peer) InternalTransaction [line: 21]
+
+	| NewInternalTransaction constructor
+
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L21>`_
+
+.. function:: func (t *InternalTransaction) ProtoMarshal() ([]byte, error) [line: 29]
+
+	| ProtoMarshal marshal internal transaction to protobuff
+
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L29>`_
+
+.. function:: func (t *InternalTransaction) ProtoUnmarshal(data []byte) error [line: 39]
+
+	| ProtoUnmarshal unmarshal protobuff to internal transaction
+
+`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L39>`_
+
+.. function:: func (t *InternalTransaction) Equals(that *InternalTransaction) bool [line: 48]
+
+	| Equals equality check for internal transaction
+
+`View source at line: 48 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L48>`_
+
+.. function:: func InternalTransactionListEquals(this []*InternalTransaction, that []*InternalTransaction) bool [line: 54]
+
+	| InternalTransactionListEquals list equality check
+
+`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L54>`_
+
+.. function:: func BlockSignatureListEquals(this []*BlockSignature, that []*BlockSignature) bool [line: 67]
+
+	| BlockSignatureListEquals block signature list equality check
+
+`View source at line: 67 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L67>`_
+
+.. function:: func (e *EventBody) Equals(that *EventBody) bool [line: 80]
+
+	| Equals event body equality check
+
+`View source at line: 80 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L80>`_
+
+.. function:: func (e *EventBody) ProtoMarshal() ([]byte, error) [line: 90]
+
+	| ProtoMarshal marshal event body to protobuff
+
+`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L90>`_
+
+.. function:: func (e *EventBody) ProtoUnmarshal(data []byte) error [line: 100]
+
+	| ProtoUnmarshal unmarshal protobuff to event body
+
+`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L100>`_
+
+.. function:: func (e *EventBody) Hash() (hash EventHash, err error) [line: 105]
+
+	| Hash returns hash of event body
+
+`View source at line: 105 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L105>`_
+
+.. function:: func (m *EventMessage) ToEvent() Event [line: 124]
+
+	| ToEvent converts message to event
+
+`View source at line: 124 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L124>`_
+
+.. function:: func (m *EventMessage) Equals(that *EventMessage) bool [line: 134]
+
+	| Equals compares equality of two event messages
+
+`View source at line: 134 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L134>`_
+
+.. function:: type Event struct [line: 181]
+
+	| Event struct
+
+`View source at line: 181 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L181>`_
+
+.. function:: func (e *Event) GetRound() int64 [line: 189]
+
+	| GetRound Round returns round of event.
+
+`View source at line: 189 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L189>`_
+
+.. function:: func (e *Event) GetRoundReceived() int64 [line: 197]
+
+	| GetRoundReceived Round returns round in which the event is received.
+
+`View source at line: 197 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L197>`_
+
+.. function:: func (e *Event) GetLamportTimestamp() int64 [line: 205]
+
+	| GetLamportTimestamp returns the lamport timestamp
+
+`View source at line: 205 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L205>`_
+
+.. function:: func (e *Event) GetCreator() string [line: 213]
+
+	| GetCreator returns the creator for the event
+
+`View source at line: 213 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L213>`_
+
+.. function:: func (e *Event) SelfParent() (hash EventHash) [line: 218]
+
+	| SelfParent returns the previous event block hash in this creator DAG
+
+`View source at line: 218 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L218>`_
+
+.. function:: func (e *Event) OtherParent() (hash EventHash) [line: 224]
+
+	| OtherParent returns the other (not creators) parent(s) hash(es)
+
+`View source at line: 224 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L224>`_
+
+.. function:: func (e *Event) Transactions() [][]byte [line: 230]
+
+	| Transactions returns all transactions in the event
+
+`View source at line: 230 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L230>`_
+
+.. function:: func (e *Event) InternalTransactions() []*InternalTransaction [line: 235]
+
+	| InternalTransactions returns all internal transactions in the event
+
+`View source at line: 235 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L235>`_
+
+.. function:: func (e *Event) Index() int64 [line: 240]
+
+	| Index returns the index (height) of this event
+
+`View source at line: 240 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L240>`_
+
+.. function:: func (e *Event) BlockSignatures() []*BlockSignature [line: 245]
+
+	| BlockSignatures returns all block signatures for this event
+
+`View source at line: 245 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L245>`_
+
+.. function:: func (e *Event) IsLoaded() bool [line: 250]
+
+	| IsLoaded True if Event contains a payload or is the initial Event of its creator
+
+`View source at line: 250 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L250>`_
+
+.. function:: func (e *Event) Sign(privKey *ecdsa.PrivateKey) error [line: 262]
+
+	| Sign ecdsa sig
+
+`View source at line: 262 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L262>`_
+
+.. function:: func (e *Event) Verify() (bool, error) [line: 276]
+
+	| Verify ecdsa sig
+
+`View source at line: 276 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L276>`_
+
+.. function:: func (e *Event) ProtoMarshal() ([]byte, error) [line: 294]
+
+	| ProtoMarshal event to protobuff
+
+`View source at line: 294 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L294>`_
+
+.. function:: func (e *Event) ProtoUnmarshal(data []byte) error [line: 304]
+
+	| ProtoUnmarshal profotbuff to event
+
+`View source at line: 304 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L304>`_
+
+.. function:: func (e *Event) Hash() (hash EventHash) [line: 310]
+
+	| Hash sha256 hash of body
+
+`View source at line: 310 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L310>`_
+
+.. function:: func (e *Event) SetRound(r int64) [line: 324]
+
+	| SetRound for event
+
+`View source at line: 324 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L324>`_
+
+.. function:: func (e *Event) SetLamportTimestamp(t int64) [line: 329]
+
+	| SetLamportTimestamp for event
+
+`View source at line: 329 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L329>`_
+
+.. function:: func (e *Event) SetRoundReceived(rr int64) [line: 334]
+
+	| SetRoundReceived for event
+
+`View source at line: 334 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L334>`_
+
+.. function:: func (e *Event) SetWireInfo(selfParentIndex int64, otherParentCreatorID uint64, otherParentIndex int64, creatorID uint64) [line: 339]
+
+	| SetWireInfo for event
+
+`View source at line: 339 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L339>`_
+
+.. function:: func (e *Event) WireBlockSignatures() []WireBlockSignature [line: 347]
+
+	| WireBlockSignatures returns the wire block signatures for the event
+
+`View source at line: 347 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L347>`_
+
+.. function:: func (e *Event) ToWire() WireEvent [line: 360]
+
+	| ToWire converts event to wire event
+
+`View source at line: 360 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L360>`_
+
+.. function:: func (e *Event) ReplaceFlagTable(flagTable FlagTable) (err error) [line: 384]
+
+	| ReplaceFlagTable replaces flag table.
+
+`View source at line: 384 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L384>`_
+
+.. function:: func (e *Event) GetFlagTable() (FlagTable, error) [line: 390]
+
+	| GetFlagTable returns the flag table.
+
+`View source at line: 390 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L390>`_
+
+.. function:: func (e *Event) MergeFlagTable(dst FlagTable) (FlagTable, error) [line: 397]
+
+	| MergeFlagTable returns merged flag table object.
+
+`View source at line: 397 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L397>`_
+
+.. function:: func (e *Event) CreatorID() uint64 [line: 413]
+
+	| CreatorID returns the creator ID for an event
+
+`View source at line: 413 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L413>`_
+
+.. function:: func (e *Event) OtherParentCreatorID() uint64 [line: 418]
+
+	| OtherParentCreatorID ID of other parent(s)
+
+`View source at line: 418 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L418>`_
+
+.. function:: type WireBody struct [line: 461]
+
+	| WireBody struct
+
+`View source at line: 461 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L461>`_
+
+.. function:: type WireEvent struct [line: 475]
+
+	| WireEvent struct
+
+`View source at line: 475 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L475>`_
+
+.. function:: func (we *WireEvent) BlockSignatures(validator []byte) []BlockSignature [line: 483]
+
+	| BlockSignatures TODO
+
+`View source at line: 483 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/event.go#L483>`_

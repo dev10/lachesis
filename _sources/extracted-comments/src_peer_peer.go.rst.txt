@@ -1,0 +1,28 @@
+*************************************************************************************************************************************
+`src/peer/peer.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/peer.go>`_
+*************************************************************************************************************************************
+
+
+.. function:: type SyncPeer interface [line: 14]
+
+	| SyncPeer is an interface representing methods for sync transport.
+
+`View source at line: 14 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/peer.go#L14>`_
+
+.. function:: type Peer struct [line: 26]
+
+	| Peer implements SyncPeer interface.
+
+`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/peer.go#L26>`_
+
+.. function:: func (tr *Peer) ReceiverChannel() <-chan *RPC [line: 150]
+
+	| ReceiverChannel returns a sync server receiver channel.
+
+`View source at line: 150 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/peer.go#L150>`_
+
+.. function:: func (tr *Peer) Close() error [line: 158]
+
+	| Close closes the transport.
+
+`View source at line: 158 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/peer.go#L158>`_

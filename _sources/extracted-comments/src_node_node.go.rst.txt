@@ -1,0 +1,153 @@
+*************************************************************************************************************************************
+`src/node/node.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go>`_
+*************************************************************************************************************************************
+
+
+.. function:: type Node struct [line: 23]
+
+	| Node struct that keeps all high level node functions
+
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L23>`_
+
+.. function:: func (n *Node) Init() error [line: 117]
+
+	| Init initializes all the node processes
+
+`View source at line: 117 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L117>`_
+
+.. function:: func (n *Node) RunAsync(gossip bool) [line: 136]
+
+	| RunAsync run the background processes asynchronously
+
+`View source at line: 136 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L136>`_
+
+.. function:: func (n *Node) Run(gossip bool) [line: 142]
+
+	| Run core run loop, takes care of all processes
+
+`View source at line: 142 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L142>`_
+
+.. function:: func (n *Node) lachesis(gossip bool) [line: 224]
+
+	| lachesis is interrupted when a gossip function, launched asynchronously, changes
+	| the state from Gossiping to CatchingUp, or when the node is shutdown.
+	| Otherwise, it processes RPC requests, periodicaly initiates gossip while there
+	| is something to gossip about, or waits.
+
+`View source at line: 224 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L224>`_
+
+.. function:: func (n *Node) gossip(parentReturnCh chan struct [line: 440]
+
+	| This function is usually called in a go-routine and needs to inform the
+	| calling routine (usually the lachesis routine) when it is time to exit the
+	| Gossiping state and return.
+
+`View source at line: 440 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L440>`_
+
+.. function:: func (n *Node) Shutdown() [line: 709]
+
+	| Shutdown the node
+
+`View source at line: 709 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L709>`_
+
+.. function:: func (n *Node) GetStats() map[string]string [line: 735]
+
+	| GetStats returns processing stats for the node
+
+`View source at line: 735 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L735>`_
+
+.. function:: func (n *Node) SyncRate() float64 [line: 811]
+
+	| SyncRate returns the current synchronization (talking to over nodes) rate in ms
+
+`View source at line: 811 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L811>`_
+
+.. function:: func (n *Node) GetParticipants() (*peers.Peers, error) [line: 820]
+
+	| GetParticipants returns all participants this node knows about
+
+`View source at line: 820 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L820>`_
+
+.. function:: func (n *Node) GetEventBlock(event poset.EventHash) (poset.Event, error) [line: 825]
+
+	| GetEventBlock returns a specific event block for the given hash
+
+`View source at line: 825 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L825>`_
+
+.. function:: func (n *Node) GetLastEventFrom(participant string) (poset.EventHash, bool, error) [line: 830]
+
+	| GetLastEventFrom returns the last event block for a specific participant
+
+`View source at line: 830 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L830>`_
+
+.. function:: func (n *Node) GetKnownEvents() map[uint64]int64 [line: 835]
+
+	| GetKnownEvents returns all known events
+
+`View source at line: 835 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L835>`_
+
+.. function:: func (n *Node) GetConsensusEvents() poset.EventHashes [line: 846]
+
+	| GetConsensusEvents returns all consensus events
+
+`View source at line: 846 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L846>`_
+
+.. function:: func (n *Node) GetConsensusTransactionsCount() uint64 [line: 851]
+
+	| GetConsensusTransactionsCount get the count of finalized transactions
+
+`View source at line: 851 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L851>`_
+
+.. function:: func (n *Node) GetPendingLoadedEvents() int64 [line: 856]
+
+	| GetPendingLoadedEvents returns all the pending events
+
+`View source at line: 856 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L856>`_
+
+.. function:: func (n *Node) GetRound(roundIndex int64) (poset.RoundCreated, error) [line: 861]
+
+	| GetRound returns the created round info for a given index
+
+`View source at line: 861 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L861>`_
+
+.. function:: func (n *Node) GetLastRound() int64 [line: 866]
+
+	| GetLastRound returns the last round
+
+`View source at line: 866 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L866>`_
+
+.. function:: func (n *Node) GetRoundClothos(roundIndex int64) poset.EventHashes [line: 871]
+
+	| GetRoundClothos returns all clotho for a given round index
+
+`View source at line: 871 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L871>`_
+
+.. function:: func (n *Node) GetRoundEvents(roundIndex int64) int [line: 876]
+
+	| GetRoundEvents returns all the round events for a given round index
+
+`View source at line: 876 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L876>`_
+
+.. function:: func (n *Node) GetRoot(rootIndex string) (poset.Root, error) [line: 881]
+
+	| GetRoot returns the chain root for the frame
+
+`View source at line: 881 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L881>`_
+
+.. function:: func (n *Node) GetBlock(blockIndex int64) (poset.Block, error) [line: 886]
+
+	| GetBlock returns the block for a given index
+
+`View source at line: 886 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L886>`_
+
+.. function:: func (n *Node) ID() uint64 [line: 891]
+
+	| ID shows the ID of the node
+
+`View source at line: 891 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L891>`_
+
+.. function:: func (n *Node) Stop() [line: 896]
+
+	| Stop stops the node from gossiping
+
+`View source at line: 896 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/node.go#L896>`_

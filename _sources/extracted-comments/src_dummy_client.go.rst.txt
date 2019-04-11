@@ -1,0 +1,35 @@
+*******************************************************************************************************************************************
+`src/dummy/client.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/client.go>`_
+*******************************************************************************************************************************************
+
+
+.. function:: type DummyClient struct [line: 11]
+
+	| DummyClient is a implementation of the dummy app. Lachesis and the
+	| app run in separate processes and communicate through proxy
+
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/client.go#L11>`_
+
+.. function:: func NewInmemDummyApp(logger *logrus.Logger) proxy.AppProxy [line: 18]
+
+	| NewInmemDummyApp constructor
+
+`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/client.go#L18>`_
+
+.. function:: func NewDummySocketClient(addr string, logger *logrus.Logger) (*DummyClient, error) [line: 24]
+
+	| NewDummySocketClient constructor
+
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/client.go#L24>`_
+
+.. function:: func NewDummyClient(lachesisProxy proxy.LachesisProxy, handler proxy.ProxyHandler, logger *logrus.Logger) (c *DummyClient, err error) [line: 34]
+
+	| NewDummyClient instantiates an implementation of the dummy app
+
+`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/client.go#L34>`_
+
+.. function:: func (c *DummyClient) SubmitTx(tx []byte) error [line: 82]
+
+	| SubmitTx sends a transaction to node via proxy
+
+`View source at line: 82 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/client.go#L82>`_

@@ -1,0 +1,108 @@
+*************************************************************************************************************************************************
+`src/hash/event_hash.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go>`_
+*************************************************************************************************************************************************
+
+
+.. function:: func (h Event) Bytes() []byte [line: 32]
+
+	| Bytes returns value as byte slice.
+
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L32>`_
+
+.. function:: func BytesToEventHash(b []byte) Event [line: 38]
+
+	| BytesToEventHash converts bytes to event hash.
+	| If b is larger than len(h), b will be cropped from the left.
+
+`View source at line: 38 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L38>`_
+
+.. function:: func HexToEventHash(s string) Event [line: 44]
+
+	| HexToEventHash sets byte representation of s to hash.
+	| If b is larger than len(h), b will be cropped from the left.
+
+`View source at line: 44 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L44>`_
+
+.. function:: func (h Event) Hex() string [line: 49]
+
+	| Hex converts an event hash to a hex string.
+
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L49>`_
+
+.. function:: func (h Event) String() string [line: 54]
+
+	| String returns human readable string representation.
+
+`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L54>`_
+
+.. function:: func (h *Event) IsZero() bool [line: 62]
+
+	| IsZero returns true if hash is empty.
+
+`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L62>`_
+
+.. function:: func NewEvents(h ...Event) Events [line: 71]
+
+	| New Events makes event hash index.
+
+`View source at line: 71 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L71>`_
+
+.. function:: func (hh Events) String() string [line: 78]
+
+	| String returns human readable string representation.
+
+`View source at line: 78 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L78>`_
+
+.. function:: func (hh Events) Slice() EventsSlice [line: 87]
+
+	| Slice returns whole index as slice.
+
+`View source at line: 87 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L87>`_
+
+.. function:: func (hh Events) Add(hash ...Event) (changed bool) [line: 98]
+
+	| Add appends hash to the index.
+
+`View source at line: 98 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L98>`_
+
+.. function:: func (hh Events) Contains(hash Event) bool [line: 109]
+
+	| Contains returns true if hash is in.
+
+`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L109>`_
+
+.. function:: func (hh Events) ToWire() [][]byte [line: 115]
+
+	| ToWire converts to simple slice.
+
+`View source at line: 115 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L115>`_
+
+.. function:: func WireToEventHashes(buf [][]byte) Events [line: 126]
+
+	| WireToEventHashes converts from simple slice.
+
+`View source at line: 126 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L126>`_
+
+.. function:: func (hh EventsSlice) ToWire() [][]byte [line: 141]
+
+	| ToWire converts to simple slice.
+
+`View source at line: 141 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L141>`_
+
+.. function:: func WireToEventHashSlice(buf [][]byte) EventsSlice [line: 151]
+
+	| WireToEventHashSlice converts from simple slice.
+
+`View source at line: 151 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L151>`_
+
+.. function:: func FakeEvent() (h Event) [line: 175]
+
+	| FakeEvent generates random fake event hash for testing purpose.
+
+`View source at line: 175 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L175>`_
+
+.. function:: func FakeEvents(n int) Events [line: 184]
+
+	| FakeEvents generates random fake event hashes for testing purpose.
+
+`View source at line: 184 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/event_hash.go#L184>`_

@@ -1,0 +1,21 @@
+*********************************************************************************************************************************************
+`src/trie/database.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/database.go>`_
+*********************************************************************************************************************************************
+
+
+.. function::  [line: ???]
+
+	| func (db *Database) accumulate(hash hash.Hash, reachable map[hash.Hash]struct{}) {
+	| // Mark the node reachable if present in the memory cache
+	| node, ok := db.dirties[hash]
+	| if !ok {
+	| return
+	| }
+	| reachable[hash] = struct{}{}
+	| // Iterate over all the children and accumulate them too
+	| for _, child := range node.descendents() {
+	| db.accumulate(child, reachable)
+	| }
+	| }
+
+`View source at line: ??? <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/database.go#L???>`_

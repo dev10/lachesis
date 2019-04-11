@@ -1,0 +1,28 @@
+*****************************************************************************************************************************************
+`src/common/keys.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/keys.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: func (key *PrivateKey) PublicKey() PublicKey [line: 21]
+
+	| PublicKey returns public part of key.
+
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/keys.go#L21>`_
+
+.. function:: func (pk *PublicKey) Bytes() []byte [line: 26]
+
+	| Bytes returns public key bytes.
+
+`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/keys.go#L26>`_
+
+.. function:: func ToECDSAPub(pub []byte) *ecdsa.PublicKey [line: 35]
+
+	| ToECDSAPub convert to ECDSA public key from bytes
+
+`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/keys.go#L35>`_
+
+.. function:: func FromECDSAPub(pub *ecdsa.PublicKey) []byte [line: 44]
+
+	| FromECDSAPub create bytes from ECDSA public key
+
+`View source at line: 44 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/keys.go#L44>`_

@@ -1,0 +1,29 @@
+***********************************************************************************************************************************************
+`src/common/address.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go>`_
+***********************************************************************************************************************************************
+
+
+.. function:: func (a *Address) Bytes() []byte [line: 13]
+
+	| Bytes returns value as byte slice.
+
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go#L13>`_
+
+.. function:: func BytesToAddress(b []byte) Address [line: 19]
+
+	| BytesToAddress sets b to address.
+	| If b is larger than len(h), b will be cropped from the left.
+
+`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go#L19>`_
+
+.. function:: func (a *Address) String() string [line: 24]
+
+	| String returns human readable string representation.
+
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go#L24>`_
+
+.. function:: func FakeAddress() Address [line: 36]
+
+	| FakeAddress generates random fake address for testing purpose.
+
+`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/address.go#L36>`_
