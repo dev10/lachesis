@@ -1,5 +1,5 @@
 *******************************************************************************************************************************************************
-`src/state/state_object.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go>`_
+`src/state/state_object.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go>`_
 *******************************************************************************************************************************************************
 
 
@@ -7,7 +7,7 @@
 
 	| Copy creates a deep, independent copy of the state.
 
-`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L21>`_
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L21>`_
 
 .. function:: type stateObject struct [line: 36]
 
@@ -17,91 +17,91 @@
 	| Account values can be accessed and modified through the object.
 	| Finally, call CommitTrie to write the modified storage trie into a database.
 
-`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L36>`_
+`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L36>`_
 
 .. function:: func (s *stateObject) empty() bool [line: 63]
 
 	| empty returns whether the account is considered empty.
 
-`View source at line: 63 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L63>`_
+`View source at line: 63 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L63>`_
 
 .. function:: func newObject(db *DB, address hash.Peer, data Account) *stateObject [line: 68]
 
 	| newObject creates a state object.
 
-`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L68>`_
+`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L68>`_
 
 .. function:: func (s *stateObject) setError(err error) [line: 80]
 
 	| setError remembers the first non-nil error it is called with.
 
-`View source at line: 80 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L80>`_
+`View source at line: 80 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L80>`_
 
 .. function:: func (s *stateObject) GetState(db Database, key hash.Hash) hash.Hash [line: 109]
 
 	| GetState retrieves a value from the account storage trie.
 
-`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L109>`_
+`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L109>`_
 
 .. function:: func (s *stateObject) GetCommittedState(db Database, key hash.Hash) hash.Hash [line: 120]
 
 	| GetCommittedState retrieves a value from the committed account storage trie.
 
-`View source at line: 120 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L120>`_
+`View source at line: 120 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L120>`_
 
 .. function:: func (s *stateObject) SetState(db Database, key, value hash.Hash) [line: 140]
 
 	| SetState updates a value in account storage.
 
-`View source at line: 140 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L140>`_
+`View source at line: 140 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L140>`_
 
 .. function:: func (s *stateObject) updateTrie(db Database) Trie [line: 160]
 
 	| updateTrie writes cached storage modifications into the object's storage trie.
 
-`View source at line: 160 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L160>`_
+`View source at line: 160 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L160>`_
 
 .. function:: func (s *stateObject) updateRoot(db Database) [line: 182]
 
 	| UpdateRoot sets the trie root to the current root hash of
 
-`View source at line: 182 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L182>`_
+`View source at line: 182 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L182>`_
 
 .. function:: func (s *stateObject) CommitTrie(db Database) error [line: 189]
 
 	| CommitTrie the storage trie of the object to db.
 	| This updates the trie root.
 
-`View source at line: 189 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L189>`_
+`View source at line: 189 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L189>`_
 
 .. function:: func (s *stateObject) AddBalance(amount uint64) [line: 203]
 
 	| AddBalance removes amount from c's balance.
 	| It is used to add funds to the destination account of a transfer.
 
-`View source at line: 203 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L203>`_
+`View source at line: 203 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L203>`_
 
 .. function:: func (s *stateObject) SubBalance(amount uint64) [line: 218]
 
 	| SubBalance removes amount from c's balance.
 	| It is used to remove funds from the origin account of a transfer.
 
-`View source at line: 218 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L218>`_
+`View source at line: 218 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L218>`_
 
 .. function:: func (s *stateObject) Address() hash.Peer [line: 257]
 
 	| Returns the address of the contract/account.
 
-`View source at line: 257 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L257>`_
+`View source at line: 257 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L257>`_
 
 .. function:: func (s *stateObject) Balance() uint64 [line: 262]
 
 	| Balance returns balance.
 
-`View source at line: 262 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L262>`_
+`View source at line: 262 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L262>`_
 
 .. function:: func (s *stateObject) Data() *Account [line: 267]
 
 	| Data returns data.
 
-`View source at line: 267 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/state_object.go#L267>`_
+`View source at line: 267 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/state/state_object.go#L267>`_

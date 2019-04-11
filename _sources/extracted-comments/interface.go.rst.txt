@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/kvdb/interface.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/kvdb/interface.go>`_
+`src/kvdb/interface.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/interface.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -7,23 +7,23 @@
 
 	| Putter wraps the database write operation supported by both batches and regular databases.
 
-`View source at line: 8 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/kvdb/interface.go#L8>`_
+`View source at line: 8 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/interface.go#L8>`_
 
 .. function:: type Deleter interface [line: 13]
 
 	| Deleter wraps the database delete operation supported by both batches and regular databases.
 
-`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/kvdb/interface.go#L13>`_
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/interface.go#L13>`_
 
 .. function:: type Database interface [line: 18]
 
 	| Database wraps all database operations. All methods are safe for concurrent use.
 
-`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/kvdb/interface.go#L18>`_
+`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/interface.go#L18>`_
 
 .. function:: type Batch interface [line: 29]
 
 	| Batch is a write-only database that commits changes to its host database
 	| when Write is called. Batch cannot be used concurrently.
 
-`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/kvdb/interface.go#L29>`_
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/interface.go#L29>`_

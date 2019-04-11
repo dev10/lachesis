@@ -1,5 +1,5 @@
 *******************************************************************************************************************************************************
-`src/crypto/sha3/hashes.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go>`_
+`src/crypto/sha3/hashes.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go>`_
 *******************************************************************************************************************************************************
 
 
@@ -7,13 +7,13 @@
 
 	| NewKeccak256 creates a new Keccak-256 hash.
 
-`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L16>`_
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L16>`_
 
 .. function:: func NewKeccak512() hash.Hash [line: 19]
 
 	| NewKeccak512 creates a new Keccak-512 hash.
 
-`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L19>`_
+`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L19>`_
 
 .. function:: func New224() hash.Hash [line: 24]
 
@@ -21,7 +21,7 @@
 	| Its generic security strength is 224 bits against preimage attacks,
 	| and 112 bits against collision attacks.
 
-`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L24>`_
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L24>`_
 
 .. function:: func New256() hash.Hash [line: 29]
 
@@ -29,7 +29,7 @@
 	| Its generic security strength is 256 bits against preimage attacks,
 	| and 128 bits against collision attacks.
 
-`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L29>`_
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L29>`_
 
 .. function:: func New384() hash.Hash [line: 34]
 
@@ -37,7 +37,7 @@
 	| Its generic security strength is 384 bits against preimage attacks,
 	| and 192 bits against collision attacks.
 
-`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L34>`_
+`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L34>`_
 
 .. function:: func New512() hash.Hash [line: 39]
 
@@ -45,28 +45,28 @@
 	| Its generic security strength is 512 bits against preimage attacks,
 	| and 256 bits against collision attacks.
 
-`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L39>`_
+`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L39>`_
 
 .. function:: func Sum224(data []byte) (digest [28]byte) [line: 42]
 
 	| Sum224 returns the SHA3-224 digest of the data.
 
-`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L42>`_
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L42>`_
 
 .. function:: func Sum256(data []byte) (digest [32]byte) [line: 53]
 
 	| Sum256 returns the SHA3-256 digest of the data.
 
-`View source at line: 53 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L53>`_
+`View source at line: 53 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L53>`_
 
 .. function:: func Sum384(data []byte) (digest [48]byte) [line: 64]
 
 	| Sum384 returns the SHA3-384 digest of the data.
 
-`View source at line: 64 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L64>`_
+`View source at line: 64 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L64>`_
 
 .. function:: func Sum512(data []byte) (digest [64]byte) [line: 75]
 
 	| Sum512 returns the SHA3-512 digest of the data.
 
-`View source at line: 75 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/hashes.go#L75>`_
+`View source at line: 75 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/sha3/hashes.go#L75>`_

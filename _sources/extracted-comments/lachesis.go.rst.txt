@@ -1,5 +1,5 @@
 *****************************************************************************************************************************************************
-`src/lachesis/lachesis.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/lachesis/lachesis.go>`_
+`src/lachesis/lachesis.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/lachesis/lachesis.go>`_
 *****************************************************************************************************************************************************
 
 
@@ -7,28 +7,28 @@
 
 	| Lachesis struct
 
-`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/lachesis/lachesis.go#L22>`_
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/lachesis/lachesis.go#L22>`_
 
 .. function:: func NewLachesis(config *LachesisConfig) *Lachesis [line: 32]
 
 	| NewLachesis constructor
 
-`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/lachesis/lachesis.go#L32>`_
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/lachesis/lachesis.go#L32>`_
 
 .. function:: func (l *Lachesis) Init() error [line: 189]
 
 	| Init initializes the lachesis node
 
-`View source at line: 189 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/lachesis/lachesis.go#L189>`_
+`View source at line: 189 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/lachesis/lachesis.go#L189>`_
 
 .. function:: func (l *Lachesis) Run() [line: 223]
 
 	| Run hosts the services for the lachesis node
 
-`View source at line: 223 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/lachesis/lachesis.go#L223>`_
+`View source at line: 223 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/lachesis/lachesis.go#L223>`_
 
 .. function:: func Keygen(datadir string) (*ecdsa.PrivateKey, error) [line: 231]
 
 	| Keygen generates a new key pair
 
-`View source at line: 231 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/lachesis/lachesis.go#L231>`_
+`View source at line: 231 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/lachesis/lachesis.go#L231>`_

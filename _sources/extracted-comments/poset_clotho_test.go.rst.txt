@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************************************
-`src/posposet/poset_clotho_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset_clotho_test.go>`_
+`src/posposet/poset_clotho_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset_clotho_test.go>`_
 ***********************************************************************************************************************************************************************
 
 
@@ -12,4 +12,4 @@
 	| - 3rd number - frame where node should be in;
 	| - last "+" - ClothoCandidate;
 
-`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset_clotho_test.go#L68>`_
+`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset_clotho_test.go#L68>`_

@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/crypto/pem_key.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go>`_
+`src/crypto/pem_key.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -7,46 +7,46 @@
 
 	| PemKey struct
 
-`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go#L22>`_
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go#L22>`_
 
 .. function:: func NewPemKey(base string) *PemKey [line: 28]
 
 	| NewPemKey constructor
 
-`View source at line: 28 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go#L28>`_
+`View source at line: 28 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go#L28>`_
 
 .. function:: func (k *PemKey) ReadKey() (*ecdsa.PrivateKey, error) [line: 39]
 
 	| ReadKey from disk
 
-`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go#L39>`_
+`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go#L39>`_
 
 .. function:: func (k *PemKey) ReadKeyFromBuf(buf []byte) (*ecdsa.PrivateKey, error) [line: 53]
 
 	| ReadKeyFromBuf from buffer
 
-`View source at line: 53 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go#L53>`_
+`View source at line: 53 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go#L53>`_
 
 .. function:: func (k *PemKey) WriteKey(key *ecdsa.PrivateKey) error [line: 68]
 
 	| WriteKey to disk
 
-`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go#L68>`_
+`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go#L68>`_
 
 .. function:: type PemDump struct [line: 86]
 
 	| PemDump struct
 
-`View source at line: 86 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go#L86>`_
+`View source at line: 86 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go#L86>`_
 
 .. function:: func GeneratePemKey() (*PemDump, error) [line: 92]
 
 	| GeneratePemKey generate new PEM key
 
-`View source at line: 92 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go#L92>`_
+`View source at line: 92 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go#L92>`_
 
 .. function:: func ToPemKey(priv *ecdsa.PrivateKey) (*PemDump, error) [line: 102]
 
 	| ToPemKey get PEM mfrom private key
 
-`View source at line: 102 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/pem_key.go#L102>`_
+`View source at line: 102 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/pem_key.go#L102>`_

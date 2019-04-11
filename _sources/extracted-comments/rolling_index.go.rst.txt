@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************************
-`src/common/rolling_index.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/rolling_index.go>`_
+`src/common/rolling_index.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/rolling_index.go>`_
 ***********************************************************************************************************************************************************
 
 
@@ -7,34 +7,34 @@
 
 	| RollingIndex struct
 
-`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/rolling_index.go#L9>`_
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/rolling_index.go#L9>`_
 
 .. function:: func NewRollingIndex(name string, size int) *RollingIndex [line: 18]
 
 	| NewRollingIndex constructor
 
-`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/rolling_index.go#L18>`_
+`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/rolling_index.go#L18>`_
 
 .. function:: func (r *RollingIndex) GetLastWindow() (lastWindow []interface [line: 28]
 
 	| GetLastWindow getter
 
-`View source at line: 28 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/rolling_index.go#L28>`_
+`View source at line: 28 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/rolling_index.go#L28>`_
 
 .. function:: func (r *RollingIndex) Get(skipIndex int64) ([]interface [line: 35]
 
 	| Get with skipIndex option
 
-`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/rolling_index.go#L35>`_
+`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/rolling_index.go#L35>`_
 
 .. function:: func (r *RollingIndex) GetItem(index int64) (interface [line: 58]
 
 	| GetItem get item for a given index
 
-`View source at line: 58 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/rolling_index.go#L58>`_
+`View source at line: 58 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/rolling_index.go#L58>`_
 
 .. function:: func (r *RollingIndex) Set(item interface [line: 74]
 
 	| Set item for given index
 
-`View source at line: 74 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/rolling_index.go#L74>`_
+`View source at line: 74 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/common/rolling_index.go#L74>`_

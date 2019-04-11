@@ -1,5 +1,5 @@
 *********************************************************************************************************************************************************
-`src/proxy/grpc_lachesis.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/grpc_lachesis.go>`_
+`src/proxy/grpc_lachesis.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/proxy/grpc_lachesis.go>`_
 *********************************************************************************************************************************************************
 
 
@@ -7,28 +7,28 @@
 
 	| NewGrpcLachesisProxy instantiates a LachesisProxy-interface connected to remote node
 
-`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/grpc_lachesis.go#L42>`_
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/proxy/grpc_lachesis.go#L42>`_
 
 .. function:: func (p *GrpcLachesisProxy) CommitCh() chan proto.Commit [line: 85]
 
 	| CommitCh implements LachesisProxy interface method
 
-`View source at line: 85 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/grpc_lachesis.go#L85>`_
+`View source at line: 85 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/proxy/grpc_lachesis.go#L85>`_
 
 .. function:: func (p *GrpcLachesisProxy) SnapshotRequestCh() chan proto.SnapshotRequest [line: 90]
 
 	| SnapshotRequestCh implements LachesisProxy interface method
 
-`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/grpc_lachesis.go#L90>`_
+`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/proxy/grpc_lachesis.go#L90>`_
 
 .. function:: func (p *GrpcLachesisProxy) RestoreCh() chan proto.RestoreRequest [line: 95]
 
 	| RestoreCh implements LachesisProxy interface method
 
-`View source at line: 95 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/grpc_lachesis.go#L95>`_
+`View source at line: 95 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/proxy/grpc_lachesis.go#L95>`_
 
 .. function:: func (p *GrpcLachesisProxy) SubmitTx(tx []byte) error [line: 100]
 
 	| SubmitTx implements LachesisProxy interface method
 
-`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/grpc_lachesis.go#L100>`_
+`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/proxy/grpc_lachesis.go#L100>`_

@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/posposet/input.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/input.go>`_
+`src/posposet/input.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/input.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -7,10 +7,10 @@
 
 	| HasEvent returns true if event exists.
 
-`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/input.go#L18>`_
+`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/input.go#L18>`_
 
 .. function:: func (p *Poset) GetEvent(h hash.Event) *Event [line: 23]
 
 	| GetEvent returns event.
 
-`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/input.go#L23>`_
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/input.go#L23>`_

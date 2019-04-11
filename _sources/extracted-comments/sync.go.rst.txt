@@ -1,5 +1,5 @@
 *************************************************************************************************************************************
-`src/trie/sync.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go>`_
+`src/trie/sync.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go>`_
 *************************************************************************************************************************************
 
 
@@ -7,27 +7,27 @@
 
 	| request represents a scheduled or already in-flight state retrieval request.
 
-`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L21>`_
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L21>`_
 
 .. function:: type SyncResult struct [line: 35]
 
 	| SyncResult is a simple list to return missing nodes along with their request
 	| hashes.
 
-`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L35>`_
+`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L35>`_
 
 .. function:: type syncMemBatch struct [line: 42]
 
 	| syncMemBatch is an in-memory buffer of successfully downloaded but not yet
 	| persisted data items.
 
-`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L42>`_
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L42>`_
 
 .. function:: func newSyncMemBatch() *syncMemBatch [line: 48]
 
 	| newSyncMemBatch allocates a new memory-buffer for not-yet persisted trie nodes.
 
-`View source at line: 48 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L48>`_
+`View source at line: 48 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L48>`_
 
 .. function:: type Sync struct [line: 58]
 
@@ -35,19 +35,19 @@
 	| unknown trie hashes to retrieve, accepts node data associated with said hashes
 	| and reconstructs the trie step by step until all is done.
 
-`View source at line: 58 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L58>`_
+`View source at line: 58 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L58>`_
 
 .. function:: func NewSync(root hash.Hash, database DatabaseReader, callback LeafCallback) *Sync [line: 66]
 
 	| NewSync creates a new trie data download scheduler.
 
-`View source at line: 66 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L66>`_
+`View source at line: 66 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L66>`_
 
 .. function:: func (s *Sync) AddSubTrie(root hash.Hash, depth int, parent hash.Hash, callback LeafCallback) [line: 78]
 
 	| AddSubTrie registers a new trie to the sync code, rooted at the designated parent.
 
-`View source at line: 78 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L78>`_
+`View source at line: 78 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L78>`_
 
 .. function:: func (s *Sync) AddRawEntry(h hash.Hash, depth int, parent hash.Hash) [line: 113]
 
@@ -56,13 +56,13 @@
 	| as is. This method's goal is to support misc state metadata retrievals (e.g.
 	| contract code).
 
-`View source at line: 113 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L113>`_
+`View source at line: 113 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L113>`_
 
 .. function:: func (s *Sync) Missing(max int) []hash.Hash [line: 143]
 
 	| Missing retrieves the known missing nodes from the trie for retrieval.
 
-`View source at line: 143 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L143>`_
+`View source at line: 143 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L143>`_
 
 .. function:: func (s *Sync) Process(results []SyncResult) (bool, int, error) [line: 154]
 
@@ -70,20 +70,20 @@
 	| was committed to the database and also the index of an entry if processing of
 	| it failed.
 
-`View source at line: 154 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L154>`_
+`View source at line: 154 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L154>`_
 
 .. function:: func (s *Sync) Commit(dbw kvdb.Putter) (int, error) [line: 206]
 
 	| Commit flushes the data stored in the internal membatch out to persistent
 	| storage, returning the number of items written and any occurred error.
 
-`View source at line: 206 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L206>`_
+`View source at line: 206 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L206>`_
 
 .. function:: func (s *Sync) Pending() int [line: 221]
 
 	| Pending returns the number of state entries currently pending for download.
 
-`View source at line: 221 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L221>`_
+`View source at line: 221 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L221>`_
 
 .. function:: func (s *Sync) schedule(req *request) [line: 228]
 
@@ -91,14 +91,14 @@
 	| is already a pending request for this node, the new request will be discarded
 	| and only a parent reference added to the old one.
 
-`View source at line: 228 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L228>`_
+`View source at line: 228 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L228>`_
 
 .. function:: func (s *Sync) children(req *request, object node) ([]*request, error) [line: 241]
 
 	| children retrieves all the missing children of a state trie entry for future
 	| retrieval scheduling.
 
-`View source at line: 241 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L241>`_
+`View source at line: 241 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L241>`_
 
 .. function:: func (s *Sync) commit(req *request) (err error) [line: 303]
 
@@ -106,4 +106,4 @@
 	| of the referencing parent requests complete due to this commit, they are also
 	| committed themselves.
 
-`View source at line: 303 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/sync.go#L303>`_
+`View source at line: 303 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/sync.go#L303>`_

@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/posposet/poset.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go>`_
+`src/posposet/poset.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -7,43 +7,43 @@
 
 	| Poset processes events to get consensus.
 
-`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L11>`_
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L11>`_
 
 .. function:: func New(store *Store, input EventSource) *Poset [line: 25]
 
 	| New creates Poset instance.
 
-`View source at line: 25 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L25>`_
+`View source at line: 25 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L25>`_
 
 .. function:: func (p *Poset) Start() [line: 42]
 
 	| Start starts events processing. It is not safe for concurrent use.
 
-`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L42>`_
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L42>`_
 
 .. function:: func (p *Poset) Stop() [line: 65]
 
 	| Stop stops events processing. It is not safe for concurrent use.
 
-`View source at line: 65 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L65>`_
+`View source at line: 65 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L65>`_
 
 .. function:: func (p *Poset) PushEvent(e hash.Event) [line: 75]
 
 	| PushEvent takes event into processing. Event order doesn't matter.
 
-`View source at line: 75 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L75>`_
+`View source at line: 75 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L75>`_
 
 .. function:: func (p *Poset) onNewEvent(e *Event) [line: 80]
 
 	| onNewEvent runs consensus calc from new event. It is not safe for concurrent use.
 
-`View source at line: 80 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L80>`_
+`View source at line: 80 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L80>`_
 
 .. function:: func (p *Poset) consensus(e *Event) [line: 147]
 
 	| consensus is not safe for concurrent use.
 
-`View source at line: 147 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L147>`_
+`View source at line: 147 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L147>`_
 
 .. function:: func (p *Poset) checkIfRoot(e *Event) *Frame [line: 195]
 
@@ -51,14 +51,14 @@
 	| and returns frame where event is root.
 	| It is not safe for concurrent use.
 
-`View source at line: 195 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L195>`_
+`View source at line: 195 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L195>`_
 
 .. function:: func (p *Poset) setClothoCandidates(root *Event, frame *Frame) [line: 247]
 
 	| setClothoCandidates checks clotho-conditions for seen by new root.
 	| It is not safe for concurrent use.
 
-`View source at line: 247 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L247>`_
+`View source at line: 247 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L247>`_
 
 .. function:: func (p *Poset) hasAtropos(frameNum, lastNum uint64) bool [line: 278]
 
@@ -66,29 +66,29 @@
 	| It is not safe for concurrent use.
 	| Algorithm 5 "Atropos Consensus Time Selection" implementation.
 
-`View source at line: 278 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L278>`_
+`View source at line: 278 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L278>`_
 
 .. function:: func (p *Poset) topologicalOrdered(frameNum uint64) (chain Events) [line: 334]
 
 	| topologicalOrdered sorts events to chain with Atropos consensus time.
 
-`View source at line: 334 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L334>`_
+`View source at line: 334 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L334>`_
 
 .. function:: func (p *Poset) collectParents(a *Event, res *Events, already hash.Events) [line: 358]
 
 	| collectParents recursive collects Events of Atropos.
 
-`View source at line: 358 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L358>`_
+`View source at line: 358 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L358>`_
 
 .. function:: func (p *Poset) makeBlock(ordered Events) uint64 [line: 380]
 
 	| makeBlock makes main chain block from topological ordered events.
 
-`View source at line: 380 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L380>`_
+`View source at line: 380 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L380>`_
 
 .. function:: func (p *Poset) reconsensusFromFrame(start uint64) [line: 397]
 
 	| reconsensusFromFrame recalcs consensus of frames.
 	| It is not safe for concurrent use.
 
-`View source at line: 397 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset.go#L397>`_
+`View source at line: 397 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset.go#L397>`_

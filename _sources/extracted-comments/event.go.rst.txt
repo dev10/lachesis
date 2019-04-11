@@ -1,5 +1,5 @@
 ***********************************************************************************************************************************************
-`src/posposet/event.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/event.go>`_
+`src/posposet/event.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/event.go>`_
 ***********************************************************************************************************************************************
 
 
@@ -7,17 +7,17 @@
 
 	| Event is a poset event for internal purpose.
 
-`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/event.go#L16>`_
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/event.go#L16>`_
 
 .. function:: func (ee Events) String() string [line: 31]
 
 	| String returns string representation.
 
-`View source at line: 31 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/event.go#L31>`_
+`View source at line: 31 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/event.go#L31>`_
 
 .. function:: func (ee Events) ByParents() (res Events) [line: 51]
 
 	| ByParents returns events topologically ordered by parent dependency.
 	| TODO: use Topological sort algorithm
 
-`View source at line: 51 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/event.go#L51>`_
+`View source at line: 51 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/event.go#L51>`_

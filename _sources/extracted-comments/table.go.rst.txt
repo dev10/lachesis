@@ -1,5 +1,5 @@
 ***************************************************************************************************************************************
-`src/kvdb/table.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/kvdb/table.go>`_
+`src/kvdb/table.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/table.go>`_
 ***************************************************************************************************************************************
 
 
@@ -8,4 +8,4 @@
 	| NewTable returns a Database object that prefixes all keys with a given
 	| string.
 
-`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/kvdb/table.go#L10>`_
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/table.go#L10>`_
