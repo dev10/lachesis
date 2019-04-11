@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src/poset/block.go &mdash; Lachesis 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Lachesis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../consensus.html">Lachesis Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchain.html">From Poset to Blockchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fastsync.html">FastSync</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Lachesis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>src/poset/block.go</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/extracted-comments/block.go.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go">src/poset/block.go</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<code class="descname">func (bb *BlockBody) ProtoMarshal() ([]byte, error) [line: 23]</code></dt>
+<dd><div class="line-block">
+<div class="line">ProtoMarshal json encoding of body only</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L23">View source at line: 23</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (bb *BlockBody) ProtoUnmarshal(data []byte) error [line: 33]</code></dt>
+<dd><div class="line-block">
+<div class="line">ProtoUnmarshal unmarshal the protobuff for the block body</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L33">View source at line: 33</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (bb *BlockBody) Hash() ([]byte, error) [line: 38]</code></dt>
+<dd><div class="line-block">
+<div class="line">Hash returns the block body hash</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L38">View source at line: 38</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (bs *BlockSignature) ValidatorHex() string [line: 49]</code></dt>
+<dd><div class="line-block">
+<div class="line">ValidatorHex returns the Hex ID of a validator for this block</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L49">View source at line: 49</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (bs *BlockSignature) ProtoMarshal() ([]byte, error) [line: 54]</code></dt>
+<dd><div class="line-block">
+<div class="line">ProtoMarshal marshal the block signatures to protobuff</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L54">View source at line: 54</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (bs *BlockSignature) ProtoUnmarshal(data []byte) error [line: 64]</code></dt>
+<dd><div class="line-block">
+<div class="line">ProtoUnmarshal unmarshals the blocksignature from protobuff</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L64">View source at line: 64</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (bs *BlockSignature) ToWire() WireBlockSignature [line: 69]</code></dt>
+<dd><div class="line-block">
+<div class="line">ToWire converts block signatures to wire (transport)</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L69">View source at line: 69</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (bs *BlockSignature) Equals(that *BlockSignature) bool [line: 77]</code></dt>
+<dd><div class="line-block">
+<div class="line">Equals checks blocksignature equality</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L77">View source at line: 77</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func NewBlockFromFrame(blockIndex int64, frame Frame) (Block, error) [line: 86]</code></dt>
+<dd><div class="line-block">
+<div class="line">NewBlockFromFrame creates a new block from the given frame</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L86">View source at line: 86</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func NewBlock(blockIndex, roundReceived int64, frameHash []byte, txs [][]byte) Block [line: 99]</code></dt>
+<dd><div class="line-block">
+<div class="line">NewBlock creates a new empty block with current time</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L99">View source at line: 99</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) Index() int64 [line: 114]</code></dt>
+<dd><div class="line-block">
+<div class="line">Index returns the index (height) of the block</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L114">View source at line: 114</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) Transactions() [][]byte [line: 119]</code></dt>
+<dd><div class="line-block">
+<div class="line">Transactions returns the transactions in a block</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L119">View source at line: 119</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) RoundReceived() int64 [line: 124]</code></dt>
+<dd><div class="line-block">
+<div class="line">RoundReceived returns the round in which the block was received</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L124">View source at line: 124</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) BlockHash() ([]byte, error) [line: 129]</code></dt>
+<dd><div class="line-block">
+<div class="line">BlockHash returns the Hash of the block (used for API)</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L129">View source at line: 129</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) BlockHex() string [line: 138]</code></dt>
+<dd><div class="line-block">
+<div class="line">BlockHex returns the Hex of the block (used for API)</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L138">View source at line: 138</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) GetBlockSignatures() []BlockSignature [line: 144]</code></dt>
+<dd><div class="line-block">
+<div class="line">GetBlockSignatures returns the block signatures for the block</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L144">View source at line: 144</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) GetSignature(validator string) (res BlockSignature, err error) [line: 160]</code></dt>
+<dd><div class="line-block">
+<div class="line">GetSignature returns all validator signatures for the block</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L160">View source at line: 160</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) AppendTransactions(txs [][]byte) [line: 175]</code></dt>
+<dd><div class="line-block">
+<div class="line">AppendTransactions appends the transactions to the block body</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L175">View source at line: 175</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) ProtoMarshal() ([]byte, error) [line: 180]</code></dt>
+<dd><div class="line-block">
+<div class="line">ProtoMarshal marshals the block into protobuff</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L180">View source at line: 180</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) ProtoUnmarshal(data []byte) error [line: 190]</code></dt>
+<dd><div class="line-block">
+<div class="line">ProtoUnmarshal unamrshals protobuff into a block</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L190">View source at line: 190</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) Sign(privKey *ecdsa.PrivateKey) (bs BlockSignature, err error) [line: 195]</code></dt>
+<dd><div class="line-block">
+<div class="line">Sign the block for this node</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L195">View source at line: 195</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) SetSignature(bs BlockSignature) error [line: 214]</code></dt>
+<dd><div class="line-block">
+<div class="line">SetSignature sets the known blocksignatures for the block</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L214">View source at line: 214</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) Verify(sig BlockSignature) (bool, error) [line: 220]</code></dt>
+<dd><div class="line-block">
+<div class="line">Verify verifies a blocksignature is from the node that signed</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L220">View source at line: 220</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func ListBytesEquals(this [][]byte, that [][]byte) bool [line: 237]</code></dt>
+<dd><div class="line-block">
+<div class="line">ListBytesEquals compares the equality of two lists</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L237">View source at line: 237</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (bb *BlockBody) Equals(that *BlockBody) bool [line: 250]</code></dt>
+<dd><div class="line-block">
+<div class="line">Equals compares the equality of a block body</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L250">View source at line: 250</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (wbs *WireBlockSignature) Equals(that *WireBlockSignature) bool [line: 257]</code></dt>
+<dd><div class="line-block">
+<div class="line">Equals compares the equality of wire block signatures</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L257">View source at line: 257</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func MapStringsEquals(this map[string]string, that map[string]string) bool [line: 262]</code></dt>
+<dd><div class="line-block">
+<div class="line">MapStringsEquals compares the equality of two string maps</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L262">View source at line: 262</a></p>
+<dl class="function">
+<dt>
+<code class="descname">func (b *Block) Equals(that *Block) bool [line: 276]</code></dt>
+<dd><div class="line-block">
+<div class="line">Equals compares the equality of two blocks</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/block.go#L276">View source at line: 276</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Mosaic Networks
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

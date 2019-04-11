@@ -1,0 +1,40 @@
+*************************************************************************************************************************************************
+`src/difftool/result.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/difftool/result.go>`_
+*************************************************************************************************************************************************
+
+
+.. function:: type Diff struct [line: 12]
+
+	| Diff contains and prints differences details
+
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/difftool/result.go#L12>`_
+
+.. function:: func (d *Diff) IsEmpty() bool [line: 33]
+
+	| IsEmpty is the diff empty
+
+`View source at line: 33 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/difftool/result.go#L33>`_
+
+.. function:: func (d *Diff) ToString() string [line: 39]
+
+	| ToString converts to a string
+
+`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/difftool/result.go#L39>`_
+
+.. function:: func (d *Diff) AddDescription(s string) [line: 55]
+
+	| AddDescription appends description to the diff
+
+`View source at line: 55 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/difftool/result.go#L55>`_
+
+.. function:: func (r Result) IsEmpty() bool [line: 64]
+
+	| IsEmpty is the result empty
+
+`View source at line: 64 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/difftool/result.go#L64>`_
+
+.. function:: func (r Result) ToString() string [line: 74]
+
+	| ToString result to string
+
+`View source at line: 74 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/difftool/result.go#L74>`_

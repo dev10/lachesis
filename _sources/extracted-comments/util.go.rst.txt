@@ -1,0 +1,23 @@
+***************************************************************************************************************************************
+`src/utils/util.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/utils/util.go>`_
+***************************************************************************************************************************************
+
+
+.. function:: func GetUnusedNetAddr(n int, t testing.TB) []string [line: 15]
+
+	| GetUnusedNetAddr return array of n unused ports starting with base port
+	| NB: addresses 1-1024 are reserved for non-root users;
+
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/utils/util.go#L15>`_
+
+.. function:: func HashFromHex(s string) []byte [line: 47]
+
+	| HashFromHex converts hex string to bytes.
+
+`View source at line: 47 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/utils/util.go#L47>`_
+
+.. function:: func FreePort(network string) (port uint16) [line: 61]
+
+	| FreePort gets free network port on host.
+
+`View source at line: 61 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/utils/util.go#L61>`_

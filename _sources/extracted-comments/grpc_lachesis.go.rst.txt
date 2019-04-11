@@ -1,0 +1,34 @@
+*********************************************************************************************************************************************************
+`src/proxy/grpc_lachesis.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/grpc_lachesis.go>`_
+*********************************************************************************************************************************************************
+
+
+.. function:: func NewGrpcLachesisProxy(addr string, logger *logrus.Logger) (p *GrpcLachesisProxy, err error) [line: 42]
+
+	| NewGrpcLachesisProxy instantiates a LachesisProxy-interface connected to remote node
+
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/grpc_lachesis.go#L42>`_
+
+.. function:: func (p *GrpcLachesisProxy) CommitCh() chan proto.Commit [line: 85]
+
+	| CommitCh implements LachesisProxy interface method
+
+`View source at line: 85 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/grpc_lachesis.go#L85>`_
+
+.. function:: func (p *GrpcLachesisProxy) SnapshotRequestCh() chan proto.SnapshotRequest [line: 90]
+
+	| SnapshotRequestCh implements LachesisProxy interface method
+
+`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/grpc_lachesis.go#L90>`_
+
+.. function:: func (p *GrpcLachesisProxy) RestoreCh() chan proto.RestoreRequest [line: 95]
+
+	| RestoreCh implements LachesisProxy interface method
+
+`View source at line: 95 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/grpc_lachesis.go#L95>`_
+
+.. function:: func (p *GrpcLachesisProxy) SubmitTx(tx []byte) error [line: 100]
+
+	| SubmitTx implements LachesisProxy interface method
+
+`View source at line: 100 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/grpc_lachesis.go#L100>`_

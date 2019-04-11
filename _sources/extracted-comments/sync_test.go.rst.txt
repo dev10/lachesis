@@ -1,0 +1,72 @@
+***********************************************************************************************************************************************
+`src/trie/sync_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go>`_
+***********************************************************************************************************************************************
+
+
+.. function:: func makeTestTrie(t *testing.T) (*Database, *Trie, map[string][]byte) [line: 13]
+
+	| makeTestTrie create a sample test trie to test node-wise reconstruction.
+
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L13>`_
+
+.. function:: func checkTrieContents(t *testing.T, db *Database, root []byte, content map[string][]byte) [line: 51]
+
+	| checkTrieContents cross references a reconstructed trie with an expected data
+	| content map.
+
+`View source at line: 51 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L51>`_
+
+.. function:: func checkTrieConsistency(db *Database, root hash.Hash) error [line: 68]
+
+	| checkTrieConsistency checks that all nodes in a trie are indeed present.
+
+`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L68>`_
+
+.. function:: func TestEmptySync(t *testing.T) [line: 81]
+
+	| Tests that an empty trie is not scheduled for syncing.
+
+`View source at line: 81 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L81>`_
+
+.. function:: func TestIterativeSyncIndividual(t *testing.T) [line: 96]
+
+	| Tests that given a root hash, a trie can sync iteratively on a single thread,
+	| requesting retrieval tasks and returning all of them in one go.
+
+`View source at line: 96 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L96>`_
+
+.. function:: func TestIterativeDelayedSync(t *testing.T) [line: 132]
+
+	| Tests that the trie scheduler can correctly reconstruct the state even if only
+	| partial results are returned, and the others sent only later.
+
+`View source at line: 132 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L132>`_
+
+.. function:: func TestIterativeRandomSyncIndividual(t *testing.T) [line: 167]
+
+	| Tests that given a root hash, a trie can sync iteratively on a single thread,
+	| requesting retrieval tasks and returning all of them in one go, however in a
+	| random order.
+
+`View source at line: 167 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L167>`_
+
+.. function:: func TestIterativeRandomDelayedSync(t *testing.T) [line: 211]
+
+	| Tests that the trie scheduler can correctly reconstruct the state even if only
+	| partial results are returned (Even those randomly), others sent only later.
+
+`View source at line: 211 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L211>`_
+
+.. function:: func TestDuplicateAvoidanceSync(t *testing.T) [line: 258]
+
+	| Tests that a trie sync will not request nodes multiple times, even if they
+	| have such references.
+
+`View source at line: 258 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L258>`_
+
+.. function:: func TestIncompleteSync(t *testing.T) [line: 298]
+
+	| Tests that at any point in time during a sync, only complete sub-tries are in
+	| the database.
+
+`View source at line: 298 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/sync_test.go#L298>`_

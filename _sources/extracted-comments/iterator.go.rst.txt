@@ -1,0 +1,96 @@
+*********************************************************************************************************************************************
+`src/trie/iterator.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go>`_
+*********************************************************************************************************************************************
+
+
+.. function:: type Iterator struct [line: 12]
+
+	| Iterator is a key-value trie iterator that traverses a Trie.
+
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L12>`_
+
+.. function:: func NewIterator(it NodeIterator) *Iterator [line: 21]
+
+	| NewIterator creates a new key-value iterator from a node iterator
+
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L21>`_
+
+.. function:: func (it *Iterator) Next() bool [line: 28]
+
+	| Next moves the iterator forward one key-value entry.
+
+`View source at line: 28 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L28>`_
+
+.. function:: func (it *Iterator) Prove() [][]byte [line: 44]
+
+	| Prove generates the Merkle proof for the leaf node the iterator is currently
+	| positioned on.
+
+`View source at line: 44 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L44>`_
+
+.. function:: type NodeIterator interface [line: 49]
+
+	| NodeIterator is an iterator to traverse the trie pre-order.
+
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L49>`_
+
+.. function:: type nodeIteratorState struct [line: 90]
+
+	| nodeIteratorState represents the iteration state at one particular node of the
+	| trie, which can be resumed at a later invocation.
+
+`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L90>`_
+
+.. function:: type seekError struct [line: 109]
+
+	| seekError is stored in nodeIterator.err if the initial seek has failed.
+
+`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L109>`_
+
+.. function:: func (it *nodeIterator) Next(descend bool) bool [line: 204]
+
+	| Next moves the iterator to the next node, returning whether there are any
+	| further nodes. In case of an internal error this method returns false and
+	| sets the Error field to the encountered failure. If `descend` is false,
+	| skips iterating over any subnodes of the current node.
+
+`View source at line: 204 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L204>`_
+
+.. function:: func (it *nodeIterator) peek(descend bool) (*nodeIteratorState, *int, []byte, error) [line: 242]
+
+	| peek creates the next state of the iterator.
+
+`View source at line: 242 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L242>`_
+
+.. function:: func NewDifferenceIterator(a, b NodeIterator) (NodeIterator, *int) [line: 369]
+
+	| NewDifferenceIterator constructs a NodeIterator that iterates over elements in b that
+	| are not in a. Returns the iterator, and a pointer to an integer recording the number
+	| of nodes seen.
+
+`View source at line: 369 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L369>`_
+
+.. function:: func NewUnionIterator(iters []NodeIterator) (NodeIterator, *int) [line: 476]
+
+	| NewUnionIterator constructs a NodeIterator that iterates over elements in the union
+	| of the provided NodeIterators. Returns the iterator, and a pointer to an integer
+	| recording the number of nodes visited.
+
+`View source at line: 476 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L476>`_
+
+.. function:: func (it *unionIterator) Next(descend bool) bool [line: 527]
+
+	| Next returns the next node in the union of tries being iterated over.
+	| It does this by maintaining a heap of iterators, sorted by the iteration
+	| order of their next elements, with one entry for each source trie. Each
+	| time Next() is called, it takes the least element from the heap to return,
+	| advancing any other iterators that also point to that same element. These
+	| iterators are called with descend=false, since we know that any nodes under
+	| these nodes will also be duplicates, found in the currently selected iterator.
+	| Whenever an iterator is advanced, it is pushed back into the heap if it still
+	| has elements remaining.
+	| In the case that descend=false - eg, we're asked to ignore all subnodes of the
+	| current node - we also advance any iterators in the heap that have the current
+	| path as a prefix.
+
+`View source at line: 527 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/iterator.go#L527>`_

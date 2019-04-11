@@ -1,0 +1,64 @@
+*************************************************************************************************************************************************
+`src/proxy/inmem_app.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go>`_
+*************************************************************************************************************************************************
+
+
+.. function:: type InmemAppProxy struct [line: 11]
+
+	| InmemAppProxy implements the AppProxy interface natively
+
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L11>`_
+
+.. function:: func NewInmemAppProxy(handler ProxyHandler, logger *logrus.Logger) *InmemAppProxy [line: 19]
+
+	| NewInmemAppProxy instantiates an InmemProxy from a set of handlers
+
+`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L19>`_
+
+.. function:: func (p *InmemAppProxy) SubmitCh() chan []byte [line: 38]
+
+	| SubmitCh implements AppProxy interface method
+
+`View source at line: 38 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L38>`_
+
+.. function:: func (p *InmemAppProxy) ProposePeerAdd(peer peers.Peer) [line: 43]
+
+	| ProposePeerAdd propose to add a peer to the rest of the network
+
+`View source at line: 43 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L43>`_
+
+.. function:: func (p *InmemAppProxy) ProposePeerRemove(peer peers.Peer) [line: 48]
+
+	| ProposePeerRemove propose to remove a peer from the network
+
+`View source at line: 48 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L48>`_
+
+.. function:: func (p *InmemAppProxy) SubmitInternalCh() chan poset.InternalTransaction [line: 53]
+
+	| SubmitInternalCh returns the channel of raw transactions
+
+`View source at line: 53 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L53>`_
+
+.. function:: func (p *InmemAppProxy) CommitBlock(block poset.Block) ([]byte, error) [line: 58]
+
+	| CommitBlock implements AppProxy interface method, calls handler
+
+`View source at line: 58 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L58>`_
+
+.. function:: func (p *InmemAppProxy) GetSnapshot(blockIndex int64) ([]byte, error) [line: 70]
+
+	| GetSnapshot implements AppProxy interface method, calls handler
+
+`View source at line: 70 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L70>`_
+
+.. function:: func (p *InmemAppProxy) Restore(snapshot []byte) error [line: 81]
+
+	| Restore implements AppProxy interface method, calls handler
+
+`View source at line: 81 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L81>`_
+
+.. function:: func (p *InmemAppProxy) SubmitTx(tx []byte) [line: 95]
+
+	| SubmitTx is called by the App to submit a transaction to Lachesis
+
+`View source at line: 95 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/inmem_app.go#L95>`_

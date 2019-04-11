@@ -1,0 +1,22 @@
+*****************************************************************************************************************************************************
+`src/peer/fakenet/addr.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peer/fakenet/addr.go>`_
+*****************************************************************************************************************************************************
+
+
+.. function:: type Addr struct [line: 4]
+
+	| Addr is a fake network address.
+
+`View source at line: 4 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peer/fakenet/addr.go#L4>`_
+
+.. function:: func (a Addr) Network() string [line: 10]
+
+	| Network returns name of the network (for example, "tcp", "udp").
+
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peer/fakenet/addr.go#L10>`_
+
+.. function:: func (a Addr) String() string [line: 15]
+
+	| String returns a string form of address.
+
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peer/fakenet/addr.go#L15>`_

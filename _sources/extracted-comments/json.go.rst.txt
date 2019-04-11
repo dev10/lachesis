@@ -1,0 +1,82 @@
+*********************************************************************************************************************************************************
+`src/common/hexutil/json.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go>`_
+*********************************************************************************************************************************************************
+
+
+.. function:: func (b Big) MarshalText() ([]byte, error) [line: 120]
+
+	| MarshalText implements encoding.TextMarshaller
+
+`View source at line: 120 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L120>`_
+
+.. function:: func (b *Big) UnmarshalJSON(input []byte) error [line: 125]
+
+	| UnmarshalJSON implements json.Unmarshaller.
+
+`View source at line: 125 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L125>`_
+
+.. function:: func (b *Big) UnmarshalText(input []byte) error [line: 133]
+
+	| UnmarshalText implements encoding.TextUnmarshaller
+
+`View source at line: 133 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L133>`_
+
+.. function:: func (b *Big) ToInt() *big.Int [line: 165]
+
+	| ToInt converts b to a big.Int.
+
+`View source at line: 165 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L165>`_
+
+.. function:: func (b *Big) String() string [line: 170]
+
+	| String returns the hex encoding of b.
+
+`View source at line: 170 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L170>`_
+
+.. function:: func (b Uint64) MarshalText() ([]byte, error) [line: 179]
+
+	| MarshalText implements encoding.TextMarshaller.
+
+`View source at line: 179 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L179>`_
+
+.. function:: func (b *Uint64) UnmarshalJSON(input []byte) error [line: 187]
+
+	| UnmarshalJSON implements json.Unmarshaller.
+
+`View source at line: 187 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L187>`_
+
+.. function:: func (b *Uint64) UnmarshalText(input []byte) error [line: 195]
+
+	| UnmarshalText implements encoding.TextUnmarshaller
+
+`View source at line: 195 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L195>`_
+
+.. function:: func (b Uint64) String() string [line: 217]
+
+	| String returns the hex encoding of b.
+
+`View source at line: 217 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L217>`_
+
+.. function:: func (b Uint) MarshalText() ([]byte, error) [line: 226]
+
+	| MarshalText implements encoding.TextMarshaller.
+
+`View source at line: 226 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L226>`_
+
+.. function:: func (b *Uint) UnmarshalJSON(input []byte) error [line: 231]
+
+	| UnmarshalJSON implements json.Unmarshaller.
+
+`View source at line: 231 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L231>`_
+
+.. function:: func (b *Uint) UnmarshalText(input []byte) error [line: 239]
+
+	| UnmarshalText implements encoding.TextUnmarshaller.
+
+`View source at line: 239 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L239>`_
+
+.. function:: func (b Uint) String() string [line: 252]
+
+	| String returns the hex encoding of b.
+
+`View source at line: 252 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hexutil/json.go#L252>`_

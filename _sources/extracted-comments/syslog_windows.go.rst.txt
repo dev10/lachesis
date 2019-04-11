@@ -1,0 +1,18 @@
+*******************************************************************************************************************************************************
+`src/log/syslog_windows.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/log/syslog_windows.go>`_
+*******************************************************************************************************************************************************
+
+
+.. function:: type SyslogHook struct [line: 15]
+
+	| SyslogHook to send logs via syslog.
+
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/log/syslog_windows.go#L15>`_
+
+.. function:: func NewSyslogHook(network, raddr string, src string) (*SyslogHook, error) [line: 22]
+
+	| Creates a hook to be added to an instance of logger. This is called with
+	| `hook, err := NewSyslogHook("", "localhost", "MySource")`
+	| `if err == nil { log.Hooks.Add(hook) }`
+
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/log/syslog_windows.go#L22>`_

@@ -1,0 +1,11 @@
+***************************************************************************************************************************************
+`src/kvdb/table.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/kvdb/table.go>`_
+***************************************************************************************************************************************
+
+
+.. function:: func NewTable(db Database, prefix string) Database [line: 10]
+
+	| NewTable returns a Database object that prefixes all keys with a given
+	| string.
+
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/kvdb/table.go#L10>`_

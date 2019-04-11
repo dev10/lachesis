@@ -1,0 +1,15 @@
+*************************************************************************************************************************************************************************
+`src/posposet/poset_atropos_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/poset_atropos_test.go>`_
+*************************************************************************************************************************************************************************
+
+
+.. function:: func testSpecialNamedAtropos(t *testing.T, tryRestoring bool, asciiScheme string) [line: 94]
+
+	| testSpecialNamedAtropos is a general test of Atropos selection.
+	| Node name means:
+	| - 1st letter uppercase - node should be root;
+	| - 2nd number - index by node;
+	| - 3rd number - frame where node should be in;
+	| - last "+T" - means Atropos and its consensus time;
+
+`View source at line: 94 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/poset_atropos_test.go#L94>`_

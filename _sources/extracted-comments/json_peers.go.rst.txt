@@ -1,0 +1,29 @@
+***************************************************************************************************************************************************
+`src/peers/json_peers.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peers/json_peers.go>`_
+***************************************************************************************************************************************************
+
+
+.. function:: type JSONPeers struct [line: 15]
+
+	| JSONPeers is used to provide peer persistence on disk in the form
+	| of a JSON file. This allows human operators to manipulate the file.
+
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peers/json_peers.go#L15>`_
+
+.. function:: func NewJSONPeers(base string) *JSONPeers [line: 21]
+
+	| NewJSONPeers creates a new JSONPeers store.
+
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peers/json_peers.go#L21>`_
+
+.. function:: func (j *JSONPeers) Peers() (*Peers, error) [line: 30]
+
+	| Peers implements the PeerStore interface.
+
+`View source at line: 30 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peers/json_peers.go#L30>`_
+
+.. function:: func (j *JSONPeers) SetPeers(peers []*Peer) error [line: 67]
+
+	| SetPeers implements the PeerStore interface.
+
+`View source at line: 67 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/peers/json_peers.go#L67>`_

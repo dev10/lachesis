@@ -1,0 +1,10 @@
+*********************************************************************************************************************************************
+`src/common/hash64.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hash64.go>`_
+*********************************************************************************************************************************************
+
+
+.. function:: func Hash64(data []byte) uint64 [line: 6]
+
+	| Hash64 TODO
+
+`View source at line: 6 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/common/hash64.go#L6>`_

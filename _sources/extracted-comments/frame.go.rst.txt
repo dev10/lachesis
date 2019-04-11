@@ -1,0 +1,58 @@
+***********************************************************************************************************************************************
+`src/posposet/frame.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go>`_
+***********************************************************************************************************************************************
+
+
+.. function:: type Frame struct [line: 14]
+
+	| Frame is a consensus tables for frame.
+
+`View source at line: 14 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L14>`_
+
+.. function:: func (f *Frame) Save() [line: 25]
+
+	| Save calls .save() if set.
+
+`View source at line: 25 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L25>`_
+
+.. function:: func (f *Frame) AddRootsOf(event hash.Event, roots EventsByPeer) [line: 32]
+
+	| AddRootsOf appends known roots for event.
+
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L32>`_
+
+.. function:: func (f *Frame) AddClothoCandidate(event hash.Event, creator hash.Peer) [line: 42]
+
+	| AddClothoCandidate adds event into ClothoCandidates list.
+
+`View source at line: 42 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L42>`_
+
+.. function:: func (f *Frame) SetAtropos(clotho hash.Event, consensusTime inter.Timestamp) [line: 49]
+
+	| SetAtropos makes Atropos from Clotho and consensus time.
+
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L49>`_
+
+.. function:: func (f *Frame) GetRootsOf(event hash.Event) EventsByPeer [line: 58]
+
+	| GetRootsOf returns known roots of event. For read only, please.
+
+`View source at line: 58 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L58>`_
+
+.. function:: func (f *Frame) SetBalances(balances hash.Hash) bool [line: 63]
+
+	| SetBalances saves PoS-balances state.
+
+`View source at line: 63 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L63>`_
+
+.. function:: func (f *Frame) ToWire() *wire.Frame [line: 73]
+
+	| ToWire converts to proto.Message.
+
+`View source at line: 73 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L73>`_
+
+.. function:: func WireToFrame(w *wire.Frame) *Frame [line: 84]
+
+	| WireToFrame converts from wire.
+
+`View source at line: 84 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/frame.go#L84>`_

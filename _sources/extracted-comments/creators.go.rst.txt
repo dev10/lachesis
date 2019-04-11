@@ -1,0 +1,10 @@
+*****************************************************************************************************************************************************
+`src/posposet/creators.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/creators.go>`_
+*****************************************************************************************************************************************************
+
+
+.. function:: type parentsValidator struct [line: 12]
+
+	| parentsValidator checks parent nodes rule.
+
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/posposet/creators.go#L12>`_

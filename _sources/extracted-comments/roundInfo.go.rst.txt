@@ -1,0 +1,130 @@
+*************************************************************************************************************************************************
+`src/poset/roundInfo.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go>`_
+*************************************************************************************************************************************************
+
+
+.. function:: type RoundCreated struct [line: 13]
+
+	| RoundCreated wrapper for protobuf created round event messages
+
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L13>`_
+
+.. function:: func NewRoundCreated() *RoundCreated [line: 18]
+
+	| NewRoundCreated creates a new round info struct
+
+`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L18>`_
+
+.. function:: func NewRoundReceived() *RoundReceived [line: 27]
+
+	| NewRoundReceived constructor
+
+`View source at line: 27 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L27>`_
+
+.. function:: func (r *RoundCreated) AddEvent(x EventHash, clotho bool) [line: 34]
+
+	| AddEvent add event to round info (optionally set clotho)
+
+`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L34>`_
+
+.. function:: func (r *RoundCreated) SetConsensusEvent(x EventHash) [line: 44]
+
+	| SetConsensusEvent set an event as a consensus event
+
+`View source at line: 44 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L44>`_
+
+.. function:: func (r *RoundCreated) SetRoundReceived(x string, round int64) [line: 54]
+
+	| SetRoundReceived set the received round for the given event
+
+`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L54>`_
+
+.. function:: func (r *RoundCreated) SetAtropos(x EventHash, f bool) [line: 67]
+
+	| SetAtropos sets whether the given event is Atropos, otherwise it is Clotho when not found
+
+`View source at line: 67 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L67>`_
+
+.. function:: func (r *RoundCreated) ClothoDecided() bool [line: 83]
+
+	| ClothoDecided return true if no clothos' fame is left undefined
+
+`View source at line: 83 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L83>`_
+
+.. function:: func (r *RoundCreated) Clotho() EventHashes [line: 93]
+
+	| Clotho return clothos
+
+`View source at line: 93 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L93>`_
+
+.. function:: func (r *RoundCreated) RoundEvents() (res EventHashes) [line: 106]
+
+	| RoundEvents returns all non-consensus events for the created round
+
+`View source at line: 106 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L106>`_
+
+.. function:: func (r *RoundCreated) ConsensusEvents() (res EventHashes) [line: 118]
+
+	| ConsensusEvents returns all consensus events for the created round
+
+`View source at line: 118 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L118>`_
+
+.. function:: func (r *RoundCreated) Atropos() (res []EventHash) [line: 130]
+
+	| Atropos return Atropos
+
+`View source at line: 130 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L130>`_
+
+.. function:: func (r *RoundCreated) IsDecided(clotho EventHash) bool [line: 142]
+
+	| IsDecided checks if the event is a decided clotho
+
+`View source at line: 142 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L142>`_
+
+.. function:: func (r *RoundCreated) ProtoMarshal() ([]byte, error) [line: 148]
+
+	| ProtoMarshal marshals the created round to protobuf
+
+`View source at line: 148 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L148>`_
+
+.. function:: func (r *RoundReceived) ProtoMarshal() ([]byte, error) [line: 158]
+
+	| ProtoMarshal serialises the received round using protobuf
+
+`View source at line: 158 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L158>`_
+
+.. function:: func (r *RoundCreated) ProtoUnmarshal(data []byte) error [line: 168]
+
+	| ProtoUnmarshal de-serialises the created round using protobuf
+
+`View source at line: 168 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L168>`_
+
+.. function:: func (r *RoundReceived) ProtoUnmarshal(data []byte) error [line: 173]
+
+	| ProtoUnmarshal de-serialises RoundReceived using protobuf
+
+`View source at line: 173 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L173>`_
+
+.. function:: func (r *RoundCreated) IsQueued() bool [line: 178]
+
+	| IsQueued returns whether the RoundCreated is queued for processing in PendingRounds
+
+`View source at line: 178 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L178>`_
+
+.. function:: func (re *RoundEvent) Equals(that *RoundEvent) bool [line: 183]
+
+	| Equals compares round events for equality
+
+`View source at line: 183 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L183>`_
+
+.. function:: func EqualsMapStringRoundEvent(this map[string]*RoundEvent, that map[string]*RoundEvent) bool [line: 191]
+
+	| EqualsMapStringRoundEvent compares a map string of round events for equality
+
+`View source at line: 191 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L191>`_
+
+.. function:: func (r *RoundCreated) Equals(that *RoundCreated) bool [line: 205]
+
+	| Equals compares two round created structs for equality
+
+`View source at line: 205 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/poset/roundInfo.go#L205>`_

@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src/proxy/grpc_test.go &mdash; Lachesis 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Lachesis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../consensus.html">Lachesis Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchain.html">From Poset to Blockchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fastsync.html">FastSync</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Lachesis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>src/proxy/grpc_test.go</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/extracted-comments/grpc_test.go.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/grpc_test.go">src/proxy/grpc_test.go</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<code class="descname">[line: ???]</code></dt>
+<dd><div class="line-block">
+<div class="line">func TestGrpcMaxMsgSize(t <a href="#id2"><span class="problematic" id="id3">*</span></a>testing.T) {</div>
+<div class="line">const (</div>
+<div class="line">largeSize  = 100 * 1024 * 1024</div>
+<div class="line">timeout    = 3 * time.Minute</div>
+<div class="line">errTimeout = “time is over”</div>
+<div class="line">)</div>
+<div class="line">addr := utils.GetUnusedNetAddr(t);</div>
+<div class="line">logger := common.NewTestLogger(t)</div>
+<div class="line">s, err := NewGrpcAppProxy(addr, timeout, logger)</div>
+<div class="line">assert.NoError(t, err)</div>
+<div class="line">c, err := NewGrpcLachesisProxy(addr, logger)</div>
+<div class="line">assert.NoError(t, err)</div>
+<div class="line">largeData := make([]byte, largeSize)</div>
+<div class="line">_, err = rand.Read(largeData)</div>
+<div class="line">assert.NoError(t, err)</div>
+<div class="line">t.Run(“#1 Send large tx”, func(t <a href="#id4"><span class="problematic" id="id5">*</span></a>testing.T) {</div>
+<div class="line">assert := assert.New(t)</div>
+<div class="line">err = c.SubmitTx(largeData)</div>
+<div class="line">assert.NoError(err)</div>
+<div class="line">select {</div>
+<div class="line">case tx := &lt;-s.SubmitCh():</div>
+<div class="line">assert.Equal(largeData, tx)</div>
+<div class="line">case &lt;-time.After(timeout):</div>
+<div class="line">assert.Fail(errTimeout)</div>
+<div class="line">}</div>
+<div class="line">})</div>
+<div class="line">t.Run(“#2 Receive large block”, func(t <a href="#id6"><span class="problematic" id="id7">*</span></a>testing.T) {</div>
+<div class="line">assert := assert.New(t)</div>
+<div class="line">block := poset.Block{</div>
+<div class="line">Body: poset.BlockBody{</div>
+<div class="line">Transactions: [][]byte{</div>
+<div class="line">largeData,</div>
+<div class="line">},</div>
+<div class="line">},</div>
+<div class="line">}</div>
+<div class="line">hash := largeData[:largeSize/10]</div>
+<div class="line">go func() {</div>
+<div class="line">select {</div>
+<div class="line">case event := &lt;-c.CommitCh():</div>
+<div class="line">assert.EqualValues(block, event.Block)</div>
+<div class="line">event.RespChan &lt;- proto.CommitResponse{</div>
+<div class="line">StateHash: hash,</div>
+<div class="line">Error:     nil,</div>
+<div class="line">}</div>
+<div class="line">case &lt;-time.After(timeout):</div>
+<div class="line">assert.Fail(errTimeout)</div>
+<div class="line">}</div>
+<div class="line">}()</div>
+<div class="line">answer, err := s.CommitBlock(block)</div>
+<div class="line">if assert.NoError(err) {</div>
+<div class="line">assert.Equal(hash, answer)</div>
+<div class="line">}</div>
+<div class="line">})</div>
+<div class="line">err = c.Close()</div>
+<div class="line">assert.NoError(t, err)</div>
+<div class="line">err = s.Close()</div>
+<div class="line">assert.NoError(t, err)</div>
+<div class="line">}</div>
+</div>
+</dd></dl>
+
+<p><a class="reference external" href="https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/proxy/grpc_test.go#L???">View source at line: ???</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Mosaic Networks
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

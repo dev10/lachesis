@@ -1,0 +1,10 @@
+*************************************************************************************************************************************************************
+`src/trie/internal/node.pb.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/internal/node.pb.go>`_
+*************************************************************************************************************************************************************
+
+
+.. function:: func (*Node) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface [line: 210]
+
+	| XXX_OneofFuncs is for the internal use of the proto package.
+
+`View source at line: 210 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/trie/internal/node.pb.go#L210>`_

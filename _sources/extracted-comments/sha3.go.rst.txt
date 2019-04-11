@@ -1,0 +1,57 @@
+***************************************************************************************************************************************************
+`src/crypto/sha3/sha3.go <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go>`_
+***************************************************************************************************************************************************
+
+
+.. function:: func (d *state) BlockSize() int [line: 50]
+
+	| BlockSize returns the rate of sponge underlying this hash function.
+
+`View source at line: 50 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go#L50>`_
+
+.. function:: func (d *state) Size() int [line: 53]
+
+	| Size returns the output size of the hash function in bytes.
+
+`View source at line: 53 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go#L53>`_
+
+.. function:: func (d *state) Reset() [line: 57]
+
+	| Reset clears the internal state by zeroing the sponge state and
+	| the byte buffer, and setting Sponge.state to absorbing.
+
+`View source at line: 57 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go#L57>`_
+
+.. function:: func (d *state) permute() [line: 79]
+
+	| permute applies the KeccakF-1600 permutation. It handles
+	| any input-output buffering.
+
+`View source at line: 79 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go#L79>`_
+
+.. function:: func (d *state) padAndPermute(dsbyte byte) [line: 98]
+
+	| pads appends the domain separation bits in dsbyte, applies
+	| the multi-bitrate 10..1 padding rule, and permutes the state.
+
+`View source at line: 98 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go#L98>`_
+
+.. function:: func (d *state) Write(p []byte) (written int, err error) [line: 125]
+
+	| Write absorbs more data into the hash's state. It produces an error
+	| if more data is written to the ShakeHash after writing
+
+`View source at line: 125 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go#L125>`_
+
+.. function:: func (d *state) Read(out []byte) (n int, err error) [line: 160]
+
+	| Read squeezes an arbitrary number of bytes from the sponge.
+
+`View source at line: 160 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go#L160>`_
+
+.. function:: func (d *state) Sum(in []byte) []byte [line: 185]
+
+	| Sum applies padding to the hash state and then squeezes out the desired
+	| number of output bytes.
+
+`View source at line: 185 <https://github.com/Fantom-Foundation/go-lachesis/blob/e14a71caff32f0c1b2eef86fdb9838710f7a1448src/crypto/sha3/sha3.go#L185>`_
