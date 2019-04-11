@@ -1,0 +1,28 @@
+*******************************************************************************************************************************************
+`src/crypto/utils.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/utils.go>`_
+*******************************************************************************************************************************************
+
+
+.. function:: func Sign(priv *ecdsa.PrivateKey, hash []byte) (r, s *big.Int, err error) [line: 12]
+
+	| Sign signs with key
+
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/utils.go#L12>`_
+
+.. function:: func Verify(pub *ecdsa.PublicKey, hash []byte, r, s *big.Int) bool [line: 17]
+
+	| Verify verifies the signatures
+
+`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/utils.go#L17>`_
+
+.. function:: func EncodeSignature(r, s *big.Int) string [line: 22]
+
+	| EncodeSignature string print
+
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/utils.go#L22>`_
+
+.. function:: func DecodeSignature(sig string) (r, s *big.Int, err error) [line: 27]
+
+	| DecodeSignature decode signature from string
+
+`View source at line: 27 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/utils.go#L27>`_

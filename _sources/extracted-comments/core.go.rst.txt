@@ -1,0 +1,250 @@
+*************************************************************************************************************************************
+`src/node/core.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go>`_
+*************************************************************************************************************************************
+
+
+.. function:: type Core struct [line: 31]
+
+	| Core struct that controls the consensus, transaction, and communication
+
+`View source at line: 31 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L31>`_
+
+.. function:: func (c *Core) ID() uint64 [line: 83]
+
+	| ID returns the ID of this core
+
+`View source at line: 83 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L83>`_
+
+.. function:: func (c *Core) PubKey() []byte [line: 88]
+
+	| PubKey returns the public key of this core
+
+`View source at line: 88 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L88>`_
+
+.. function:: func (c *Core) HexID() string [line: 96]
+
+	| HexID returns the Hex representation of the public key
+
+`View source at line: 96 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L96>`_
+
+.. function:: func (c *Core) Head() poset.EventHash [line: 105]
+
+	| Head returns the current chain head for this core
+
+`View source at line: 105 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L105>`_
+
+.. function:: func (c *Core) Heights() map[string]int64 [line: 110]
+
+	| Heights returns map with heights for each participant PubKeyHex
+
+`View source at line: 110 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L110>`_
+
+.. function:: func (c *Core) HeightsByID() map[uint64]int64 [line: 119]
+
+	| Heights returns map with heights for each participant ID
+
+`View source at line: 119 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L119>`_
+
+.. function:: func (c *Core) InDegrees() map[string]int64 [line: 128]
+
+	| InDegrees returns all vertexes from other nodes that reference this top event block
+
+`View source at line: 128 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L128>`_
+
+.. function:: func (c *Core) SetHeadAndHeight() error [line: 137]
+
+	| SetHeadAndHeight calculates and sets the current head and height for the chain
+
+`View source at line: 137 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L137>`_
+
+.. function:: func (c *Core) Bootstrap() error [line: 176]
+
+	| Bootstrap the poset with default values
+
+`View source at line: 176 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L176>`_
+
+.. function:: func (c *Core) SignAndInsertSelfEvent(event poset.Event) error [line: 217]
+
+	| SignAndInsertSelfEvent signs and inserts a self generated event block
+
+`View source at line: 217 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L217>`_
+
+.. function:: func (c *Core) InsertEvent(event poset.Event, setWireInfo bool) error [line: 226]
+
+	| InsertEvent inserts an unknown event block
+
+`View source at line: 226 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L226>`_
+
+.. function:: func (c *Core) KnownEvents() map[uint64]int64 [line: 254]
+
+	| KnownEvents returns map of last known event blocks per participant.ID
+
+`View source at line: 254 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L254>`_
+
+.. function:: func (c *Core) SignBlock(block poset.Block) (poset.BlockSignature, error) [line: 261]
+
+	| SignBlock sign a block to register it as an anchor block
+
+`View source at line: 261 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L261>`_
+
+.. function:: func (c *Core) OverSyncLimit(knownEvents map[uint64]int64, syncLimit int64) bool [line: 275]
+
+	| OverSyncLimit checks if the unknown events is over the sync limit and if the node should catch up
+
+`View source at line: 275 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L275>`_
+
+.. function:: func (c *Core) GetAnchorBlockWithFrame() (poset.Block, poset.Frame, error) [line: 287]
+
+	| GetAnchorBlockWithFrame returns the current anchor block and their frame
+
+`View source at line: 287 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L287>`_
+
+.. function:: func (c *Core) EventDiff(known map[uint64]int64) (events []poset.Event, err error) [line: 292]
+
+	| EventDiff returns events that c knows about and are not in 'known'
+
+`View source at line: 292 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L292>`_
+
+.. function:: func (c *Core) Sync(peer *peers.Peer, unknownEvents []poset.WireEvent) error [line: 332]
+
+	| Sync unknown events into our poset
+
+`View source at line: 332 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L332>`_
+
+.. function:: func (c *Core) FastForward(peer string, block poset.Block, frame poset.Frame) error [line: 388]
+
+	| FastForward catch up to another peer if too far behind
+
+`View source at line: 388 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L388>`_
+
+.. function:: func (c *Core) AddSelfEventBlock(otherHead poset.EventHash) error [line: 431]
+
+	| AddSelfEventBlock adds an event block created by this node
+
+`View source at line: 431 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L431>`_
+
+.. function:: func (c *Core) FromWire(wireEvents []poset.WireEvent) ([]poset.Event, error) [line: 517]
+
+	| FromWire converts wire events into event blocks (that were transported)
+
+`View source at line: 517 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L517>`_
+
+.. function:: func (c *Core) ToWire(events []poset.Event) ([]poset.WireEvent, error) [line: 530]
+
+	| ToWire converts event blocks into wire events (to be transported)
+
+`View source at line: 530 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L530>`_
+
+.. function:: func (c *Core) RunConsensus() error [line: 539]
+
+	| RunConsensus is the core consensus mechanism, this checks rounds/frames and creates blocks.
+
+`View source at line: 539 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L539>`_
+
+.. function:: func (c *Core) AddTransactions(txs [][]byte) error [line: 590]
+
+	| AddTransactions add transactions to the pending pool
+
+`View source at line: 590 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L590>`_
+
+.. function:: func (c *Core) AddInternalTransactions(txs []poset.InternalTransaction) [line: 603]
+
+	| AddInternalTransactions add internal transactions to the pending pool
+
+`View source at line: 603 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L603>`_
+
+.. function:: func (c *Core) AddBlockSignature(bs poset.BlockSignature) [line: 610]
+
+	| AddBlockSignature add block signatures to the pending pool
+
+`View source at line: 610 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L610>`_
+
+.. function:: func (c *Core) GetHead() (poset.Event, error) [line: 617]
+
+	| GetHead get the current latest event block head
+
+`View source at line: 617 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L617>`_
+
+.. function:: func (c *Core) GetEventBlock(hash poset.EventHash) (poset.Event, error) [line: 622]
+
+	| GetEventBlock get a specific event block for the hash provided
+
+`View source at line: 622 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L622>`_
+
+.. function:: func (c *Core) GetEventBlockTransactions(hash poset.EventHash) ([][]byte, error) [line: 627]
+
+	| GetEventBlockTransactions get all transactions in an event block
+
+`View source at line: 627 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L627>`_
+
+.. function:: func (c *Core) GetConsensusEvents() poset.EventHashes [line: 638]
+
+	| GetConsensusEvents get all known consensus events
+
+`View source at line: 638 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L638>`_
+
+.. function:: func (c *Core) GetConsensusEventsCount() int64 [line: 643]
+
+	| GetConsensusEventsCount get the count of all known consensus events
+
+`View source at line: 643 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L643>`_
+
+.. function:: func (c *Core) GetUndeterminedEvents() poset.EventHashes [line: 648]
+
+	| GetUndeterminedEvents get all unconfirmed consensus events (pending)
+
+`View source at line: 648 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L648>`_
+
+.. function:: func (c *Core) GetPendingLoadedEvents() int64 [line: 653]
+
+	| GetPendingLoadedEvents returns all pending (but already stored) events
+
+`View source at line: 653 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L653>`_
+
+.. function:: func (c *Core) GetConsensusTransactions() ([][]byte, error) [line: 658]
+
+	| GetConsensusTransactions return all transactions that have reached finality
+
+`View source at line: 658 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L658>`_
+
+.. function:: func (c *Core) GetLastConsensusRound() int64 [line: 671]
+
+	| GetLastConsensusRound returns the last consensus round known
+
+`View source at line: 671 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L671>`_
+
+.. function:: func (c *Core) GetConsensusTransactionsCount() uint64 [line: 676]
+
+	| GetConsensusTransactionsCount returns the count of transactions that are final
+
+`View source at line: 676 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L676>`_
+
+.. function:: func (c *Core) GetLastCommittedRoundEventsCount() int [line: 681]
+
+	| GetLastCommittedRoundEventsCount count of events in last round
+
+`View source at line: 681 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L681>`_
+
+.. function:: func (c *Core) GetLastBlockIndex() int64 [line: 686]
+
+	| GetLastBlockIndex retuns the latest block index
+
+`View source at line: 686 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L686>`_
+
+.. function:: func (c *Core) GetTransactionPoolCount() int64 [line: 691]
+
+	| GetTransactionPoolCount returns the count of all pending transactions
+
+`View source at line: 691 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L691>`_
+
+.. function:: func (c *Core) GetInternalTransactionPoolCount() int64 [line: 698]
+
+	| GetInternalTransactionPoolCount returns the count of all pending internal transactions
+
+`View source at line: 698 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L698>`_
+
+.. function:: func (c *Core) GetBlockSignaturePoolCount() int64 [line: 705]
+
+	| GetBlockSignaturePoolCount returns the count of all pending block signatures
+
+`View source at line: 705 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/core.go#L705>`_

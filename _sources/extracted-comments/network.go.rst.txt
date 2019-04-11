@@ -1,0 +1,22 @@
+***********************************************************************************************************************************************************
+`src/peer/fakenet/network.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/peer/fakenet/network.go>`_
+***********************************************************************************************************************************************************
+
+
+.. function:: type Network struct [line: 16]
+
+	| Network is a fake network.
+
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/peer/fakenet/network.go#L16>`_
+
+.. function:: func NewNetwork(listeners ...*Listener) *Network [line: 22]
+
+	| NewNetwork creates a new fake network.
+
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/peer/fakenet/network.go#L22>`_
+
+.. function:: func (n *Network) RandomAddress() string [line: 101]
+
+	| RandomAddress creates random network address in the format address:port.
+
+`View source at line: 101 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/peer/fakenet/network.go#L101>`_

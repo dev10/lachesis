@@ -1,0 +1,60 @@
+*********************************************************************************************************************************************************
+`src/node/peer_selector2.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go>`_
+*********************************************************************************************************************************************************
+
+
+.. function:: type SmartPeerSelector struct [line: 14]
+
+	| SmartPeerSelector provides selection based on FlagTable of a randomly chosen undermined event
+
+`View source at line: 14 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L14>`_
+
+.. function:: type SmartPeerSelectorCreationFnArgs struct [line: 23]
+
+	| SmartPeerSelectorCreationFnArgs specifies which additional arguments are required to create a SmartPeerSelector
+
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L23>`_
+
+.. function:: func NewSmartPeerSelector(participants *peers.Peers, args SmartPeerSelectorCreationFnArgs) *SmartPeerSelector [line: 29]
+
+	| NewSmartPeerSelector creates a new smart peer selection struct
+
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L29>`_
+
+.. function:: func NewSmartPeerSelectorWrapper(participants *peers.Peers, args interface [line: 40]
+
+	| NewSmartPeerSelectorWrapper implements SelectorCreationFn to allow dynamic creation of SmartPeerSelector ie NewNode
+
+`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L40>`_
+
+.. function:: func (ps *SmartPeerSelector) Peers() *peers.Peers [line: 45]
+
+	| Peers returns all known peers
+
+`View source at line: 45 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L45>`_
+
+.. function:: func (ps *SmartPeerSelector) UpdateLast(peer string) [line: 50]
+
+	| UpdateLast sets the last peer communicated with (avoid double talk)
+
+`View source at line: 50 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L50>`_
+
+.. function:: func (ps *SmartPeerSelector) Next() *peers.Peer [line: 61]
+
+	| Next returns the next peer based on the flag table cost function selection
+
+`View source at line: 61 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L61>`_
+
+.. function:: func (ps *SmartPeerSelector)Engage(peer string) [line: 132]
+
+	| Indicate we are in communication with a peer
+	| so it would be excluded from next peer selection
+
+`View source at line: 132 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L132>`_
+
+.. function:: func (ps *SmartPeerSelector)Dismiss(peer string) [line: 140]
+
+	| Indicate we are not in communication with a peer
+	| so it could be selected as a next peer
+
+`View source at line: 140 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/peer_selector2.go#L140>`_

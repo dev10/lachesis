@@ -1,0 +1,59 @@
+*******************************************************************************************************************************************************
+`src/common/prque/prque.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go>`_
+*******************************************************************************************************************************************************
+
+
+.. function:: type Prque struct [line: 10]
+
+	| Prque queue data structure.
+
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L10>`_
+
+.. function:: func New(setIndex setIndexCallback) *Prque [line: 15]
+
+	| New creates a new priority queue.
+
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L15>`_
+
+.. function:: func (p *Prque) Push(data interface [line: 20]
+
+	| Push pushes a value with a given priority into the queue, expanding if necessary.
+
+`View source at line: 20 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L20>`_
+
+.. function:: func (p *Prque) Pop() (interface [line: 26]
+
+	| Pop pops the value with the greatest priority off the stack and returns it.
+	| Currently no shrinking is done.
+
+`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L26>`_
+
+.. function:: func (p *Prque) PopItem() interface [line: 32]
+
+	| PopItem pops only the item from the queue, dropping the associated priority value.
+
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L32>`_
+
+.. function:: func (p *Prque) Remove(i int) interface [line: 37]
+
+	| Remove removes the element with the given index.
+
+`View source at line: 37 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L37>`_
+
+.. function:: func (p *Prque) Empty() bool [line: 45]
+
+	| Empty checks whether the priority queue is empty.
+
+`View source at line: 45 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L45>`_
+
+.. function:: func (p *Prque) Size() int [line: 50]
+
+	| Size returns the number of element in the priority queue.
+
+`View source at line: 50 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L50>`_
+
+.. function:: func (p *Prque) Reset() [line: 55]
+
+	| Reset clears the contents of the priority queue.
+
+`View source at line: 55 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/prque/prque.go#L55>`_

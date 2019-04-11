@@ -1,0 +1,22 @@
+*****************************************************************************************************************************************************
+`src/proxy/proto/proto.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/proto/proto.go>`_
+*****************************************************************************************************************************************************
+
+
+.. function:: type RestoreResponse struct [line: 50]
+
+	| RestoreResponse captures both an error.
+
+`View source at line: 50 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/proto/proto.go#L50>`_
+
+.. function:: type RestoreRequest struct [line: 56]
+
+	| RestoreRequest provides a response mechanism.
+
+`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/proto/proto.go#L56>`_
+
+.. function:: func (r *RestoreRequest) Respond(snapshot []byte, err error) [line: 62]
+
+	| Respond is used to respond with a response, error or both
+
+`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/proxy/proto/proto.go#L62>`_

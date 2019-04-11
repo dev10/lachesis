@@ -1,0 +1,92 @@
+*************************************************************************************************************************************************************
+`src/crypto/sha3/sha3_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go>`_
+*************************************************************************************************************************************************************
+
+
+.. function:: func newHashShake128() hash.Hash [line: 30]
+
+	| Internal-use instances of SHAKE used to test against KATs.
+
+`View source at line: 30 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L30>`_
+
+.. function:: var testDigests = map[string]func() hash.Hash [line: 40]
+
+	| testDigests contains functions returning hash.Hash instances
+	| with output-length equal to the KAT length for both SHA-3 and
+	| SHAKE instances.
+
+`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L40>`_
+
+.. function:: var testShakes = map[string]func() ShakeHash [line: 51]
+
+	| testShakes contains functions that return ShakeHash instances for
+	| testing the ShakeHash-specific interface.
+
+`View source at line: 51 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L51>`_
+
+.. function:: type KeccakKats struct [line: 57]
+
+	| structs used to marshal JSON test-cases.
+
+`View source at line: 57 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L57>`_
+
+.. function:: func TestKeccakKats(t *testing.T) [line: 79]
+
+	| TestKeccakKats tests the SHA-3 and Shake implementations against all the
+	| ShortMsgKATs from https:
+	| github.com/gvanas/KeccakCodePackage
+	| (The testvectors are stored in keccakKats.json.deflate due to their length.)
+
+`View source at line: 79 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L79>`_
+
+.. function:: func TestUnalignedWrite(t *testing.T) [line: 122]
+
+	| TestUnalignedWrite tests that writing data in an arbitrary pattern with
+	| small input buffers.
+
+`View source at line: 122 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L122>`_
+
+.. function:: func TestAppend(t *testing.T) [line: 158]
+
+	| TestAppend checks that appending works when reallocation is necessary.
+
+`View source at line: 158 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L158>`_
+
+.. function:: func TestAppendNoReAlloc(t *testing.T) [line: 181]
+
+	| TestAppendNoReAlloc tests that appending works when no reallocation is necessary.
+
+`View source at line: 181 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L181>`_
+
+.. function:: func TestSqueezing(t *testing.T) [line: 199]
+
+	| TestSqueezing checks that squeezing the full output a single time produces
+	| the same output as repeatedly squeezing the instance.
+
+`View source at line: 199 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L199>`_
+
+.. function:: func sequentialBytes(size int) []byte [line: 235]
+
+	| sequentialBytes produces a buffer of size consecutive bytes 0x00, 0x01, ..., used for testing.
+
+`View source at line: 235 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L235>`_
+
+.. function:: func BenchmarkPermutationFunction(b *testing.B) [line: 245]
+
+	| BenchmarkPermutationFunction measures the speed of the permutation function
+	| with no input data.
+
+`View source at line: 245 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L245>`_
+
+.. function:: func benchmarkHash(b *testing.B, h hash.Hash, size, num int) [line: 254]
+
+	| benchmarkHash tests the speed to hash num buffers of buflen each.
+
+`View source at line: 254 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L254>`_
+
+.. function:: func benchmarkShake(b *testing.B, h ShakeHash, size, num int) [line: 277]
+
+	| benchmarkShake is specialized to the Shake instances, which don't
+	| require a copy on reading output.
+
+`View source at line: 277 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/crypto/sha3/sha3_test.go#L277>`_

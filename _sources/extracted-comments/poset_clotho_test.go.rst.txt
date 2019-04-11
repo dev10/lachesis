@@ -1,0 +1,15 @@
+***********************************************************************************************************************************************************************
+`src/posposet/poset_clotho_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset_clotho_test.go>`_
+***********************************************************************************************************************************************************************
+
+
+.. function:: func testSpecialNamedClotho(t *testing.T, asciiScheme string) [line: 68]
+
+	| testSpecialNamedClotho is a general test of Clotho selection.
+	| Node name means:
+	| - 1st letter uppercase - node should be root;
+	| - 2nd number - index by node;
+	| - 3rd number - frame where node should be in;
+	| - last "+" - ClothoCandidate;
+
+`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/poset_clotho_test.go#L68>`_

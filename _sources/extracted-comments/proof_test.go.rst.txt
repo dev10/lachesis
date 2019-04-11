@@ -1,0 +1,24 @@
+*************************************************************************************************************************************************
+`src/trie/proof_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/proof_test.go>`_
+*************************************************************************************************************************************************
+
+
+.. function:: func makeProvers(trie *Trie) []func(key []byte) *kvdb.MemDatabase [line: 21]
+
+	| makeProvers creates Merkle trie provers based on different implementations to
+	| test all variations.
+
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/proof_test.go#L21>`_
+
+.. function:: func TestMissingKeyProof(t *testing.T) [line: 124]
+
+	| Tests that missing keys can also be proven. The test explicitly uses a single
+	| entry trie and checks for missing keys both before and after the single entry.
+
+`View source at line: 124 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/proof_test.go#L124>`_
+
+.. function:: func mutateByte(b []byte) [line: 149]
+
+	| mutateByte changes one byte in b.
+
+`View source at line: 149 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/trie/proof_test.go#L149>`_

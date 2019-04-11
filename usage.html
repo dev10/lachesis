@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Usage &mdash; Lachesis 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lachesis Consensus" href="consensus.html" />
+    <link rel="prev" title="API" href="api.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Lachesis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manual-setup">Manual Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lachesis-executable">Lachesis Executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stats-blocks-and-logs">Stats, blocks and Logs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="consensus.html">Lachesis Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blockchain.html">From Poset to Blockchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fastsync.html">FastSync</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extracted-comments.html">Extracted Comments</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Lachesis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="usage">
+<span id="id1"></span><h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>In this section we will guide you through deploying an application on top of
+Lachesis. Lachesis comes with the Dummy application which is used in this
+demonstration. It is a simple chat application where participants write
+messages on a channel and Lachesis guarantees that everyone sees the same messages
+in the same order.</p>
+<div class="section" id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<p>We have provided a series of scripts to bootstrap a demo. Let us first use the
+easy method to view the demo and then we will take a closer look at what is
+happening behind the scenes.</p>
+<p>Make sure you have <a class="reference external" href="https://docker.com">Docker</a> installed.</p>
+<p>The demo will pull Docker images from our <a class="reference external" href="https://hub.docker.com/u/Fantom-foundation/">official public Docker registry</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[...]/lachesis$ cd demo
+[...]/lachesis/demo$ make
+</pre></div>
+</div>
+<p>Once the testnet is started, a script is automatically launched to monitor
+consensus figures:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">consensus_events</span><span class="p">:</span><span class="mi">180</span> <span class="n">consensus_transactions</span><span class="p">:</span><span class="mi">40</span> <span class="n">events_per_second</span><span class="p">:</span><span class="mf">0.00</span> <span class="nb">id</span><span class="p">:</span><span class="mi">1</span> <span class="n">last_block_index</span><span class="p">:</span><span class="mi">3</span> <span class="n">last_consensus_round</span><span class="p">:</span><span class="mi">17</span> <span class="n">num_peers</span><span class="p">:</span><span class="mi">3</span> <span class="n">round_events</span><span class="p">:</span><span class="mi">7</span> <span class="n">rounds_per_second</span><span class="p">:</span><span class="mf">0.00</span> <span class="n">state</span><span class="p">:</span><span class="n">Babbling</span> <span class="n">sync_rate</span><span class="p">:</span><span class="mf">1.00</span> <span class="n">transaction_pool</span><span class="p">:</span><span class="mi">0</span> <span class="n">undetermined_events</span><span class="p">:</span><span class="mi">18</span>
+<span class="n">consensus_events</span><span class="p">:</span><span class="mi">180</span> <span class="n">consensus_transactions</span><span class="p">:</span><span class="mi">40</span> <span class="n">events_per_second</span><span class="p">:</span><span class="mf">0.00</span> <span class="nb">id</span><span class="p">:</span><span class="mi">3</span> <span class="n">last_block_index</span><span class="p">:</span><span class="mi">3</span> <span class="n">last_consensus_round</span><span class="p">:</span><span class="mi">17</span> <span class="n">num_peers</span><span class="p">:</span><span class="mi">3</span> <span class="n">round_events</span><span class="p">:</span><span class="mi">7</span> <span class="n">rounds_per_second</span><span class="p">:</span><span class="mf">0.00</span> <span class="n">state</span><span class="p">:</span><span class="n">Babbling</span> <span class="n">sync_rate</span><span class="p">:</span><span class="mf">1.00</span> <span class="n">transaction_pool</span><span class="p">:</span><span class="mi">0</span> <span class="n">undetermined_events</span><span class="p">:</span><span class="mi">20</span>
+<span class="n">consensus_events</span><span class="p">:</span><span class="mi">180</span> <span class="n">consensus_transactions</span><span class="p">:</span><span class="mi">40</span> <span class="n">events_per_second</span><span class="p">:</span><span class="mf">0.00</span> <span class="nb">id</span><span class="p">:</span><span class="mi">2</span> <span class="n">last_block_index</span><span class="p">:</span><span class="mi">3</span> <span class="n">last_consensus_round</span><span class="p">:</span><span class="mi">17</span> <span class="n">num_peers</span><span class="p">:</span><span class="mi">3</span> <span class="n">round_events</span><span class="p">:</span><span class="mi">7</span> <span class="n">rounds_per_second</span><span class="p">:</span><span class="mf">0.00</span> <span class="n">state</span><span class="p">:</span><span class="n">Babbling</span> <span class="n">sync_rate</span><span class="p">:</span><span class="mf">1.00</span> <span class="n">transaction_pool</span><span class="p">:</span><span class="mi">0</span> <span class="n">undetermined_events</span><span class="p">:</span><span class="mi">21</span>
+<span class="n">consensus_events</span><span class="p">:</span><span class="mi">180</span> <span class="n">consensus_transactions</span><span class="p">:</span><span class="mi">40</span> <span class="n">events_per_second</span><span class="p">:</span><span class="mf">0.00</span> <span class="nb">id</span><span class="p">:</span><span class="mi">0</span> <span class="n">last_block_index</span><span class="p">:</span><span class="mi">3</span> <span class="n">last_consensus_round</span><span class="p">:</span><span class="mi">17</span> <span class="n">num_peers</span><span class="p">:</span><span class="mi">3</span> <span class="n">round_events</span><span class="p">:</span><span class="mi">7</span> <span class="n">rounds_per_second</span><span class="p">:</span><span class="mf">0.00</span> <span class="n">state</span><span class="p">:</span><span class="n">Babbling</span> <span class="n">sync_rate</span><span class="p">:</span><span class="mf">1.00</span> <span class="n">transaction_pool</span><span class="p">:</span><span class="mi">0</span> <span class="n">undetermined_events</span><span class="p">:</span><span class="mi">20</span>
+</pre></div>
+</div>
+<p>Running <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code> will show you that 9 docker containers have been launched:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[...]/lachesis/demo$ docker ps -a
+CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                   NAMES
+ba80ef275f22        Fantom-foundation/watcher   &quot;/watch.sh&quot;              48 seconds ago      Up 7 seconds                                watcher
+4620ed62a67d        Fantom-foundation/dummy     &quot;dummy &#39;--name=client&quot;   49 seconds ago      Up 48 seconds       1339/tcp                client4
+847ea77bd7fc        Fantom-foundation/go-lachesis    &quot;lachesis run --cache_s&quot;   50 seconds ago      Up 49 seconds       80/tcp, 1337-1338/tcp   node4
+11df03bf9690        Fantom-foundation/dummy     &quot;dummy &#39;--name=client&quot;   51 seconds ago      Up 50 seconds       1339/tcp                client3
+00af002747ca        Fantom-foundation/go-lachesis    &quot;lachesis run --cache_s&quot;   52 seconds ago      Up 50 seconds       80/tcp, 1337-1338/tcp   node3
+b2011d3d65bb        Fantom-foundation/dummy     &quot;dummy &#39;--name=client&quot;   53 seconds ago      Up 51 seconds       1339/tcp                client2
+e953b50bc1db        Fantom-foundation/go-lachesis    &quot;lachesis run --cache_s&quot;   53 seconds ago      Up 52 seconds       80/tcp, 1337-1338/tcp   node2
+0c9dd65de193        Fantom-foundation/dummy     &quot;dummy &#39;--name=client&quot;   54 seconds ago      Up 53 seconds       1339/tcp                client1
+d1f4e5008d4d        Fantom-foundation/go-lachesis    &quot;lachesis run --cache_s&quot;   55 seconds ago      Up 54 seconds       80/tcp, 1337-1338/tcp   node1
+</pre></div>
+</div>
+<p>Indeed, each node is comprised of an App and a Lachesis node (cf Design section).
+The <code class="docutils literal notranslate"><span class="pre">watcher</span></code> container monitors consensus figures.</p>
+<p>Run the <code class="docutils literal notranslate"><span class="pre">demo</span></code> script to play with the <code class="docutils literal notranslate"><span class="pre">Dummy</span> <span class="pre">App</span></code> which is a simple chat application
+powered by the Lachesis consensus platform:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[...]/lachesis/demo$ make demo
+</pre></div>
+</div>
+<img alt="_images/demo.png" src="_images/demo.png" />
+<p>Finally, stop the testnet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[...]/lachesis/demo$ make stop
+</pre></div>
+</div>
+</div>
+<div class="section" id="manual-setup">
+<h2>Manual Setup<a class="headerlink" href="#manual-setup" title="Permalink to this headline">¶</a></h2>
+<p>The above scripts hide a lot of the complications involved in setting up a
+Lachesis network. They generate the configuration files automatically, copy them
+to the right places and launch the nodes in Docker containers. We recommend
+looking at these scripts closely to understand how the demo works. Here, we will
+attempt to explain the individual steps that take place behind the scenes.</p>
+<div class="section" id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<p>Lachesis reads configuration from the directory specified by the <code class="docutils literal notranslate"><span class="pre">datadir</span></code> flag
+which defaults to <code class="docutils literal notranslate"><span class="pre">~/.lachesis</span></code> on linux/osx. This directory must contain two
+files:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peers.json</span></code>  : Lists all the participants in the network.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">priv_key.pem</span></code>: Contains the private key of the validator running the node.</p></li>
+</ul>
+</div></blockquote>
+<p>Every participant has a cryptographic key-pair that is used to encrypt, sign and
+verify messages. The private key is secret but the public key is used by other
+nodes to verify messages signed with the private key. The encryption scheme used
+by Lachesis is ECDSA with the P256 curve.</p>
+<p>To run a Lachesis network, it is necessary to predefine who the participants are
+going to be. Each participant will generate a key-pair and decide which network
+address it is going to be using for the Lachesis protocol. Someone, or some
+process, then needs to aggregate the public keys and network addresses of all
+participants into a single file - the peers.json file. Every participant uses a
+copy of the same peers.json file. Lachesis will read that file to identify the
+participants in the network, communicate with them and verify their
+cryptographic signatures.</p>
+<p>To generate key-pairs in a format usable by Lachesis, we have created the
+<code class="docutils literal notranslate"><span class="pre">keygen</span></code> command. It is left to the user to derive a scheme to produce the
+configuration files but the docker demo scripts are a good place to start.</p>
+<p>So let us say I want to participate in a Lachesis network. I am going to start by
+running <code class="docutils literal notranslate"><span class="pre">lachesis</span> <span class="pre">keygen</span></code> to create a key-pair:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lachesis</span> <span class="n">keygen</span>
+<span class="n">Your</span> <span class="n">private</span> <span class="n">key</span> <span class="n">has</span> <span class="n">been</span> <span class="n">saved</span> <span class="n">to</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">martin</span><span class="o">/.</span><span class="n">lachesis</span><span class="o">/</span><span class="n">priv_key</span><span class="o">.</span><span class="n">pem</span>
+<span class="n">Your</span> <span class="n">public</span> <span class="n">key</span> <span class="n">has</span> <span class="n">been</span> <span class="n">saved</span> <span class="n">to</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">martin</span><span class="o">/.</span><span class="n">lachesis</span><span class="o">/</span><span class="n">key</span><span class="o">.</span><span class="n">pub</span>
+</pre></div>
+</div>
+<p>The private key looks something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span><span class="n">BEGIN</span> <span class="n">EC</span> <span class="n">PRIVATE</span> <span class="n">KEY</span><span class="o">-----</span>
+<span class="n">MHcCAQEEIJ3orqofiSXu07mD</span><span class="o">+</span><span class="n">f46gZFK3EKSTqhXsbLVmA</span><span class="o">/</span><span class="n">aLmyqoAoGCCqGSM49</span>
+<span class="n">AwEHoUQDQgAEXgNNc8hJdWrntlFcpg2WpakRsTpNi0W8DgsC7bRQCd9szAdO6298</span>
+<span class="n">Z5V0D5k2ZO3ulw</span><span class="o">+</span><span class="n">KcXyJNE</span><span class="o">+</span><span class="n">EN</span><span class="o">/</span><span class="n">QSvfDRfA</span><span class="o">==</span>
+<span class="o">-----</span><span class="n">END</span> <span class="n">EC</span> <span class="n">PRIVATE</span> <span class="n">KEY</span><span class="o">-----</span>
+</pre></div>
+</div>
+<p>and the corresponding public key looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mh">0x045E034D73C849756AE7B6515CA60D96A5A911B13A4D8B45BC0E0B02EDB45009DF6CCC074EEB6F7C6795740F993664EDEE970F8A717C89344F8437F412BDF0D17C</span>
+</pre></div>
+</div>
+<p><strong>DO NOT REUSE THESE KEYS</strong></p>
+<p>Next, I am going to copy the public key (key.pub) and communicate it to whoever
+is responsible for producing the peers.json file. At the same time, I will tell
+them that I am going to be listening on 172.77.5.2:1337.</p>
+<p>Suppose three other people do the same thing. The resulting peers.json file
+could look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+            <span class="s2">&quot;NetAddr&quot;</span><span class="p">:</span><span class="s2">&quot;172.77.5.1:1337&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;PubKeyHex&quot;</span><span class="p">:</span><span class="s2">&quot;0x0471AEE3CAE4E8442D37C9F5481FB32C4531511988652DF923B79ED4ED992021183D31E0F6FBFE96D89B6D03D7250292DFECD4FC414D83A5C38FA3FAD0D8572864&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+            <span class="s2">&quot;NetAddr&quot;</span><span class="p">:</span><span class="s2">&quot;172.77.5.2:1337&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;PubKeyHex&quot;</span><span class="p">:</span><span class="s2">&quot;0x045E034D73C849756AE7B6515CA60D96A5A911B13A4D8B45BC0E0B02EDB45009DF6CCC074EEB6F7C6795740F993664EDEE970F8A717C89344F8437F412BDF0D17C&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+            <span class="s2">&quot;NetAddr&quot;</span><span class="p">:</span><span class="s2">&quot;172.77.5.3:1337&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;PubKeyHex&quot;</span><span class="p">:</span><span class="s2">&quot;0x047CCCD40D90B331C64CE27911D3A31AF7DC16C1EA6D570FDC2120920663E0A678D7B5D0C19B6A77FEA829F8198F4F487B68206B93B7AD17D7C49CA7E0164D0033&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+            <span class="s2">&quot;NetAddr&quot;</span><span class="p">:</span><span class="s2">&quot;172.77.5.4:1337&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;PubKeyHex&quot;</span><span class="p">:</span><span class="s2">&quot;0x0406CB5043E7337700E3B154993C872B1C61A84B1A739528C4A10135A3D64939C094B4A999BD21C3D5E9E9ECF15B202414F073795C9483B2F51ADA7EE59EB5EAC4&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Now everyone is going to take a copy of this peers.json file and put it in a
+folder together with the priv_key.pem file they generated in the previous step.
+That is the folder that they need to specify as the datadir when they run
+Lachesis.</p>
+</div>
+</div>
+<div class="section" id="lachesis-executable">
+<h2>Lachesis Executable<a class="headerlink" href="#lachesis-executable" title="Permalink to this headline">¶</a></h2>
+<p>Let us take a look at the help provided by the Lachesis CLI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Run</span> <span class="n">node</span>
+
+<span class="n">Usage</span><span class="p">:</span>
+  <span class="n">lachesis</span> <span class="n">run</span> <span class="p">[</span><span class="n">flags</span><span class="p">]</span>
+
+<span class="n">Flags</span><span class="p">:</span>
+      <span class="o">--</span><span class="n">cache</span><span class="o">-</span><span class="n">size</span> <span class="nb">int</span>          <span class="n">Number</span> <span class="n">of</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">LRU</span> <span class="n">caches</span> <span class="p">(</span><span class="n">default</span> <span class="mi">500</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">c</span><span class="p">,</span> <span class="o">--</span><span class="n">client</span><span class="o">-</span><span class="n">connect</span> <span class="n">string</span>   <span class="n">IP</span><span class="p">:</span><span class="n">Port</span> <span class="n">to</span> <span class="n">connect</span> <span class="n">to</span> <span class="n">client</span> <span class="p">(</span><span class="n">default</span> <span class="s2">&quot;127.0.0.1:1339&quot;</span><span class="p">)</span>
+      <span class="o">--</span><span class="n">datadir</span> <span class="n">string</span>          <span class="n">Top</span><span class="o">-</span><span class="n">level</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">configuration</span> <span class="ow">and</span> <span class="n">data</span> <span class="p">(</span><span class="n">default</span> <span class="s2">&quot;/home/martin/.lachesis&quot;</span><span class="p">)</span>
+      <span class="o">--</span><span class="n">heartbeat</span> <span class="n">duration</span>      <span class="n">Time</span> <span class="n">between</span> <span class="n">gossips</span> <span class="p">(</span><span class="n">default</span> <span class="mi">1</span><span class="n">s</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                    <span class="n">help</span> <span class="k">for</span> <span class="n">run</span>
+  <span class="o">-</span><span class="n">l</span><span class="p">,</span> <span class="o">--</span><span class="n">listen</span> <span class="n">string</span>           <span class="n">Listen</span> <span class="n">IP</span><span class="p">:</span><span class="n">Port</span> <span class="k">for</span> <span class="n">lachesis</span> <span class="n">node</span> <span class="p">(</span><span class="n">default</span> <span class="s2">&quot;:1337&quot;</span><span class="p">)</span>
+      <span class="o">--</span><span class="n">log</span> <span class="n">string</span>              <span class="n">debug</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">warn</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">fatal</span><span class="p">,</span> <span class="n">panic</span>
+      <span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">pool</span> <span class="nb">int</span>            <span class="n">Connection</span> <span class="n">pool</span> <span class="n">size</span> <span class="nb">max</span> <span class="p">(</span><span class="n">default</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="o">--</span><span class="n">proxy</span><span class="o">-</span><span class="n">listen</span> <span class="n">string</span>     <span class="n">Listen</span> <span class="n">IP</span><span class="p">:</span><span class="n">Port</span> <span class="k">for</span> <span class="n">lachesis</span> <span class="n">proxy</span> <span class="p">(</span><span class="n">default</span> <span class="s2">&quot;127.0.0.1:1338&quot;</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="o">--</span><span class="n">service</span><span class="o">-</span><span class="n">listen</span> <span class="n">string</span>   <span class="n">Listen</span> <span class="n">IP</span><span class="p">:</span><span class="n">Port</span> <span class="k">for</span> <span class="n">HTTP</span> <span class="n">service</span>
+      <span class="o">--</span><span class="n">standalone</span>              <span class="n">Do</span> <span class="ow">not</span> <span class="n">create</span> <span class="n">a</span> <span class="n">proxy</span>
+      <span class="o">--</span><span class="n">store</span>                   <span class="n">Use</span> <span class="n">badgerDB</span> <span class="n">instead</span> <span class="n">of</span> <span class="ow">in</span><span class="o">-</span><span class="n">mem</span> <span class="n">DB</span>
+      <span class="o">--</span><span class="n">sync</span><span class="o">-</span><span class="n">limit</span> <span class="nb">int</span>          <span class="n">Max</span> <span class="n">number</span> <span class="n">of</span> <span class="n">events</span> <span class="k">for</span> <span class="n">sync</span> <span class="p">(</span><span class="n">default</span> <span class="mi">100</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">t</span><span class="p">,</span> <span class="o">--</span><span class="n">timeout</span> <span class="n">duration</span>        <span class="n">TCP</span> <span class="n">Timeout</span> <span class="p">(</span><span class="n">default</span> <span class="mi">1</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>So we have just seen what the <code class="docutils literal notranslate"><span class="pre">datadir</span></code> flag does. The <code class="docutils literal notranslate"><span class="pre">listen</span></code> flag
+corresponds to the NetAddr in the peers.json file; that is the endpoint that
+Lachesis uses to communicate with other Lachesis nodes.</p>
+<p>As we explained in the architecture section, each Lachesis node works in
+conjunction with an application for which it orders transactions. When Lachesis
+and the application are connected by a TCP interface, we specify two other
+endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">proxy-listen</span></code>  : where Lachesis listens for transactions from the App</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client-connect</span></code> : where the App listens for transactions from Lachesis</p></li>
+</ul>
+</div></blockquote>
+<p>We can also specify where Lachesis exposes its HTTP API providing information on
+the Poset and Blockchain data store. This is controlled by the optional
+<code class="docutils literal notranslate"><span class="pre">service-listen</span></code> flag.</p>
+<p>Finally, we can choose to run Lachesis with a database backend or only with an
+in-memory cache. With the <code class="docutils literal notranslate"><span class="pre">store</span></code> flag set, Lachesis will look for a database
+file in <code class="docutils literal notranslate"><span class="pre">datadir</span></code>/babdger_db. If the file exists, the node will load the
+database and bootstrap itself to a state consistent with the database and it
+will be able to proceed with the consensus algorithm from there. If the file
+does not exist yet, it will be created and the node will start from a clean
+state.</p>
+<p>Here is how the Docker demo starts Lachesis nodes together wth the Dummy
+application:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i in $(seq 1 $N)
+do
+    docker run -d --name=client$i --net=lachesisnet --ip=172.77.5.$(($N+$i)) -it Fantom-foundation/dummy:0.4.0 \
+    --name=&quot;client $i&quot; \
+    --client-listen=&quot;172.77.5.$(($N+$i)):1339&quot; \
+    --proxy-connect=&quot;172.77.5.$i:1338&quot; \
+    --discard \
+    --log=&quot;debug&quot;
+done
+
+for i in $(seq 1 $N)
+do
+    docker create --name=node$i --net=lachesisnet --ip=172.77.5.$i Fantom-foundation/go-lachesis:0.4.0 run \
+    --cache-size=50000 \
+    --timeout=200ms \
+    --heartbeat=10ms \
+    --listen=&quot;172.77.5.$i:1337&quot; \
+    --proxy-listen=&quot;172.77.5.$i:1338&quot; \
+    --client-connect=&quot;172.77.5.$(($N+$i)):1339&quot; \
+    --service-listen=&quot;172.77.5.$i:80&quot; \
+    --sync-limit=1000 \
+    --store \
+    --log=&quot;debug&quot;
+
+    docker cp $MPWD/conf/node$i node$i:/.lachesis
+    docker start node$i
+done
+</pre></div>
+</div>
+</div>
+<div class="section" id="stats-blocks-and-logs">
+<h2>Stats, blocks and Logs<a class="headerlink" href="#stats-blocks-and-logs" title="Permalink to this headline">¶</a></h2>
+<p>Once a node is up and running, we can call the <code class="docutils literal notranslate"><span class="pre">stats</span></code> endpoint exposed by the
+HTTP service:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">172.77</span><span class="o">.</span><span class="mf">5.1</span><span class="p">:</span><span class="mi">80</span><span class="o">/</span><span class="n">stats</span>
+</pre></div>
+</div>
+<p>or request to see a specific block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">172.77</span><span class="o">.</span><span class="mf">5.1</span><span class="p">:</span><span class="mi">80</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Or we can look at the logs produced by Lachesis:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">logs</span> <span class="n">node1</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="consensus.html" class="btn btn-neutral float-right" title="Lachesis Consensus" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api.html" class="btn btn-neutral float-left" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Mosaic Networks
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

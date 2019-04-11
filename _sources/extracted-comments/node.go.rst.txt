@@ -1,0 +1,28 @@
+*****************************************************************************************************************************************
+`src/mobile/node.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/mobile/node.go>`_
+*****************************************************************************************************************************************
+
+
+.. function:: type Node struct [line: 15]
+
+	| Node struct
+
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/mobile/node.go#L15>`_
+
+.. function:: func (n *Node) Run(async bool) [line: 80]
+
+	| Run the node (can be async)
+
+`View source at line: 80 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/mobile/node.go#L80>`_
+
+.. function:: func (n *Node) Shutdown() [line: 89]
+
+	| Shutdown the node
+
+`View source at line: 89 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/mobile/node.go#L89>`_
+
+.. function:: func (n *Node) SubmitTx(tx []byte) [line: 94]
+
+	| SubmitTx submits the transaction
+
+`View source at line: 94 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/mobile/node.go#L94>`_

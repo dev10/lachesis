@@ -1,0 +1,136 @@
+*******************************************************************************************************************************************
+`src/poset/caches.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go>`_
+*******************************************************************************************************************************************
+
+
+.. function:: type Key struct [line: 11]
+
+	| Key struct
+
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L11>`_
+
+.. function:: func (k Key) ToString() string [line: 17]
+
+	| ToString converts key to string
+
+`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L17>`_
+
+.. function:: type ParentRoundInfo struct [line: 22]
+
+	| ParentRoundInfo struct
+
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L22>`_
+
+.. function:: func NewBaseParentRoundInfo() ParentRoundInfo [line: 29]
+
+	| NewBaseParentRoundInfo constructor
+
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L29>`_
+
+.. function:: type ParticipantEventsCache struct [line: 39]
+
+	| ParticipantEventsCache struct
+
+`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L39>`_
+
+.. function:: func NewParticipantEventsCache(size int, participants *peers.Peers) *ParticipantEventsCache [line: 45]
+
+	| NewParticipantEventsCache constructor
+
+`View source at line: 45 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L45>`_
+
+.. function:: func (pec *ParticipantEventsCache) AddPeer(peer *peers.Peer) error [line: 53]
+
+	| AddPeer adds peer to cache and rolling index map, returns error if it failed to add to map
+
+`View source at line: 53 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L53>`_
+
+.. function:: func (pec *ParticipantEventsCache) Get(participant string, skipIndex int64) (EventHashes, error) [line: 69]
+
+	| Get return participant events with index > skip
+
+`View source at line: 69 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L69>`_
+
+.. function:: func (pec *ParticipantEventsCache) GetItem(participant string, index int64) (hash EventHash, err error) [line: 88]
+
+	| GetItem get event for participant at index
+
+`View source at line: 88 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L88>`_
+
+.. function:: func (pec *ParticipantEventsCache) GetLast(participant string) (hash EventHash, err error) [line: 104]
+
+	| GetLast get last event for participant
+
+`View source at line: 104 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L104>`_
+
+.. function:: func (pec *ParticipantEventsCache) Set(participant string, hash EventHash, index int64) error [line: 120]
+
+	| Set the event for the participant
+
+`View source at line: 120 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L120>`_
+
+.. function:: func (pec *ParticipantEventsCache) Known() map[uint64]int64 [line: 129]
+
+	| Known returns [participant id] => lastKnownIndex
+
+`View source at line: 129 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L129>`_
+
+.. function:: func (pec *ParticipantEventsCache) Reset() error [line: 134]
+
+	| Reset resets the event cache
+
+`View source at line: 134 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L134>`_
+
+.. function:: func (pec *ParticipantEventsCache) Import(other *ParticipantEventsCache) [line: 139]
+
+	| Import from another event cache
+
+`View source at line: 139 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L139>`_
+
+.. function:: type ParticipantBlockSignaturesCache struct [line: 146]
+
+	| ParticipantBlockSignaturesCache struct
+
+`View source at line: 146 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L146>`_
+
+.. function:: func NewParticipantBlockSignaturesCache(size int, participants *peers.Peers) *ParticipantBlockSignaturesCache [line: 152]
+
+	| NewParticipantBlockSignaturesCache constructor
+
+`View source at line: 152 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L152>`_
+
+.. function:: func (psc *ParticipantBlockSignaturesCache) Get(participant string, skipIndex int64) ([]BlockSignature, error) [line: 170]
+
+	| Get return participant BlockSignatures where index > skip
+
+`View source at line: 170 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L170>`_
+
+.. function:: func (psc *ParticipantBlockSignaturesCache) GetItem(participant string, index int64) (BlockSignature, error) [line: 189]
+
+	| GetItem get block signature at index for participant
+
+`View source at line: 189 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L189>`_
+
+.. function:: func (psc *ParticipantBlockSignaturesCache) GetLast(participant string) (BlockSignature, error) [line: 203]
+
+	| GetLast get last block signature for participant
+
+`View source at line: 203 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L203>`_
+
+.. function:: func (psc *ParticipantBlockSignaturesCache) Set(participant string, sig BlockSignature) error [line: 219]
+
+	| Set sets the last block signature for the participant
+
+`View source at line: 219 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L219>`_
+
+.. function:: func (psc *ParticipantBlockSignaturesCache) Known() map[uint64]int64 [line: 229]
+
+	| Known returns [participant id] => last BlockSignature Index
+
+`View source at line: 229 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L229>`_
+
+.. function:: func (psc *ParticipantBlockSignaturesCache) Reset() error [line: 234]
+
+	| Reset resets the block signature cache
+
+`View source at line: 234 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/poset/caches.go#L234>`_

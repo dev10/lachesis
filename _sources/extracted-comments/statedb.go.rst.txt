@@ -1,0 +1,100 @@
+*********************************************************************************************************************************************
+`src/state/statedb.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go>`_
+*********************************************************************************************************************************************
+
+
+.. function:: func (s *DB) updateStateObject(stateObject *stateObject) [line: 269]
+
+	| updateStateObject writes the given object to the trie.
+
+`View source at line: 269 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L269>`_
+
+.. function:: func (s *DB) deleteStateObject(stateObject *stateObject) [line: 281]
+
+	| deleteStateObject removes the given object from the state trie.
+
+`View source at line: 281 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L281>`_
+
+.. function:: func (s *DB) getStateObject(addr hash.Peer) (stateObject *stateObject) [line: 288]
+
+	| Retrieve a state object given by the address. Returns nil if not found.
+
+`View source at line: 288 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L288>`_
+
+.. function:: func (s *DB) GetOrNewStateObject(addr hash.Peer) *stateObject [line: 319]
+
+	| GetOrNewStateObject returns a state object or create a new state object if nil.
+
+`View source at line: 319 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L319>`_
+
+.. function:: func (s *DB) createObject(addr hash.Peer) (newobj, prev *stateObject) [line: 329]
+
+	| createObject creates a new state object. If there is an existing account with
+	| the given address, it is overwritten and returned as the second return value.
+
+`View source at line: 329 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L329>`_
+
+.. function:: func (s *DB) CreateAccount(addr hash.Peer) [line: 351]
+
+	| CreateAccount explicitly creates a state object. If a state object with the address
+	| already exists the balance is carried over to the new account.
+	| CreateAccount is called during the EVM CREATE operation. The situation might arise that
+	| a contract does the following:
+	| 1. sends funds to sha(account ++ (nonce + 1))
+	| 2. tx_create(sha(account ++ nonce)) (note that this gets the address of 1)
+	| Carrying over the balance ensures that Ether doesn't disappear.
+
+`View source at line: 351 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L351>`_
+
+.. function:: func (s *DB) ForEachStorage(addr hash.Peer, cb func(key, value hash.Hash) bool) [line: 359]
+
+	| ForEachStorage calls func for each key-value of node.
+
+`View source at line: 359 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L359>`_
+
+.. function:: func (s *DB) Copy() *DB [line: 377]
+
+	| Copy creates a deep, independent copy of the state.
+	| Snapshots of the copied state cannot be applied to the copy.
+
+`View source at line: 377 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L377>`_
+
+.. function:: func (s *DB) Snapshot() int [line: 413]
+
+	| Snapshot returns an identifier for the current revision of the state.
+
+`View source at line: 413 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L413>`_
+
+.. function:: func (s *DB) RevertToSnapshot(revID int) [line: 421]
+
+	| RevertToSnapshot reverts all state changes made since the given revision.
+
+`View source at line: 421 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L421>`_
+
+.. function:: func (s *DB) Finalise(deleteEmptyObjects bool) [line: 438]
+
+	| Finalise finalises the state by removing the self destructed objects
+	| and clears the journal as well as the refunds.
+
+`View source at line: 438 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L438>`_
+
+.. function:: func (s *DB) IntermediateRoot(deleteEmptyObjects bool) hash.Hash [line: 466]
+
+	| IntermediateRoot computes the current root hash of the state trie.
+	| It is called in between transactions to get the root hash that
+	| goes into transaction receipts.
+
+`View source at line: 466 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L466>`_
+
+.. function:: func (s *DB) Prepare(thash, bhash hash.Hash, ti int) [line: 473]
+
+	| Prepare sets the current transaction hash and index and block hash which is
+	| used when the EVM emits new state logs.
+
+`View source at line: 473 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L473>`_
+
+.. function:: func (s *DB) Commit(deleteEmptyObjects bool) (root hash.Hash, err error) [line: 485]
+
+	| Commit writes the state to the underlying in-memory trie database.
+
+`View source at line: 485 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/state/statedb.go#L485>`_

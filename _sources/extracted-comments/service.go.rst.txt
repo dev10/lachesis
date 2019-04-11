@@ -1,0 +1,94 @@
+*************************************************************************************************************************************************
+`src/service/service.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go>`_
+*************************************************************************************************************************************************
+
+
+.. function:: type Service struct [line: 14]
+
+	| Service http API service struct
+
+`View source at line: 14 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L14>`_
+
+.. function:: func NewService(bindAddress string, n *node.Node, logger *logrus.Logger) *Service [line: 22]
+
+	| NewService creates a new http API service
+
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L22>`_
+
+.. function:: func (s *Service) Serve() [line: 34]
+
+	| Serve serves the API
+
+`View source at line: 34 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L34>`_
+
+.. function:: func (s *Service) GetStats(w http.ResponseWriter, r *http.Request) [line: 77]
+
+	| GetStats returns all the node processing stats
+
+`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L77>`_
+
+.. function:: func (s *Service) GetParticipants(w http.ResponseWriter, r *http.Request) [line: 89]
+
+	| GetParticipants returns all the known participants
+
+`View source at line: 89 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L89>`_
+
+.. function:: func (s *Service) GetEventBlock(w http.ResponseWriter, r *http.Request) [line: 103]
+
+	| GetEventBlock returns a specific event block by id
+
+`View source at line: 103 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L103>`_
+
+.. function:: func (s *Service) GetLastEventFrom(w http.ResponseWriter, r *http.Request) [line: 128]
+
+	| GetLastEventFrom returns the last event for a specific participant
+
+`View source at line: 128 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L128>`_
+
+.. function:: func (s *Service) GetKnownEvents(w http.ResponseWriter, r *http.Request) [line: 144]
+
+	| GetKnownEvents returns all known events by ID
+
+`View source at line: 144 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L144>`_
+
+.. function:: func (s *Service) GetConsensusEvents(w http.ResponseWriter, r *http.Request) [line: 154]
+
+	| GetConsensusEvents returns all the events that have reached consensus
+
+`View source at line: 154 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L154>`_
+
+.. function:: func (s *Service) GetRound(w http.ResponseWriter, r *http.Request) [line: 164]
+
+	| GetRound returns a round for the given index
+
+`View source at line: 164 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L164>`_
+
+.. function:: func (s *Service) GetLastRound(w http.ResponseWriter, r *http.Request) [line: 187]
+
+	| GetLastRound returns the last known round
+
+`View source at line: 187 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L187>`_
+
+.. function:: func (s *Service) GetRoundClothos(w http.ResponseWriter, r *http.Request) [line: 197]
+
+	| GetRoundClothos returns all clotho for a round
+
+`View source at line: 197 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L197>`_
+
+.. function:: func (s *Service) GetRoundEvents(w http.ResponseWriter, r *http.Request) [line: 215]
+
+	| GetRoundEvents returns all the events for a given round
+
+`View source at line: 215 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L215>`_
+
+.. function:: func (s *Service) GetRoot(w http.ResponseWriter, r *http.Request) [line: 233]
+
+	| GetRoot returns the root for a given frame
+
+`View source at line: 233 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L233>`_
+
+.. function:: func (s *Service) GetBlock(w http.ResponseWriter, r *http.Request) [line: 249]
+
+	| GetBlock returns a specific block based on index
+
+`View source at line: 249 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/service/service.go#L249>`_

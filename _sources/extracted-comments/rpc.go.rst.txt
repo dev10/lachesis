@@ -1,0 +1,16 @@
+***********************************************************************************************************************************
+`src/peer/rpc.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/peer/rpc.go>`_
+***********************************************************************************************************************************
+
+
+.. function:: type Lachesis struct [line: 15]
+
+	| Lachesis implements Lachesis synchronization methods.
+
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/peer/rpc.go#L15>`_
+
+.. function:: func NewLachesis(done chan struct [line: 23]
+
+	| NewLachesis creates new Lachesis RPC handler.
+
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/peer/rpc.go#L23>`_

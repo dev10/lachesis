@@ -1,0 +1,18 @@
+*******************************************************************************************************************************************************
+`src/common/test_logger.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/test_logger.go>`_
+*******************************************************************************************************************************************************
+
+
+.. function:: type testLoggerAdapter struct [line: 12]
+
+	| This can be used as the destination for a logger and it'll
+	| map them into calls to testing.T.Log, so that you only see
+	| the logging for failed tests.
+
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/test_logger.go#L12>`_
+
+.. function:: func NewTestLogger(t testing.TB) *logrus.Logger [line: 31]
+
+	| NewTestLogger constructor
+
+`View source at line: 31 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/common/test_logger.go#L31>`_

@@ -1,0 +1,22 @@
+***************************************************************************************************************************************
+`src/pos/config.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/pos/config.go>`_
+***************************************************************************************************************************************
+
+
+.. function:: type Config struct [line: 4]
+
+	| Config for a PoS
+
+`View source at line: 4 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/pos/config.go#L4>`_
+
+.. function:: func NewConfig(totalSupply uint64) *Config [line: 9]
+
+	| NewConfig creates a new PoS config
+
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/pos/config.go#L9>`_
+
+.. function:: func DefaultConfig() *Config [line: 16]
+
+	| DefaultConfig sets the default config for a PoS
+
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/pos/config.go#L16>`_

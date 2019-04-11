@@ -1,0 +1,22 @@
+*********************************************************************************************************************************************************
+`src/posposet/blockchain.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/blockchain.go>`_
+*********************************************************************************************************************************************************
+
+
+.. function:: type Block struct [line: 9]
+
+	| Block is a chain block.
+
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/blockchain.go#L9>`_
+
+.. function:: func (e *Block) ToWire() *wire.Block [line: 15]
+
+	| ToWire converts to proto.Message.
+
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/blockchain.go#L15>`_
+
+.. function:: func WireToBlock(w *wire.Block) *Block [line: 23]
+
+	| WireToBlock converts from wire.
+
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/posposet/blockchain.go#L23>`_

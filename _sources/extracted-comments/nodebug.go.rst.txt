@@ -1,0 +1,10 @@
+*******************************************************************************************************************************************
+`src/node/nodebug.go <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/nodebug.go>`_
+*******************************************************************************************************************************************
+
+
+.. function:: func (n *Node) Register() [line: 6]
+
+	| Register registers TODO
+
+`View source at line: 6 <https://github.com/Fantom-Foundation/go-lachesis/blob/d13e0509d9f34b1d57bf4842a89cf62dc940f3a1src/node/nodebug.go#L6>`_
