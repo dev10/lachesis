@@ -1,22 +1,22 @@
-*****************************************************************************************************************************************************
-`src/inter/transaction.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/transaction.go>`_
-*****************************************************************************************************************************************************
+******************************************************************************************************************************************************
+`src/inter/transaction.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/transaction.go>`_
+******************************************************************************************************************************************************
 
 
 .. function:: type InternalTransaction struct [line: 9]
 
 	| InternalTransaction is for stake transfer.
 
-`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/transaction.go#L9>`_
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/transaction.go#L9>`_
 
 .. function:: func InternalTransactionsToWire(tt []*InternalTransaction) []*wire.InternalTransaction [line: 15]
 
 	| InternalTransactionsToWire converts to wire.
 
-`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/transaction.go#L15>`_
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/transaction.go#L15>`_
 
 .. function:: func WireToInternalTransactions(tt []*wire.InternalTransaction) []*InternalTransaction [line: 31]
 
 	| WireToInternalTransactions converts from wire.
 
-`View source at line: 31 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/transaction.go#L31>`_
+`View source at line: 31 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/transaction.go#L31>`_

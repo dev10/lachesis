@@ -1,29 +1,29 @@
-*******************************************************************************************************************************************
-`src/hash/peer_id.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/peer_id.go>`_
-*******************************************************************************************************************************************
+********************************************************************************************************************************************
+`src/hash/peer_id.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/hash/peer_id.go>`_
+********************************************************************************************************************************************
 
 
 .. function:: func (a *Peer) Bytes() []byte [line: 13]
 
 	| Bytes returns value as byte slice.
 
-`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/peer_id.go#L13>`_
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/hash/peer_id.go#L13>`_
 
 .. function:: func BytesToPeer(b []byte) Peer [line: 19]
 
 	| BytesToPeer converts bytes to peer id.
 	| If b is larger than len(h), b will be cropped from the left.
 
-`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/peer_id.go#L19>`_
+`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/hash/peer_id.go#L19>`_
 
 .. function:: func (a *Peer) String() string [line: 24]
 
 	| String returns human readable string representation.
 
-`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/peer_id.go#L24>`_
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/hash/peer_id.go#L24>`_
 
 .. function:: func FakePeer() Peer [line: 36]
 
 	| FakePeer generates random fake peer id for testing purpose.
 
-`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/hash/peer_id.go#L36>`_
+`View source at line: 36 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/hash/peer_id.go#L36>`_

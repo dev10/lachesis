@@ -1,10 +1,10 @@
-*****************************************************************************************************************************************
-`src/poset/debug.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/debug.go>`_
-*****************************************************************************************************************************************
+******************************************************************************************************************************************
+`src/poset/debug.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/debug.go>`_
+******************************************************************************************************************************************
 
 
 .. function:: func (p *Poset) PrintStat(logger *logrus.Entry) [line: 11]
 
 	| PrintStat prints the stats for logger
 
-`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/debug.go#L11>`_
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/debug.go#L11>`_

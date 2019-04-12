@@ -1,19 +1,19 @@
-*******************************************************************************************************************************************************
-`src/trie/iterator_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/iterator_test.go>`_
-*******************************************************************************************************************************************************
+********************************************************************************************************************************************************
+`src/trie/iterator_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/iterator_test.go>`_
+********************************************************************************************************************************************************
 
 
 .. function:: func TestNodeIteratorCoverage(t *testing.T) [line: 87]
 
 	| Tests that the node iterator indeed walks over the entire database contents.
 
-`View source at line: 87 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/iterator_test.go#L87>`_
+`View source at line: 87 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/iterator_test.go#L87>`_
 
 .. function:: func TestIteratorContinueAfterErrorDisk(t *testing.T) [line: 288]
 
 	| This test checks that nodeIterator.Next can be retried after inserting missing trie nodes.
 
-`View source at line: 288 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/iterator_test.go#L288>`_
+`View source at line: 288 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/iterator_test.go#L288>`_
 
 .. function:: func TestIteratorContinueAfterSeekErrorDisk(t *testing.T) [line: 382]
 
@@ -21,4 +21,4 @@
 	| certain key prefix behaves correctly when Next is called. The expectation is that Next
 	| should retry seeking before returning true for the first time.
 
-`View source at line: 382 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/iterator_test.go#L382>`_
+`View source at line: 382 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/iterator_test.go#L382>`_

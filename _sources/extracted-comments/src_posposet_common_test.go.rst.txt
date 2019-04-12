@@ -1,10 +1,10 @@
-***********************************************************************************************************************************************************
-`src/posposet/common_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/common_test.go>`_
-***********************************************************************************************************************************************************
+************************************************************************************************************************************************************
+`src/posposet/common_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/common_test.go>`_
+************************************************************************************************************************************************************
 
 
 .. function:: func FakePoset(nodes []hash.Peer) (*Poset, *Store, *EventStore) [line: 96]
 
 	| FakePoset creates empty poset with mem store and equal stakes of nodes in genesis.
 
-`View source at line: 96 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/common_test.go#L96>`_
+`View source at line: 96 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/common_test.go#L96>`_

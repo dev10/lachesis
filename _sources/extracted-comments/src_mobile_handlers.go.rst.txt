@@ -1,6 +1,6 @@
-*************************************************************************************************************************************************
-`src/mobile/handlers.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/mobile/handlers.go>`_
-*************************************************************************************************************************************************
+**************************************************************************************************************************************************
+`src/mobile/handlers.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/mobile/handlers.go>`_
+**************************************************************************************************************************************************
 
 
 .. function:: type CommitHandler interface [line: 11]
@@ -9,10 +9,10 @@
 	| that message to the mobile app. It returns the state hash resulting from applying
 	| the block's transactions to the state.
 
-`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/mobile/handlers.go#L11>`_
+`View source at line: 11 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/mobile/handlers.go#L11>`_
 
 .. function:: type ExceptionHandler interface [line: 16]
 
 	| ExceptionHandler handles mobile app mobile app exceptions.
 
-`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/mobile/handlers.go#L16>`_
+`View source at line: 16 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/mobile/handlers.go#L16>`_

@@ -1,88 +1,88 @@
-*********************************************************************************************************************************************************
-`src/posposet/flag_table.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go>`_
-*********************************************************************************************************************************************************
+**********************************************************************************************************************************************************
+`src/posposet/flag_table.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go>`_
+**********************************************************************************************************************************************************
 
 
 .. function:: func (ft FlagTable) IsRoot(event hash.Event) bool [line: 32]
 
 	| IsRoot returns true if event is root.
 
-`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L32>`_
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L32>`_
 
 .. function:: func (ft FlagTable) Roots() EventsByPeer [line: 44]
 
 	| Roots returns all roots by node.
 
-`View source at line: 44 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L44>`_
+`View source at line: 44 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L44>`_
 
 .. function:: func (ft FlagTable) EventKnows(e hash.Event, node hash.Peer, event hash.Event) bool [line: 57]
 
 	| EventKnows return true if e knows event of node.
 
-`View source at line: 57 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L57>`_
+`View source at line: 57 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L57>`_
 
 .. function:: func (ft FlagTable) ToWire() []*wire.Flag [line: 62]
 
 	| ToWire converts to simple slice.
 
-`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L62>`_
+`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L62>`_
 
 .. function:: func WireToFlagTable(arr []*wire.Flag) FlagTable [line: 74]
 
 	| WireToFlagTable converts from wire.
 
-`View source at line: 74 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L74>`_
+`View source at line: 74 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L74>`_
 
 .. function:: func (ee EventsByPeer) Add(events EventsByPeer) (changed bool) [line: 90]
 
 	| Add unions events into one.
 
-`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L90>`_
+`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L90>`_
 
 .. function:: func (ee EventsByPeer) AddOne(event hash.Event, creator hash.Peer) (changed bool) [line: 103]
 
 	| AddOne appends one event.
 
-`View source at line: 103 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L103>`_
+`View source at line: 103 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L103>`_
 
 .. function:: func (ee EventsByPeer) Contains(node hash.Peer, event hash.Event) bool [line: 114]
 
 	| Contains returns true if event of node is in.
 
-`View source at line: 114 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L114>`_
+`View source at line: 114 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L114>`_
 
 .. function:: func (ee EventsByPeer) Each() map[hash.Event]hash.Peer [line: 119]
 
 	| Each returns range of all events.
 
-`View source at line: 119 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L119>`_
+`View source at line: 119 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L119>`_
 
 .. function:: func (ee EventsByPeer) String() string [line: 130]
 
 	| String returns human readable string representation.
 
-`View source at line: 130 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L130>`_
+`View source at line: 130 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L130>`_
 
 .. function:: func (ee EventsByPeer) ToWire() []*wire.EventDescr [line: 139]
 
 	| ToWire converts to simple slice.
 
-`View source at line: 139 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L139>`_
+`View source at line: 139 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L139>`_
 
 .. function:: func WireToEventsByPeer(arr []*wire.EventDescr) EventsByPeer [line: 153]
 
 	| WireToEventsByPeer converts from wire.
 
-`View source at line: 153 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L153>`_
+`View source at line: 153 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L153>`_
 
 .. function:: func rootZero(node hash.Peer) EventsByPeer [line: 175]
 
 	| rootZero makes roots from single event.
 
-`View source at line: 175 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L175>`_
+`View source at line: 175 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L175>`_
 
 .. function:: func rootFrom(e *Event) EventsByPeer [line: 182]
 
 	| rootFrom makes roots from single event.
 
-`View source at line: 182 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/flag_table.go#L182>`_
+`View source at line: 182 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/flag_table.go#L182>`_

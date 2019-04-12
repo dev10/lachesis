@@ -1,46 +1,46 @@
-*****************************************************************************************************************************************
-`src/inter/event.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/event.go>`_
-*****************************************************************************************************************************************
+******************************************************************************************************************************************
+`src/inter/event.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/event.go>`_
+******************************************************************************************************************************************
 
 
 .. function:: type Event struct [line: 17]
 
 	| Event is a poset event.
 
-`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/event.go#L17>`_
+`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/event.go#L17>`_
 
 .. function:: func (e *Event) Hash() hash.Event [line: 30]
 
 	| Hash calcs hash of event.
 
-`View source at line: 30 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/event.go#L30>`_
+`View source at line: 30 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/event.go#L30>`_
 
 .. function:: func (e *Event) String() string [line: 38]
 
 	| String returns string representation.
 
-`View source at line: 38 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/event.go#L38>`_
+`View source at line: 38 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/event.go#L38>`_
 
 .. function:: func (e *Event) ToWire() *wire.Event [line: 43]
 
 	| ToWire converts to proto.Message.
 
-`View source at line: 43 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/event.go#L43>`_
+`View source at line: 43 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/event.go#L43>`_
 
 .. function:: func WireToEvent(w *wire.Event) *Event [line: 56]
 
 	| WireToEvent converts from wire.
 
-`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/event.go#L56>`_
+`View source at line: 56 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/event.go#L56>`_
 
 .. function:: func EventHashOf(e *Event) hash.Event [line: 76]
 
 	| EventHashOf calcs hash of event.
 
-`View source at line: 76 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/event.go#L76>`_
+`View source at line: 76 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/event.go#L76>`_
 
 .. function:: func FakeFuzzingEvents() (res []*Event) [line: 87]
 
 	| FakeFuzzingEvents generates random independent events for test purpose.
 
-`View source at line: 87 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/inter/event.go#L87>`_
+`View source at line: 87 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/inter/event.go#L87>`_

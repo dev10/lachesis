@@ -1,6 +1,6 @@
-*******************************************************************************************************************************************************
-`src/node/peer_selector.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go>`_
-*******************************************************************************************************************************************************
+********************************************************************************************************************************************************
+`src/node/peer_selector.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go>`_
+********************************************************************************************************************************************************
 
 
 .. function:: type PeerSelector interface [line: 12]
@@ -9,72 +9,72 @@
 	| update the last peer it gossiped with and select the next peer
 	| to gossip with
 
-`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L12>`_
+`View source at line: 12 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L12>`_
 
 .. function:: type RandomPeerSelector struct [line: 21]
 
 	| RandomPeerSelector is a randomized peer selection struct
 
-`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L21>`_
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L21>`_
 
 .. function:: type SelectorCreationFnArgs interface [line: 29]
 
 	| SelectorCreationFnArgs specifies the union of possible arguments that can be extracted to create a variant of PeerSelector
 
-`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L29>`_
+`View source at line: 29 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L29>`_
 
 .. function:: type SelectorCreationFn func(*peers.Peers, interface [line: 32]
 
 	| SelectorCreationFn declares the function signature to create variants of PeerSelector
 
-`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L32>`_
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L32>`_
 
 .. function:: type RandomPeerSelectorCreationFnArgs struct [line: 35]
 
 	| RandomPeerSelectorCreationFnArgs arguments for RandomPeerSelector
 
-`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L35>`_
+`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L35>`_
 
 .. function:: func NewRandomPeerSelector(participants *peers.Peers, args RandomPeerSelectorCreationFnArgs) *RandomPeerSelector [line: 40]
 
 	| NewRandomPeerSelector creates a new random peer selector
 
-`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L40>`_
+`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L40>`_
 
 .. function:: func NewRandomPeerSelectorWrapper(participants *peers.Peers, args interface [line: 49]
 
 	| NewRandomPeerSelectorWrapper implements SelectorCreationFn to allow dynamic creation of RandomPeerSelector ie NewNode
 
-`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L49>`_
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L49>`_
 
 .. function:: func (ps *RandomPeerSelector) Peers() *peers.Peers [line: 54]
 
 	| Peers returns all known peers
 
-`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L54>`_
+`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L54>`_
 
 .. function:: func (ps *RandomPeerSelector) UpdateLast(peer string) [line: 59]
 
 	| UpdateLast sets the last peer communicated with (to avoid double talk)
 
-`View source at line: 59 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L59>`_
+`View source at line: 59 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L59>`_
 
 .. function:: func (ps *RandomPeerSelector) Next() *peers.Peer [line: 70]
 
 	| Next returns the next randomly selected peer(s) to communicate with
 
-`View source at line: 70 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L70>`_
+`View source at line: 70 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L70>`_
 
 .. function:: func (ps *RandomPeerSelector)Engage(peer string) [line: 94]
 
 	| Indicate we are in communication with a peer
 	| so it would be excluded from next peer selection
 
-`View source at line: 94 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L94>`_
+`View source at line: 94 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L94>`_
 
 .. function:: func (ps *RandomPeerSelector)Dismiss(peer string) [line: 102]
 
 	| Indicate we are not in communication with a peer
 	| so it could be selected as a next peer
 
-`View source at line: 102 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/peer_selector.go#L102>`_
+`View source at line: 102 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/peer_selector.go#L102>`_

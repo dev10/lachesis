@@ -1,22 +1,22 @@
-*****************************************************************************************************************************************
-`src/node/config.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/config.go>`_
-*****************************************************************************************************************************************
+******************************************************************************************************************************************
+`src/node/config.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/config.go>`_
+******************************************************************************************************************************************
 
 
 .. function:: type Config struct [line: 13]
 
 	| Config for node configuration settings
 
-`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/config.go#L13>`_
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/config.go#L13>`_
 
 .. function:: func DefaultConfig() *Config [line: 39]
 
 	| DefaultConfig sets the default config for a node config
 
-`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/config.go#L39>`_
+`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/config.go#L39>`_
 
 .. function:: func TestConfig(t testing.TB) *Config [line: 55]
 
 	| TestConfig sets the test config for use with tests
 
-`View source at line: 55 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/node/config.go#L55>`_
+`View source at line: 55 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/node/config.go#L55>`_

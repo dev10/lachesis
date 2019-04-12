@@ -1,6 +1,6 @@
-***********************************************************************************************************************************************************************
-`src/posposet/poset_clotho_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset_clotho_test.go>`_
-***********************************************************************************************************************************************************************
+************************************************************************************************************************************************************************
+`src/posposet/poset_clotho_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/poset_clotho_test.go>`_
+************************************************************************************************************************************************************************
 
 
 .. function:: func testSpecialNamedClotho(t *testing.T, asciiScheme string) [line: 68]
@@ -12,4 +12,4 @@
 	| - 3rd number - frame where node should be in;
 	| - last "+" - ClothoCandidate;
 
-`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset_clotho_test.go#L68>`_
+`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/poset_clotho_test.go#L68>`_

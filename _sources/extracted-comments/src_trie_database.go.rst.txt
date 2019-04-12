@@ -1,6 +1,6 @@
-*********************************************************************************************************************************************
-`src/trie/database.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/database.go>`_
-*********************************************************************************************************************************************
+**********************************************************************************************************************************************
+`src/trie/database.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/database.go>`_
+**********************************************************************************************************************************************
 
 
 .. function::  [line: ???]
@@ -18,4 +18,4 @@
 	| }
 	| }
 
-`View source at line: ??? <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/database.go#L???>`_
+`View source at line: ??? <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/database.go#L???>`_

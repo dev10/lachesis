@@ -1,6 +1,6 @@
-*********************************************************************************************************************************************************
-`src/posposet/poset_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset_test.go>`_
-*********************************************************************************************************************************************************
+**********************************************************************************************************************************************************
+`src/posposet/poset_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/poset_test.go>`_
+**********************************************************************************************************************************************************
 
 
 .. function:: func (p *Poset) PushEventSync(e hash.Event) [line: 91]
@@ -8,4 +8,4 @@
 	| PushEventSync takes event into processing. It's a sync version of Poset.PushEvent().
 	| Event order doesn't matter.
 
-`View source at line: 91 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/posposet/poset_test.go#L91>`_
+`View source at line: 91 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/posposet/poset_test.go#L91>`_

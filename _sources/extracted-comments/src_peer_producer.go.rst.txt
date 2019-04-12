@@ -1,6 +1,6 @@
-*********************************************************************************************************************************************
-`src/peer/producer.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/producer.go>`_
-*********************************************************************************************************************************************
+**********************************************************************************************************************************************
+`src/peer/producer.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/producer.go>`_
+**********************************************************************************************************************************************
 
 
 .. function:: type ClientProducer interface [line: 10]
@@ -8,35 +8,35 @@
 	| ClientProducer is an interface representing methods for producer of sync
 	| clients.
 
-`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/producer.go#L10>`_
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/producer.go#L10>`_
 
 .. function:: type Producer struct [line: 18]
 
 	| Producer creates new sync clients. Stores a limited number of clients in
 	| a pool for reuse.
 
-`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/producer.go#L18>`_
+`View source at line: 18 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/producer.go#L18>`_
 
 .. function:: func (p *Producer) Pop(target string) (SyncClient, error) [line: 40]
 
 	| Pop creates a new connection for a target or re-uses an existing connection.
 
-`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/producer.go#L40>`_
+`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/producer.go#L40>`_
 
 .. function:: func (p *Producer) Push(target string, client SyncClient) [line: 62]
 
 	| Push saves a connection in a pool.
 
-`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/producer.go#L62>`_
+`View source at line: 62 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/producer.go#L62>`_
 
 .. function:: func (p *Producer) Close() [line: 77]
 
 	| Close closes a producer.
 
-`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/producer.go#L77>`_
+`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/producer.go#L77>`_
 
 .. function:: func (p *Producer) ConnLen(target string) int [line: 98]
 
 	| ConnLen returns the number of connections in a pool for a specific target.
 
-`View source at line: 98 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/producer.go#L98>`_
+`View source at line: 98 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/producer.go#L98>`_

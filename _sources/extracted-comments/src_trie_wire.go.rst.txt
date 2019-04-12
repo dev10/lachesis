@@ -1,52 +1,52 @@
-*************************************************************************************************************************************
-`src/trie/wire.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go>`_
-*************************************************************************************************************************************
+**************************************************************************************************************************************
+`src/trie/wire.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go>`_
+**************************************************************************************************************************************
 
 
 .. function:: func EncodeToBytes(n node) ([]byte, error) [line: 17]
 
 	| EncodeToBytes serializes node.
 
-`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go#L17>`_
+`View source at line: 17 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go#L17>`_
 
 .. function:: func (n *shortNode) ToWire() *internal.Node [line: 23]
 
 	| ToWire converts node to wire.
 
-`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go#L23>`_
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go#L23>`_
 
 .. function:: func (n *rawShortNode) ToWire() *internal.Node [line: 35]
 
 	| ToWire converts node to wire.
 
-`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go#L35>`_
+`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go#L35>`_
 
 .. function:: func (n *fullNode) ToWire() *internal.Node [line: 44]
 
 	| ToWire converts node to wire.
 
-`View source at line: 44 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go#L44>`_
+`View source at line: 44 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go#L44>`_
 
 .. function:: func (n rawFullNode) ToWire() *internal.Node [line: 68]
 
 	| ToWire converts node to wire.
 
-`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go#L68>`_
+`View source at line: 68 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go#L68>`_
 
 .. function:: func (n rawNode) ToWire() *internal.Node [line: 76]
 
 	| ToWire converts node to wire.
 
-`View source at line: 76 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go#L76>`_
+`View source at line: 76 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go#L76>`_
 
 .. function:: func (n hashNode) ToWire() *internal.Node [line: 81]
 
 	| ToWire converts node to wire.
 
-`View source at line: 81 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go#L81>`_
+`View source at line: 81 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go#L81>`_
 
 .. function:: func (n valueNode) ToWire() *internal.Node [line: 90]
 
 	| ToWire converts node to wire.
 
-`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/wire.go#L90>`_
+`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/wire.go#L90>`_

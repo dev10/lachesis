@@ -1,13 +1,13 @@
-*****************************************************************************************************************************************************
-`src/log/syslog_unixes.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/log/syslog_unixes.go>`_
-*****************************************************************************************************************************************************
+******************************************************************************************************************************************************
+`src/log/syslog_unixes.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/log/syslog_unixes.go>`_
+******************************************************************************************************************************************************
 
 
 .. function:: type SyslogHook struct [line: 14]
 
 	| SyslogHook to send logs via syslog.
 
-`View source at line: 14 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/log/syslog_unixes.go#L14>`_
+`View source at line: 14 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/log/syslog_unixes.go#L14>`_
 
 .. function:: func NewSyslogHook(network, raddr string, tag string) (*SyslogHook, error) [line: 21]
 
@@ -15,4 +15,4 @@
 	| `hook, err := NewSyslogHook("udp", "localhost:514", "")`
 	| `if err == nil { log.Hooks.Add(hook) }`
 
-`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/log/syslog_unixes.go#L21>`_
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/log/syslog_unixes.go#L21>`_

@@ -1,6 +1,6 @@
-***********************************************************************************************************************************************
-`src/proxy/handlers.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/proxy/handlers.go>`_
-***********************************************************************************************************************************************
+************************************************************************************************************************************************
+`src/proxy/handlers.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/proxy/handlers.go>`_
+************************************************************************************************************************************************
 
 
 .. function:: type ProxyHandler interface [line: 15]
@@ -9,4 +9,4 @@
 	| committing, retrieving and restoring state and transactions, to and from
 	| the DAG
 
-`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/proxy/handlers.go#L15>`_
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/proxy/handlers.go#L15>`_

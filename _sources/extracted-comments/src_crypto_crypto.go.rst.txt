@@ -1,23 +1,23 @@
-*********************************************************************************************************************************************
-`src/crypto/crypto.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/crypto.go>`_
-*********************************************************************************************************************************************
+**********************************************************************************************************************************************
+`src/crypto/crypto.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/crypto/crypto.go>`_
+**********************************************************************************************************************************************
 
 
 .. function:: func Keccak256(data ...[]byte) []byte [line: 9]
 
 	| Keccak256 calculates and returns the Keccak256 hash of the input data.
 
-`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/crypto.go#L9>`_
+`View source at line: 9 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/crypto/crypto.go#L9>`_
 
 .. function:: func Keccak256Hash(data ...[]byte) (h common.Hash) [line: 22]
 
 	| Keccak256Hash calculates and returns the Keccak256 hash of the input data,
 	| converting it to an internal Hash data structure.
 
-`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/crypto.go#L22>`_
+`View source at line: 22 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/crypto/crypto.go#L22>`_
 
 .. function:: func Keccak512(data ...[]byte) []byte [line: 35]
 
 	| Keccak512 calculates and returns the Keccak512 hash of the input data.
 
-`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/crypto.go#L35>`_
+`View source at line: 35 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/crypto/crypto.go#L35>`_

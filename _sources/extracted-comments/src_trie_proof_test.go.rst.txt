@@ -1,6 +1,6 @@
-*************************************************************************************************************************************************
-`src/trie/proof_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/proof_test.go>`_
-*************************************************************************************************************************************************
+**************************************************************************************************************************************************
+`src/trie/proof_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/proof_test.go>`_
+**************************************************************************************************************************************************
 
 
 .. function:: func makeProvers(trie *Trie) []func(key []byte) *kvdb.MemDatabase [line: 21]
@@ -8,17 +8,17 @@
 	| makeProvers creates Merkle trie provers based on different implementations to
 	| test all variations.
 
-`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/proof_test.go#L21>`_
+`View source at line: 21 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/proof_test.go#L21>`_
 
 .. function:: func TestMissingKeyProof(t *testing.T) [line: 124]
 
 	| Tests that missing keys can also be proven. The test explicitly uses a single
 	| entry trie and checks for missing keys both before and after the single entry.
 
-`View source at line: 124 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/proof_test.go#L124>`_
+`View source at line: 124 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/proof_test.go#L124>`_
 
 .. function:: func mutateByte(b []byte) [line: 149]
 
 	| mutateByte changes one byte in b.
 
-`View source at line: 149 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/proof_test.go#L149>`_
+`View source at line: 149 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/proof_test.go#L149>`_

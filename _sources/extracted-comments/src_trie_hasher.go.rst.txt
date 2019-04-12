@@ -1,6 +1,6 @@
-*****************************************************************************************************************************************
-`src/trie/hasher.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/hasher.go>`_
-*****************************************************************************************************************************************
+******************************************************************************************************************************************
+`src/trie/hasher.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/hasher.go>`_
+******************************************************************************************************************************************
 
 
 .. function:: type keccakState interface [line: 23]
@@ -9,20 +9,20 @@
 	| Read to get a variable amount of data from the hash state. Read is faster than Sum
 	| because it doesn't copy the internal state, but also modifies the internal state.
 
-`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/hasher.go#L23>`_
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/hasher.go#L23>`_
 
 .. function:: var hasherPool = sync.Pool [line: 40]
 
 	| hashers live in a global db.
 
-`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/hasher.go#L40>`_
+`View source at line: 40 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/hasher.go#L40>`_
 
 .. function:: func (h *hasher) hash(n node, db *Database, force bool) (node, node, error) [line: 61]
 
 	| hash collapses a node down into a hash node, also returning a copy of the
 	| original node initialized with the computed hash to replace the original one.
 
-`View source at line: 61 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/hasher.go#L61>`_
+`View source at line: 61 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/hasher.go#L61>`_
 
 .. function:: func (h *hasher) hashChildren(original node, db *Database) (node, node, error) [line: 107]
 
@@ -30,7 +30,7 @@
 	| size of the child is larger than a hash, returning the collapsed node as well
 	| as a replacement for the original node with the child hashes cached in.
 
-`View source at line: 107 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/hasher.go#L107>`_
+`View source at line: 107 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/hasher.go#L107>`_
 
 .. function:: func (h *hasher) store(n node, db *Database, force bool) (node, error) [line: 151]
 
@@ -38,4 +38,4 @@
 	| the key/value pair to it and tracks any node->child references as well as any
 	| node->external trie references.
 
-`View source at line: 151 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/hasher.go#L151>`_
+`View source at line: 151 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/hasher.go#L151>`_

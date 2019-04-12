@@ -1,172 +1,172 @@
-*****************************************************************************************************************************************
-`src/poset/block.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go>`_
-*****************************************************************************************************************************************
+******************************************************************************************************************************************
+`src/poset/block.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go>`_
+******************************************************************************************************************************************
 
 
 .. function:: func (bb *BlockBody) ProtoMarshal() ([]byte, error) [line: 23]
 
 	| ProtoMarshal json encoding of body only
 
-`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L23>`_
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L23>`_
 
 .. function:: func (bb *BlockBody) ProtoUnmarshal(data []byte) error [line: 33]
 
 	| ProtoUnmarshal unmarshal the protobuff for the block body
 
-`View source at line: 33 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L33>`_
+`View source at line: 33 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L33>`_
 
 .. function:: func (bb *BlockBody) Hash() ([]byte, error) [line: 38]
 
 	| Hash returns the block body hash
 
-`View source at line: 38 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L38>`_
+`View source at line: 38 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L38>`_
 
 .. function:: func (bs *BlockSignature) ValidatorHex() string [line: 49]
 
 	| ValidatorHex returns the Hex ID of a validator for this block
 
-`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L49>`_
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L49>`_
 
 .. function:: func (bs *BlockSignature) ProtoMarshal() ([]byte, error) [line: 54]
 
 	| ProtoMarshal marshal the block signatures to protobuff
 
-`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L54>`_
+`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L54>`_
 
 .. function:: func (bs *BlockSignature) ProtoUnmarshal(data []byte) error [line: 64]
 
 	| ProtoUnmarshal unmarshals the blocksignature from protobuff
 
-`View source at line: 64 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L64>`_
+`View source at line: 64 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L64>`_
 
 .. function:: func (bs *BlockSignature) ToWire() WireBlockSignature [line: 69]
 
 	| ToWire converts block signatures to wire (transport)
 
-`View source at line: 69 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L69>`_
+`View source at line: 69 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L69>`_
 
 .. function:: func (bs *BlockSignature) Equals(that *BlockSignature) bool [line: 77]
 
 	| Equals checks blocksignature equality
 
-`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L77>`_
+`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L77>`_
 
 .. function:: func NewBlockFromFrame(blockIndex int64, frame Frame) (Block, error) [line: 86]
 
 	| NewBlockFromFrame creates a new block from the given frame
 
-`View source at line: 86 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L86>`_
+`View source at line: 86 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L86>`_
 
 .. function:: func NewBlock(blockIndex, roundReceived int64, frameHash []byte, txs [][]byte) Block [line: 99]
 
 	| NewBlock creates a new empty block with current time
 
-`View source at line: 99 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L99>`_
+`View source at line: 99 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L99>`_
 
 .. function:: func (b *Block) Index() int64 [line: 114]
 
 	| Index returns the index (height) of the block
 
-`View source at line: 114 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L114>`_
+`View source at line: 114 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L114>`_
 
 .. function:: func (b *Block) Transactions() [][]byte [line: 119]
 
 	| Transactions returns the transactions in a block
 
-`View source at line: 119 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L119>`_
+`View source at line: 119 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L119>`_
 
 .. function:: func (b *Block) RoundReceived() int64 [line: 124]
 
 	| RoundReceived returns the round in which the block was received
 
-`View source at line: 124 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L124>`_
+`View source at line: 124 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L124>`_
 
 .. function:: func (b *Block) BlockHash() ([]byte, error) [line: 129]
 
 	| BlockHash returns the Hash of the block (used for API)
 
-`View source at line: 129 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L129>`_
+`View source at line: 129 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L129>`_
 
 .. function:: func (b *Block) BlockHex() string [line: 138]
 
 	| BlockHex returns the Hex of the block (used for API)
 
-`View source at line: 138 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L138>`_
+`View source at line: 138 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L138>`_
 
 .. function:: func (b *Block) GetBlockSignatures() []BlockSignature [line: 144]
 
 	| GetBlockSignatures returns the block signatures for the block
 
-`View source at line: 144 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L144>`_
+`View source at line: 144 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L144>`_
 
 .. function:: func (b *Block) GetSignature(validator string) (res BlockSignature, err error) [line: 160]
 
 	| GetSignature returns all validator signatures for the block
 
-`View source at line: 160 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L160>`_
+`View source at line: 160 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L160>`_
 
 .. function:: func (b *Block) AppendTransactions(txs [][]byte) [line: 175]
 
 	| AppendTransactions appends the transactions to the block body
 
-`View source at line: 175 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L175>`_
+`View source at line: 175 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L175>`_
 
 .. function:: func (b *Block) ProtoMarshal() ([]byte, error) [line: 180]
 
 	| ProtoMarshal marshals the block into protobuff
 
-`View source at line: 180 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L180>`_
+`View source at line: 180 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L180>`_
 
 .. function:: func (b *Block) ProtoUnmarshal(data []byte) error [line: 190]
 
 	| ProtoUnmarshal unamrshals protobuff into a block
 
-`View source at line: 190 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L190>`_
+`View source at line: 190 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L190>`_
 
 .. function:: func (b *Block) Sign(privKey *ecdsa.PrivateKey) (bs BlockSignature, err error) [line: 195]
 
 	| Sign the block for this node
 
-`View source at line: 195 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L195>`_
+`View source at line: 195 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L195>`_
 
 .. function:: func (b *Block) SetSignature(bs BlockSignature) error [line: 214]
 
 	| SetSignature sets the known blocksignatures for the block
 
-`View source at line: 214 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L214>`_
+`View source at line: 214 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L214>`_
 
 .. function:: func (b *Block) Verify(sig BlockSignature) (bool, error) [line: 220]
 
 	| Verify verifies a blocksignature is from the node that signed
 
-`View source at line: 220 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L220>`_
+`View source at line: 220 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L220>`_
 
 .. function:: func ListBytesEquals(this [][]byte, that [][]byte) bool [line: 237]
 
 	| ListBytesEquals compares the equality of two lists
 
-`View source at line: 237 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L237>`_
+`View source at line: 237 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L237>`_
 
 .. function:: func (bb *BlockBody) Equals(that *BlockBody) bool [line: 250]
 
 	| Equals compares the equality of a block body
 
-`View source at line: 250 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L250>`_
+`View source at line: 250 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L250>`_
 
 .. function:: func (wbs *WireBlockSignature) Equals(that *WireBlockSignature) bool [line: 257]
 
 	| Equals compares the equality of wire block signatures
 
-`View source at line: 257 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L257>`_
+`View source at line: 257 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L257>`_
 
 .. function:: func MapStringsEquals(this map[string]string, that map[string]string) bool [line: 262]
 
 	| MapStringsEquals compares the equality of two string maps
 
-`View source at line: 262 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L262>`_
+`View source at line: 262 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L262>`_
 
 .. function:: func (b *Block) Equals(that *Block) bool [line: 276]
 
 	| Equals compares the equality of two blocks
 
-`View source at line: 276 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/block.go#L276>`_
+`View source at line: 276 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/block.go#L276>`_

@@ -1,88 +1,88 @@
-***********************************************************************************************************************************************************
-`src/kvdb/badger_database.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go>`_
-***********************************************************************************************************************************************************
+************************************************************************************************************************************************************
+`src/kvdb/badger_database.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go>`_
+************************************************************************************************************************************************************
 
 
 .. function:: type BadgerDatabase struct [line: 10]
 
 	| BadgerDatabase is a kvbd.Database wrapper of *badger.DB
 
-`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L10>`_
+`View source at line: 10 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L10>`_
 
 .. function:: func NewBadgerDatabase(db *badger.DB) *BadgerDatabase [line: 15]
 
 	| NewBadgerDatabase wraps *badger.DB
 
-`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L15>`_
+`View source at line: 15 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L15>`_
 
 .. function:: func (w *BadgerDatabase) Put(key []byte, value []byte) error [line: 26]
 
 	| Put puts key-value pair into db.
 
-`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L26>`_
+`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L26>`_
 
 .. function:: func (w *BadgerDatabase) Has(key []byte) (bool, error) [line: 39]
 
 	| Has checks if key is in the db.
 
-`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L39>`_
+`View source at line: 39 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L39>`_
 
 .. function:: func (w *BadgerDatabase) Get(key []byte) (res []byte, err error) [line: 55]
 
 	| Get returns key-value pair by key.
 
-`View source at line: 55 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L55>`_
+`View source at line: 55 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L55>`_
 
 .. function:: func (w *BadgerDatabase) Delete(key []byte) error [line: 72]
 
 	| Delete removes key-value pair by key.
 
-`View source at line: 72 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L72>`_
+`View source at line: 72 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L72>`_
 
 .. function:: func (w *BadgerDatabase) Close() [line: 88]
 
 	| Close leaves underlying database.
 
-`View source at line: 88 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L88>`_
+`View source at line: 88 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L88>`_
 
 .. function:: func (w *BadgerDatabase) NewBatch() Batch [line: 93]
 
 	| NewBatch creates new batch.
 
-`View source at line: 93 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L93>`_
+`View source at line: 93 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L93>`_
 
 .. function:: type badgerBatch struct [line: 102]
 
 	| badgerBatch is a batch structure.
 
-`View source at line: 102 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L102>`_
+`View source at line: 102 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L102>`_
 
 .. function:: func (b *badgerBatch) Put(key, value []byte) error [line: 109]
 
 	| Put puts key-value pair into batch.
 
-`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L109>`_
+`View source at line: 109 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L109>`_
 
 .. function:: func (b *badgerBatch) Delete(key []byte) error [line: 116]
 
 	| Delete removes key-value pair from batch by key.
 
-`View source at line: 116 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L116>`_
+`View source at line: 116 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L116>`_
 
 .. function:: func (b *badgerBatch) Write() error [line: 123]
 
 	| Write writes batch into db.
 
-`View source at line: 123 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L123>`_
+`View source at line: 123 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L123>`_
 
 .. function:: func (b *badgerBatch) ValueSize() int [line: 143]
 
 	| ValueSize returns values sizes sum.
 
-`View source at line: 143 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L143>`_
+`View source at line: 143 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L143>`_
 
 .. function:: func (b *badgerBatch) Reset() [line: 148]
 
 	| Reset cleans whole batch.
 
-`View source at line: 148 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/kvdb/badger_database.go#L148>`_
+`View source at line: 148 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/kvdb/badger_database.go#L148>`_

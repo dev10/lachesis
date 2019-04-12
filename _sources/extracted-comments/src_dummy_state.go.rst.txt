@@ -1,40 +1,40 @@
-*****************************************************************************************************************************************
-`src/dummy/state.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/state.go>`_
-*****************************************************************************************************************************************
+******************************************************************************************************************************************
+`src/dummy/state.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/dummy/state.go>`_
+******************************************************************************************************************************************
 
 
 .. function:: type State struct [line: 23]
 
 	| State implements ProxyHandler
 
-`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/state.go#L23>`_
+`View source at line: 23 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/dummy/state.go#L23>`_
 
 .. function:: func NewState(logger *logrus.Logger) *State [line: 32]
 
 	| NewState constructor
 
-`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/state.go#L32>`_
+`View source at line: 32 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/dummy/state.go#L32>`_
 
 .. function:: func (s *State) CommitHandler(block poset.Block) ([]byte, error) [line: 49]
 
 	| CommitHandler triggers on block received
 
-`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/state.go#L49>`_
+`View source at line: 49 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/dummy/state.go#L49>`_
 
 .. function:: func (s *State) SnapshotHandler(blockIndex int64) ([]byte, error) [line: 63]
 
 	| SnapshotHandler triggers on snapshot restore
 
-`View source at line: 63 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/state.go#L63>`_
+`View source at line: 63 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/dummy/state.go#L63>`_
 
 .. function:: func (s *State) RestoreHandler(snapshot []byte) ([]byte, error) [line: 77]
 
 	| RestoreHandler triggers on snapshot for a restore
 
-`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/state.go#L77>`_
+`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/dummy/state.go#L77>`_
 
 .. function:: func (s *State) GetCommittedTransactions() [][]byte [line: 90]
 
 	| GetCommittedTransactions returns all final transactions
 
-`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/dummy/state.go#L90>`_
+`View source at line: 90 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/dummy/state.go#L90>`_

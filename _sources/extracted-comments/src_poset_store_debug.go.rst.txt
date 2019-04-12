@@ -1,6 +1,6 @@
-*****************************************************************************************************************************************************
-`src/poset/store_debug.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/store_debug.go>`_
-*****************************************************************************************************************************************************
+******************************************************************************************************************************************************
+`src/poset/store_debug.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/store_debug.go>`_
+******************************************************************************************************************************************************
 
 
 .. function:: type Store interface [line: 13]
@@ -8,4 +8,4 @@
 	| Store provides an interface for persistent and non-persistent stores
 	| to store key lachesis consensus information on a node.
 
-`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/poset/store_debug.go#L13>`_
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/poset/store_debug.go#L13>`_

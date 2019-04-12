@@ -1,10 +1,10 @@
-***********************************************************************************************************************************************
-`src/crypto/address.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/address.go>`_
-***********************************************************************************************************************************************
+************************************************************************************************************************************************
+`src/crypto/address.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/crypto/address.go>`_
+************************************************************************************************************************************************
 
 
 .. function:: func AddressOf(pk common.PublicKey) common.Address [line: 8]
 
 	| AddressOf calcs hash of the PublicKey.
 
-`View source at line: 8 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/crypto/address.go#L8>`_
+`View source at line: 8 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/crypto/address.go#L8>`_

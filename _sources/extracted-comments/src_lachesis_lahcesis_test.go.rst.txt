@@ -1,10 +1,10 @@
-***************************************************************************************************************************************************************
-`src/lachesis/lahcesis_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/lachesis/lahcesis_test.go>`_
-***************************************************************************************************************************************************************
+****************************************************************************************************************************************************************
+`src/lachesis/lahcesis_test.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/lachesis/lahcesis_test.go>`_
+****************************************************************************************************************************************************************
 
 
 .. function:: func TestCatchUp(t *testing.T) [line: 286]
 
 	| TODO: Failed
 
-`View source at line: 286 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/lachesis/lahcesis_test.go#L286>`_
+`View source at line: 286 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/lachesis/lahcesis_test.go#L286>`_

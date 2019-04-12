@@ -1,6 +1,6 @@
-*****************************************************************************************************************************************
-`src/trie/errors.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/errors.go>`_
-*****************************************************************************************************************************************
+******************************************************************************************************************************************
+`src/trie/errors.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/errors.go>`_
+******************************************************************************************************************************************
 
 
 .. function:: type MissingNodeError struct [line: 13]
@@ -9,11 +9,11 @@
 	| in the case where a trie node is not present in the local database. It contains
 	| information necessary for retrieving the missing node.
 
-`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/errors.go#L13>`_
+`View source at line: 13 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/errors.go#L13>`_
 
 .. function:: type decodeError struct [line: 24]
 
 	| wraps a decoding error with information about the path to the
 	| invalid child node (for debugging encoding issues).
 
-`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/trie/errors.go#L24>`_
+`View source at line: 24 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/trie/errors.go#L24>`_

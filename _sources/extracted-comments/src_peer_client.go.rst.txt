@@ -1,34 +1,34 @@
-*****************************************************************************************************************************************
-`src/peer/client.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/client.go>`_
-*****************************************************************************************************************************************
+******************************************************************************************************************************************
+`src/peer/client.go <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/client.go>`_
+******************************************************************************************************************************************
 
 
 .. function:: type RPCClient interface [line: 19]
 
 	| RPCClient is an interface representing methods for a RPC Client.
 
-`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/client.go#L19>`_
+`View source at line: 19 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/client.go#L19>`_
 
 .. function:: type SyncClient interface [line: 26]
 
 	| SyncClient is an interface representing methods for sync client.
 
-`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/client.go#L26>`_
+`View source at line: 26 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/client.go#L26>`_
 
 .. function:: type Client struct [line: 37]
 
 	| Client is a sync client.
 
-`View source at line: 37 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/client.go#L37>`_
+`View source at line: 37 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/client.go#L37>`_
 
 .. function:: func NewClient(rpcClient RPCClient) (*Client, error) [line: 54]
 
 	| NewClient creates new sync client.
 
-`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/client.go#L54>`_
+`View source at line: 54 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/client.go#L54>`_
 
 .. function:: func (c *Client) Close() error [line: 77]
 
 	| Close closes a sync client.
 
-`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23src/peer/client.go#L77>`_
+`View source at line: 77 <https://github.com/Fantom-Foundation/go-lachesis/blob/4b2496f853f1afc38f482164e9c0d50bb9df7c23/src/peer/client.go#L77>`_
